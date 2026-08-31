@@ -28,7 +28,22 @@ app.use('/api/news', newsRoutes);
 app.use('/api/market', marketRoutes);
 app.use('/api/watchlist', watchlistRoutes);
 app.use('/api/scan', scanRoutes);
-app.use('/api/portfolio', portfolioRoutes);
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    system: 'PSX Stockking API Server',
+    version: '1.0.0',
+    documentation: 'Official PSX DPS Real-Time Scraping & Financial Intelligence Engine',
+    endpoints: {
+      marketSummary: '/api/market/summary',
+      stocks: '/api/stocks',
+      news: '/api/news',
+      recommendations: '/api/recommendations',
+      portfolio: '/api/portfolio',
+      health: '/api/health'
+    }
+  });
+});
 
 app.get('/api/health', (req, res) => {
   res.json({
