@@ -1,0 +1,297 @@
+﻿import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import { memDB, getDBStatus } from '../config/db.js';
+
+const router = express.Router();
+const JWT_SECRET = process.env.JWT_SECRET || 'psx_stockking_super_secret_jwt_key_2026';
+
+// Helper to generate JWT Token
+export const generateToken = (user) => {
+  return jwt.sign(
+    { 
+      id: user._id || user.id, 
+      email: user.email, 
+      role: user.role, 
+      plan: user.plan 
+    },
+    JWT_SECRET,
+    { expiresIn: '30d' }
+  );
+};
+
+// Helper: Check and auto-expire subscription if end date passed
+const checkExpiry = async (user) => {
+  if (!user || user.plan !== 'PRO' || user.subscriptionDuration === 'LIFETIME') return user;
+  
+  if (user.subscriptionEnd && new Date(user.subscriptionEnd) < new Date()) {
+    user.plan = 'FREE';
+    user.subscriptionStatus = 'EXPIRED';
+    if (getDBStatus().isMock) {
+      memDB.users.set(user.email.toLowerCase(), user);
+    } else {
+      await User.findByIdAndUpdate(user._id, {
+        plan: 'FREE',
+        subscriptionStatus: 'EXPIRED'
+      });
+    }
+  }
+  return user;
+};
+
+// Auth Middleware for protected routes
+export const requireAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ success: false, message: 'Authentication required. Please sign in.' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    let user = null;
+    if (getDBStatus().isMock) {
+      user = memDB.users.get(decoded.email.toLowerCase());
+    } else {
+      user = await User.findById(decoded.id);
+    }
+
+    if (!user) {
+      return res.status(401).json({ success: false, message: 'User account not found.' });
+    }
+
+    user = await checkExpiry(user);
+    req.user = user;
+    next();
+  } catch (err) {
+    return res.status(401).json({ success: false, message: 'Invalid or expired session token.' });
+  }
+};
+
+// ==========================================
+// 1. SIGN UP (POST /api/auth/signup)
+// ==========================================
+router.post('/signup', async (req, res) => {
+  try {
+    const { name, email, password, phone } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ success: false, message: 'Please provide Name, Email, and Password.' });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ success: false, message: 'Password must be at least 6 characters long.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+
+    // Check existing
+    let existingUser = null;
+    if (getDBStatus().isMock) {
+      existingUser = memDB.users.get(emailLower);
+    } else {
+      existingUser = await User.findOne({ email: emailLower });
+    }
+
+    if (existingUser) {
+      return res.status(400).json({ success: false, message: 'An account with this email already exists. Please Sign In.' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const isFirstUser = (getDBStatus().isMock ? memDB.users.size : await User.countDocuments()) === 0;
+    const role = isFirstUser || emailLower.includes('admin') ? 'ADMIN' : 'USER';
+    const plan = role === 'ADMIN' ? 'PRO' : 'FREE';
+    const subscriptionStatus = role === 'ADMIN' ? 'ACTIVE' : 'INACTIVE';
+    const subscriptionDuration = role === 'ADMIN' ? 'LIFETIME' : 'FREE';
+
+    const newUserObj = {
+      id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
+      name: name.trim(),
+      email: emailLower,
+      phone: phone ? phone.trim() : '',
+      password: hashedPassword,
+      role,
+      plan,
+      subscriptionStatus,
+      subscriptionDuration,
+      subscriptionStart: role === 'ADMIN' ? new Date() : null,
+      subscriptionEnd: null,
+      paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+      createdAt: new Date(),
+      lastLogin: new Date()
+    };
+
+    let savedUser = null;
+    if (getDBStatus().isMock) {
+      memDB.users.set(emailLower, newUserObj);
+      savedUser = newUserObj;
+    } else {
+      savedUser = await User.create(newUserObj);
+    }
+
+    const token = generateToken(savedUser);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Account registered successfully!',
+      token,
+      user: {
+        id: savedUser._id || savedUser.id,
+        name: savedUser.name,
+        email: savedUser.email,
+        phone: savedUser.phone,
+        role: savedUser.role,
+        plan: savedUser.plan,
+        subscriptionStatus: savedUser.subscriptionStatus,
+        subscriptionDuration: savedUser.subscriptionDuration,
+        subscriptionEnd: savedUser.subscriptionEnd
+      }
+    });
+  } catch (err) {
+    console.error('Signup Error:', err);
+    return res.status(500).json({ success: false, message: 'Server error during signup: ' + err.message });
+  }
+});
+
+// ==========================================
+// 2. LOGIN (POST /api/auth/login)
+// ==========================================
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: 'Please provide Email and Password.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+
+    let user = null;
+    if (getDBStatus().isMock) {
+      user = memDB.users.get(emailLower);
+    } else {
+      user = await User.findOne({ email: emailLower });
+    }
+
+    if (!user) {
+      return res.status(401).json({ success: false, message: 'Invalid email or password.' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: 'Invalid email or password.' });
+    }
+
+    user = await checkExpiry(user);
+    user.lastLogin = new Date();
+
+    if (getDBStatus().isMock) {
+      memDB.users.set(emailLower, user);
+    } else {
+      await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+    }
+
+    const token = generateToken(user);
+
+    return res.json({
+      success: true,
+      message: `Welcome back, ${user.name}!`,
+      token,
+      user: {
+        id: user._id || user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        plan: user.plan,
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionDuration: user.subscriptionDuration,
+        subscriptionEnd: user.subscriptionEnd
+      }
+    });
+  } catch (err) {
+    console.error('Login Error:', err);
+    return res.status(500).json({ success: false, message: 'Server error during login: ' + err.message });
+  }
+});
+
+// ==========================================
+// 3. CURRENT USER (GET /api/auth/me)
+// ==========================================
+router.get('/me', requireAuth, async (req, res) => {
+  try {
+    const user = req.user;
+    return res.json({
+      success: true,
+      user: {
+        id: user._id || user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        plan: user.plan,
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionDuration: user.subscriptionDuration,
+        subscriptionEnd: user.subscriptionEnd,
+        paymentProof: user.paymentProof
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// ==========================================
+// 4. SUBMIT UPGRADE PROOF (POST /api/auth/upgrade-request)
+// ==========================================
+router.post('/upgrade-request', requireAuth, async (req, res) => {
+  try {
+    const { method, transactionId, amount, note } = req.body;
+
+    if (!transactionId || !method) {
+      return res.status(400).json({ success: false, message: 'Please provide Payment Method and Transaction ID / Reference.' });
+    }
+
+    const user = req.user;
+    const paymentProof = {
+      method: method.trim(),
+      transactionId: transactionId.trim(),
+      amount: Number(amount) || 1499,
+      note: note ? note.trim() : '',
+      submittedAt: new Date()
+    };
+
+    user.subscriptionStatus = 'PENDING';
+    user.paymentProof = paymentProof;
+
+    if (getDBStatus().isMock) {
+      memDB.users.set(user.email.toLowerCase(), user);
+    } else {
+      await User.findByIdAndUpdate(user._id, {
+        subscriptionStatus: 'PENDING',
+        paymentProof
+      });
+    }
+
+    return res.json({
+      success: true,
+      message: 'Upgrade proof submitted successfully! Admin will verify and activate your Stockking Pro VIP access shortly.',
+      user: {
+        id: user._id || user.id,
+        name: user.name,
+        email: user.email,
+        plan: user.plan,
+        subscriptionStatus: user.subscriptionStatus,
+        paymentProof: user.paymentProof
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: 'Failed to submit upgrade proof: ' + err.message });
+  }
+});
+
+export default router;

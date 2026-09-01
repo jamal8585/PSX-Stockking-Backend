@@ -9,7 +9,8 @@ export const memDB = {
   recommendations: new Map(),
   news: new Map(),
   marketSummary: null,
-  watchlist: new Set()
+  watchlist: new Set(),
+  users: new Map()
 };
 
 export const connectDB = async () => {

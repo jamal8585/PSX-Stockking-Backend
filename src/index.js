@@ -12,6 +12,11 @@ import marketRoutes from './routes/market.js';
 import watchlistRoutes from './routes/watchlist.js';
 import scanRoutes from './routes/scan.js';
 import portfolioRoutes from './routes/portfolio.js';
+import authRoutes from './routes/auth.js';
+import adminRoutes from './routes/admin.js';
+import User from './models/User.js';
+import bcrypt from 'bcryptjs';
+import { memDB } from './config/db.js';
 
 dotenv.config();
 
@@ -27,12 +32,15 @@ app.options('*', cors());
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
 app.use('/api/stocks', stockRoutes);
 app.use('/api/recommendations', recRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/market', marketRoutes);
 app.use('/api/watchlist', watchlistRoutes);
 app.use('/api/scan', scanRoutes);
+app.use('/api/portfolio', portfolioRoutes);
 app.get('/', (req, res) => {
   res.json({
     status: 'online',
@@ -65,6 +73,53 @@ const startServer = async () => {
   try {
     await connectDB();
     
+    // Seed Default Admin User if none exists
+    const seedAdminUser = async () => {
+      try {
+        const adminEmail = (process.env.ADMIN_EMAIL || 'admin@stockking.psx').toLowerCase();
+        const adminPassword = process.env.ADMIN_PASSWORD || 'admin12345';
+        
+        let existingAdmin = null;
+        if (getDBStatus().isMock) {
+          existingAdmin = memDB.users.get(adminEmail);
+        } else {
+          existingAdmin = await User.findOne({ email: adminEmail });
+        }
+
+        if (!existingAdmin) {
+          const salt = await bcrypt.genSalt(10);
+          const hashedPassword = await bcrypt.hash(adminPassword, salt);
+          
+          const defaultAdmin = {
+            id: 'admin_primary_001',
+            name: 'Stockking Admin',
+            email: adminEmail,
+            phone: '+923001234567',
+            password: hashedPassword,
+            role: 'ADMIN',
+            plan: 'PRO',
+            subscriptionStatus: 'ACTIVE',
+            subscriptionDuration: 'LIFETIME',
+            subscriptionStart: new Date(),
+            subscriptionEnd: new Date(new Date().setFullYear(new Date().getFullYear() + 50)),
+            createdAt: new Date(),
+            lastLogin: new Date()
+          };
+
+          if (getDBStatus().isMock) {
+            memDB.users.set(adminEmail, defaultAdmin);
+          } else {
+            await User.create(defaultAdmin);
+          }
+          console.log(`👑 Default Administrator Provisioned: Email: ${adminEmail} | Pass: ${adminPassword}`);
+        }
+      } catch (err) {
+        console.warn('Admin seed notice:', err.message);
+      }
+    };
+
+    await seedAdminUser();
+
     // Initial Sync
     await syncMarketData();
 
