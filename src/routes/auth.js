@@ -1,4 +1,4 @@
-﻿import express from 'express';
+import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
@@ -216,6 +216,95 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     console.error('Login Error:', err);
     return res.status(500).json({ success: false, message: 'Server error during login: ' + err.message });
+  }
+});
+
+// ==========================================
+// 2b. SOCIAL / GOOGLE (GMAIL) LOGIN (POST /api/auth/social-login)
+// ==========================================
+router.post('/social-login', async (req, res) => {
+  try {
+    const { provider = 'google', email, name, avatar, providerId } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Valid email is required from social provider.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+    const userName = name || emailLower.split('@')[0];
+
+    let user = null;
+    if (getDBStatus().isMock) {
+      user = memDB.users.get(emailLower);
+    } else {
+      user = await User.findOne({ email: emailLower });
+    }
+
+    if (!user) {
+      // Create new user for first-time social login / registration
+      const dummyPassword = await bcrypt.hash('social_oauth_' + Math.random().toString(36), 10);
+      const newUser = {
+        _id: 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+        name: userName,
+        email: emailLower,
+        password: dummyPassword,
+        phone: '',
+        role: (emailLower === 'admin@stockking.com' || emailLower === 'jamal.ahmed@psx.com') ? 'ADMIN' : 'USER',
+        plan: 'FREE',
+        subscriptionStatus: 'ACTIVE',
+        subscriptionDuration: 'FREE',
+        subscriptionEnd: null,
+        provider: provider.toLowerCase(),
+        providerId: providerId || '',
+        avatar: avatar || '',
+        createdAt: new Date(),
+        lastLogin: new Date()
+      };
+
+      if (getDBStatus().isMock) {
+        memDB.users.set(emailLower, newUser);
+        user = newUser;
+      } else {
+        const created = await User.create(newUser);
+        user = created;
+      }
+    } else {
+      // Existing user logging in with social provider
+      user = await checkExpiry(user);
+      user.lastLogin = new Date();
+      if (avatar && !user.avatar) user.avatar = avatar;
+      if (provider && !user.provider) user.provider = provider.toLowerCase();
+
+      if (getDBStatus().isMock) {
+        memDB.users.set(emailLower, user);
+      } else {
+        await User.findByIdAndUpdate(user._id, { lastLogin: new Date(), avatar: user.avatar, provider: user.provider });
+      }
+    }
+
+    const token = generateToken(user);
+
+    return res.json({
+      success: true,
+      message: `Welcome, ${user.name}! Signed in via ${provider.toUpperCase()}.`,
+      token,
+      user: {
+        id: user._id || user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone || '',
+        role: user.role,
+        plan: user.plan,
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionDuration: user.subscriptionDuration,
+        subscriptionEnd: user.subscriptionEnd,
+        avatar: user.avatar || '',
+        provider: user.provider || provider
+      }
+    });
+  } catch (err) {
+    console.error('Social Login Error:', err);
+    return res.status(500).json({ success: false, message: 'Server error during social login: ' + err.message });
   }
 });
 
