@@ -103,7 +103,8 @@ router.post('/signup', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const isFirstUser = (getDBStatus().isMock ? memDB.users.size : await User.countDocuments()) === 0;
-    const role = isFirstUser || emailLower.includes('admin') ? 'ADMIN' : 'USER';
+    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower.includes('admin') || isFirstUser;
+    const role = isJamalAdmin ? 'ADMIN' : 'USER';
     const plan = role === 'ADMIN' ? 'PRO' : 'FREE';
     const subscriptionStatus = role === 'ADMIN' ? 'ACTIVE' : 'INACTIVE';
     const subscriptionDuration = role === 'ADMIN' ? 'LIFETIME' : 'FREE';
@@ -249,10 +250,10 @@ router.post('/social-login', async (req, res) => {
         email: emailLower,
         password: dummyPassword,
         phone: '',
-        role: (emailLower === 'admin@stockking.com' || emailLower === 'jamal.ahmed@psx.com') ? 'ADMIN' : 'USER',
-        plan: 'FREE',
+        role: (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx' || emailLower === 'admin@stockking.com') ? 'ADMIN' : 'USER',
+        plan: (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx') ? 'PRO' : 'FREE',
         subscriptionStatus: 'ACTIVE',
-        subscriptionDuration: 'FREE',
+        subscriptionDuration: (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx') ? 'LIFETIME' : 'FREE',
         subscriptionEnd: null,
         provider: provider.toLowerCase(),
         providerId: providerId || '',

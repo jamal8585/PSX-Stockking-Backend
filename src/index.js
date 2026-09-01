@@ -73,46 +73,48 @@ const startServer = async () => {
   try {
     await connectDB();
     
-    // Seed Default Admin User if none exists
+    // Seed / Ensure Official Admin User
     const seedAdminUser = async () => {
       try {
-        const adminEmail = (process.env.ADMIN_EMAIL || 'admin@stockking.psx').toLowerCase();
-        const adminPassword = process.env.ADMIN_PASSWORD || 'admin12345';
+        const adminEmail = (process.env.ADMIN_EMAIL || 'jamal.ahmedrumi@gmail.com').toLowerCase().trim();
+        const adminPassword = process.env.ADMIN_PASSWORD || 'R44@Jamal20dec##';
         
-        let existingAdmin = null;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(adminPassword, salt);
+
+        const adminPayload = {
+          id: 'admin_jamal_001',
+          name: 'Jamal Ahmed (Lead Admin)',
+          email: adminEmail,
+          phone: '+923452831413',
+          password: hashedPassword,
+          role: 'ADMIN',
+          plan: 'PRO',
+          subscriptionStatus: 'ACTIVE',
+          subscriptionDuration: 'LIFETIME',
+          subscriptionStart: new Date(),
+          subscriptionEnd: new Date(new Date().setFullYear(new Date().getFullYear() + 50)),
+          createdAt: new Date(),
+          lastLogin: new Date()
+        };
+
         if (getDBStatus().isMock) {
-          existingAdmin = memDB.users.get(adminEmail);
+          memDB.users.set(adminEmail, adminPayload);
         } else {
-          existingAdmin = await User.findOne({ email: adminEmail });
-        }
-
-        if (!existingAdmin) {
-          const salt = await bcrypt.genSalt(10);
-          const hashedPassword = await bcrypt.hash(adminPassword, salt);
-          
-          const defaultAdmin = {
-            id: 'admin_primary_001',
-            name: 'Stockking Admin',
-            email: adminEmail,
-            phone: '+923001234567',
-            password: hashedPassword,
-            role: 'ADMIN',
-            plan: 'PRO',
-            subscriptionStatus: 'ACTIVE',
-            subscriptionDuration: 'LIFETIME',
-            subscriptionStart: new Date(),
-            subscriptionEnd: new Date(new Date().setFullYear(new Date().getFullYear() + 50)),
-            createdAt: new Date(),
-            lastLogin: new Date()
-          };
-
-          if (getDBStatus().isMock) {
-            memDB.users.set(adminEmail, defaultAdmin);
+          const existing = await User.findOne({ email: adminEmail });
+          if (!existing) {
+            await User.create(adminPayload);
           } else {
-            await User.create(defaultAdmin);
+            await User.findByIdAndUpdate(existing._id, {
+              password: hashedPassword,
+              role: 'ADMIN',
+              plan: 'PRO',
+              subscriptionStatus: 'ACTIVE',
+              subscriptionDuration: 'LIFETIME'
+            });
           }
-          console.log(`👑 Default Administrator Provisioned: Email: ${adminEmail} | Pass: ${adminPassword}`);
         }
+        console.log(`👑 Official Administrator Configured: Email: ${adminEmail} | Role: ADMIN | Lifetime PRO`);
       } catch (err) {
         console.warn('Admin seed notice:', err.message);
       }
