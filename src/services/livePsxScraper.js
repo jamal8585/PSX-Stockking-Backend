@@ -143,44 +143,84 @@ export const fetchOfficialPSXMarketWatch = async () => {
 
 // 2. Fetch Live KSE-100 Summary & Timeseries
 export const fetchLiveKSE100Summary = async () => {
-  console.log('📈 Fetching LIVE KSE-100 Index from PSX Data Portal...');
+  console.log('📈 Fetching 100% REAL LIVE KSE-100 Index from PSX Data Portal...');
+  let result = null;
+
+  // 1. Fetch exact official /indices table first
   try {
-    const res = await axios.get('https://dps.psx.com.pk/timeseries/int/KSE100', {
-      headers: HEADERS,
-      timeout: 7000
-    });
+    const res = await axios.get('https://dps.psx.com.pk/indices', { headers: HEADERS, timeout: 6000 });
+    if (res.data && typeof res.data === 'string' && res.data.includes('<table')) {
+      const $ = cheerio.load(res.data);
+      $('table tr').each((_, el) => {
+        const cols = $(el).find('th, td').map((_, cell) => $(cell).text().trim()).get();
+        if (cols.length >= 6 && cols[0].toUpperCase() === 'KSE100') {
+          const high = parseFloat(cols[1].replace(/,/g, '')) || 0;
+          const low = parseFloat(cols[2].replace(/,/g, '')) || 0;
+          const current = parseFloat(cols[3].replace(/,/g, '')) || 0;
+          const change = parseFloat(cols[4].replace(/,/g, '')) || 0;
+          const changePercent = parseFloat(cols[5].replace(/%/g, '').replace(/,/g, '')) || 0;
+          const prevClose = Number((current - change).toFixed(2));
 
-    if (res.data?.data && Array.isArray(res.data.data) && res.data.data.length > 0) {
-      const ticks = res.data.data;
-      const latestTick = ticks[ticks.length - 1];
-      const prevTick = ticks[0];
-      const current = parseFloat(latestTick[1]);
-      const prevClose = parseFloat(prevTick[1]);
-      const change = parseFloat((current - prevClose).toFixed(2));
-      const changePercent = parseFloat(((change / prevClose) * 100).toFixed(2));
-
-      return {
-        current,
-        prevClose,
-        change,
-        changePercent,
-        high: Math.max(...ticks.map(t => parseFloat(t[1]))),
-        low: Math.min(...ticks.map(t => parseFloat(t[1]))),
-        ticks: ticks.slice(-50),
-        isLive: true
-      };
+          result = {
+            current,
+            currentValue: current,
+            prevClose,
+            change,
+            changePercent,
+            high,
+            low,
+            isLive: true
+          };
+        }
+      });
     }
   } catch (err) {
-    console.warn('⚠️ Live KSE-100 tick error:', err.message);
+    console.warn('⚠️ PSX /indices table fetch note:', err.message);
+  }
+
+  // 2. Fetch intraday timeseries for tick telemetry
+  try {
+    const res2 = await axios.get('https://dps.psx.com.pk/timeseries/int/KSE100', { headers: HEADERS, timeout: 6000 });
+    if (res2.data?.data && Array.isArray(res2.data.data) && res2.data.data.length > 0) {
+      const rawTicks = res2.data.data;
+      const sortedTicks = [...rawTicks].sort((a, b) => a[0] - b[0]);
+      if (!result) {
+        const latest = sortedTicks[sortedTicks.length - 1];
+        const earliest = sortedTicks[0];
+        const current = parseFloat(latest[1]);
+        const prevClose = parseFloat(earliest[1]);
+        const change = parseFloat((current - prevClose).toFixed(2));
+        const changePercent = parseFloat(((change / prevClose) * 100).toFixed(2));
+        result = {
+          current,
+          currentValue: current,
+          prevClose,
+          change,
+          changePercent,
+          high: Math.max(...sortedTicks.map(t => parseFloat(t[1]))),
+          low: Math.min(...sortedTicks.map(t => parseFloat(t[1]))),
+          isLive: true
+        };
+      }
+      result.ticks = sortedTicks.slice(-50);
+    }
+  } catch (err) {
+    console.warn('⚠️ PSX /timeseries/int/KSE100 fetch note:', err.message);
+  }
+
+  if (result) {
+    console.log(`✅ Live KSE-100 Synchronized: ${result.current} (${result.change >= 0 ? '+' : ''}${result.changePercent}%)`);
+    return result;
   }
 
   return {
-    current: 177616.95,
-    prevClose: 176985.34,
-    change: 631.61,
-    changePercent: 0.36,
-    high: 178120.45,
-    low: 176840.10,
+    current: 177783.65,
+    currentValue: 177783.65,
+    prevClose: 176975.67,
+    change: 807.98,
+    changePercent: 0.46,
+    high: 177783.65,
+    low: 177353.62,
     ticks: [],
     isLive: false
   };
