@@ -220,6 +220,38 @@ export const ALL_SECTOR_CATALYSTS = [
   }
 ];
 
+const cleanText = (rawStr) => {
+  if (!rawStr) return '';
+  return String(rawStr)
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/if\s*\(!window[\s\S]*$/gi, '')
+    .replace(/window\.addEvent[\s\S]*$/gi, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+const isCodeGarbage = (text) => {
+  if (!text) return true;
+  const lower = text.toLowerCase();
+  return (
+    lower.includes('window.') ||
+    lower.includes('addeventlistener') ||
+    lower.includes('function(') ||
+    lower.includes('var iframe') ||
+    lower.includes('rawhtml') ||
+    lower.includes('document.g') ||
+    lower.includes('typeof window') ||
+    lower.includes('_rawhtmllistener')
+  );
+};
+
 export const fetchLiveFinancialNews = async () => {
   console.log('📡 Fetching LIVE Pakistan financial news across ALL 12 industry sectors...');
   const allArticles = [];
@@ -229,14 +261,24 @@ export const fetchLiveFinancialNews = async () => {
       const res = await axios.get(src.url, { headers: HEADERS, timeout: 5000 });
       if (res.data) {
         const $ = cheerio.load(res.data, { xmlMode: true });
+        // Strip any script or iframe tags from XML
+        $('script, style, iframe, noscript').remove();
+
         $('item').slice(0, 10).each((_, el) => {
-          const title = $(el).find('title').text().trim();
-          const description = $(el).find('description').text().replace(/<[^>]*>?/gm, '').trim();
+          const rawTitle = $(el).find('title').text().trim();
+          const rawDesc = $(el).find('description').text().trim();
           const pubDateStr = $(el).find('pubDate').text().trim();
           const link = $(el).find('link').text().trim();
           const pubDate = pubDateStr ? new Date(pubDateStr) : new Date();
 
-          if (title && title.length > 10) {
+          const title = cleanText(rawTitle);
+          let description = cleanText(rawDesc);
+
+          if (isCodeGarbage(description)) {
+            description = title;
+          }
+
+          if (title && title.length > 10 && !isCodeGarbage(title)) {
             allArticles.push({
               title,
               description: description || title,
@@ -435,7 +477,9 @@ export const fetchLiveFinancialNews = async () => {
       sentiment,
       sentimentScore: isNegative ? -0.7 : 0.75,
       impactSeverity: 'HIGH',
-      impactSummary: art.description ? art.description.slice(0, 260) + '...' : art.title,
+      impactSummary: (art.description && !isCodeGarbage(art.description) && art.description.length > 15)
+        ? (art.description.length > 280 ? art.description.slice(0, 280) + '...' : art.description)
+        : `${matchedSector.name} development: ${art.title}. Direct valuation impact expected on listed sector equities.`,
       impactedSectors: [matchedSector.category],
       upStocks,
       downStocks,
