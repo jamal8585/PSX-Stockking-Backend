@@ -252,10 +252,103 @@ const isCodeGarbage = (text) => {
   );
 };
 
+const PSX_MOMENTUM_KEYWORDS = [
+  'stock', 'shares', 'kse', 'psx', 'rupee', 'dollar', 'gold', 'petrol', 'diesel', 'fuel', 'oil',
+  'refinery', 'imf', 'sbp', 'interest rate', 'policy rate', 'monetary policy', 'inflation', 'cpi',
+  'tax', 'fbr', 'budget', 'cement', 'fertilizer', 'urea', 'auto', 'car sales', 'export', 'remittance',
+  'trade deficit', 'current account', 'circular debt', 'power tariff', 'gas tariff', 'ogdc', 'ppl', 'mari',
+  'meezan', 'hbl', 'mcb', 'lucky cement', 'systems', 'cnergy', 'prl', 'atrl', 'hubco', 'kapco',
+  'reserves', 'revenue', 'tariff', 'dividend', 'dispatches', 'textile', 'pharma', 'steel', 'banking'
+];
+
+export const fetchGeoBusinessNews = async () => {
+  const geoArticles = [];
+
+  // 1. Scrape Geo News Business Category Page
+  try {
+    const res = await axios.get('https://www.geo.tv/category/business', { headers: HEADERS, timeout: 6000 });
+    if (res.data) {
+      const $ = cheerio.load(res.data);
+      $('li, .story, .category-story, .view-content .views-row').each((_, el) => {
+        const rawTitle = $(el).find('h2, h3, a').first().text().trim();
+        const link = $(el).find('a').first().attr('href');
+        const rawDesc = $(el).find('p, .story-desc, .desc').text().trim();
+
+        const title = cleanText(rawTitle);
+        const desc = cleanText(rawDesc);
+
+        if (title && title.length > 15 && !isCodeGarbage(title)) {
+          const fullText = (title + ' ' + desc).toLowerCase();
+          const hasPsxMomentum = PSX_MOMENTUM_KEYWORDS.some(kw => fullText.includes(kw));
+
+          if (hasPsxMomentum && !geoArticles.some(a => a.title.toLowerCase().slice(0, 30) === title.toLowerCase().slice(0, 30))) {
+            geoArticles.push({
+              title,
+              description: desc || title,
+              source: 'Geo News Business',
+              link: link ? (link.startsWith('http') ? link : `https://www.geo.tv${link}`) : 'https://www.geo.tv/category/business',
+              publishedAt: new Date()
+            });
+          }
+        }
+      });
+    }
+  } catch (err) {
+    console.warn('Geo category/business note:', err.message);
+  }
+
+  // 2. Parse Geo RSS Feed for breaking market updates
+  try {
+    const res = await axios.get('https://www.geo.tv/rss/1/1', { headers: HEADERS, timeout: 6000 });
+    if (res.data) {
+      const $ = cheerio.load(res.data, { xmlMode: true });
+      $('item').slice(0, 15).each((_, el) => {
+        const rawTitle = $(el).find('title').text().trim();
+        const rawDesc = $(el).find('description').text().replace(/<[^>]+>/g, '').trim();
+        const link = $(el).find('link').text().trim();
+        const pubDateStr = $(el).find('pubDate').text().trim();
+        const pubDate = pubDateStr ? new Date(pubDateStr) : new Date();
+
+        const title = cleanText(rawTitle);
+        const desc = cleanText(rawDesc);
+
+        if (title && title.length > 15 && !isCodeGarbage(title)) {
+          const fullText = (title + ' ' + desc).toLowerCase();
+          const hasPsxMomentum = PSX_MOMENTUM_KEYWORDS.some(kw => fullText.includes(kw));
+          if (hasPsxMomentum && !geoArticles.some(a => a.title.toLowerCase().slice(0, 30) === title.toLowerCase().slice(0, 30))) {
+            geoArticles.push({
+              title,
+              description: desc || title,
+              source: 'Geo News Business',
+              link: link || 'https://www.geo.tv/category/business',
+              publishedAt: isNaN(pubDate.getTime()) ? new Date() : pubDate
+            });
+          }
+        }
+      });
+    }
+  } catch (err) {
+    console.warn('Geo RSS note:', err.message);
+  }
+
+  return geoArticles;
+};
+
 export const fetchLiveFinancialNews = async () => {
-  console.log('📡 Fetching LIVE Pakistan financial news across ALL 12 industry sectors...');
+  console.log('📡 Fetching LIVE Pakistan financial news across ALL 12 industry sectors (including Geo News PSX Momentum)...');
   const allArticles = [];
 
+  // 1. Fetch from Geo News Business (PSX Momentum Filtered)
+  try {
+    const geoNews = await fetchGeoBusinessNews();
+    if (Array.isArray(geoNews) && geoNews.length > 0) {
+      allArticles.push(...geoNews);
+    }
+  } catch (err) {
+    console.warn('Geo News integration note:', err.message);
+  }
+
+  // 2. Fetch from Business Recorder, Dawn, Tribune
   for (const src of RSS_FEEDS) {
     try {
       const res = await axios.get(src.url, { headers: HEADERS, timeout: 5000 });
