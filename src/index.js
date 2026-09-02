@@ -90,7 +90,6 @@ const startServer = async () => {
         await loadUsersFromCloud();
 
         // Ensure ONLY primary Lead Admin Account is active as ADMIN
-        const adminEmail = (process.env.ADMIN_EMAIL || 'jamal.ahmedrumi@gmail.com').toLowerCase().trim();
         const adminPayload = {
           id: 'admin_jamal_001',
           name: 'Jamal Ahmed (Lead Admin)',
