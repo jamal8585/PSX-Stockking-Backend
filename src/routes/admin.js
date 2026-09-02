@@ -307,17 +307,19 @@ router.post('/users/:id/subscription', async (req, res) => {
       user.subscriptionEnd = null;
     }
 
-    if (getDBStatus().isMock) {
-      memDB.users.set(user.email.toLowerCase(), user);
-      await saveUsersToCloud(memDB.users);
-    } else {
-      await User.findByIdAndUpdate(user._id, {
-        plan: user.plan,
-        subscriptionStatus: user.subscriptionStatus,
-        subscriptionDuration: user.subscriptionDuration,
-        subscriptionStart: user.subscriptionStart,
-        subscriptionEnd: user.subscriptionEnd
-      });
+    memDB.users.set(user.email.toLowerCase().trim(), user);
+    await saveUsersToCloud(memDB.users);
+
+    if (!getDBStatus().isMock) {
+      try {
+        await User.findByIdAndUpdate(user._id, {
+          plan: user.plan,
+          subscriptionStatus: user.subscriptionStatus,
+          subscriptionDuration: user.subscriptionDuration,
+          subscriptionStart: user.subscriptionStart,
+          subscriptionEnd: user.subscriptionEnd
+        });
+      } catch (e) {}
     }
 
     return res.json({

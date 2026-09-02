@@ -457,14 +457,17 @@ router.post('/upgrade-request', requireAuth, async (req, res) => {
     user.subscriptionStatus = 'PENDING';
     user.paymentProof = paymentProof;
 
-    if (getDBStatus().isMock) {
-      memDB.users.set(user.email.toLowerCase(), user);
-      await saveUsersToCloud(memDB.users);
-    } else {
-      await User.findByIdAndUpdate(user._id, {
-        subscriptionStatus: 'PENDING',
-        paymentProof
-      });
+    const emailLower = user.email.toLowerCase().trim();
+    memDB.users.set(emailLower, user);
+    await saveUsersToCloud(memDB.users);
+
+    if (!getDBStatus().isMock) {
+      try {
+        await User.findByIdAndUpdate(user._id, {
+          subscriptionStatus: 'PENDING',
+          paymentProof
+        });
+      } catch (e) {}
     }
 
     return res.json({
@@ -514,13 +517,17 @@ router.put('/profile', requireAuth, async (req, res) => {
       user.password = await bcrypt.hash(newPassword, salt);
     }
 
-    if (getDBStatus().isMock) {
-      memDB.users.set(emailLower, user);
-      await saveUsersToCloud(memDB.users);
-    } else {
-      const updateData = { name: user.name, phone: user.phone };
-      if (newPassword) updateData.password = user.password;
-      await User.findByIdAndUpdate(user._id, updateData);
+    memDB.users.set(emailLower, user);
+    await saveUsersToCloud(memDB.users);
+
+    if (!getDBStatus().isMock) {
+      try {
+        await User.findByIdAndUpdate(user._id, {
+          name: user.name,
+          phone: user.phone,
+          password: user.password
+        });
+      } catch (e) {}
     }
 
     return res.json({
