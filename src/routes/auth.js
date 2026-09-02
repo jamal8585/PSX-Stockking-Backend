@@ -205,14 +205,9 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-const isAdminEmail = (email) => {
+export const isAdminEmail = (email) => {
   const e = String(email || '').toLowerCase().trim();
-  return (
-    e === 'jamal.ahmedrumi@gmail.com' ||
-    e === 'jamal.ahmed@binatedigital.com' ||
-    e === 'admin@stockking.psx' ||
-    e.startsWith('admin@')
-  );
+  return e === 'jamal.ahmedrumi@gmail.com';
 };
 
 // ==========================================
