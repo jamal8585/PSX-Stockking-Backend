@@ -274,14 +274,18 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ success: false, message: 'Invalid email or password.' });
     }
 
-    user = await checkExpiry(user);
-    user.lastLogin = new Date();
+    try {
+      user = await checkExpiry(user);
+    } catch (e) {}
 
-    if (getDBStatus().isMock) {
-      memDB.users.set(emailLower, user);
-      await saveUsersToCloud(memDB.users);
-    } else {
-      await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+    user.lastLogin = new Date();
+    memDB.users.set(emailLower, user);
+    saveUsersToCloud(memDB.users).catch(() => {});
+
+    if (!getDBStatus().isMock && user._id) {
+      try {
+        await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+      } catch (e) {}
     }
 
     const token = generateToken(user);
