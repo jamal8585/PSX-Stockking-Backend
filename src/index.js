@@ -31,16 +31,34 @@ app.use(cors({
 app.options('*', cors());
 app.use(express.json());
 
-// Routes
+// Routes (Mount both with /api and direct prefix for 100% reliable Vercel serverless routing)
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+
 app.use('/api/admin', adminRoutes);
+app.use('/admin', adminRoutes);
+
 app.use('/api/stocks', stockRoutes);
+app.use('/stocks', stockRoutes);
+
 app.use('/api/recommendations', recRoutes);
+app.use('/recommendations', recRoutes);
+
 app.use('/api/news', newsRoutes);
+app.use('/news', newsRoutes);
+
 app.use('/api/market', marketRoutes);
+app.use('/market', marketRoutes);
+
 app.use('/api/watchlist', watchlistRoutes);
+app.use('/watchlist', watchlistRoutes);
+
 app.use('/api/scan', scanRoutes);
+app.use('/scan', scanRoutes);
+
 app.use('/api/portfolio', portfolioRoutes);
+app.use('/portfolio', portfolioRoutes);
+
 app.get('/', (req, res) => {
   res.json({
     status: 'online',
