@@ -146,13 +146,17 @@ const startServer = async () => {
       }
     }, AUTO_SYNC_INTERVAL_MS);
 
-    app.listen(PORT, () => {
-      console.log('🚀 PSX Alpha Terminal Server running on http://localhost:' + PORT);
-      console.log('⚡ Live Portfolio & Real-time AI Exit Advisory Engine Active!');
-    });
+    if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+      app.listen(PORT, () => {
+        console.log('🚀 PSX Alpha Terminal Server running on http://localhost:' + PORT);
+        console.log('⚡ Live Portfolio & Real-time AI Exit Advisory Engine Active!');
+      });
+    }
   } catch (err) {
     console.error('Fatal Server Boot Error:', err);
   }
 };
 
 startServer();
+
+export default app;
