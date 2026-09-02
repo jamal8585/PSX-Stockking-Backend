@@ -15,7 +15,7 @@ export const memDB = {
 };
 
 // Global Cloud Sync Endpoint for 100% Guaranteed Persistent Users across Vercel Serverless instances
-const CLOUD_SYNC_ID = 'ff808181a061cdc401a06379db77065f';
+const CLOUD_SYNC_ID = 'ff808181a061cdc401a063898a3a0679';
 const CLOUD_STORE_URL = `https://api.restful-api.dev/objects/${CLOUD_SYNC_ID}`;
 
 export const saveUsersToCloud = async (usersMap) => {
@@ -60,8 +60,7 @@ export const saveUsersToCloud = async (usersMap) => {
       lastLogin: u.lastLogin || new Date()
     }));
 
-    await axios.put(CLOUD_STORE_URL, {
-      name: 'PSX_USERS_STORE',
+    await axios.patch(CLOUD_STORE_URL, {
       data: { users: userArray }
     }, { timeout: 4000 });
     return userArray;
@@ -84,8 +83,7 @@ export const deleteUserFromCloud = async (emailToDelete) => {
     const remaining = cloudUsers.filter(u => u.email?.toLowerCase().trim() !== emailClean && String(u.id || '') !== emailClean);
     memDB.users.delete(emailClean);
 
-    await axios.put(CLOUD_STORE_URL, {
-      name: 'PSX_USERS_STORE',
+    await axios.patch(CLOUD_STORE_URL, {
       data: { users: remaining }
     }, { timeout: 4000 });
     return remaining;
