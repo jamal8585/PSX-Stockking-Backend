@@ -20,8 +20,31 @@ const CLOUD_STORE_URL = `https://api.restful-api.dev/objects/${CLOUD_SYNC_ID}`;
 
 export const saveUsersToCloud = async (usersMap) => {
   try {
-    const userArray = Array.from(usersMap.values()).map(u => ({
-      id: u._id || u.id,
+    // 1. Fetch current cloud users first to merge and prevent race condition
+    let cloudUsers = [];
+    try {
+      const res = await axios.get(CLOUD_STORE_URL, { timeout: 3000 });
+      if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
+        cloudUsers = res.data.data.users;
+      }
+    } catch (_) {}
+
+    // 2. Merge into a unified map
+    const mergedMap = new Map();
+    for (const cu of cloudUsers) {
+      if (cu.email) mergedMap.set(cu.email.toLowerCase().trim(), cu);
+    }
+    for (const [email, u] of usersMap.entries()) {
+      if (email) mergedMap.set(email.toLowerCase().trim(), u);
+    }
+
+    // Sync back to local memDB.users
+    for (const [email, u] of mergedMap.entries()) {
+      memDB.users.set(email, u);
+    }
+
+    const userArray = Array.from(mergedMap.values()).map(u => ({
+      id: u._id || u.id || ('usr_' + Date.now()),
       name: u.name,
       email: u.email?.toLowerCase().trim(),
       phone: u.phone || '',
@@ -41,8 +64,33 @@ export const saveUsersToCloud = async (usersMap) => {
       name: 'PSX_USERS_STORE',
       data: { users: userArray }
     }, { timeout: 4000 });
+    return userArray;
   } catch (err) {
     console.warn('Cloud store sync write warning:', err.message);
+  }
+};
+
+export const deleteUserFromCloud = async (emailToDelete) => {
+  try {
+    let cloudUsers = [];
+    try {
+      const res = await axios.get(CLOUD_STORE_URL, { timeout: 3000 });
+      if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
+        cloudUsers = res.data.data.users;
+      }
+    } catch (_) {}
+
+    const emailClean = String(emailToDelete || '').toLowerCase().trim();
+    const remaining = cloudUsers.filter(u => u.email?.toLowerCase().trim() !== emailClean && String(u.id || '') !== emailClean);
+    memDB.users.delete(emailClean);
+
+    await axios.put(CLOUD_STORE_URL, {
+      name: 'PSX_USERS_STORE',
+      data: { users: remaining }
+    }, { timeout: 4000 });
+    return remaining;
+  } catch (err) {
+    console.warn('Cloud delete warning:', err.message);
   }
 };
 
@@ -55,7 +103,6 @@ export const loadUsersFromCloud = async () => {
           memDB.users.set(u.email.toLowerCase().trim(), u);
         }
       }
-      console.log(`☁️ Synced ${res.data.data.users.length} persistent real user accounts from Cloud Store.`);
       return res.data.data.users;
     }
   } catch (err) {

@@ -1,7 +1,7 @@
 import express from 'express';
 import User from '../models/User.js';
 import { requireAuth } from './auth.js';
-import { memDB, getDBStatus, loadUsersFromCloud, saveUsersToCloud } from '../config/db.js';
+import { memDB, getDBStatus, loadUsersFromCloud, saveUsersToCloud, deleteUserFromCloud } from '../config/db.js';
 
 const router = express.Router();
 
@@ -355,8 +355,7 @@ router.delete('/users/:id', async (req, res) => {
         (u.email && u.email.toLowerCase().trim() === decodedId.toLowerCase())
       );
       if (user) {
-        memDB.users.delete(user.email.toLowerCase());
-        await saveUsersToCloud(memDB.users);
+        await deleteUserFromCloud(user.email);
       }
     } else {
       if (decodedId.match(/^[0-9a-fA-F]{24}$/)) {
