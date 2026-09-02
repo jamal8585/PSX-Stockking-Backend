@@ -22,33 +22,46 @@ let lastCloudSyncTime = 0;
 const CACHE_TTL_MS = 15000; // 15 seconds cache
 
 export const saveUsersToCloud = async (usersMap) => {
-  const userArray = Array.from(usersMap.values()).map(u => ({
-    id: u._id || u.id || ('usr_' + Date.now()),
-    name: u.name,
-    email: u.email?.toLowerCase().trim(),
-    phone: u.phone || '',
-    password: u.password,
-    role: u.role || 'USER',
-    plan: u.plan || 'FREE',
-    subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
-    subscriptionDuration: u.subscriptionDuration || 'FREE',
-    subscriptionStart: u.subscriptionStart || null,
-    subscriptionEnd: u.subscriptionEnd || null,
-    paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
-    createdAt: u.createdAt || new Date(),
-    lastLogin: u.lastLogin || new Date()
-  }));
+  try {
+    // 1. First fetch latest cloud store so we merge and never lose any user registered on another container
+    try {
+      const res = await axios.get(CLOUD_STORE_URL, { timeout: 3500 });
+      if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
+        for (const u of res.data.data.users) {
+          if (u.email && !usersMap.has(u.email.toLowerCase().trim())) {
+            usersMap.set(u.email.toLowerCase().trim(), u);
+          }
+        }
+      }
+    } catch (e) {}
 
-  // Non-blocking asynchronous sync to cloud
-  axios.patch(CLOUD_STORE_URL, {
-    data: { users: userArray }
-  }, { timeout: 2500 }).then(() => {
+    const userArray = Array.from(usersMap.values()).map(u => ({
+      id: u._id || u.id || ('usr_' + Date.now()),
+      name: u.name,
+      email: u.email?.toLowerCase().trim(),
+      phone: u.phone || '',
+      password: u.password,
+      role: u.role || 'USER',
+      plan: u.plan || 'FREE',
+      subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
+      subscriptionDuration: u.subscriptionDuration || 'FREE',
+      subscriptionStart: u.subscriptionStart || null,
+      subscriptionEnd: u.subscriptionEnd || null,
+      paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+      createdAt: u.createdAt || new Date(),
+      lastLogin: u.lastLogin || new Date()
+    }));
+
+    await axios.patch(CLOUD_STORE_URL, {
+      data: { users: userArray }
+    }, { timeout: 4000 });
+
     lastCloudSyncTime = Date.now();
-  }).catch(err => {
+    return userArray;
+  } catch (err) {
     console.warn('Cloud store sync notice:', err.message);
-  });
-
-  return userArray;
+  }
+  return Array.from(usersMap.values());
 };
 
 export const deleteUserFromCloud = async (emailToDelete) => {

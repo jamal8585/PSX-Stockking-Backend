@@ -126,7 +126,6 @@ const startServer = async () => {
         };
 
         memDB.users.set(adminEmail, adminPayload);
-        await saveUsersToCloud(memDB.users);
 
         if (!getDBStatus().isMock) {
           const existing = await User.findOne({ email: adminEmail });

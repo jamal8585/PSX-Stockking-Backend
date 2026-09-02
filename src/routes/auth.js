@@ -172,13 +172,14 @@ router.post('/signup', async (req, res) => {
       lastLogin: new Date()
     };
 
-    let savedUser = null;
-    if (getDBStatus().isMock) {
-      memDB.users.set(emailLower, newUserObj);
-      savedUser = newUserObj;
-      await saveUsersToCloud(memDB.users);
-    } else {
-      savedUser = await User.create(newUserObj);
+    let savedUser = newUserObj;
+    memDB.users.set(emailLower, newUserObj);
+    await saveUsersToCloud(memDB.users);
+
+    if (!getDBStatus().isMock) {
+      try {
+        savedUser = await User.create(newUserObj);
+      } catch (e) {}
     }
 
     const token = generateToken(savedUser);

@@ -40,14 +40,19 @@ router.get('/users', async (req, res) => {
   try {
     const { q = '', plan = 'ALL', status = 'ALL' } = req.query;
 
-    // Fresh sync with cloud persistent store
-    await loadUsersFromCloud();
+    // Fresh sync with cloud persistent store (force=true)
+    await loadUsersFromCloud(true);
 
-    let usersList = [];
-    if (getDBStatus().isMock) {
-      usersList = Array.from(memDB.users.values());
-    } else {
-      usersList = await User.find({}).sort({ createdAt: -1 });
+    let usersList = Array.from(memDB.users.values());
+    if (!getDBStatus().isMock) {
+      try {
+        const dbUsers = await User.find({}).sort({ createdAt: -1 });
+        for (const u of dbUsers) {
+          if (u.email && !memDB.users.has(u.email.toLowerCase().trim())) {
+            usersList.push(u);
+          }
+        }
+      } catch (e) {}
     }
 
     // Apply filtering
