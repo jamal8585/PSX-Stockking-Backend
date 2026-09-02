@@ -131,30 +131,29 @@ const startServer = async () => {
       }
     };
 
-    await seedUsers();
+    seedUsers().catch(() => {});
 
-    // Initial Sync
-    await syncMarketData();
+    if (!process.env.VERCEL) {
+      // Initial Sync & 60s Interval only in standard Node.js server environments
+      syncMarketData().catch(e => console.warn('Market sync warning:', e.message));
 
-    // 60-Second Automated Sync Loop
-    const AUTO_SYNC_INTERVAL_MS = 60 * 1000;
-    setInterval(async () => {
-      try {
-        console.log(`⏰ [${new Date().toLocaleTimeString()}] Running Automated Background PSX & Live News Sync...`);
-        await syncMarketData();
-      } catch (err) {
-        console.error('Auto-Sync Background Warning:', err.message);
-      }
-    }, AUTO_SYNC_INTERVAL_MS);
+      const AUTO_SYNC_INTERVAL_MS = 60 * 1000;
+      setInterval(async () => {
+        try {
+          console.log(`⏰ [${new Date().toLocaleTimeString()}] Running Automated Background PSX & Live News Sync...`);
+          await syncMarketData();
+        } catch (err) {
+          console.error('Auto-Sync Background Warning:', err.message);
+        }
+      }, AUTO_SYNC_INTERVAL_MS);
 
-    if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
       app.listen(PORT, () => {
         console.log('🚀 PSX Alpha Terminal Server running on http://localhost:' + PORT);
         console.log('⚡ Live Portfolio & Real-time AI Exit Advisory Engine Active!');
       });
     }
   } catch (err) {
-    console.error('Fatal Server Boot Error:', err);
+    console.error('Server Boot Notice:', err.message);
   }
 };
 
