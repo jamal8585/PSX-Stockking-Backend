@@ -73,7 +73,7 @@ const startServer = async () => {
   try {
     await connectDB();
     
-    // Seed / Ensure Official Admin User and Directory
+    // Seed / Ensure Official Admin User and Load Cloud Store
     const seedUsers = async () => {
       try {
         const adminEmail = (process.env.ADMIN_EMAIL || 'jamal.ahmedrumi@gmail.com').toLowerCase().trim();
@@ -81,154 +81,50 @@ const startServer = async () => {
         
         const salt = await bcrypt.genSalt(10);
         const hashedAdminPassword = await bcrypt.hash(adminPassword, salt);
-        const hashedUserPassword = await bcrypt.hash('PsxTrader2026!', salt);
 
         const now = new Date();
-        const oneMonthEnd = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
-        const threeMonthEnd = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
         const lifetimeEnd = new Date(now.getTime() + 50 * 365 * 24 * 60 * 60 * 1000);
 
-        const initialUsers = [
-          {
-            id: 'admin_jamal_001',
-            name: 'Jamal Ahmed (Lead Admin)',
-            email: adminEmail,
-            phone: '+923452831413',
-            password: hashedAdminPassword,
-            role: 'ADMIN',
-            plan: 'PRO',
-            subscriptionStatus: 'ACTIVE',
-            subscriptionDuration: 'LIFETIME',
-            subscriptionStart: now,
-            subscriptionEnd: lifetimeEnd,
-            paymentProof: { transactionId: 'MASTER_ADMIN', method: 'System Owner', amount: 0, submittedAt: now, note: 'Lead Admin & Platform Owner' },
-            createdAt: new Date(now.getTime() - 45 * 24 * 60 * 60 * 1000),
-            lastLogin: now
-          },
-          {
-            id: 'usr_tariq_002',
-            name: 'Tariq Mehmood',
-            email: 'tariq.mehmood.psx@gmail.com',
-            phone: '+923001234567',
-            password: hashedUserPassword,
-            role: 'USER',
-            plan: 'PRO',
-            subscriptionStatus: 'ACTIVE',
-            subscriptionDuration: '1_MONTH',
-            subscriptionStart: new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000),
-            subscriptionEnd: oneMonthEnd,
-            paymentProof: {
-              transactionId: 'EP-99281728',
-              method: 'Easypaisa (03452831413)',
-              amount: 1499,
-              submittedAt: new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000),
-              note: 'Monthly Pro subscription paid via Easypaisa'
-            },
-            createdAt: new Date(now.getTime() - 10 * 24 * 60 * 60 * 1000),
-            lastLogin: now
-          },
-          {
-            id: 'usr_usman_003',
-            name: 'Usman Farooq (Alpha Trader)',
-            email: 'usman.farooq.trader@gmail.com',
-            phone: '+923219876543',
-            password: hashedUserPassword,
-            role: 'USER',
-            plan: 'PRO',
-            subscriptionStatus: 'ACTIVE',
-            subscriptionDuration: '3_MONTHS',
-            subscriptionStart: new Date(now.getTime() - 12 * 24 * 60 * 60 * 1000),
-            subscriptionEnd: threeMonthEnd,
-            paymentProof: {
-              transactionId: 'JC-88371920',
-              method: 'JazzCash (03413266381)',
-              amount: 3999,
-              submittedAt: new Date(now.getTime() - 12 * 24 * 60 * 60 * 1000),
-              note: 'Quarterly 3 Months Pro VIP Pass sent via JazzCash'
-            },
-            createdAt: new Date(now.getTime() - 20 * 24 * 60 * 60 * 1000),
-            lastLogin: new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000)
-          },
-          {
-            id: 'usr_ayesha_004',
-            name: 'Ayesha Khan',
-            email: 'ayesha.khan.invest@gmail.com',
-            phone: '+923335544332',
-            password: hashedUserPassword,
-            role: 'USER',
-            plan: 'FREE',
-            subscriptionStatus: 'PENDING',
-            subscriptionDuration: '1_MONTH',
-            subscriptionStart: null,
-            subscriptionEnd: null,
-            paymentProof: {
-              transactionId: 'EP-44019283',
-              method: 'Easypaisa (03452831413)',
-              amount: 1499,
-              submittedAt: new Date(now.getTime() - 2 * 60 * 60 * 1000),
-              note: 'Sent PKR 1499 via Easypaisa to 03452831413. Please activate Pro access.'
-            },
-            createdAt: new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000),
-            lastLogin: now
-          },
-          {
-            id: 'usr_bilal_005',
-            name: 'Bilal Siddiqui',
-            email: 'bilal.siddiqui.kse@gmail.com',
-            phone: '+923456789012',
-            password: hashedUserPassword,
-            role: 'USER',
-            plan: 'FREE',
-            subscriptionStatus: 'PENDING',
-            subscriptionDuration: '3_MONTHS',
-            subscriptionStart: null,
-            subscriptionEnd: null,
-            paymentProof: {
-              transactionId: 'JC-55102948',
-              method: 'JazzCash (03413266381)',
-              amount: 3999,
-              submittedAt: new Date(now.getTime() - 4 * 60 * 60 * 1000),
-              note: 'JazzCash 3999 transfer confirmation code sent'
-            },
-            createdAt: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000),
-            lastLogin: now
-          },
-          {
-            id: 'usr_kamran_006',
-            name: 'Kamran Ali',
-            email: 'kamran.ali.broker@gmail.com',
-            phone: '+923123456789',
-            password: hashedUserPassword,
-            role: 'USER',
-            plan: 'FREE',
-            subscriptionStatus: 'INACTIVE',
-            subscriptionDuration: 'FREE',
-            subscriptionStart: null,
-            subscriptionEnd: null,
-            paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
-            createdAt: new Date(now.getTime() - 15 * 24 * 60 * 60 * 1000),
-            lastLogin: new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000)
-          }
-        ];
+        // Load all real users from persistent cloud store
+        const { loadUsersFromCloud, saveUsersToCloud } = await import('./config/db.js');
+        await loadUsersFromCloud();
 
-        for (const u of initialUsers) {
-          memDB.users.set(u.email.toLowerCase(), u);
-          if (!getDBStatus().isMock) {
-            const existing = await User.findOne({ email: u.email.toLowerCase() });
-            if (!existing) {
-              await User.create(u);
-            } else if (u.role === 'ADMIN') {
-              await User.findByIdAndUpdate(existing._id, {
-                password: hashedAdminPassword,
-                role: 'ADMIN',
-                plan: 'PRO',
-                subscriptionStatus: 'ACTIVE',
-                subscriptionDuration: 'LIFETIME'
-              });
-            }
+        // Ensure Lead Admin Account is always active and master-verified
+        const adminPayload = {
+          id: 'admin_jamal_001',
+          name: 'Jamal Ahmed (Lead Admin)',
+          email: adminEmail,
+          phone: '+923452831413',
+          password: hashedAdminPassword,
+          role: 'ADMIN',
+          plan: 'PRO',
+          subscriptionStatus: 'ACTIVE',
+          subscriptionDuration: 'LIFETIME',
+          subscriptionStart: now,
+          subscriptionEnd: lifetimeEnd,
+          paymentProof: { transactionId: 'MASTER_ADMIN', method: 'System Owner', amount: 0, submittedAt: now, note: 'Lead Admin & Platform Owner' },
+          createdAt: new Date('2026-08-01'),
+          lastLogin: now
+        };
+
+        memDB.users.set(adminEmail, adminPayload);
+        await saveUsersToCloud(memDB.users);
+
+        if (!getDBStatus().isMock) {
+          const existing = await User.findOne({ email: adminEmail });
+          if (!existing) {
+            await User.create(adminPayload);
+          } else {
+            await User.findByIdAndUpdate(existing._id, {
+              password: hashedAdminPassword,
+              role: 'ADMIN',
+              plan: 'PRO',
+              subscriptionStatus: 'ACTIVE',
+              subscriptionDuration: 'LIFETIME'
+            });
           }
         }
-        console.log(`👑 User Directory Initialized: ${initialUsers.length} platform accounts configured.`);
+        console.log(`👑 Lead Admin Configured & Real Users Synced (${memDB.users.size} active accounts).`);
       } catch (err) {
         console.warn('User directory seed notice:', err.message);
       }

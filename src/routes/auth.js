@@ -2,7 +2,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
-import { memDB, getDBStatus } from '../config/db.js';
+import { memDB, getDBStatus, loadUsersFromCloud, saveUsersToCloud } from '../config/db.js';
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'psx_stockking_super_secret_jwt_key_2026';
@@ -30,6 +30,7 @@ const checkExpiry = async (user) => {
     user.subscriptionStatus = 'EXPIRED';
     if (getDBStatus().isMock) {
       memDB.users.set(user.email.toLowerCase(), user);
+      await saveUsersToCloud(memDB.users);
     } else {
       await User.findByIdAndUpdate(user._id, {
         plan: 'FREE',
@@ -50,6 +51,8 @@ export const requireAuth = async (req, res, next) => {
 
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, JWT_SECRET);
+
+    await loadUsersFromCloud();
 
     let user = null;
     if (getDBStatus().isMock) {
@@ -87,6 +90,9 @@ router.post('/signup', async (req, res) => {
 
     const emailLower = email.toLowerCase().trim();
 
+    // Fresh sync with Cloud Store
+    await loadUsersFromCloud();
+
     // Check existing
     let existingUser = null;
     if (getDBStatus().isMock) {
@@ -102,8 +108,7 @@ router.post('/signup', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const isFirstUser = (getDBStatus().isMock ? memDB.users.size : await User.countDocuments()) === 0;
-    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower.includes('admin') || isFirstUser;
+    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower.includes('admin@stockking');
     const role = isJamalAdmin ? 'ADMIN' : 'USER';
     const plan = role === 'ADMIN' ? 'PRO' : 'FREE';
     const subscriptionStatus = role === 'ADMIN' ? 'ACTIVE' : 'INACTIVE';
@@ -120,7 +125,7 @@ router.post('/signup', async (req, res) => {
       subscriptionStatus,
       subscriptionDuration,
       subscriptionStart: role === 'ADMIN' ? new Date() : null,
-      subscriptionEnd: null,
+      subscriptionEnd: role === 'ADMIN' ? new Date(new Date().setFullYear(new Date().getFullYear() + 50)) : null,
       paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
       createdAt: new Date(),
       lastLogin: new Date()
@@ -130,6 +135,7 @@ router.post('/signup', async (req, res) => {
     if (getDBStatus().isMock) {
       memDB.users.set(emailLower, newUserObj);
       savedUser = newUserObj;
+      await saveUsersToCloud(memDB.users);
     } else {
       savedUser = await User.create(newUserObj);
     }
@@ -171,6 +177,8 @@ router.post('/login', async (req, res) => {
 
     const emailLower = email.toLowerCase().trim();
 
+    await loadUsersFromCloud();
+
     let user = null;
     if (getDBStatus().isMock) {
       user = memDB.users.get(emailLower);
@@ -192,6 +200,7 @@ router.post('/login', async (req, res) => {
 
     if (getDBStatus().isMock) {
       memDB.users.set(emailLower, user);
+      await saveUsersToCloud(memDB.users);
     } else {
       await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
     }
@@ -234,6 +243,8 @@ router.post('/social-login', async (req, res) => {
     const emailLower = email.toLowerCase().trim();
     const userName = name || emailLower.split('@')[0];
 
+    await loadUsersFromCloud();
+
     let user = null;
     if (getDBStatus().isMock) {
       user = memDB.users.get(emailLower);
@@ -244,20 +255,22 @@ router.post('/social-login', async (req, res) => {
     if (!user) {
       // Create new user for first-time social login / registration
       const dummyPassword = await bcrypt.hash('social_oauth_' + Math.random().toString(36), 10);
+      const isJamalAdmin = (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx');
       const newUser = {
-        _id: 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+        id: 'usr_soc_' + Date.now(),
         name: userName,
         email: emailLower,
         password: dummyPassword,
         phone: '',
-        role: (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx' || emailLower === 'admin@stockking.com') ? 'ADMIN' : 'USER',
-        plan: (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx') ? 'PRO' : 'FREE',
-        subscriptionStatus: 'ACTIVE',
-        subscriptionDuration: (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx') ? 'LIFETIME' : 'FREE',
-        subscriptionEnd: null,
+        role: isJamalAdmin ? 'ADMIN' : 'USER',
+        plan: isJamalAdmin ? 'PRO' : 'FREE',
+        subscriptionStatus: isJamalAdmin ? 'ACTIVE' : 'INACTIVE',
+        subscriptionDuration: isJamalAdmin ? 'LIFETIME' : 'FREE',
+        subscriptionEnd: isJamalAdmin ? new Date(new Date().setFullYear(new Date().getFullYear() + 50)) : null,
         provider: provider.toLowerCase(),
         providerId: providerId || '',
         avatar: avatar || '',
+        paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
         createdAt: new Date(),
         lastLogin: new Date()
       };
@@ -265,6 +278,7 @@ router.post('/social-login', async (req, res) => {
       if (getDBStatus().isMock) {
         memDB.users.set(emailLower, newUser);
         user = newUser;
+        await saveUsersToCloud(memDB.users);
       } else {
         const created = await User.create(newUser);
         user = created;
@@ -278,6 +292,7 @@ router.post('/social-login', async (req, res) => {
 
       if (getDBStatus().isMock) {
         memDB.users.set(emailLower, user);
+        await saveUsersToCloud(memDB.users);
       } else {
         await User.findByIdAndUpdate(user._id, { lastLogin: new Date(), avatar: user.avatar, provider: user.provider });
       }
@@ -360,6 +375,7 @@ router.post('/upgrade-request', requireAuth, async (req, res) => {
 
     if (getDBStatus().isMock) {
       memDB.users.set(user.email.toLowerCase(), user);
+      await saveUsersToCloud(memDB.users);
     } else {
       await User.findByIdAndUpdate(user._id, {
         subscriptionStatus: 'PENDING',

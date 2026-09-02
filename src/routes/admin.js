@@ -1,7 +1,7 @@
 import express from 'express';
 import User from '../models/User.js';
 import { requireAuth } from './auth.js';
-import { memDB, getDBStatus } from '../config/db.js';
+import { memDB, getDBStatus, loadUsersFromCloud, saveUsersToCloud } from '../config/db.js';
 
 const router = express.Router();
 
@@ -39,6 +39,9 @@ const calculateEndDate = (duration) => {
 router.get('/users', async (req, res) => {
   try {
     const { q = '', plan = 'ALL', status = 'ALL' } = req.query;
+
+    // Fresh sync with cloud persistent store
+    await loadUsersFromCloud();
 
     let usersList = [];
     if (getDBStatus().isMock) {
@@ -96,6 +99,8 @@ router.post('/sync-users', async (req, res) => {
   try {
     const { clientUsers = [] } = req.body;
 
+    await loadUsersFromCloud();
+
     if (Array.isArray(clientUsers)) {
       for (const cu of clientUsers) {
         if (!cu.email) continue;
@@ -120,6 +125,7 @@ router.post('/sync-users', async (req, res) => {
           });
         }
       }
+      await saveUsersToCloud(memDB.users);
     }
 
     const allUsers = Array.from(memDB.users.values()).map(u => ({
@@ -160,6 +166,8 @@ router.post('/create-user', async (req, res) => {
     }
 
     const emailLower = email.toLowerCase().trim();
+    await loadUsersFromCloud();
+
     if (memDB.users.has(emailLower)) {
       return res.status(400).json({ success: false, message: 'User with this email already exists.' });
     }
@@ -185,6 +193,7 @@ router.post('/create-user', async (req, res) => {
     };
 
     memDB.users.set(emailLower, newUser);
+    await saveUsersToCloud(memDB.users);
 
     if (!getDBStatus().isMock) {
       await User.create(newUser);
@@ -207,6 +216,8 @@ router.post('/users/:id/subscription', async (req, res) => {
   try {
     const { id } = req.params;
     const { plan, subscriptionStatus, subscriptionDuration, extendDays } = req.body;
+
+    await loadUsersFromCloud();
 
     let user = null;
     if (getDBStatus().isMock) {
@@ -243,6 +254,7 @@ router.post('/users/:id/subscription', async (req, res) => {
 
     if (getDBStatus().isMock) {
       memDB.users.set(user.email.toLowerCase(), user);
+      await saveUsersToCloud(memDB.users);
     } else {
       await User.findByIdAndUpdate(user._id, {
         plan: user.plan,
@@ -283,9 +295,14 @@ router.delete('/users/:id', async (req, res) => {
       return res.status(400).json({ success: false, message: 'You cannot delete your own admin account.' });
     }
 
+    await loadUsersFromCloud();
+
     if (getDBStatus().isMock) {
       const user = Array.from(memDB.users.values()).find(u => (u._id || u.id) === id || u.email === id);
-      if (user) memDB.users.delete(user.email.toLowerCase());
+      if (user) {
+        memDB.users.delete(user.email.toLowerCase());
+        await saveUsersToCloud(memDB.users);
+      }
     } else {
       await User.findByIdAndDelete(id);
     }
@@ -301,6 +318,8 @@ router.delete('/users/:id', async (req, res) => {
 // ==========================================
 router.get('/analytics', async (req, res) => {
   try {
+    await loadUsersFromCloud();
+
     let usersList = [];
     if (getDBStatus().isMock) {
       usersList = Array.from(memDB.users.values());
