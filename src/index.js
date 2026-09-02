@@ -89,42 +89,64 @@ const startServer = async () => {
         const { loadUsersFromCloud, saveUsersToCloud } = await import('./config/db.js');
         await loadUsersFromCloud();
 
-        // Ensure Lead Admin Account is always active and master-verified
-        const adminPayload = {
-          id: 'admin_jamal_001',
-          name: 'Jamal Ahmed (Lead Admin)',
-          email: adminEmail,
-          phone: '+923452831413',
-          password: hashedAdminPassword,
-          role: 'ADMIN',
-          plan: 'PRO',
-          subscriptionStatus: 'ACTIVE',
-          subscriptionDuration: 'LIFETIME',
-          subscriptionStart: now,
-          subscriptionEnd: lifetimeEnd,
-          paymentProof: { transactionId: 'MASTER_ADMIN', method: 'System Owner', amount: 0, submittedAt: now, note: 'Lead Admin & Platform Owner' },
-          createdAt: new Date('2026-08-01'),
-          lastLogin: now
-        };
+        // Ensure Lead Admin Accounts (Personal & Corporate) are always active and master-verified
+        const adminAccounts = [
+          {
+            id: 'admin_jamal_001',
+            name: 'Jamal Ahmed (Lead Admin)',
+            email: 'jamal.ahmedrumi@gmail.com',
+            phone: '+923452831413'
+          },
+          {
+            id: 'admin_jamal_binate',
+            name: 'Jamal Ahmed (Binate Digital)',
+            email: 'jamal.ahmed@binatedigital.com',
+            phone: '+923452831413'
+          }
+        ];
 
-        memDB.users.set(adminEmail, adminPayload);
+        for (const adm of adminAccounts) {
+          const admEmail = adm.email.toLowerCase().trim();
+          const adminPayload = {
+            id: adm.id,
+            name: adm.name,
+            email: admEmail,
+            phone: adm.phone,
+            password: hashedAdminPassword,
+            role: 'ADMIN',
+            plan: 'PRO',
+            subscriptionStatus: 'ACTIVE',
+            subscriptionDuration: 'LIFETIME',
+            subscriptionStart: now,
+            subscriptionEnd: lifetimeEnd,
+            paymentProof: { transactionId: 'MASTER_ADMIN', method: 'Platform Owner', amount: 0, submittedAt: now, note: 'Lead Admin & Platform Owner' },
+            createdAt: new Date('2026-08-01'),
+            lastLogin: now
+          };
+
+          memDB.users.set(admEmail, adminPayload);
+        }
+
         await saveUsersToCloud(memDB.users);
 
         if (!getDBStatus().isMock) {
-          const existing = await User.findOne({ email: adminEmail });
-          if (!existing) {
-            await User.create(adminPayload);
-          } else {
-            await User.findByIdAndUpdate(existing._id, {
-              password: hashedAdminPassword,
-              role: 'ADMIN',
-              plan: 'PRO',
-              subscriptionStatus: 'ACTIVE',
-              subscriptionDuration: 'LIFETIME'
-            });
+          for (const adm of adminAccounts) {
+            const admEmail = adm.email.toLowerCase().trim();
+            const existing = await User.findOne({ email: admEmail });
+            if (!existing) {
+              await User.create(memDB.users.get(admEmail));
+            } else {
+              await User.findByIdAndUpdate(existing._id, {
+                password: hashedAdminPassword,
+                role: 'ADMIN',
+                plan: 'PRO',
+                subscriptionStatus: 'ACTIVE',
+                subscriptionDuration: 'LIFETIME'
+              });
+            }
           }
         }
-        console.log(`👑 Lead Admin Configured & Real Users Synced (${memDB.users.size} active accounts).`);
+        console.log(`👑 Lead Admins Configured & Real Users Synced (${memDB.users.size} active accounts).`);
       } catch (err) {
         console.warn('User directory seed notice:', err.message);
       }

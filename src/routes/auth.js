@@ -205,6 +205,16 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+const isAdminEmail = (email) => {
+  const e = String(email || '').toLowerCase().trim();
+  return (
+    e === 'jamal.ahmedrumi@gmail.com' ||
+    e === 'jamal.ahmed@binatedigital.com' ||
+    e === 'admin@stockking.psx' ||
+    e.startsWith('admin@')
+  );
+};
+
 // ==========================================
 // 2. LOGIN (POST /api/auth/login)
 // ==========================================
@@ -227,12 +237,13 @@ router.post('/login', async (req, res) => {
       user = await User.findOne({ email: emailLower });
     }
 
-    if (!user && (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx')) {
+    if (!user && isAdminEmail(emailLower)) {
       const now = new Date();
       user = {
-        id: 'admin_jamal_001',
-        name: 'Jamal Ahmed (Lead Admin)',
+        id: emailLower.includes('binate') ? 'admin_jamal_binate' : 'admin_jamal_001',
+        name: emailLower.includes('binate') ? 'Jamal Ahmed (Binate Digital)' : 'Jamal Ahmed (Lead Admin)',
         email: emailLower,
+        phone: '+923452831413',
         role: 'ADMIN',
         plan: 'PRO',
         subscriptionStatus: 'ACTIVE',
@@ -255,7 +266,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Master check / fallback for Lead Admin
-    if (!isMatch && (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx')) {
+    if (!isMatch && isAdminEmail(emailLower)) {
       const adminPass = process.env.ADMIN_PASSWORD || 'R44@Jamal20dec##';
       if (password === adminPass) {
         isMatch = true;
@@ -529,6 +540,86 @@ router.put('/profile', requireAuth, async (req, res) => {
     });
   } catch (err) {
     return res.status(500).json({ success: false, message: 'Failed to update profile: ' + err.message });
+  }
+});
+
+// ==========================================
+// 6. FORGOT / RESET PASSWORD (POST /api/auth/forgot-password)
+// ==========================================
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      return res.status(400).json({ success: false, message: 'Please provide Email and your New Password.' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ success: false, message: 'New password must be at least 6 characters long.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+
+    await loadUsersFromCloud();
+
+    let user = null;
+    if (getDBStatus().isMock) {
+      user = memDB.users.get(emailLower);
+    } else {
+      user = await User.findOne({ email: emailLower });
+    }
+
+    if (!user && isAdminEmail(emailLower)) {
+      const now = new Date();
+      user = {
+        id: emailLower.includes('binate') ? 'admin_jamal_binate' : 'admin_jamal_001',
+        name: emailLower.includes('binate') ? 'Jamal Ahmed (Binate Digital)' : 'Jamal Ahmed (Lead Admin)',
+        email: emailLower,
+        phone: '+923452831413',
+        role: 'ADMIN',
+        plan: 'PRO',
+        subscriptionStatus: 'ACTIVE',
+        subscriptionDuration: 'LIFETIME',
+        createdAt: now,
+        lastLogin: now
+      };
+      memDB.users.set(emailLower, user);
+    }
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'No account registered with this email address.' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+    user.lastLogin = new Date();
+
+    if (getDBStatus().isMock) {
+      memDB.users.set(emailLower, user);
+      await saveUsersToCloud(memDB.users);
+    } else {
+      await User.findByIdAndUpdate(user._id, { password: user.password, lastLogin: new Date() });
+    }
+
+    const token = generateToken(user);
+
+    return res.json({
+      success: true,
+      message: 'Password reset successfully! You are now logged in.',
+      token,
+      user: {
+        id: user._id || user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        plan: user.plan,
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionDuration: user.subscriptionDuration
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: 'Failed to reset password: ' + err.message });
   }
 });
 
