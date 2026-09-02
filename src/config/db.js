@@ -19,24 +19,28 @@ const CLOUD_SYNC_ID = 'ff808181a061cdc401a063898a3a0679';
 const CLOUD_STORE_URL = `https://api.restful-api.dev/objects/${CLOUD_SYNC_ID}`;
 
 let lastCloudSyncTime = 0;
-const CACHE_TTL_MS = 15000; // 15 seconds cache
+const CACHE_TTL_MS = 2000; // 2 seconds cache for near-instant multi-container sync
 
 export const saveUsersToCloud = async (usersMap) => {
   try {
-    // 1. First fetch latest cloud store so we merge and never lose any user registered on another container
+    // 1. Fetch latest cloud store to merge all users across instances
     try {
       const res = await axios.get(CLOUD_STORE_URL, { timeout: 3500 });
       if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
         for (const u of res.data.data.users) {
-          if (u.email && !usersMap.has(u.email.toLowerCase().trim())) {
-            usersMap.set(u.email.toLowerCase().trim(), u);
+          if (u.email) {
+            const emailLower = u.email.toLowerCase().trim();
+            if (!usersMap.has(emailLower)) {
+              usersMap.set(emailLower, u);
+              memDB.users.set(emailLower, u);
+            }
           }
         }
       }
     } catch (e) {}
 
     const userArray = Array.from(usersMap.values()).map(u => ({
-      id: u._id || u.id || ('usr_' + Date.now()),
+      id: u._id || u.id || ('usr_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6)),
       name: u.name,
       email: u.email?.toLowerCase().trim(),
       phone: u.phone || '',
@@ -56,6 +60,10 @@ export const saveUsersToCloud = async (usersMap) => {
       data: { users: userArray }
     }, { timeout: 4000 });
 
+    for (const u of userArray) {
+      if (u.email) memDB.users.set(u.email.toLowerCase().trim(), u);
+    }
+
     lastCloudSyncTime = Date.now();
     return userArray;
   } catch (err) {
@@ -68,30 +76,21 @@ export const deleteUserFromCloud = async (emailToDelete) => {
   const emailClean = String(emailToDelete || '').toLowerCase().trim();
   memDB.users.delete(emailClean);
 
-  const userArray = Array.from(memDB.users.values()).map(u => ({
-    id: u._id || u.id,
-    name: u.name,
-    email: u.email?.toLowerCase().trim(),
-    phone: u.phone || '',
-    password: u.password,
-    role: u.role || 'USER',
-    plan: u.plan || 'FREE',
-    subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
-    subscriptionDuration: u.subscriptionDuration || 'FREE',
-    subscriptionStart: u.subscriptionStart || null,
-    subscriptionEnd: u.subscriptionEnd || null,
-    paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
-    createdAt: u.createdAt || new Date(),
-    lastLogin: u.lastLogin || new Date()
-  }));
+  try {
+    const res = await axios.get(CLOUD_STORE_URL, { timeout: 3500 });
+    let existing = res.data?.data?.users || [];
+    existing = existing.filter(u => u.email?.toLowerCase().trim() !== emailClean);
 
-  axios.patch(CLOUD_STORE_URL, {
-    data: { users: userArray }
-  }, { timeout: 2500 }).catch(err => {
+    await axios.patch(CLOUD_STORE_URL, {
+      data: { users: existing }
+    }, { timeout: 4000 });
+
+    lastCloudSyncTime = Date.now();
+    return existing;
+  } catch (err) {
     console.warn('Cloud delete notice:', err.message);
-  });
-
-  return userArray;
+  }
+  return Array.from(memDB.users.values());
 };
 
 export const loadUsersFromCloud = async (force = false) => {
@@ -100,7 +99,7 @@ export const loadUsersFromCloud = async (force = false) => {
   }
 
   try {
-    const res = await axios.get(CLOUD_STORE_URL, { timeout: 2500 });
+    const res = await axios.get(CLOUD_STORE_URL, { timeout: 3500 });
     if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
       for (const u of res.data.data.users) {
         if (u.email) {
@@ -108,7 +107,7 @@ export const loadUsersFromCloud = async (force = false) => {
         }
       }
       lastCloudSyncTime = Date.now();
-      return res.data.data.users;
+      return Array.from(memDB.users.values());
     }
   } catch (err) {
     console.warn('Cloud store sync read notice:', err.message);
