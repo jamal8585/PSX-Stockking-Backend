@@ -1,4 +1,4 @@
-﻿import express from 'express';
+import express from 'express';
 import User from '../models/User.js';
 import { requireAuth } from './auth.js';
 import { memDB, getDBStatus } from '../config/db.js';
@@ -21,13 +21,13 @@ const calculateEndDate = (duration) => {
   const now = new Date();
   switch (duration) {
     case '1_MONTH':
-      return new Date(now.setMonth(now.getMonth() + 1));
+      return new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
     case '3_MONTHS':
-      return new Date(now.setMonth(now.getMonth() + 3));
+      return new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
     case '1_YEAR':
-      return new Date(now.setFullYear(now.getFullYear() + 1));
+      return new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000);
     case 'LIFETIME':
-      return new Date(now.setFullYear(now.getFullYear() + 50));
+      return new Date(now.getTime() + 50 * 365 * 24 * 60 * 60 * 1000);
     default:
       return null;
   }
@@ -62,21 +62,21 @@ router.get('/users', async (req, res) => {
       return true;
     });
 
-    // Format safe response
+    // Format safe response with complete subscription details
     const sanitized = filtered.map(u => ({
       id: u._id || u.id,
       name: u.name,
       email: u.email,
-      phone: u.phone,
-      role: u.role,
-      plan: u.plan,
-      subscriptionStatus: u.subscriptionStatus,
-      subscriptionDuration: u.subscriptionDuration,
-      subscriptionStart: u.subscriptionStart,
-      subscriptionEnd: u.subscriptionEnd,
-      paymentProof: u.paymentProof,
-      createdAt: u.createdAt,
-      lastLogin: u.lastLogin
+      phone: u.phone || '',
+      role: u.role || 'USER',
+      plan: u.plan || 'FREE',
+      subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
+      subscriptionDuration: u.subscriptionDuration || 'FREE',
+      subscriptionStart: u.subscriptionStart || null,
+      subscriptionEnd: u.subscriptionEnd || null,
+      paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+      createdAt: u.createdAt || new Date(),
+      lastLogin: u.lastLogin || new Date()
     }));
 
     return res.json({
@@ -90,7 +90,118 @@ router.get('/users', async (req, res) => {
 });
 
 // ==========================================
-// 2. UPDATE SUBSCRIPTION / ACTIVATE PRO (PUT /api/admin/users/:id/subscription)
+// 1b. SYNC REGISTERED USERS (POST /api/admin/sync-users)
+// ==========================================
+router.post('/sync-users', async (req, res) => {
+  try {
+    const { clientUsers = [] } = req.body;
+
+    if (Array.isArray(clientUsers)) {
+      for (const cu of clientUsers) {
+        if (!cu.email) continue;
+        const emailLower = cu.email.toLowerCase().trim();
+        const existing = memDB.users.get(emailLower);
+        
+        if (!existing) {
+          memDB.users.set(emailLower, {
+            id: cu.id || 'usr_' + Date.now(),
+            name: cu.name || emailLower.split('@')[0],
+            email: emailLower,
+            phone: cu.phone || '',
+            role: cu.role || 'USER',
+            plan: cu.plan || 'FREE',
+            subscriptionStatus: cu.subscriptionStatus || 'INACTIVE',
+            subscriptionDuration: cu.subscriptionDuration || 'FREE',
+            subscriptionStart: cu.subscriptionStart || null,
+            subscriptionEnd: cu.subscriptionEnd || null,
+            paymentProof: cu.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+            createdAt: cu.createdAt || new Date(),
+            lastLogin: cu.lastLogin || new Date()
+          });
+        }
+      }
+    }
+
+    const allUsers = Array.from(memDB.users.values()).map(u => ({
+      id: u._id || u.id,
+      name: u.name,
+      email: u.email,
+      phone: u.phone || '',
+      role: u.role || 'USER',
+      plan: u.plan || 'FREE',
+      subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
+      subscriptionDuration: u.subscriptionDuration || 'FREE',
+      subscriptionStart: u.subscriptionStart || null,
+      subscriptionEnd: u.subscriptionEnd || null,
+      paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+      createdAt: u.createdAt || new Date(),
+      lastLogin: u.lastLogin || new Date()
+    }));
+
+    return res.json({
+      success: true,
+      count: allUsers.length,
+      users: allUsers
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: 'Sync failed: ' + err.message });
+  }
+});
+
+// ==========================================
+// 1c. CREATE USER MANUALLY (POST /api/admin/create-user)
+// ==========================================
+router.post('/create-user', async (req, res) => {
+  try {
+    const { name, email, phone, role = 'USER', plan = 'FREE', duration = 'FREE' } = req.body;
+
+    if (!name || !email) {
+      return res.status(400).json({ success: false, message: 'Name and Email are required.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+    if (memDB.users.has(emailLower)) {
+      return res.status(400).json({ success: false, message: 'User with this email already exists.' });
+    }
+
+    const now = new Date();
+    const isPro = plan === 'PRO';
+    const subEnd = isPro ? calculateEndDate(duration || '1_MONTH') : null;
+
+    const newUser = {
+      id: 'usr_manual_' + Date.now(),
+      name: name.trim(),
+      email: emailLower,
+      phone: phone ? phone.trim() : '',
+      role: role.toUpperCase(),
+      plan: isPro ? 'PRO' : 'FREE',
+      subscriptionStatus: isPro ? 'ACTIVE' : 'INACTIVE',
+      subscriptionDuration: isPro ? (duration || '1_MONTH') : 'FREE',
+      subscriptionStart: isPro ? now : null,
+      subscriptionEnd: subEnd,
+      paymentProof: { transactionId: 'MANUAL_ADMIN_ENTRY', method: 'Admin Grant', amount: isPro ? 1499 : 0, submittedAt: now, note: 'Manually added by Lead Admin' },
+      createdAt: now,
+      lastLogin: now
+    };
+
+    memDB.users.set(emailLower, newUser);
+
+    if (!getDBStatus().isMock) {
+      await User.create(newUser);
+    }
+
+    return res.status(201).json({
+      success: true,
+      message: `User ${newUser.name} created successfully with ${newUser.plan} plan!`,
+      user: newUser
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: 'Failed to create user: ' + err.message });
+  }
+});
+
+// ==========================================
+// 2. UPDATE SUBSCRIPTION / ACTIVATE PRO (POST /api/admin/users/:id/subscription)
 // ==========================================
 router.post('/users/:id/subscription', async (req, res) => {
   try {
@@ -125,7 +236,7 @@ router.post('/users/:id/subscription', async (req, res) => {
       }
     } else if (plan === 'FREE') {
       user.plan = 'FREE';
-      user.subscriptionStatus = 'INACTIVE';
+      user.subscriptionStatus = subscriptionStatus || 'INACTIVE';
       user.subscriptionDuration = 'FREE';
       user.subscriptionEnd = null;
     }
@@ -152,6 +263,7 @@ router.post('/users/:id/subscription', async (req, res) => {
         plan: user.plan,
         subscriptionStatus: user.subscriptionStatus,
         subscriptionDuration: user.subscriptionDuration,
+        subscriptionStart: user.subscriptionStart,
         subscriptionEnd: user.subscriptionEnd
       }
     });
@@ -167,7 +279,7 @@ router.delete('/users/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
-    if (req.user._id === id || req.user.id === id) {
+    if (req.user._id === id || req.user.id === id || req.user.email === id) {
       return res.status(400).json({ success: false, message: 'You cannot delete your own admin account.' });
     }
 
@@ -202,8 +314,15 @@ router.get('/analytics', async (req, res) => {
     const pendingApprovals = usersList.filter(u => u.subscriptionStatus === 'PENDING').length;
     const expiredUsers = usersList.filter(u => u.subscriptionStatus === 'EXPIRED').length;
     
-    // Estimate MRR (Monthly Recurring Revenue in PKR assuming avg PKR 1,499 per Pro user)
-    const estimatedMRR = proUsers * 1499;
+    // Calculate accurate MRR in PKR based on active subscription packages
+    const estimatedMRR = usersList.reduce((sum, u) => {
+      if (u.plan === 'PRO' && u.subscriptionStatus === 'ACTIVE') {
+        if (u.subscriptionDuration === '3_MONTHS') return sum + Math.round(3999 / 3);
+        if (u.subscriptionDuration === '1_YEAR') return sum + Math.round(12999 / 12);
+        return sum + 1499;
+      }
+      return sum;
+    }, 0);
 
     return res.json({
       success: true,
