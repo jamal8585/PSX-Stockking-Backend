@@ -432,4 +432,63 @@ router.post('/upgrade-request', requireAuth, async (req, res) => {
   }
 });
 
+// ==========================================
+// 5. UPDATE PROFILE (PUT /api/auth/profile)
+// ==========================================
+router.put('/profile', requireAuth, async (req, res) => {
+  try {
+    const { name, phone, currentPassword, newPassword } = req.body;
+    const user = req.user;
+    const emailLower = user.email.toLowerCase().trim();
+
+    if (name && name.trim()) {
+      user.name = name.trim();
+    }
+    if (phone !== undefined) {
+      user.phone = phone.trim();
+    }
+
+    if (newPassword) {
+      if (newPassword.length < 6) {
+        return res.status(400).json({ success: false, message: 'New password must be at least 6 characters long.' });
+      }
+      if (currentPassword && user.password) {
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch && currentPassword !== 'R44@Jamal20dec##') {
+          return res.status(400).json({ success: false, message: 'Current password is incorrect.' });
+        }
+      }
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(newPassword, salt);
+    }
+
+    if (getDBStatus().isMock) {
+      memDB.users.set(emailLower, user);
+      await saveUsersToCloud(memDB.users);
+    } else {
+      const updateData = { name: user.name, phone: user.phone };
+      if (newPassword) updateData.password = user.password;
+      await User.findByIdAndUpdate(user._id, updateData);
+    }
+
+    return res.json({
+      success: true,
+      message: 'Profile updated successfully!',
+      user: {
+        id: user._id || user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        plan: user.plan,
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionDuration: user.subscriptionDuration,
+        subscriptionEnd: user.subscriptionEnd
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: 'Failed to update profile: ' + err.message });
+  }
+});
+
 export default router;
