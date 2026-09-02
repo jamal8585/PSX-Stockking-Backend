@@ -18,95 +18,89 @@ export const memDB = {
 const CLOUD_SYNC_ID = 'ff808181a061cdc401a063898a3a0679';
 const CLOUD_STORE_URL = `https://api.restful-api.dev/objects/${CLOUD_SYNC_ID}`;
 
+let lastCloudSyncTime = 0;
+const CACHE_TTL_MS = 15000; // 15 seconds cache
+
 export const saveUsersToCloud = async (usersMap) => {
-  try {
-    // 1. Fetch current cloud users first to merge and prevent race condition
-    let cloudUsers = [];
-    try {
-      const res = await axios.get(CLOUD_STORE_URL, { timeout: 3000 });
-      if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
-        cloudUsers = res.data.data.users;
-      }
-    } catch (_) {}
+  const userArray = Array.from(usersMap.values()).map(u => ({
+    id: u._id || u.id || ('usr_' + Date.now()),
+    name: u.name,
+    email: u.email?.toLowerCase().trim(),
+    phone: u.phone || '',
+    password: u.password,
+    role: u.role || 'USER',
+    plan: u.plan || 'FREE',
+    subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
+    subscriptionDuration: u.subscriptionDuration || 'FREE',
+    subscriptionStart: u.subscriptionStart || null,
+    subscriptionEnd: u.subscriptionEnd || null,
+    paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+    createdAt: u.createdAt || new Date(),
+    lastLogin: u.lastLogin || new Date()
+  }));
 
-    // 2. Merge into a unified map
-    const mergedMap = new Map();
-    for (const cu of cloudUsers) {
-      if (cu.email) mergedMap.set(cu.email.toLowerCase().trim(), cu);
-    }
-    for (const [email, u] of usersMap.entries()) {
-      if (email) mergedMap.set(email.toLowerCase().trim(), u);
-    }
+  // Non-blocking asynchronous sync to cloud
+  axios.patch(CLOUD_STORE_URL, {
+    data: { users: userArray }
+  }, { timeout: 2500 }).then(() => {
+    lastCloudSyncTime = Date.now();
+  }).catch(err => {
+    console.warn('Cloud store sync notice:', err.message);
+  });
 
-    // Sync back to local memDB.users
-    for (const [email, u] of mergedMap.entries()) {
-      memDB.users.set(email, u);
-    }
-
-    const userArray = Array.from(mergedMap.values()).map(u => ({
-      id: u._id || u.id || ('usr_' + Date.now()),
-      name: u.name,
-      email: u.email?.toLowerCase().trim(),
-      phone: u.phone || '',
-      password: u.password,
-      role: u.role || 'USER',
-      plan: u.plan || 'FREE',
-      subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
-      subscriptionDuration: u.subscriptionDuration || 'FREE',
-      subscriptionStart: u.subscriptionStart || null,
-      subscriptionEnd: u.subscriptionEnd || null,
-      paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
-      createdAt: u.createdAt || new Date(),
-      lastLogin: u.lastLogin || new Date()
-    }));
-
-    await axios.patch(CLOUD_STORE_URL, {
-      data: { users: userArray }
-    }, { timeout: 4000 });
-    return userArray;
-  } catch (err) {
-    console.warn('Cloud store sync write warning:', err.message);
-  }
+  return userArray;
 };
 
 export const deleteUserFromCloud = async (emailToDelete) => {
-  try {
-    let cloudUsers = [];
-    try {
-      const res = await axios.get(CLOUD_STORE_URL, { timeout: 3000 });
-      if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
-        cloudUsers = res.data.data.users;
-      }
-    } catch (_) {}
+  const emailClean = String(emailToDelete || '').toLowerCase().trim();
+  memDB.users.delete(emailClean);
 
-    const emailClean = String(emailToDelete || '').toLowerCase().trim();
-    const remaining = cloudUsers.filter(u => u.email?.toLowerCase().trim() !== emailClean && String(u.id || '') !== emailClean);
-    memDB.users.delete(emailClean);
+  const userArray = Array.from(memDB.users.values()).map(u => ({
+    id: u._id || u.id,
+    name: u.name,
+    email: u.email?.toLowerCase().trim(),
+    phone: u.phone || '',
+    password: u.password,
+    role: u.role || 'USER',
+    plan: u.plan || 'FREE',
+    subscriptionStatus: u.subscriptionStatus || 'INACTIVE',
+    subscriptionDuration: u.subscriptionDuration || 'FREE',
+    subscriptionStart: u.subscriptionStart || null,
+    subscriptionEnd: u.subscriptionEnd || null,
+    paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+    createdAt: u.createdAt || new Date(),
+    lastLogin: u.lastLogin || new Date()
+  }));
 
-    await axios.patch(CLOUD_STORE_URL, {
-      data: { users: remaining }
-    }, { timeout: 4000 });
-    return remaining;
-  } catch (err) {
-    console.warn('Cloud delete warning:', err.message);
-  }
+  axios.patch(CLOUD_STORE_URL, {
+    data: { users: userArray }
+  }, { timeout: 2500 }).catch(err => {
+    console.warn('Cloud delete notice:', err.message);
+  });
+
+  return userArray;
 };
 
-export const loadUsersFromCloud = async () => {
+export const loadUsersFromCloud = async (force = false) => {
+  if (!force && Date.now() - lastCloudSyncTime < CACHE_TTL_MS && memDB.users.size > 0) {
+    return Array.from(memDB.users.values());
+  }
+
   try {
-    const res = await axios.get(CLOUD_STORE_URL, { timeout: 4000 });
+    const res = await axios.get(CLOUD_STORE_URL, { timeout: 2500 });
     if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
       for (const u of res.data.data.users) {
         if (u.email) {
           memDB.users.set(u.email.toLowerCase().trim(), u);
         }
       }
+      lastCloudSyncTime = Date.now();
       return res.data.data.users;
     }
   } catch (err) {
-    console.warn('Cloud store sync read warning:', err.message);
+    console.warn('Cloud store sync read notice:', err.message);
   }
-  return [];
+  return Array.from(memDB.users.values());
 };
 
 export const connectDB = async () => {
