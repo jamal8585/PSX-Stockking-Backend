@@ -119,9 +119,12 @@ export const connectDB = async () => {
   }
 };
 
-export const getDBStatus = () => ({
-  isConnected,
-  isMock,
-  mode: isMock ? 'Cloud-Synced In-Memory DB Engine' : 'Live MongoDB Daemon',
-  uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/psx_intelligence'
-});
+export const getDBStatus = () => {
+  const isMongoReady = Boolean(mongoose.connection && mongoose.connection.readyState === 1);
+  return {
+    isConnected: true,
+    isMock: !isMongoReady,
+    mode: isMongoReady ? 'Live MongoDB Daemon' : 'Cloud-Synced In-Memory DB Engine',
+    uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/psx_intelligence'
+  };
+};

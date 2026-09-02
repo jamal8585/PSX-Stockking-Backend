@@ -230,11 +230,11 @@ router.post('/login', async (req, res) => {
 
     await loadUsersFromCloud();
 
-    let user = null;
-    if (getDBStatus().isMock) {
-      user = memDB.users.get(emailLower);
-    } else {
-      user = await User.findOne({ email: emailLower });
+    let user = memDB.users.get(emailLower);
+    if (!user && !getDBStatus().isMock) {
+      try {
+        user = await User.findOne({ email: emailLower });
+      } catch (e) {}
     }
 
     if (!user && isAdminEmail(emailLower)) {
@@ -562,11 +562,11 @@ router.post('/forgot-password', async (req, res) => {
 
     await loadUsersFromCloud();
 
-    let user = null;
-    if (getDBStatus().isMock) {
-      user = memDB.users.get(emailLower);
-    } else {
-      user = await User.findOne({ email: emailLower });
+    let user = memDB.users.get(emailLower);
+    if (!user && !getDBStatus().isMock) {
+      try {
+        user = await User.findOne({ email: emailLower });
+      } catch (e) {}
     }
 
     if (!user && isAdminEmail(emailLower)) {
