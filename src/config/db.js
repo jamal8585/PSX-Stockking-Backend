@@ -23,16 +23,32 @@ const CACHE_TTL_MS = 2000; // 2 seconds cache for near-instant multi-container s
 
 export const saveUsersToCloud = async (usersMap) => {
   try {
-    // 1. Fetch latest cloud store to merge all users across instances
+    // 1. Fetch latest cloud store and do a conflict-free merge
     try {
       const res = await axios.get(CLOUD_STORE_URL, { timeout: 3500 });
       if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
-        for (const u of res.data.data.users) {
-          if (u.email) {
-            const emailLower = u.email.toLowerCase().trim();
-            if (!usersMap.has(emailLower)) {
-              usersMap.set(emailLower, u);
-              memDB.users.set(emailLower, u);
+        for (const cloudUser of res.data.data.users) {
+          if (cloudUser.email) {
+            const emailLower = cloudUser.email.toLowerCase().trim();
+            const localUser = usersMap.get(emailLower);
+            if (!localUser) {
+              usersMap.set(emailLower, cloudUser);
+              memDB.users.set(emailLower, cloudUser);
+            } else {
+              // Preserve payment proof if cloud has proof and local doesn't
+              if (cloudUser.paymentProof?.transactionId && !localUser.paymentProof?.transactionId) {
+                localUser.paymentProof = cloudUser.paymentProof;
+                if (localUser.subscriptionStatus === 'INACTIVE') {
+                  localUser.subscriptionStatus = cloudUser.subscriptionStatus;
+                }
+              }
+              // Preserve PRO status if cloud has it
+              if (cloudUser.plan === 'PRO' && localUser.plan === 'FREE') {
+                localUser.plan = 'PRO';
+                localUser.subscriptionStatus = cloudUser.subscriptionStatus;
+                localUser.subscriptionDuration = cloudUser.subscriptionDuration;
+                localUser.subscriptionEnd = cloudUser.subscriptionEnd;
+              }
             }
           }
         }
@@ -94,16 +110,30 @@ export const deleteUserFromCloud = async (emailToDelete) => {
 };
 
 export const loadUsersFromCloud = async (force = false) => {
-  if (!force && Date.now() - lastCloudSyncTime < CACHE_TTL_MS && memDB.users.size > 0) {
-    return Array.from(memDB.users.values());
-  }
-
   try {
     const res = await axios.get(CLOUD_STORE_URL, { timeout: 3500 });
     if (res.data?.data?.users && Array.isArray(res.data.data.users)) {
       for (const u of res.data.data.users) {
         if (u.email) {
-          memDB.users.set(u.email.toLowerCase().trim(), u);
+          const emailLower = u.email.toLowerCase().trim();
+          const existing = memDB.users.get(emailLower);
+          if (!existing) {
+            memDB.users.set(emailLower, u);
+          } else {
+            // Keep highest state: if cloud has paymentProof, preserve it
+            if (u.paymentProof?.transactionId) {
+              existing.paymentProof = u.paymentProof;
+              if (existing.subscriptionStatus !== 'ACTIVE') {
+                existing.subscriptionStatus = u.subscriptionStatus;
+              }
+            }
+            if (u.plan === 'PRO') {
+              existing.plan = 'PRO';
+              existing.subscriptionStatus = u.subscriptionStatus;
+              existing.subscriptionDuration = u.subscriptionDuration;
+              existing.subscriptionEnd = u.subscriptionEnd;
+            }
+          }
         }
       }
       lastCloudSyncTime = Date.now();
