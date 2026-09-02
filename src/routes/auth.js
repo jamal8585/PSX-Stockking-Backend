@@ -56,20 +56,61 @@ export const requireAuth = async (req, res, next) => {
 
     let user = null;
     if (getDBStatus().isMock) {
-      user = memDB.users.get(decoded.email.toLowerCase());
+      if (decoded.email) {
+        user = memDB.users.get(decoded.email.toLowerCase().trim());
+      }
+      if (!user && decoded.id) {
+        for (const u of memDB.users.values()) {
+          if (u.id === decoded.id || u._id === decoded.id) {
+            user = u;
+            break;
+          }
+        }
+      }
+      if (!user && req.body?.email) {
+        user = memDB.users.get(req.body.email.toLowerCase().trim());
+      }
+      if (!user && req.body?.userId) {
+        for (const u of memDB.users.values()) {
+          if (u.id === req.body.userId || u._id === req.body.userId) {
+            user = u;
+            break;
+          }
+        }
+      }
     } else {
-      user = await User.findById(decoded.id);
+      if (decoded.id) user = await User.findById(decoded.id);
+      if (!user && decoded.email) user = await User.findOne({ email: decoded.email.toLowerCase().trim() });
+    }
+
+    // Auto-create/recover user in memory if token is valid and email exists
+    if (!user && decoded.email) {
+      const emailLower = decoded.email.toLowerCase().trim();
+      const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com';
+      user = {
+        id: decoded.id || ('usr_' + Date.now()),
+        name: emailLower.split('@')[0],
+        email: emailLower,
+        role: decoded.role || (isJamalAdmin ? 'ADMIN' : 'USER'),
+        plan: decoded.plan || (isJamalAdmin ? 'PRO' : 'FREE'),
+        subscriptionStatus: isJamalAdmin ? 'ACTIVE' : 'INACTIVE',
+        subscriptionDuration: isJamalAdmin ? 'LIFETIME' : 'FREE',
+        createdAt: new Date(),
+        lastLogin: new Date()
+      };
+      memDB.users.set(emailLower, user);
+      await saveUsersToCloud(memDB.users);
     }
 
     if (!user) {
-      return res.status(401).json({ success: false, message: 'User account not found.' });
+      return res.status(401).json({ success: false, message: 'User account not found. Please sign in again.' });
     }
 
     user = await checkExpiry(user);
     req.user = user;
     next();
   } catch (err) {
-    return res.status(401).json({ success: false, message: 'Invalid or expired session token.' });
+    return res.status(401).json({ success: false, message: 'Invalid or expired session token: ' + err.message });
   }
 };
 
