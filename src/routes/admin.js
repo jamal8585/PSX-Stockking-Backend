@@ -214,20 +214,70 @@ router.post('/create-user', async (req, res) => {
 // ==========================================
 router.post('/users/:id/subscription', async (req, res) => {
   try {
-    const { id } = req.params;
-    const { plan, subscriptionStatus, subscriptionDuration, extendDays } = req.body;
+    const rawId = req.params.id;
+    const decodedId = decodeURIComponent(rawId || '').trim();
+    const { plan, subscriptionStatus, subscriptionDuration, extendDays, email, name, phone } = req.body;
 
     await loadUsersFromCloud();
 
     let user = null;
+    const targetEmail = (email || (decodedId.includes('@') ? decodedId : '')).toLowerCase().trim();
+
     if (getDBStatus().isMock) {
-      user = Array.from(memDB.users.values()).find(u => (u._id || u.id) === id || u.email === id);
+      if (targetEmail) {
+        user = memDB.users.get(targetEmail);
+      }
+      if (!user) {
+        user = Array.from(memDB.users.values()).find(u => 
+          (u.id && String(u.id).toLowerCase() === decodedId.toLowerCase()) ||
+          (u._id && String(u._id).toLowerCase() === decodedId.toLowerCase()) ||
+          (u.email && u.email.toLowerCase().trim() === decodedId.toLowerCase())
+        );
+      }
     } else {
-      user = await User.findById(id);
+      if (targetEmail) {
+        user = await User.findOne({ email: targetEmail });
+      }
+      if (!user && decodedId.match(/^[0-9a-fA-F]{24}$/)) {
+        user = await User.findById(decodedId);
+      }
+      if (!user) {
+        user = await User.findOne({ $or: [{ id: decodedId }, { email: decodedId.toLowerCase() }] });
+      }
     }
 
+    // Auto-create / recover user if they were in client cache
     if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found.' });
+      const userEmail = targetEmail || (decodedId.includes('@') ? decodedId.toLowerCase() : '');
+      if (userEmail) {
+        const now = new Date();
+        const durationChoice = subscriptionDuration || '1_MONTH';
+        user = {
+          id: decodedId.startsWith('usr_') ? decodedId : ('usr_' + Date.now()),
+          name: name || userEmail.split('@')[0],
+          email: userEmail,
+          phone: phone || '',
+          role: 'USER',
+          plan: plan || 'PRO',
+          subscriptionStatus: subscriptionStatus || 'ACTIVE',
+          subscriptionDuration: durationChoice,
+          subscriptionStart: now,
+          subscriptionEnd: calculateEndDate(durationChoice),
+          paymentProof: { transactionId: 'ADMIN_INSTANT_UPGRADE', method: 'Admin Action', amount: 1499, submittedAt: now, note: 'Approved directly in Admin Panel' },
+          createdAt: now,
+          lastLogin: now
+        };
+        memDB.users.set(userEmail, user);
+        await saveUsersToCloud(memDB.users);
+
+        return res.json({
+          success: true,
+          message: `User ${user.name} upgraded to ${user.plan} (${user.subscriptionDuration}) successfully!`,
+          user
+        });
+      } else {
+        return res.status(404).json({ success: false, message: 'User not found.' });
+      }
     }
 
     if (plan !== undefined) user.plan = plan;
@@ -267,7 +317,7 @@ router.post('/users/:id/subscription', async (req, res) => {
 
     return res.json({
       success: true,
-      message: `User subscription updated successfully to ${user.plan} (${user.subscriptionStatus})!`,
+      message: `User ${user.name || user.email} subscription updated successfully to ${user.plan} (${user.subscriptionStatus})!`,
       user: {
         id: user._id || user.id,
         name: user.name,
@@ -289,22 +339,31 @@ router.post('/users/:id/subscription', async (req, res) => {
 // ==========================================
 router.delete('/users/:id', async (req, res) => {
   try {
-    const { id } = req.params;
+    const rawId = req.params.id;
+    const decodedId = decodeURIComponent(rawId || '').trim();
 
-    if (req.user._id === id || req.user.id === id || req.user.email === id) {
+    if (req.user._id === decodedId || req.user.id === decodedId || req.user.email?.toLowerCase() === decodedId.toLowerCase()) {
       return res.status(400).json({ success: false, message: 'You cannot delete your own admin account.' });
     }
 
     await loadUsersFromCloud();
 
     if (getDBStatus().isMock) {
-      const user = Array.from(memDB.users.values()).find(u => (u._id || u.id) === id || u.email === id);
+      const user = Array.from(memDB.users.values()).find(u => 
+        (u._id && String(u._id).toLowerCase() === decodedId.toLowerCase()) ||
+        (u.id && String(u.id).toLowerCase() === decodedId.toLowerCase()) ||
+        (u.email && u.email.toLowerCase().trim() === decodedId.toLowerCase())
+      );
       if (user) {
         memDB.users.delete(user.email.toLowerCase());
         await saveUsersToCloud(memDB.users);
       }
     } else {
-      await User.findByIdAndDelete(id);
+      if (decodedId.match(/^[0-9a-fA-F]{24}$/)) {
+        await User.findByIdAndDelete(decodedId);
+      } else {
+        await User.findOneAndDelete({ $or: [{ id: decodedId }, { email: decodedId.toLowerCase() }] });
+      }
     }
 
     return res.json({ success: true, message: 'User deleted successfully.' });
