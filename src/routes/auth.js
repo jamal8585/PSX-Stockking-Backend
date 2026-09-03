@@ -439,22 +439,26 @@ router.get('/me', requireAuth, async (req, res) => {
 // ==========================================
 router.post('/upgrade-request', requireAuth, async (req, res) => {
   try {
-    const { method, transactionId, amount, note } = req.body;
+    const { method, paymentMethod, transactionId, trxId, amount, note, notes, duration, plan } = req.body;
 
-    if (!transactionId || !method) {
-      return res.status(400).json({ success: false, message: 'Please provide Payment Method and Transaction ID / Reference.' });
+    const resolvedMethod = (method || paymentMethod || 'JazzCash').trim();
+    const resolvedTrx = (transactionId || trxId || '').trim();
+
+    if (!resolvedTrx) {
+      return res.status(400).json({ success: false, message: 'Please provide Transaction ID / Reference number.' });
     }
 
     const user = req.user;
     const paymentProof = {
-      method: method.trim(),
-      transactionId: transactionId.trim(),
+      method: resolvedMethod,
+      transactionId: resolvedTrx,
       amount: Number(amount) || 1499,
-      note: note ? note.trim() : '',
+      note: (note || notes || '').trim(),
       submittedAt: new Date()
     };
 
     user.subscriptionStatus = 'PENDING';
+    if (duration) user.subscriptionDuration = duration;
     user.paymentProof = paymentProof;
 
     const emailLower = user.email.toLowerCase().trim();
