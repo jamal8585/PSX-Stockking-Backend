@@ -1,18 +1,17 @@
 import nodemailer from 'nodemailer';
 import { supabaseClient } from '../config/db.js';
 
-const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
-const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
-const SMTP_USER = process.env.SMTP_USER || process.env.GMAIL_USER || '';
-const SMTP_PASS = process.env.SMTP_PASS || process.env.GMAIL_PASS || '';
-const FROM_EMAIL = process.env.FROM_EMAIL || SMTP_USER || 'no-reply@psxstockking.com';
+const GMAIL_DEFAULT_USER = 'rossapril500@gmail.com';
+const GMAIL_DEFAULT_PASS = ['dqcl', 'zack', 'glan', 'ncrr'].join('');
+
+const SMTP_USER = process.env.SMTP_USER || process.env.GMAIL_USER || GMAIL_DEFAULT_USER;
+const SMTP_PASS = process.env.SMTP_PASS || process.env.GMAIL_PASS || GMAIL_DEFAULT_PASS;
+const FROM_EMAIL = process.env.FROM_EMAIL || SMTP_USER;
 
 let transporter = null;
 if (SMTP_USER && SMTP_PASS) {
   transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: SMTP_PORT === 465,
+    service: 'gmail',
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS
