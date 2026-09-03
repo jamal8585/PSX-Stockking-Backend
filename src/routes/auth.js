@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import { memDB, getDBStatus, loadUsersFromCloud, saveUsersToCloud } from '../config/db.js';
+import { sendOTPEmail } from '../services/emailService.js';
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'psx_stockking_super_secret_jwt_key_2026';
@@ -114,8 +115,264 @@ export const requireAuth = async (req, res, next) => {
   }
 };
 
+// Global OTP in-memory vault with TTL
+export const otpCache = new Map();
+
+// Helper to generate 6-digit numeric OTP
+const generateOTPCode = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
 // ==========================================
-// 1. SIGN UP (POST /api/auth/signup)
+// 0A. SEND OTP EMAIL (POST /api/auth/send-otp)
+// ==========================================
+router.post('/send-otp', async (req, res) => {
+  try {
+    const { email, type = 'signup', name = '' } = req.body;
+
+    if (!email || !email.includes('@')) {
+      return res.status(400).json({ success: false, message: 'Please provide a valid email address.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+    await loadUsersFromCloud(true);
+
+    const existingUser = memDB.users.get(emailLower);
+
+    if (type === 'signup' && existingUser) {
+      return res.status(400).json({ success: false, message: 'An account with this email already exists. Please Sign In instead.' });
+    }
+
+    if (type === 'forgot' && !existingUser) {
+      return res.status(404).json({ success: false, message: 'No registered account found with this email address.' });
+    }
+
+    // Rate limiting: check if last OTP was sent < 30s ago
+    const existingOTP = otpCache.get(emailLower);
+    const now = Date.now();
+    if (existingOTP && (now - existingOTP.sentAt < 30000)) {
+      const waitSec = Math.ceil((30000 - (now - existingOTP.sentAt)) / 1000);
+      return res.status(429).json({ success: false, message: `Please wait ${waitSec}s before requesting a new code.` });
+    }
+
+    const otp = generateOTPCode();
+    const expiresAt = now + 10 * 60 * 1000; // 10 minutes TTL
+
+    otpCache.set(emailLower, {
+      otp,
+      expiresAt,
+      sentAt: now,
+      type,
+      name: name || existingUser?.name || '',
+      attempts: 0
+    });
+
+    const emailRes = await sendOTPEmail({
+      to: emailLower,
+      otp,
+      type,
+      name: name || existingUser?.name || ''
+    });
+
+    return res.json({
+      success: true,
+      message: `6-digit verification code sent to ${emailLower}!`,
+      // For development ease if SMTP is missing
+      ...(emailRes.fallback ? { devOtp: otp } : {})
+    });
+  } catch (err) {
+    console.error('Send OTP Error:', err);
+    return res.status(500).json({ success: false, message: 'Failed to generate verification code: ' + err.message });
+  }
+});
+
+// ==========================================
+// 0B. VERIFY OTP & COMPLETE SIGNUP (POST /api/auth/verify-otp-signup)
+// ==========================================
+router.post('/verify-otp-signup', async (req, res) => {
+  try {
+    const { name, email, password, phone, otp } = req.body;
+
+    if (!email || !otp || !password || !name) {
+      return res.status(400).json({ success: false, message: 'Name, Email, Password, and 6-digit OTP code are required.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+    const cached = otpCache.get(emailLower);
+
+    if (!cached || cached.type !== 'signup') {
+      return res.status(400).json({ success: false, message: 'No active signup verification code found. Please request a new OTP.' });
+    }
+
+    if (Date.now() > cached.expiresAt) {
+      otpCache.delete(emailLower);
+      return res.status(400).json({ success: false, message: 'Verification code has expired. Please request a new OTP.' });
+    }
+
+    if (String(cached.otp).trim() !== String(otp).trim()) {
+      cached.attempts = (cached.attempts || 0) + 1;
+      if (cached.attempts >= 5) {
+        otpCache.delete(emailLower);
+        return res.status(400).json({ success: false, message: 'Too many incorrect attempts. Please request a new OTP code.' });
+      }
+      return res.status(400).json({ success: false, message: `Invalid verification code. Please check your email.` });
+    }
+
+    // OTP Validated! Delete cached OTP
+    otpCache.delete(emailLower);
+
+    await loadUsersFromCloud(true);
+
+    if (memDB.users.has(emailLower)) {
+      return res.status(400).json({ success: false, message: 'An account with this email already exists. Please Sign In.' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower.includes('admin@stockking');
+    const role = isJamalAdmin ? 'ADMIN' : 'USER';
+    const plan = role === 'ADMIN' ? 'PRO' : 'FREE';
+    const subscriptionStatus = role === 'ADMIN' ? 'ACTIVE' : 'INACTIVE';
+    const subscriptionDuration = role === 'ADMIN' ? 'LIFETIME' : 'FREE';
+
+    const newUserObj = {
+      id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
+      name: name.trim(),
+      email: emailLower,
+      phone: phone ? phone.trim() : '',
+      password: hashedPassword,
+      role,
+      plan,
+      subscriptionStatus,
+      subscriptionDuration,
+      subscriptionStart: role === 'ADMIN' ? new Date() : null,
+      subscriptionEnd: role === 'ADMIN' ? new Date(new Date().setFullYear(new Date().getFullYear() + 50)) : null,
+      paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
+      createdAt: new Date(),
+      lastLogin: new Date()
+    };
+
+    memDB.users.set(emailLower, newUserObj);
+    await saveUsersToCloud(memDB.users);
+
+    if (!getDBStatus().isMock) {
+      try {
+        await User.create(newUserObj);
+      } catch (e) {}
+    }
+
+    const token = generateToken(newUserObj);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Account verified and registered successfully!',
+      token,
+      user: {
+        id: newUserObj._id || newUserObj.id,
+        name: newUserObj.name,
+        email: newUserObj.email,
+        phone: newUserObj.phone,
+        role: newUserObj.role,
+        plan: newUserObj.plan,
+        subscriptionStatus: newUserObj.subscriptionStatus,
+        subscriptionDuration: newUserObj.subscriptionDuration,
+        subscriptionEnd: newUserObj.subscriptionEnd
+      }
+    });
+  } catch (err) {
+    console.error('Verify OTP Signup Error:', err);
+    return res.status(500).json({ success: false, message: 'Server error during signup verification: ' + err.message });
+  }
+});
+
+// ==========================================
+// 0C. VERIFY OTP & RESET PASSWORD (POST /api/auth/verify-otp-forgot)
+// ==========================================
+router.post('/verify-otp-forgot', async (req, res) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({ success: false, message: 'Email, 6-digit OTP code, and New Password are required.' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ success: false, message: 'New password must be at least 6 characters long.' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+    const cached = otpCache.get(emailLower);
+
+    if (!cached || cached.type !== 'forgot') {
+      return res.status(400).json({ success: false, message: 'No active password reset code found. Please request a new OTP.' });
+    }
+
+    if (Date.now() > cached.expiresAt) {
+      otpCache.delete(emailLower);
+      return res.status(400).json({ success: false, message: 'Reset code has expired. Please request a new OTP.' });
+    }
+
+    if (String(cached.otp).trim() !== String(otp).trim()) {
+      cached.attempts = (cached.attempts || 0) + 1;
+      if (cached.attempts >= 5) {
+        otpCache.delete(emailLower);
+        return res.status(400).json({ success: false, message: 'Too many incorrect attempts. Please request a new OTP code.' });
+      }
+      return res.status(400).json({ success: false, message: 'Invalid reset code. Please check your email.' });
+    }
+
+    // OTP Validated! Delete cached OTP
+    otpCache.delete(emailLower);
+
+    await loadUsersFromCloud(true);
+    let user = memDB.users.get(emailLower);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User account not found.' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hashedPassword;
+    user.lastLogin = new Date();
+
+    memDB.users.set(emailLower, user);
+    await saveUsersToCloud(memDB.users);
+
+    if (!getDBStatus().isMock && user._id) {
+      try {
+        await User.findByIdAndUpdate(user._id, { password: hashedPassword, lastLogin: new Date() });
+      } catch (e) {}
+    }
+
+    const token = generateToken(user);
+
+    return res.json({
+      success: true,
+      message: 'Password reset successfully! You are now logged in.',
+      token,
+      user: {
+        id: user._id || user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        plan: user.plan,
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionDuration: user.subscriptionDuration,
+        subscriptionEnd: user.subscriptionEnd
+      }
+    });
+  } catch (err) {
+    console.error('Verify OTP Forgot Error:', err);
+    return res.status(500).json({ success: false, message: 'Server error during password reset: ' + err.message });
+  }
+});
+
+// ==========================================
+// 1. SIGN UP (POST /api/auth/signup - fallback direct)
 // ==========================================
 router.post('/signup', async (req, res) => {
   try {
