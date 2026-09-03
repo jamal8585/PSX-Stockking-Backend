@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { supabaseClient } from '../config/db.js';
 
 const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
@@ -27,7 +28,7 @@ export const sendOTPEmail = async ({ to, otp, type = 'signup', name = '' }) => {
 
   const actionTitle = isSignup ? 'Verify Your Email Address' : 'Reset Your Password';
   const actionDesc = isSignup
-    ? 'Thank you for joining PSXPsx Alpha Terminal. Please use the 6-digit verification code below to complete your registration:'
+    ? 'Thank you for joining PSX Alpha Terminal. Please use the 6-digit verification code below to complete your registration:'
     : 'We received a request to reset your PSX Stockking password. Use the verification code below to set a new password:';
 
   const htmlContent = `
@@ -67,6 +68,7 @@ export const sendOTPEmail = async ({ to, otp, type = 'signup', name = '' }) => {
 
   console.log(`📨 [OTP ENGINE] Generated OTP for ${to} (${type.toUpperCase()}): ${otp}`);
 
+  // 1. Primary: Custom SMTP Transporter (if Gmail / Brevo / SMTP is configured)
   if (transporter) {
     try {
       const info = await transporter.sendMail({
@@ -75,10 +77,28 @@ export const sendOTPEmail = async ({ to, otp, type = 'signup', name = '' }) => {
         subject,
         html: htmlContent
       });
-      console.log(`✅ [OTP EMAIL SENT] To: ${to} | ID: ${info.messageId}`);
+      console.log(`✅ [OTP EMAIL SENT VIA SMTP] To: ${to} | ID: ${info.messageId}`);
       return { success: true, messageId: info.messageId };
     } catch (err) {
-      console.warn(`⚠️ [SMTP ERROR] Failed to send email to ${to}: ${err.message}. Providing fallback.`);
+      console.warn(`⚠️ [SMTP ERROR] Failed to send email to ${to}: ${err.message}. Trying Supabase Auth fallback.`);
+    }
+  }
+
+  // 2. Secondary: Supabase Built-in Auth Mailer
+  if (supabaseClient) {
+    try {
+      const { error: suErr } = await supabaseClient.auth.signInWithOtp({
+        email: to,
+        options: {
+          shouldCreateUser: type === 'signup'
+        }
+      });
+      if (!suErr) {
+        console.log(`✅ [SUPABASE AUTH EMAIL DISPATCHED] To: ${to}`);
+        return { success: true, provider: 'supabase' };
+      }
+    } catch (e) {
+      console.warn(`Supabase email notice: ${e.message}`);
     }
   }
 
