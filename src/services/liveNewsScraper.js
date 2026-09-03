@@ -526,10 +526,10 @@ export const fetchLiveFinancialNews = async () => {
     }
   ];
 
-  // Merge Live Scraped + Full Sector Catalysts
+  // Merge Live Scraped + Full Sector Catalysts (Ensure ALL 12 sectors are 100% populated)
   const combinedList = [...uniqueArticles, ...sectorDefaults];
 
-  return combinedList.slice(0, 16).map((art, idx) => {
+  return combinedList.map((art, idx) => {
     const text = (art.title + ' ' + (art.description || '')).toLowerCase();
 
     let matchedSector = ALL_SECTOR_CATALYSTS[idx % ALL_SECTOR_CATALYSTS.length];
