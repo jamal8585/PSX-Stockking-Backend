@@ -2,6 +2,7 @@
 import express from 'express';
 import Recommendation from '../models/Recommendation.js';
 import { memDB } from '../config/db.js';
+import { syncMarketData } from '../services/seedService.js';
 
 const router = express.Router();
 
@@ -16,6 +17,13 @@ router.get('/', async (req, res) => {
       if (sector && sector !== 'ALL') q.sector = sector;
       list = await Recommendation.find(q).sort({ confidence: -1 }).lean();
     } else {
+      if (memDB.recommendations.size === 0) {
+        try {
+          await syncMarketData();
+        } catch (syncErr) {
+          console.warn('On-demand sync warning:', syncErr.message);
+        }
+      }
       list = Array.from(memDB.recommendations.values());
       if (signal && signal !== 'ALL') list = list.filter(r => r.signal === signal);
       if (sector && sector !== 'ALL') list = list.filter(r => r.sector.toLowerCase() === sector.toLowerCase());
