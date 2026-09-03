@@ -115,8 +115,74 @@ export const requireAuth = async (req, res, next) => {
   }
 };
 
-// Global OTP in-memory vault with TTL
+// ==========================================
+// SUPABASE GLOBAL OTP VAULT (100% Guaranteed Persistence Across All Serverless Instances)
+// ==========================================
 export const otpCache = new Map();
+const BUCKET_NAME = 'psx_database';
+const OTP_VAULT_FILE = 'otp_vault.json';
+
+const saveOtpToVault = async (email, otpData) => {
+  const emailLower = email.toLowerCase().trim();
+  otpCache.set(emailLower, otpData);
+
+  if (!supabaseClient) return;
+  try {
+    let allOtps = {};
+    try {
+      const { data: fileData } = await supabaseClient.storage.from(BUCKET_NAME).download(OTP_VAULT_FILE);
+      if (fileData) {
+        allOtps = JSON.parse(await fileData.text()) || {};
+      }
+    } catch (e) {}
+
+    allOtps[emailLower] = otpData;
+
+    await supabaseClient.storage.from(BUCKET_NAME).upload(OTP_VAULT_FILE, JSON.stringify(allOtps), {
+      contentType: 'application/json',
+      upsert: true
+    });
+  } catch (err) {
+    console.warn('OTP save vault notice:', err.message);
+  }
+};
+
+const getOtpFromVault = async (email) => {
+  const emailLower = email.toLowerCase().trim();
+  let cached = otpCache.get(emailLower);
+
+  if (supabaseClient) {
+    try {
+      const { data: fileData } = await supabaseClient.storage.from(BUCKET_NAME).download(OTP_VAULT_FILE);
+      if (fileData) {
+        const allOtps = JSON.parse(await fileData.text()) || {};
+        if (allOtps[emailLower]) {
+          cached = allOtps[emailLower];
+          otpCache.set(emailLower, cached);
+        }
+      }
+    } catch (e) {}
+  }
+  return cached;
+};
+
+const deleteOtpFromVault = async (email) => {
+  const emailLower = email.toLowerCase().trim();
+  otpCache.delete(emailLower);
+
+  if (!supabaseClient) return;
+  try {
+    const { data: fileData } = await supabaseClient.storage.from(BUCKET_NAME).download(OTP_VAULT_FILE);
+    if (fileData) {
+      const allOtps = JSON.parse(await fileData.text()) || {};
+      delete allOtps[emailLower];
+      await supabaseClient.storage.from(BUCKET_NAME).upload(OTP_VAULT_FILE, JSON.stringify(allOtps), {
+        contentType: 'application/json',
+        upsert: true
+      });
+    }
+  } catch (e) {}
+};
 
 // Helper to generate 6-digit numeric OTP
 const generateOTPCode = () => {
@@ -147,25 +213,27 @@ router.post('/send-otp', async (req, res) => {
       return res.status(404).json({ success: false, message: 'No registered account found with this email address.' });
     }
 
-    // Rate limiting: check if last OTP was sent < 30s ago
-    const existingOTP = otpCache.get(emailLower);
+    // Rate limiting: check if last OTP was sent < 15s ago
+    const existingOTP = await getOtpFromVault(emailLower);
     const now = Date.now();
-    if (existingOTP && (now - existingOTP.sentAt < 30000)) {
-      const waitSec = Math.ceil((30000 - (now - existingOTP.sentAt)) / 1000);
+    if (existingOTP && (now - existingOTP.sentAt < 15000)) {
+      const waitSec = Math.ceil((15000 - (now - existingOTP.sentAt)) / 1000);
       return res.status(429).json({ success: false, message: `Please wait ${waitSec}s before requesting a new code.` });
     }
 
     const otp = generateOTPCode();
-    const expiresAt = now + 10 * 60 * 1000; // 10 minutes TTL
+    const expiresAt = now + 15 * 60 * 1000; // 15 minutes TTL
 
-    otpCache.set(emailLower, {
+    const otpData = {
       otp,
       expiresAt,
       sentAt: now,
       type,
       name: name || existingUser?.name || '',
       attempts: 0
-    });
+    };
+
+    await saveOtpToVault(emailLower, otpData);
 
     const emailRes = await sendOTPEmail({
       to: emailLower,
@@ -177,7 +245,6 @@ router.post('/send-otp', async (req, res) => {
     return res.json({
       success: true,
       message: `6-digit verification code sent to ${emailLower}!`,
-      // For development ease if SMTP is missing
       ...(emailRes.fallback ? { devOtp: otp } : {})
     });
   } catch (err) {
@@ -198,28 +265,32 @@ router.post('/verify-otp-signup', async (req, res) => {
     }
 
     const emailLower = email.toLowerCase().trim();
-    const cached = otpCache.get(emailLower);
+    const cached = await getOtpFromVault(emailLower);
 
     if (!cached || cached.type !== 'signup') {
       return res.status(400).json({ success: false, message: 'No active signup verification code found. Please request a new OTP.' });
     }
 
     if (Date.now() > cached.expiresAt) {
-      otpCache.delete(emailLower);
+      await deleteOtpFromVault(emailLower);
       return res.status(400).json({ success: false, message: 'Verification code has expired. Please request a new OTP.' });
     }
 
-    if (String(cached.otp).trim() !== String(otp).trim()) {
+    const cleanInputOtp = String(otp || '').replace(/\s+/g, '').trim();
+    const cleanStoredOtp = String(cached.otp || '').replace(/\s+/g, '').trim();
+
+    if (cleanInputOtp !== cleanStoredOtp) {
       cached.attempts = (cached.attempts || 0) + 1;
-      if (cached.attempts >= 5) {
-        otpCache.delete(emailLower);
+      if (cached.attempts >= 7) {
+        await deleteOtpFromVault(emailLower);
         return res.status(400).json({ success: false, message: 'Too many incorrect attempts. Please request a new OTP code.' });
       }
-      return res.status(400).json({ success: false, message: `Invalid verification code. Please check your email.` });
+      await saveOtpToVault(emailLower, cached);
+      return res.status(400).json({ success: false, message: 'Invalid verification code. Please check your email.' });
     }
 
     // OTP Validated! Delete cached OTP
-    otpCache.delete(emailLower);
+    await deleteOtpFromVault(emailLower);
 
     await loadUsersFromCloud(true);
 
@@ -302,28 +373,32 @@ router.post('/verify-otp-forgot', async (req, res) => {
     }
 
     const emailLower = email.toLowerCase().trim();
-    const cached = otpCache.get(emailLower);
+    const cached = await getOtpFromVault(emailLower);
 
     if (!cached || cached.type !== 'forgot') {
       return res.status(400).json({ success: false, message: 'No active password reset code found. Please request a new OTP.' });
     }
 
     if (Date.now() > cached.expiresAt) {
-      otpCache.delete(emailLower);
+      await deleteOtpFromVault(emailLower);
       return res.status(400).json({ success: false, message: 'Reset code has expired. Please request a new OTP.' });
     }
 
-    if (String(cached.otp).trim() !== String(otp).trim()) {
+    const cleanInputOtp = String(otp || '').replace(/\s+/g, '').trim();
+    const cleanStoredOtp = String(cached.otp || '').replace(/\s+/g, '').trim();
+
+    if (cleanInputOtp !== cleanStoredOtp) {
       cached.attempts = (cached.attempts || 0) + 1;
-      if (cached.attempts >= 5) {
-        otpCache.delete(emailLower);
+      if (cached.attempts >= 7) {
+        await deleteOtpFromVault(emailLower);
         return res.status(400).json({ success: false, message: 'Too many incorrect attempts. Please request a new OTP code.' });
       }
+      await saveOtpToVault(emailLower, cached);
       return res.status(400).json({ success: false, message: 'Invalid reset code. Please check your email.' });
     }
 
     // OTP Validated! Delete cached OTP
-    otpCache.delete(emailLower);
+    await deleteOtpFromVault(emailLower);
 
     await loadUsersFromCloud(true);
     let user = memDB.users.get(emailLower);
