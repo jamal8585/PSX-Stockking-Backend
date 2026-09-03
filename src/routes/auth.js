@@ -2,7 +2,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
-import { memDB, getDBStatus, loadUsersFromCloud, saveUsersToCloud } from '../config/db.js';
+import { memDB, getDBStatus, loadUsersFromCloud, saveUsersToCloud, supabaseClient } from '../config/db.js';
 import { sendOTPEmail } from '../services/emailService.js';
 
 const router = express.Router();
