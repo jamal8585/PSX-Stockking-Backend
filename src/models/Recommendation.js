@@ -29,7 +29,7 @@ const RecommendationSchema = new mongoose.Schema({
     headline: String
   },
   orderAdvice: {
-    darsonAction: String,
+    orderAction: String,
     allocationPercent: Number,
     riskPerSharePKR: Number,
     rewardPerSharePKR: Number
