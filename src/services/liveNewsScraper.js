@@ -34,6 +34,53 @@ const isIrrelevantForeignNews = (title, desc) => {
   return foreignOnlyKeywords.some(kw => combined.includes(kw));
 };
 
+export const isNonFinancialNews = (title = '', desc = '') => {
+  const text = (title + ' ' + (desc || '')).toLowerCase();
+  const nonFinancialKeywords = [
+    'mir raza', 'judicial commission', 'taxi driver', 'statements of business partner',
+    'murder', 'robbery', 'killed', 'arrested', 'police encounter', 'smuggling bid foiled',
+    'dead in road accident', 'scooty', 'gunpoint', 'firing', 'bail plea', 'court rejects',
+    'kidnapped', 'dacoits', 'extortion', 'rape', 'dead body', 'injured in', 'terrorist'
+  ];
+  return nonFinancialKeywords.some(kw => text.includes(kw));
+};
+
+export const evaluateArticleSentiment = (title = '', desc = '') => {
+  const text = (title + ' ' + (desc || '')).toLowerCase();
+
+  const negativeKeywords = [
+    'drop', 'fall', 'slump', 'plunge', 'tumble', 'loss', 'decline', 'deficit', 'crash',
+    'tax hike', 'levy hike', 'tariff hike', 'cost jump', 'shutdown', 'penalty', 'fine',
+    'dispute', 'debt crisis', 'circular debt', 'default', 'curb', 'ban', 'stagnant',
+    'bearish', 'headwind', 'inflation jumps', 'inflation rises', 'warning', 'downside',
+    'probe', 'fraud', 'investigation', 'scam'
+  ];
+
+  const positiveKeywords = [
+    'surge', 'jump', 'rise', 'gain', 'profit', 'dividend', 'growth', 'upgrade', 'rally',
+    'cut rate', 'rate cut', 'rate drops', 'drops to', 'inflation drops', 'inflation falls',
+    'soars', 'record', 'high', 'boost', 'expansion', 'recovery', 'surplus', 'rebound', 'bullish',
+    'deal', 'agreement', 'incentive', 'tax relief', 'subsidy', 'approved', 'imf approval', 'inflow',
+    'reserves rise', 'exports rise', 'sales rise', 'demand accelerates', 'holds above', 'help transform',
+    'modernization', 'package', 'tenders', 'contracts', 'order'
+  ];
+
+  let negScore = 0;
+  let posScore = 0;
+
+  negativeKeywords.forEach(kw => {
+    if (text.includes(kw)) negScore += 1;
+  });
+
+  positiveKeywords.forEach(kw => {
+    if (text.includes(kw)) posScore += 1;
+  });
+
+  if (negScore > posScore) return 'NEGATIVE';
+  if (posScore > negScore) return 'POSITIVE';
+  return 'POSITIVE';
+};
+
 // 12 Comprehensive PSX Industry Sectors with 60+ Listed Companies
 export const ALL_SECTOR_CATALYSTS = [
   {
@@ -422,10 +469,11 @@ export const fetchLiveFinancialNews = async () => {
     }
   }
 
-  // Deduplicate
+  // Deduplicate and filter non-financial stories
   const uniqueArticles = [];
   const seenTitles = new Set();
   for (const art of allArticles) {
+    if (isNonFinancialNews(art.title, art.description)) continue;
     const key = art.title.toLowerCase().slice(0, 35);
     if (!seenTitles.has(key)) {
       seenTitles.add(key);
@@ -529,6 +577,21 @@ export const fetchLiveFinancialNews = async () => {
   // Merge Live Scraped + Full Sector Catalysts (Ensure ALL 12 sectors are 100% populated)
   const combinedList = [...uniqueArticles, ...sectorDefaults];
 
+  const getDynamicGain = (sym) => {
+    const table = {
+      'PRL': 16.4, 'CNERGY': 19.5, 'ATRL': 14.8, 'NRL': 15.2,
+      'SYS': 13.2, 'NETSOL': 17.5, 'TRG': 18.2, 'AVN': 14.5,
+      'OGDC': 11.4, 'PPL': 12.2, 'MARI': 9.8, 'PSO': 13.6,
+      'LUCK': 10.8, 'MLCF': 14.2, 'DGKC': 15.0, 'CHCC': 12.8,
+      'MEBL': 8.2, 'MCB': 7.6, 'UBL': 8.5, 'BAFL': 9.4, 'BOP': 16.0,
+      'FFC': 8.4, 'EFERT': 9.2, 'ENGRO': 9.6,
+      'SAZEW': 16.8, 'INDU': 9.8, 'MTL': 10.5,
+      'HUBC': 8.5, 'KAPCO': 9.0, 'KEL': 18.5,
+      'MUGHAL': 13.8, 'INIL': 13.2, 'PAEL': 14.5
+    };
+    return table[sym] || 12.5;
+  };
+
   return combinedList.map((art, idx) => {
     const text = (art.title + ' ' + (art.description || '')).toLowerCase();
 
@@ -545,60 +608,65 @@ export const fetchLiveFinancialNews = async () => {
       }
     }
 
-    const isNegative = text.includes('drop') || text.includes('loss') || text.includes('slump') || text.includes('fall') || text.includes('deficit') || text.includes('tumble');
-    const sentiment = isNegative ? 'NEGATIVE' : 'POSITIVE';
+    const sentiment = evaluateArticleSentiment(art.title, art.description);
+    const isPositive = sentiment === 'POSITIVE';
 
-    // Build Exact UP Stocks (Target Sell, Gain %, Buy Trigger)
-    const upStocks = matchedSector.bullishStocks.map(st => {
-      const price = st.price;
-      const targetSell = Number((price * 1.115).toFixed(2));
-      const stopLoss = Number((price * 0.95).toFixed(2));
-      const entryMin = Number((price * 0.985).toFixed(2));
-      const entryMax = Number((price * 1.01).toFixed(2));
-      const expectedGain = Number((((targetSell - price) / price) * 100).toFixed(2));
+    // Build Sector Specific Stocks with Dynamic Price Targets
+    const allSectorStocks = [...matchedSector.bullishStocks, ...matchedSector.bearishStocks];
 
-      return {
-        symbol: st.symbol,
-        name: st.name,
-        sector: st.sector,
-        direction: 'UP',
-        action: 'BUY_NOW',
-        currentPrice: price,
-        volume: Math.round(2500000 + Math.random() * 15000000),
-        volumeSpike: Number((1.3 + Math.random() * 2.2).toFixed(1)),
-        entryPriceMin: entryMin,
-        entryPriceMax: entryMax,
-        stopLoss,
-        targetSellPrice: targetSell,
-        expectedGainPct: expectedGain,
-        riskReward: '1 : 2.8',
-        tradeReason: `Strong positive catalyst in ${matchedSector.name}. High institutional demand driving price towards target PKR ${targetSell}.`
-      };
-    });
+    const upStocks = isPositive 
+      ? allSectorStocks.slice(0, 4).map(st => {
+          const price = st.price;
+          const gainPct = getDynamicGain(st.symbol);
+          const targetSell = Number((price * (1 + gainPct / 100)).toFixed(2));
+          const stopLoss = Number((price * 0.955).toFixed(2));
+          const entryMin = Number((price * 0.985).toFixed(2));
+          const entryMax = Number((price * 1.01).toFixed(2));
 
-    // Build Exact DOWN Stocks (Stop Loss, Downside %, Exit Reason)
-    const downStocks = matchedSector.bearishStocks.map(st => {
-      const price = st.price;
-      const targetSell = Number((price * 0.92).toFixed(2));
-      const stopLoss = Number((price * 0.965).toFixed(2));
-      const expectedGain = Number((((targetSell - price) / price) * 100).toFixed(2));
+          return {
+            symbol: st.symbol,
+            name: st.name,
+            sector: st.sector,
+            direction: 'UP',
+            action: 'BUY_NOW',
+            currentPrice: price,
+            volume: Math.round(2500000 + Math.random() * 15000000),
+            volumeSpike: Number((1.3 + Math.random() * 2.2).toFixed(1)),
+            entryPriceMin: entryMin,
+            entryPriceMax: entryMax,
+            stopLoss,
+            targetSellPrice: targetSell,
+            expectedGainPct: gainPct,
+            riskReward: '1 : 2.8',
+            tradeReason: `Positive catalyst: ${art.title}. Target PKR ${targetSell} projected.`
+          };
+        })
+      : [];
 
-      return {
-        symbol: st.symbol,
-        name: st.name,
-        sector: st.sector,
-        direction: 'DOWN',
-        action: 'SELL_EXIT',
-        currentPrice: price,
-        volume: Math.round(1000000 + Math.random() * 8000000),
-        volumeSpike: Number((0.9 + Math.random() * 1.1).toFixed(1)),
-        stopLoss,
-        targetSellPrice: targetSell,
-        expectedGainPct: expectedGain,
-        riskReward: 'Avoid / Take Profit',
-        tradeReason: `Negative margin pressure or regulatory cost increase. Recommend exiting position or maintaining strict stop loss at PKR ${stopLoss}.`
-      };
-    });
+    const downStocks = !isPositive
+      ? allSectorStocks.slice(0, 4).map(st => {
+          const price = st.price;
+          const targetSell = Number((price * 0.92).toFixed(2));
+          const stopLoss = Number((price * 0.965).toFixed(2));
+          const expectedGain = Number((((targetSell - price) / price) * 100).toFixed(2));
+
+          return {
+            symbol: st.symbol,
+            name: st.name,
+            sector: st.sector,
+            direction: 'DOWN',
+            action: 'SELL_EXIT',
+            currentPrice: price,
+            volume: Math.round(1000000 + Math.random() * 8000000),
+            volumeSpike: Number((0.9 + Math.random() * 1.1).toFixed(1)),
+            stopLoss,
+            targetSellPrice: targetSell,
+            expectedGainPct: expectedGain,
+            riskReward: 'Avoid / Take Profit',
+            tradeReason: `Adverse headwind: ${art.title}. Protective stop loss at PKR ${stopLoss}.`
+          };
+        })
+      : [];
 
     const pubDateObj = art.publishedAt instanceof Date ? art.publishedAt : new Date(art.publishedAt || now);
 
@@ -611,7 +679,7 @@ export const fetchLiveFinancialNews = async () => {
       category: matchedSector.category,
       categoryName: matchedSector.name,
       sentiment,
-      sentimentScore: isNegative ? -0.7 : 0.75,
+      sentimentScore: isPositive ? 0.75 : -0.7,
       impactSeverity: 'HIGH',
       impactSummary: (art.description && !isCodeGarbage(art.description) && art.description.length > 15)
         ? (art.description.length > 280 ? art.description.slice(0, 280) + '...' : art.description)
@@ -619,7 +687,7 @@ export const fetchLiveFinancialNews = async () => {
       impactedSectors: [matchedSector.category],
       upStocks,
       downStocks,
-      tradeSuggestions: [...upStocks, ...downStocks],
+      tradeSuggestions: isPositive ? upStocks : downStocks,
       url: art.link || 'https://dps.psx.com.pk'
     };
   });
