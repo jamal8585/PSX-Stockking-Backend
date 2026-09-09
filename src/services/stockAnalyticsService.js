@@ -7,10 +7,11 @@ const HEADERS = {
 const timeseriesCache = new Map();
 const CACHE_TTL_MS = 15000;
 
-// 1. Fetch Real PSX Intraday Timeseries (1D)
-export const fetchIntradayBars = async (symbol) => {
+// 1. Fetch Real PSX Intraday Timeseries with granular second & minute support
+export const fetchIntradayBars = async (symbol, timeframe = '1D') => {
   const sym = symbol.toUpperCase().trim();
-  const cacheKey = `int_${sym}`;
+  const tf = (timeframe || '1D').toUpperCase();
+  const cacheKey = `int_${sym}_${tf}`;
   const now = Date.now();
 
   if (timeseriesCache.has(cacheKey) && (now - timeseriesCache.get(cacheKey).time < CACHE_TTL_MS)) {
@@ -25,8 +26,31 @@ export const fetchIntradayBars = async (symbol) => {
     if (!Array.isArray(raw) || raw.length === 0) return null;
 
     const sorted = [...raw].sort((a, b) => a[0] - b[0]);
-    const targetBuckets = Math.min(25, Math.max(10, Math.floor(sorted.length / 15)));
-    const bucketSize = Math.max(1, Math.floor(sorted.length / targetBuckets));
+    
+    // Determine bucket size based on requested timeframe resolution
+    let bucketSize = 1;
+    let formatSeconds = false;
+
+    if (tf === '1S') {
+      bucketSize = 1;
+      formatSeconds = true;
+    } else if (tf === '5S') {
+      bucketSize = Math.max(1, Math.floor(sorted.length / 80));
+      formatSeconds = true;
+    } else if (tf === '15S' || tf === '30S') {
+      bucketSize = Math.max(1, Math.floor(sorted.length / 50));
+      formatSeconds = true;
+    } else if (tf === '1M' || tf === '3M' || tf === '5M') {
+      bucketSize = Math.max(1, Math.floor(sorted.length / 40));
+      formatSeconds = false;
+    } else if (tf === '15M' || tf === '30M' || tf === '1H') {
+      bucketSize = Math.max(1, Math.floor(sorted.length / 25));
+      formatSeconds = false;
+    } else {
+      const targetBuckets = Math.min(30, Math.max(12, Math.floor(sorted.length / 12)));
+      bucketSize = Math.max(1, Math.floor(sorted.length / targetBuckets));
+      formatSeconds = false;
+    }
     
     const bars = [];
     for (let i = 0; i < sorted.length; i += bucketSize) {
@@ -43,12 +67,20 @@ export const fetchIntradayBars = async (symbol) => {
       const totalVol = chunk.reduce((sum, c) => sum + (Number(c[2]) || 0), 0);
       
       const dateObj = new Date(chunk[Math.floor(chunk.length / 2)][0] * 1000);
-      const timeStr = dateObj.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        hour12: true, 
-        timeZone: 'Asia/Karachi' 
-      });
+      const timeStr = formatSeconds 
+        ? dateObj.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit',
+            hour12: false, 
+            timeZone: 'Asia/Karachi' 
+          })
+        : dateObj.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            hour12: true, 
+            timeZone: 'Asia/Karachi' 
+          });
 
       bars.push({
         date: timeStr,

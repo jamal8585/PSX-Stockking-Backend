@@ -138,8 +138,9 @@ router.get('/:symbol/history', async (req, res) => {
     const liveQuote = liveSheet ? liveSheet.get(sym) : null;
 
     let bars = null;
-    if (timeframe === '1D') {
-      bars = await fetchIntradayBars(sym);
+    const intradaySet = new Set(['1S', '5S', '15S', '30S', '1M', '3M', '5M', '15M', '30M', '1H', '4H', '1D']);
+    if (intradaySet.has(timeframe)) {
+      bars = await fetchIntradayBars(sym, timeframe);
     } else {
       bars = await fetchEodBars(sym, timeframe);
     }
