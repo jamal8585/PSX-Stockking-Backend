@@ -23,40 +23,39 @@ router.get('/', async (req, res) => {
       } catch (e) {}
     }
     
-    // Auto-populate on demand if memory is empty or cache expired
-    if (!list || list.length === 0 || memDB.news.size === 0 || (Date.now() - lastNewsFetchTime > NEWS_CACHE_TTL)) {
-      if (memDB.news.size === 0 || (Date.now() - lastNewsFetchTime > NEWS_CACHE_TTL)) {
-        try {
-          const fresh = await fetchLiveFinancialNews();
-          if (Array.isArray(fresh) && fresh.length > 0) {
-            memDB.news.clear();
-            fresh.forEach((n, idx) => {
-              memDB.news.set(n._id || `news_${idx}_${Date.now()}`, n);
-            });
-            lastNewsFetchTime = Date.now();
-          }
-        } catch (e) {
-          console.warn('News auto-fetch warning:', e.message);
+    // If list is from DB, filter by active market session
+    let sessionFiltered = Array.isArray(list) ? list.filter(n => isWithinActiveMarketSession(n.publishedAt)) : [];
+
+    // Auto-populate on demand if memory is empty, cache expired, or sessionFiltered is empty/sparse
+    if (sessionFiltered.length === 0 || memDB.news.size === 0 || (Date.now() - lastNewsFetchTime > NEWS_CACHE_TTL)) {
+      try {
+        const fresh = await fetchLiveFinancialNews();
+        if (Array.isArray(fresh) && fresh.length > 0) {
+          memDB.news.clear();
+          fresh.forEach((n, idx) => {
+            memDB.news.set(n._id || `news_${idx}_${Date.now()}`, n);
+          });
+          lastNewsFetchTime = Date.now();
         }
+      } catch (e) {
+        console.warn('News auto-fetch warning:', e.message);
       }
 
-      list = Array.from(memDB.news.values());
-      if (category && category !== 'ALL') list = list.filter(n => n.category === category);
-      if (sentiment && sentiment !== 'ALL') list = list.filter(n => n.sentiment === sentiment);
+      let memList = Array.from(memDB.news.values());
+      if (category && category !== 'ALL') memList = memList.filter(n => n.category === category);
+      if (sentiment && sentiment !== 'ALL') memList = memList.filter(n => n.sentiment === sentiment);
       if (symbol) {
         const s = symbol.toUpperCase();
-        list = list.filter(n => n.tradeSuggestions && n.tradeSuggestions.some(t => t.symbol === s));
+        memList = memList.filter(n => n.tradeSuggestions && n.tradeSuggestions.some(t => t.symbol === s));
       }
-      list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      memList.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      sessionFiltered = memList.filter(n => isWithinActiveMarketSession(n.publishedAt));
     }
-
-    // Apply strict market session cutoff (discards stale >24-36h weekday / >72h weekend news)
-    list = list.filter(n => isWithinActiveMarketSession(n.publishedAt));
 
     res.json({
       success: true,
-      count: list.length,
-      data: list
+      count: sessionFiltered.length,
+      data: sessionFiltered
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });

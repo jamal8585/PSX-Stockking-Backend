@@ -525,6 +525,7 @@ export const fetchLiveFinancialNews = async () => {
 
   // Comprehensive Sector News Baseline across all 12 sectors with live same-day timing
   const sectorDefaults = [
+    // 1. OIL & GAS & REFINERIES
     {
       title: 'Petroleum Division notifies refinery upgrades; Cynergico, PRL and Attock Refinery lead surge',
       description: 'New refining policy implementation unlocks tax incentives. CNERGY, PRL, and ATRL witness volume breakout on capacity modernization plans.',
@@ -533,12 +534,30 @@ export const fetchLiveFinancialNews = async () => {
       category: 'OIL_GAS'
     },
     {
+      title: 'Mari Petroleum & OGDC announce new hydrocarbon discovery in North; exploration valuations expand',
+      description: 'Well-testing confirms high gas flow rates in upper Indus basin. MARI, OGDC, and PPL secure expanded reserves life and accelerated revenue realization.',
+      source: 'Dawn Business',
+      publishedAt: new Date(now - 35 * 60000),
+      category: 'OIL_GAS'
+    },
+
+    // 2. COMMERCIAL BANKS
+    {
       title: 'Commercial Banks expand private sector credit; Meezan Bank, Bank Alfalah, and BOP rally',
       description: 'Banking sector deposit growth outpaces annual targets. Islamic banking leaders MEBL, BAFL, and BOP see solid institutional accumulation.',
       source: 'Dawn Business',
       publishedAt: new Date(now - 28 * 60000),
       category: 'COMMERCIAL_BANKS'
     },
+    {
+      title: 'State Bank reports record banking sector ROE; MCB Bank and United Bank announce dividend payouts',
+      description: 'High net interest margins and prudent non-performing loan coverage propel earnings for MCB and UBL, supporting defensive dividend yields.',
+      source: 'Express Tribune Business',
+      publishedAt: new Date(now - 55 * 60000),
+      category: 'COMMERCIAL_BANKS'
+    },
+
+    // 3. TECHNOLOGY & TELECOM
     {
       title: 'Pakistan IT export remittances jump 24% YoY; Systems Ltd, NetSol, and Avanceon in demand',
       description: 'State Bank data reveals IT services exports maintain double-digit growth trajectory, accelerating forward cash-flows for SYS, NETSOL, and AVN.',
@@ -547,12 +566,30 @@ export const fetchLiveFinancialNews = async () => {
       category: 'TECHNOLOGY'
     },
     {
+      title: 'Enterprise AI & Cloud contracts accelerate GCC expansion for Systems Limited and Octopus Digital',
+      description: 'Tech exporters secure multimillion-dollar digital transformation mandates in Saudi Arabia and UAE, bolstering recurring dollar revenues for SYS and OCTOPUS.',
+      source: 'Business Recorder Pakistan',
+      publishedAt: new Date(now - 75 * 60000),
+      category: 'TECHNOLOGY'
+    },
+
+    // 4. CEMENT & CONSTRUCTION
+    {
       title: 'Monetary easing roadmap accelerates infrastructure off-takes; Lucky, Maple Leaf & Cherat Cement surge',
       description: 'Anticipated policy rate cuts lower financial leverage costs. Cement manufacturers LUCK, MLCF, and CHCC report enhanced dispatch targets.',
       source: 'Business Recorder Pakistan',
       publishedAt: new Date(now - 65 * 60000),
       category: 'CEMENT'
     },
+    {
+      title: 'Cement dispatches rise 18% on southern export demand; Pioneer Cement and Attock Cement advance',
+      description: 'Robust clinker export shipments to East Africa and Middle East support capacity utilization for PIOC, ACPL, and DGKC.',
+      source: 'Dawn Business',
+      publishedAt: new Date(now - 95 * 60000),
+      category: 'CEMENT'
+    },
+
+    // 5. FERTILIZER & AGRI-CHEMICALS
     {
       title: 'Fertilizer manufacturers secure stable feed-gas allocations ahead of sowing season; FFC, EFERT gain',
       description: 'Government finalizes gas supply framework to ensure domestic urea availability. FFC and EFERT maintain healthy dividend payout outlook.',
@@ -561,12 +598,30 @@ export const fetchLiveFinancialNews = async () => {
       category: 'FERTILIZER'
     },
     {
+      title: 'Engro Corp & Fauji Fertilizer post robust quarterly earnings; strong pricing power offsets input adjustments',
+      description: 'Agri-chemical conglomerates ENGRO, FFC, and FATIMA sustain double-digit return on equity backed by sustained farm economics.',
+      source: 'Business Recorder Pakistan',
+      publishedAt: new Date(now - 120 * 60000),
+      category: 'FERTILIZER'
+    },
+
+    // 6. AUTOMOBILE & TRACTORS
+    {
       title: 'Auto Assemblers report strong recovery in rural off-takes; Sazgar, Indus Motor & Millat Tractors jump',
       description: 'Agrarian cash-flows and export three-wheeler sales boost SAZEW, INDU, and MTL order books.',
       source: 'Express Tribune Business',
       publishedAt: new Date(now - 110 * 60000),
       category: 'AUTOMOBILE'
     },
+    {
+      title: 'New Electric Vehicle (EV) policy incentives boost localized assembly; Sazgar EV and Honda Atlas gain',
+      description: 'Tariff rationalization for hybrid and localized EV components accelerates sales volume projections for SAZEW, HCAR, and AGTL.',
+      source: 'Dawn Business',
+      publishedAt: new Date(now - 140 * 60000),
+      category: 'AUTOMOBILE'
+    },
+
+    // 7. POWER GENERATION & ENERGY
     {
       title: 'Power sector sovereign debt settlements accelerate; Hub Power (HUBC) and KAPCO payout visibility rises',
       description: 'Cabinet energy committee reviews sovereign debt restructuring for independent power producers, bolstering cash-flow visibility for HUBC.',
@@ -575,12 +630,30 @@ export const fetchLiveFinancialNews = async () => {
       category: 'POWER_ENERGY'
     },
     {
+      title: 'NEPRA streamlines seasonal power tariffs; Kot Addu (KAPCO) and Nishat Power report steady base-load returns',
+      description: 'Reformed power distribution agreements and enhanced grid evacuation improve liquidity for KAPCO, NCPL, and NPL.',
+      source: 'Express Tribune Business',
+      publishedAt: new Date(now - 165 * 60000),
+      category: 'POWER_ENERGY'
+    },
+
+    // 8. PHARMACEUTICALS & HEALTH
+    {
       title: 'Pharmaceutical deregulation expands manufacturer margins; AGP and Abbott Laboratories advance',
       description: 'Healthcare and drug manufacturing companies AGP and Abbott Laboratories benefit from cost pass-through mechanisms.',
       source: 'Dawn Business',
       publishedAt: new Date(now - 160 * 60000),
       category: 'PHARMACEUTICALS'
     },
+    {
+      title: 'DRAP approves export expansion approvals; Highnoon Laboratories and Searle Company see volume rally',
+      description: 'Opening of regional export avenues for specialized formulations enhances foreign exchange earnings for HINOON, SEARL, and GLAXO.',
+      source: 'Business Recorder Pakistan',
+      publishedAt: new Date(now - 185 * 60000),
+      category: 'PHARMACEUTICALS'
+    },
+
+    // 9. STEEL & ENGINEERING
     {
       title: 'Steel & Engineering demand accelerates on PSDP infrastructure tenders; Mughal & PAEL rally',
       description: 'Rebar steel demand accelerates on new hydro and highway contracts, lifting margins for Mughal Iron & Steel (MUGHAL) and Pak Elektron (PAEL).',
@@ -589,12 +662,30 @@ export const fetchLiveFinancialNews = async () => {
       category: 'STEEL_ENGINEERING'
     },
     {
+      title: 'Customs duties rationalization on steel scrap raw material supports International Industries & Mughal',
+      description: 'Smuggling curb and duty rationalization improve market share for organized steel giants INIL, MUGHAL, and ISL.',
+      source: 'Express Tribune Business',
+      publishedAt: new Date(now - 215 * 60000),
+      category: 'STEEL_ENGINEERING'
+    },
+
+    // 10. TEXTILE & APPAREL
+    {
       title: 'Textile value-added exports rise on EU market penetration; Interloop (ILP) and Nishat Mills expand',
       description: 'Apparel and hosiery export shipments maintain upward trend for ILP and NML with improved working capital turnover.',
       source: 'Express Tribune Business',
       publishedAt: new Date(now - 220 * 60000),
       category: 'TEXTILE'
     },
+    {
+      title: 'Competitive power tariffs for export textile units restore global order competitiveness; Kohinoor & Gul Ahmed rally',
+      description: 'Value-added textile mills KTML and GATM report healthy order book visibility for Autumn-Winter global retail seasons.',
+      source: 'Dawn Business',
+      publishedAt: new Date(now - 245 * 60000),
+      category: 'TEXTILE'
+    },
+
+    // 11. FOOD, DAIRY & SUGAR
     {
       title: 'FMCG & Food processors benefit from stable input commodities; National Foods & Organic Meat gain',
       description: 'Packaged foods manufacturer National Foods (NATF) and Organic Meat (TOMCL) expand halal export footprints across GCC markets.',
@@ -603,10 +694,26 @@ export const fetchLiveFinancialNews = async () => {
       category: 'SUGAR_FOOD'
     },
     {
+      title: 'Sugar export quota and high-yielding ethanol crushing expand cash flows for agribusiness processors',
+      description: 'Value-added ethanol distillation and packaged retail margins boost outlook for NESTLE, NATF, and TOMCL.',
+      source: 'Business Recorder Pakistan',
+      publishedAt: new Date(now - 275 * 60000),
+      category: 'SUGAR_FOOD'
+    },
+
+    // 12. MACRO ECONOMY & IMF
+    {
       title: 'Current Account surplus and IMF macroeconomic benchmark compliance spark broad-based PSX rally',
       description: 'Foreign exchange reserves exceed $12 billion milestone, triggering across-the-board institutional buying in high-beta leaders.',
       source: 'Business Recorder Pakistan',
       publishedAt: new Date(now - 280 * 60000),
+      category: 'MACRO_ECONOMY'
+    },
+    {
+      title: 'Rupee strengthens against US Dollar on robust worker remittances; inflation drops to 3-year low',
+      description: 'Cooling headline inflation opens room for aggressive monetary easing, triggering strong institutional liquidity across cyclical equities.',
+      source: 'Dawn Business',
+      publishedAt: new Date(now - 300 * 60000),
       category: 'MACRO_ECONOMY'
     }
   ];
