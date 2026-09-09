@@ -1,9 +1,20 @@
 
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import Recommendation from '../models/Recommendation.js';
 import { memDB } from '../config/db.js';
 import { syncMarketData } from '../services/seedService.js';
-import officialQuotes from '../data/official_quotes.json' assert { type: 'json' };
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+let officialQuotes = {};
+try {
+  officialQuotes = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/official_quotes.json'), 'utf8'));
+} catch (e) {
+  console.warn('Could not load official_quotes.json in recommendations:', e.message);
+}
 
 const router = express.Router();
 
