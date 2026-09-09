@@ -24,6 +24,42 @@ export const formatTimeAgo = (date) => {
   return days + (days === 1 ? ' day ago' : ' days ago');
 };
 
+// Strict PSX Rolling Market Session Cutoff Engine (Discards stale >24-36h weekday / >72h weekend news)
+export function getActiveSessionNewsCutoffDate() {
+  const now = new Date();
+  const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const pktDate = new Date(utc + (3600000 * 5));
+  
+  const day = pktDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 5 = Friday, 6 = Saturday
+  const hours = pktDate.getHours();
+  const minutes = pktDate.getMinutes();
+  const timeNum = hours * 100 + minutes;
+
+  let maxAgeHours = 36;
+  if (day === 6) { // Saturday
+    maxAgeHours = 48;
+  } else if (day === 0) { // Sunday
+    maxAgeHours = 72;
+  } else if (day === 1 && timeNum < 1600) { // Monday trading session & pre-market
+    maxAgeHours = 80;
+  } else if (day === 5 && timeNum >= 1600) { // Friday post-market
+    maxAgeHours = 36;
+  } else {
+    maxAgeHours = 36;
+  }
+
+  const cutoffMs = Date.now() - (maxAgeHours * 60 * 60 * 1000);
+  return new Date(cutoffMs);
+}
+
+export function isWithinActiveMarketSession(date) {
+  if (!date) return false;
+  const d = new Date(date);
+  if (isNaN(d.getTime())) return false;
+  const cutoff = getActiveSessionNewsCutoffDate();
+  return d.getTime() >= cutoff.getTime();
+}
+
 const isIrrelevantForeignNews = (title, desc) => {
   const combined = (title + ' ' + (desc || '')).toLowerCase();
   const foreignOnlyKeywords = [
@@ -469,11 +505,12 @@ export const fetchLiveFinancialNews = async () => {
     }
   }
 
-  // Deduplicate and filter non-financial stories
+  // Deduplicate and filter non-financial stories & old out-of-session news (>36h on weekdays, >72h on weekends)
   const uniqueArticles = [];
   const seenTitles = new Set();
   for (const art of allArticles) {
     if (isNonFinancialNews(art.title, art.description)) continue;
+    if (!isWithinActiveMarketSession(art.publishedAt)) continue;
     const key = art.title.toLowerCase().slice(0, 35);
     if (!seenTitles.has(key)) {
       seenTitles.add(key);

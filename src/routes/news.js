@@ -1,7 +1,7 @@
 import express from 'express';
 import News from '../models/News.js';
 import { memDB } from '../config/db.js';
-import { fetchLiveFinancialNews } from '../services/liveNewsScraper.js';
+import { fetchLiveFinancialNews, isWithinActiveMarketSession } from '../services/liveNewsScraper.js';
 
 const router = express.Router();
 
@@ -49,6 +49,9 @@ router.get('/', async (req, res) => {
       }
       list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
     }
+
+    // Apply strict market session cutoff (discards stale >24-36h weekday / >72h weekend news)
+    list = list.filter(n => isWithinActiveMarketSession(n.publishedAt));
 
     res.json({
       success: true,
