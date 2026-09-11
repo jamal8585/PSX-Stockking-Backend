@@ -116,6 +116,7 @@ router.get('/', async (req, res) => {
       return sortDir === 'asc' ? (valA > valB ? 1 : -1) : (valA < valB ? 1 : -1);
     });
 
+    res.set('Cache-Control', 'public, max-age=2, s-maxage=5, stale-while-revalidate=10');
     res.json({
       success: true,
       count: list.length,
@@ -153,6 +154,7 @@ router.get('/:symbol/history', async (req, res) => {
     const technicals = calculateTechnicalAnalysis(allEodBars || bars || [], liveQuote || {});
     const performanceReturns = calculatePerformanceReturns(allEodBars || [], liveQuote?.currentPrice || 100);
 
+    res.set('Cache-Control', 'public, max-age=5, s-maxage=15, stale-while-revalidate=30');
     res.json({
       success: true,
       symbol: sym,
@@ -216,6 +218,7 @@ router.get('/:symbol', async (req, res) => {
 
     const rec = memDB.recommendations.get(sym) || null;
 
+    res.set('Cache-Control', 'public, max-age=2, s-maxage=5, stale-while-revalidate=10');
     res.json({
       success: true,
       data: {

@@ -52,6 +52,7 @@ router.get('/', async (req, res) => {
       sessionFiltered = memList.filter(n => isWithinActiveMarketSession(n.publishedAt));
     }
 
+    res.set('Cache-Control', 'public, max-age=10, s-maxage=30, stale-while-revalidate=60');
     res.json({
       success: true,
       count: sessionFiltered.length,

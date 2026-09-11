@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import Recommendation from '../models/Recommendation.js';
 import { memDB } from '../config/db.js';
 import { syncMarketData } from '../services/seedService.js';
+import { getPSXMarketStatus } from '../services/livePsxScraper.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,6 +24,8 @@ export function getPSXRecentTradingSessions(count = 5) {
   const now = new Date();
   const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
   const pktDate = new Date(utc + (3600000 * 5));
+  const marketStatus = getPSXMarketStatus();
+  const isMarketOpen = marketStatus.isOpen;
   
   const sessions = [];
   let cur = new Date(pktDate);
@@ -34,7 +37,8 @@ export function getPSXRecentTradingSessions(count = 5) {
     sessions.push({
       dateStr: mon.toISOString().split('T')[0],
       label: `Mon, ${mon.toLocaleDateString('en-US', { day: '2-digit', month: 'short' })} (Upcoming)`,
-      isLive: true,
+      badge: isMarketOpen ? 'Live Session' : 'Upcoming (Mon)',
+      isLive: isMarketOpen,
       dayOffset: 0
     });
   } else if (day === 0) { // Sun
@@ -43,14 +47,16 @@ export function getPSXRecentTradingSessions(count = 5) {
     sessions.push({
       dateStr: mon.toISOString().split('T')[0],
       label: `Mon, ${mon.toLocaleDateString('en-US', { day: '2-digit', month: 'short' })} (Upcoming)`,
-      isLive: true,
+      badge: isMarketOpen ? 'Live Session' : 'Upcoming (Mon)',
+      isLive: isMarketOpen,
       dayOffset: 0
     });
   } else {
     sessions.push({
       dateStr: cur.toISOString().split('T')[0],
-      label: `Today, ${cur.toLocaleDateString('en-US', { day: '2-digit', month: 'short' })} (Live)`,
-      isLive: true,
+      label: `Today, ${cur.toLocaleDateString('en-US', { day: '2-digit', month: 'short' })} ${isMarketOpen ? '(Live)' : '(EOD)'}`,
+      badge: isMarketOpen ? 'Live Session' : 'Closing / EOD',
+      isLive: isMarketOpen,
       dayOffset: 0
     });
   }
@@ -160,7 +166,7 @@ router.get('/', async (req, res) => {
     // If a historical date was requested but not in DB, derive snapshot with historical offset
     const availableSessions = getPSXRecentTradingSessions(5);
     const requestedSession = availableSessions.find(s => s.dateStr === date);
-    const isHistorical = requestedSession && !requestedSession.isLive;
+    const isHistorical = requestedSession && requestedSession.dayOffset > 0;
 
     if (list.length === 0 && isHistorical) {
       // Create historical snapshot derived from current master set
@@ -209,6 +215,7 @@ router.get('/', async (req, res) => {
     const hold = enrichedList.filter(r => r.signal === 'HOLD');
     const avoidSell = enrichedList.filter(r => r.signal === 'AVOID_SELL');
 
+    res.set('Cache-Control', 'public, max-age=10, s-maxage=30, stale-while-revalidate=60');
     res.json({
       success: true,
       sessions: availableSessions,

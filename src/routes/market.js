@@ -36,6 +36,7 @@ router.get('/summary', async (req, res) => {
       lastLiveFetchTime = now;
     }
 
+    res.set('Cache-Control', 'public, max-age=1, s-maxage=3, stale-while-revalidate=5');
     res.json({
       success: true,
       dbStatus: getDBStatus(),

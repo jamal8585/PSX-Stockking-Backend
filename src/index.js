@@ -31,6 +31,17 @@ app.use(cors({
 app.options('*', cors());
 app.use(express.json());
 
+// Smart High-Performance Payload Compression (Gzip / Deflate reduces large JSON datasets by 80%+)
+try {
+  const { default: compression } = await import('compression');
+  app.use(compression({
+    threshold: 1024,
+    level: 6
+  }));
+} catch (e) {
+  // Graceful fallback if compression module is not yet installed locally
+}
+
 // Routes (Mount both with /api and direct prefix for 100% reliable Vercel serverless routing)
 app.use('/api/auth', authRoutes);
 app.use('/auth', authRoutes);
