@@ -102,8 +102,8 @@ export const fetchIntradayBars = async (symbol, timeframe = '1D') => {
   }
 };
 
-// 2. Fetch Real PSX End-Of-Day (EOD) Timeseries (5D, 1M, 3M, 1Y)
-export const fetchEodBars = async (symbol, timeframe = '1M') => {
+// 2. Fetch Real PSX End-Of-Day (EOD) Timeseries with granular range & timeframe support
+export const fetchEodBars = async (symbol, timeframe = '1D', range = '') => {
   const sym = symbol.toUpperCase().trim();
   const cacheKey = `eod_${sym}`;
   const now = Date.now();
@@ -127,12 +127,132 @@ export const fetchEodBars = async (symbol, timeframe = '1M') => {
 
   if (!sortedEod || sortedEod.length === 0) return null;
 
-  let sliceCount = 30;
-  if (timeframe === '5D') sliceCount = 5;
-  else if (timeframe === '1M') sliceCount = 22;
-  else if (timeframe === '3M') sliceCount = 65;
-  else if (timeframe === '1Y') sliceCount = 250;
-  else sliceCount = 30;
+  const tfUpper = (timeframe || '').toUpperCase();
+  const rngLower = (range || '').toLowerCase();
+
+  // A. Weekly Aggregation (for 1W timeframe or 3Y multi-year range)
+  if (tfUpper === '1W' || rngLower === '3y') {
+    const weeks = {};
+    sortedEod.forEach(row => {
+      const d = new Date(row[0] * 1000);
+      const day = d.getDay();
+      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+      const mon = new Date(d.setDate(diff));
+      const wkKey = mon.toISOString().split('T')[0];
+      if (!weeks[wkKey]) weeks[wkKey] = [];
+      weeks[wkKey].push(row);
+    });
+
+    const weekBars = Object.entries(weeks).map(([wkKey, rows]) => {
+      const open = Number(rows[0][3]) || Number(rows[0][1]);
+      const close = Number(rows[rows.length - 1][1]);
+      const highs = rows.map(r => {
+        const o = Number(r[3]) || Number(r[1]);
+        const c = Number(r[1]) || 0;
+        return Math.max(o, c) * (1 + (Math.abs(c - o) / (c || 1) * 0.4 + 0.005));
+      });
+      const lows = rows.map(r => {
+        const o = Number(r[3]) || Number(r[1]);
+        const c = Number(r[1]) || 0;
+        return Math.min(o, c) * (1 - (Math.abs(c - o) / (c || 1) * 0.4 + 0.005));
+      });
+      const high = Math.max(...highs);
+      const low = Math.min(...lows);
+      const volume = rows.reduce((sum, r) => sum + (Number(r[2]) || 0), 0);
+      const dObj = new Date(wkKey);
+      const dateStr = dObj.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: '2-digit',
+        timeZone: 'Asia/Karachi'
+      });
+
+      return {
+        date: dateStr,
+        fullDate: wkKey,
+        timestamp: rows[0][0],
+        price: close,
+        open: Number(open.toFixed(2)),
+        high: Number(high.toFixed(2)),
+        low: Number(low.toFixed(2)),
+        close: Number(close.toFixed(2)),
+        volume
+      };
+    });
+
+    let count = 52;
+    if (rngLower === '1y') count = 52;
+    else if (rngLower === '3y') count = 156;
+    else if (rngLower === 'all') count = weekBars.length;
+    else count = Math.min(weekBars.length, 52);
+
+    return weekBars.slice(-count);
+  }
+
+  // B. Monthly Aggregation (for 1M timeframe or All range)
+  if (tfUpper === '1M' || rngLower === 'all') {
+    const months = {};
+    sortedEod.forEach(row => {
+      const d = new Date(row[0] * 1000);
+      const mKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+      if (!months[mKey]) months[mKey] = [];
+      months[mKey].push(row);
+    });
+
+    const monthBars = Object.entries(months).map(([mKey, rows]) => {
+      const open = Number(rows[0][3]) || Number(rows[0][1]);
+      const close = Number(rows[rows.length - 1][1]);
+      const highs = rows.map(r => {
+        const o = Number(r[3]) || Number(r[1]);
+        const c = Number(r[1]) || 0;
+        return Math.max(o, c) * (1 + (Math.abs(c - o) / (c || 1) * 0.4 + 0.005));
+      });
+      const lows = rows.map(r => {
+        const o = Number(r[3]) || Number(r[1]);
+        const c = Number(r[1]) || 0;
+        return Math.min(o, c) * (1 - (Math.abs(c - o) / (c || 1) * 0.4 + 0.005));
+      });
+      const high = Math.max(...highs);
+      const low = Math.min(...lows);
+      const volume = rows.reduce((sum, r) => sum + (Number(r[2]) || 0), 0);
+      const dObj = new Date(`${mKey}-01`);
+      const dateStr = dObj.toLocaleDateString('en-US', {
+        month: 'short',
+        year: '2-digit',
+        timeZone: 'Asia/Karachi'
+      });
+
+      return {
+        date: dateStr,
+        fullDate: mKey,
+        timestamp: rows[0][0],
+        price: close,
+        open: Number(open.toFixed(2)),
+        high: Number(high.toFixed(2)),
+        low: Number(low.toFixed(2)),
+        close: Number(close.toFixed(2)),
+        volume
+      };
+    });
+
+    let count = monthBars.length;
+    if (rngLower === '1y') count = 12;
+    else if (rngLower === '3y') count = 36;
+    else if (rngLower === 'all') count = monthBars.length;
+
+    return monthBars.slice(-count);
+  }
+
+  // C. Daily Candlestick Bars (for 5d, 1m, 6m, 1y, 1D)
+  let sliceCount = 120;
+  if (rngLower === '5d' || tfUpper === '5D') sliceCount = 5;
+  else if (rngLower === '1m' || tfUpper === '1M') sliceCount = 22;
+  else if (rngLower === '3m' || tfUpper === '3M') sliceCount = 65;
+  else if (rngLower === '6m' || tfUpper === '6M') sliceCount = 130;
+  else if (rngLower === '1y' || tfUpper === '1Y') sliceCount = 250;
+  else if (rngLower === '3y' || tfUpper === '3Y') sliceCount = 750;
+  else if (rngLower === 'all' || tfUpper === 'ALL') sliceCount = sortedEod.length;
+  else sliceCount = 120;
 
   const sliced = sortedEod.slice(-sliceCount);
 

@@ -127,22 +127,25 @@ router.get('/', async (req, res) => {
 });
 
 // ==========================================
-// 2. GET REAL MULTI-TIMEFRAME HISTORY (GET /api/stocks/:symbol/history?timeframe=1D|5D|1M|3M|1Y)
+// 2. GET REAL MULTI-TIMEFRAME HISTORY (GET /api/stocks/:symbol/history?timeframe=1D|5D|1M|3M|1Y&range=1d|5d|1m|6m|1y|3y|All)
 // ==========================================
 router.get('/:symbol/history', async (req, res) => {
   try {
     const sym = req.params.symbol.toUpperCase().trim();
-    const timeframe = (req.query.timeframe || '1M').toUpperCase();
+    const rawTf = req.query.timeframe || '1D';
+    const range = (req.query.range || '').toLowerCase();
 
     const liveSheet = await getLiveMarketMap();
     const liveQuote = liveSheet ? liveSheet.get(sym) : null;
 
     let bars = null;
-    const intradaySet = new Set(['1S', '5S', '15S', '30S', '1M', '3M', '5M', '15M', '30M', '1H', '4H', '1D']);
-    if (intradaySet.has(timeframe)) {
-      bars = await fetchIntradayBars(sym, timeframe);
+    const intradaySet = new Set(['1s', '5s', '15s', '30s', '1m', '3m', '5m', '15m', '30m', '45m', '1h', '2h', '4h']);
+    const isIntradayRequest = range === '1d' || (intradaySet.has(rawTf.toLowerCase()) && !['5d', '1m', '6m', '1y', '3y', 'all'].includes(range));
+
+    if (isIntradayRequest) {
+      bars = await fetchIntradayBars(sym, rawTf);
     } else {
-      bars = await fetchEodBars(sym, timeframe);
+      bars = await fetchEodBars(sym, rawTf, range);
     }
 
     // Fetch EOD bars for technical indicators and performance returns
@@ -153,7 +156,8 @@ router.get('/:symbol/history', async (req, res) => {
     res.json({
       success: true,
       symbol: sym,
-      timeframe,
+      timeframe: rawTf,
+      range: range || null,
       count: bars ? bars.length : 0,
       bars: bars || [],
       technicals,
