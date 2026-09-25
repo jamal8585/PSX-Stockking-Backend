@@ -13,12 +13,17 @@ const HEADERS = {
   'Accept-Language': 'en-US,en;q=0.9'
 };
 
+import os from 'os';
+
 // Memory Cache with 24-Hour TTL (Refreshed Daily)
 const financialsCache = new Map();
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
-// File cache directory for persistent storage
-const CACHE_DIR = path.join(__dirname, '..', 'data', 'financials_cache');
+// File cache directory for persistent storage (use /tmp on Vercel serverless)
+const CACHE_DIR = process.env.VERCEL 
+  ? path.join(os.tmpdir(), 'psx_financials') 
+  : path.join(__dirname, '..', 'data', 'financials_cache');
+
 try {
   if (!fs.existsSync(CACHE_DIR)) {
     fs.mkdirSync(CACHE_DIR, { recursive: true });

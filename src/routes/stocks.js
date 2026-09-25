@@ -210,7 +210,29 @@ router.get('/:symbol/history', async (req, res) => {
 });
 
 // ==========================================
-// 3. GET SINGLE STOCK WITH AUTHENTIC TELEMETRY (GET /api/stocks/:symbol)
+// 3. GET 100% REAL UNCONSOLIDATED FINANCIALS & BALANCE SHEET (GET /api/stocks/:symbol/financials)
+// ==========================================
+router.get('/:symbol/financials', async (req, res) => {
+  try {
+    const sym = req.params.symbol.toUpperCase().trim();
+    const data = await fetchStockFinancials(sym);
+    if (!data) {
+      return res.status(404).json({ success: false, message: `Financial statements not available for ${sym}` });
+    }
+    // High-performance edge cache header (refreshed daily, edge cached for 1 hour, stale-while-revalidate for 1 day)
+    res.set('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=172800');
+    res.json({
+      success: true,
+      data
+    });
+  } catch (err) {
+    console.error(`Financials endpoint error for ${req.params.symbol}:`, err.message);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ==========================================
+// 4. GET SINGLE STOCK WITH AUTHENTIC TELEMETRY (GET /api/stocks/:symbol)
 // ==========================================
 router.get('/:symbol', async (req, res) => {
   try {
@@ -268,24 +290,8 @@ router.get('/:symbol', async (req, res) => {
         recommendation: rec
       }
     });
-// ==========================================
-// 4. GET 100% REAL UNCONSOLIDATED FINANCIALS & BALANCE SHEET (GET /api/stocks/:symbol/financials)
-// ==========================================
-router.get('/:symbol/financials', async (req, res) => {
-  try {
-    const sym = req.params.symbol.toUpperCase().trim();
-    const data = await fetchStockFinancials(sym);
-    if (!data) {
-      return res.status(404).json({ success: false, message: `Financial statements not available for ${sym}` });
-    }
-    // High-performance edge cache header (refreshed daily, edge cached for 1 hour, stale-while-revalidate for 1 day)
-    res.set('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=172800');
-    res.json({
-      success: true,
-      data
-    });
   } catch (err) {
-    console.error(`Financials endpoint error for ${req.params.symbol}:`, err.message);
+    console.error(`Stock detail route error (${req.params.symbol}):`, err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
