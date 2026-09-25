@@ -2,7 +2,7 @@
 import express from 'express';
 import Stock from '../models/Stock.js';
 import { memDB } from '../config/db.js';
-import { fetchOfficialPSXMarketWatch } from '../services/livePsxScraper.js';
+import { fetchOfficialPSXMarketWatch, fetchPSXCompanyQuote } from '../services/livePsxScraper.js';
 import { 
   fetchIntradayBars, 
   fetchEodBars, 
@@ -136,8 +136,12 @@ router.get('/:symbol/history', async (req, res) => {
     const rawTf = req.query.timeframe || '1D';
     const range = (req.query.range || '').toLowerCase();
 
-    const liveSheet = await getLiveMarketMap();
-    const liveQuote = liveSheet ? liveSheet.get(sym) : null;
+    // 1. Fetch exact official PSX quote for symbol
+    let liveQuote = await fetchPSXCompanyQuote(sym);
+    if (!liveQuote) {
+      const liveSheet = await getLiveMarketMap();
+      liveQuote = liveSheet ? liveSheet.get(sym) : null;
+    }
 
     let bars = null;
     const intradaySet = new Set(['1s', '5s', '15s', '30s', '1m', '3m', '5m', '15m', '30m', '45m', '1h', '2h', '4h']);
@@ -149,23 +153,35 @@ router.get('/:symbol/history', async (req, res) => {
       bars = await fetchEodBars(sym, rawTf, range);
     }
 
-    // If no multi-day history found, anchor on today's official PSX quote records
-    if (!bars || bars.length === 0) {
-      if (liveQuote && liveQuote.currentPrice > 0) {
-        const todayStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' });
-        bars = [
-          {
-            date: todayStr,
-            fullDate: new Date().toISOString().split('T')[0],
-            timestamp: Math.floor(Date.now() / 1000),
-            open: Number((liveQuote.open || liveQuote.prevClose || liveQuote.currentPrice).toFixed(2)),
-            high: Number((liveQuote.high || liveQuote.currentPrice).toFixed(2)),
-            low: Number((liveQuote.low || liveQuote.currentPrice).toFixed(2)),
-            close: Number(liveQuote.currentPrice.toFixed(2)),
-            price: Number(liveQuote.currentPrice.toFixed(2)),
-            volume: Math.round(liveQuote.volume || 0)
-          }
-        ];
+    // 2. Synchronize today's official closing/live candle with the chart
+    if (liveQuote && liveQuote.currentPrice > 0) {
+      const todayStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' });
+      const todayFullDate = new Date().toISOString().split('T')[0];
+      const todayBar = {
+        date: todayStr,
+        fullDate: todayFullDate,
+        timestamp: Math.floor(Date.now() / 1000),
+        open: Number((liveQuote.open || liveQuote.prevClose || liveQuote.currentPrice).toFixed(2)),
+        high: Number((liveQuote.high || liveQuote.currentPrice).toFixed(2)),
+        low: Number((liveQuote.low || liveQuote.currentPrice).toFixed(2)),
+        close: Number(liveQuote.currentPrice.toFixed(2)),
+        price: Number(liveQuote.currentPrice.toFixed(2)),
+        volume: Math.round(liveQuote.volume || 0)
+      };
+
+      if (!bars || bars.length === 0) {
+        bars = [todayBar];
+      } else {
+        const lastBar = bars[bars.length - 1];
+        if (lastBar.fullDate !== todayFullDate) {
+          bars.push(todayBar);
+        } else {
+          lastBar.close = todayBar.close;
+          lastBar.price = todayBar.price;
+          lastBar.high = Math.max(lastBar.high, todayBar.high);
+          lastBar.low = Math.min(lastBar.low, todayBar.low);
+          lastBar.volume = Math.max(lastBar.volume, todayBar.volume);
+        }
       }
     }
 
@@ -198,8 +214,13 @@ router.get('/:symbol/history', async (req, res) => {
 router.get('/:symbol', async (req, res) => {
   try {
     const sym = req.params.symbol.toUpperCase().trim();
-    const liveSheet = await getLiveMarketMap();
-    const liveQuote = liveSheet ? liveSheet.get(sym) : null;
+    
+    // 1. Fetch exact real-time official PSX quote
+    let liveQuote = await fetchPSXCompanyQuote(sym);
+    if (!liveQuote) {
+      const liveSheet = await getLiveMarketMap();
+      liveQuote = liveSheet ? liveSheet.get(sym) : null;
+    }
 
     let stock = null;
     if (Stock.db && Stock.db.readyState === 1) {

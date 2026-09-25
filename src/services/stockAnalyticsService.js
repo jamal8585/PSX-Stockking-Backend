@@ -22,12 +22,11 @@ export const fetchYahooFinanceBars = async (symbol, timeframe = '1D', range = ''
   // Precise mapping of UI range & timeframe to Yahoo Finance parameters
   if (rng === '1d' || (intradaySet.has(tf) && !['5d', '1m', '6m', '1y', '3y', 'all'].includes(rng))) {
     yRange = '5d';
-    yInterval = '15m';
+    yInterval = '1d';
     isIntraday = true;
   } else if (rng === '5d' || tf === '5D') {
     yRange = '5d';
-    yInterval = '15m';
-    isIntraday = true;
+    yInterval = '1d';
   } else if (rng === '1m') {
     yRange = '1mo';
     yInterval = '1d';
@@ -70,6 +69,10 @@ export const fetchYahooFinanceBars = async (symbol, timeframe = '1D', range = ''
     const quote = result.indicators?.quote?.[0] || {};
     if (timestamps.length === 0 || !quote.close) return null;
 
+    // Detect if data has sub-day resolution
+    const isSubDay = timestamps.length >= 2 && 
+      (new Date(timestamps[0] * 1000).toDateString() === new Date(timestamps[1] * 1000).toDateString());
+
     const bars = [];
     for (let i = 0; i < timestamps.length; i++) {
       const c = quote.close[i];
@@ -83,7 +86,7 @@ export const fetchYahooFinanceBars = async (symbol, timeframe = '1D', range = ''
       const dObj = new Date(ts * 1000);
 
       let dateStr = '';
-      if (isIntraday) {
+      if (isSubDay) {
         dateStr = dObj.toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',

@@ -14,7 +14,7 @@ const KNOWN_BENCHMARKS = {
   'PSO': { basePrice: 363.84, pe: 4.1, eps: 88.0, divYield: 6.5, isKse100: true },
   'SNGP': { basePrice: 112.50, pe: 3.9, eps: 28.0, divYield: 8.0, isKse100: true },
   'SSGC': { basePrice: 16.50, pe: 5.2, eps: 3.1, divYield: 0.0, isKse100: false },
-  'PRL': { basePrice: 104.42, pe: 4.5, eps: 6.9, divYield: 0.0, isKse100: true },
+  'PRL': { basePrice: 93.11, pe: 3.72, eps: 6.9, divYield: 0.0, isKse100: true },
   'ATRL': { basePrice: 385.00, pe: 3.8, eps: 101.0, divYield: 6.5, isKse100: true },
   'NRL': { basePrice: 295.00, pe: 4.2, eps: 70.0, divYield: 0.0, isKse100: true },
   'CNERGY': { basePrice: 15.46, pe: 5.0, eps: 1.2, divYield: 0.0, isKse100: true },
