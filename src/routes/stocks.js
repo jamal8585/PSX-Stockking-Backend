@@ -149,6 +149,26 @@ router.get('/:symbol/history', async (req, res) => {
       bars = await fetchEodBars(sym, rawTf, range);
     }
 
+    // If no multi-day history found, anchor on today's official PSX quote records
+    if (!bars || bars.length === 0) {
+      if (liveQuote && liveQuote.currentPrice > 0) {
+        const todayStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' });
+        bars = [
+          {
+            date: todayStr,
+            fullDate: new Date().toISOString().split('T')[0],
+            timestamp: Math.floor(Date.now() / 1000),
+            open: Number((liveQuote.open || liveQuote.prevClose || liveQuote.currentPrice).toFixed(2)),
+            high: Number((liveQuote.high || liveQuote.currentPrice).toFixed(2)),
+            low: Number((liveQuote.low || liveQuote.currentPrice).toFixed(2)),
+            close: Number(liveQuote.currentPrice.toFixed(2)),
+            price: Number(liveQuote.currentPrice.toFixed(2)),
+            volume: Math.round(liveQuote.volume || 0)
+          }
+        ];
+      }
+    }
+
     // Fetch EOD bars for technical indicators and performance returns
     const allEodBars = await fetchEodBars(sym, '1Y');
     const technicals = calculateTechnicalAnalysis(allEodBars || bars || [], liveQuote || {});

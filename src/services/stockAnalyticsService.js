@@ -5,12 +5,140 @@ const HEADERS = {
 };
 
 const timeseriesCache = new Map();
-const CACHE_TTL_MS = 15000;
+const CACHE_TTL_MS = 60000;
 
-// 1. Fetch Real PSX Intraday Timeseries with granular second & minute support
+// 1. Fetch 100% Real Historical Bars via Yahoo Finance PSX Tickers (.KA)
+export const fetchYahooFinanceBars = async (symbol, timeframe = '1D', range = '') => {
+  const sym = symbol.toUpperCase().trim();
+  const tf = (timeframe || '1D').toUpperCase();
+  const rng = (range || '').toLowerCase();
+
+  let yRange = '1y';
+  let yInterval = '1d';
+  let isIntraday = false;
+
+  const intradaySet = new Set(['1S', '5S', '15S', '30S', '1M', '3M', '5M', '15M', '30M', '45M', '1H', '2H', '4H']);
+
+  // Precise mapping of UI range & timeframe to Yahoo Finance parameters
+  if (rng === '1d' || (intradaySet.has(tf) && !['5d', '1m', '6m', '1y', '3y', 'all'].includes(rng))) {
+    yRange = '5d';
+    yInterval = '15m';
+    isIntraday = true;
+  } else if (rng === '5d' || tf === '5D') {
+    yRange = '5d';
+    yInterval = '15m';
+    isIntraday = true;
+  } else if (rng === '1m') {
+    yRange = '1mo';
+    yInterval = '1d';
+  } else if (rng === '6m') {
+    yRange = '6mo';
+    yInterval = '1d';
+  } else if (rng === '1y') {
+    yRange = '1y';
+    yInterval = '1d';
+  } else if (rng === '3y') {
+    yRange = '5y';
+    yInterval = '1wk';
+  } else if (rng === 'all') {
+    yRange = 'max';
+    yInterval = '1mo';
+  } else if (tf === '1W') {
+    yRange = '5y';
+    yInterval = '1wk';
+  } else if (tf === '1M') {
+    yRange = 'max';
+    yInterval = '1mo';
+  } else {
+    yRange = '1y';
+    yInterval = '1d';
+  }
+
+  const cacheKey = `yf_${sym}_${yRange}_${yInterval}`;
+  const now = Date.now();
+  if (timeseriesCache.has(cacheKey) && (now - timeseriesCache.get(cacheKey).time < CACHE_TTL_MS)) {
+    return timeseriesCache.get(cacheKey).data;
+  }
+
+  try {
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${sym}.KA?range=${yRange}&interval=${yInterval}`;
+    const res = await axios.get(url, { headers: HEADERS, timeout: 6000 });
+    const result = res.data?.chart?.result?.[0];
+    if (!result) return null;
+
+    const timestamps = result.timestamp || [];
+    const quote = result.indicators?.quote?.[0] || {};
+    if (timestamps.length === 0 || !quote.close) return null;
+
+    const bars = [];
+    for (let i = 0; i < timestamps.length; i++) {
+      const c = quote.close[i];
+      if (c == null || isNaN(c)) continue;
+
+      const o = quote.open?.[i] != null && !isNaN(quote.open[i]) ? quote.open[i] : c;
+      const h = quote.high?.[i] != null && !isNaN(quote.high[i]) ? quote.high[i] : Math.max(o, c);
+      const l = quote.low?.[i] != null && !isNaN(quote.low[i]) ? quote.low[i] : Math.min(o, c);
+      const v = quote.volume?.[i] != null && !isNaN(quote.volume[i]) ? quote.volume[i] : 0;
+      const ts = timestamps[i];
+      const dObj = new Date(ts * 1000);
+
+      let dateStr = '';
+      if (isIntraday) {
+        dateStr = dObj.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+          timeZone: 'Asia/Karachi'
+        });
+      } else if (yInterval === '1mo' || yInterval === '1wk') {
+        dateStr = dObj.toLocaleDateString('en-US', {
+          month: 'short',
+          year: '2-digit',
+          timeZone: 'Asia/Karachi'
+        });
+      } else {
+        dateStr = dObj.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          timeZone: 'Asia/Karachi'
+        });
+      }
+
+      bars.push({
+        date: dateStr,
+        fullDate: dObj.toISOString().split('T')[0],
+        timestamp: ts,
+        open: Number(Number(o).toFixed(2)),
+        high: Number(Number(h).toFixed(2)),
+        low: Number(Number(l).toFixed(2)),
+        close: Number(Number(c).toFixed(2)),
+        price: Number(Number(c).toFixed(2)),
+        volume: Math.round(Number(v))
+      });
+    }
+
+    if (bars.length > 0) {
+      timeseriesCache.set(cacheKey, { time: now, data: bars });
+      return bars;
+    }
+  } catch (err) {
+    // Silently fall through to other real data sources
+  }
+
+  return null;
+};
+
+// 2. Fetch Real PSX Intraday Timeseries
 export const fetchIntradayBars = async (symbol, timeframe = '1D') => {
   const sym = symbol.toUpperCase().trim();
   const tf = (timeframe || '1D').toUpperCase();
+
+  // Try real Yahoo Finance intraday candles first
+  const yfBars = await fetchYahooFinanceBars(sym, tf, '1d');
+  if (yfBars && yfBars.length > 0) {
+    return yfBars;
+  }
+
   const cacheKey = `int_${sym}_${tf}`;
   const now = Date.now();
 
@@ -102,9 +230,16 @@ export const fetchIntradayBars = async (symbol, timeframe = '1D') => {
   }
 };
 
-// 2. Fetch Real PSX End-Of-Day (EOD) Timeseries with granular range & timeframe support
+// 3. Fetch Real PSX End-Of-Day (EOD) Timeseries with granular range & timeframe support
 export const fetchEodBars = async (symbol, timeframe = '1D', range = '') => {
   const sym = symbol.toUpperCase().trim();
+
+  // Primary Source: 100% Real Historical Bars from Yahoo Finance PSX
+  const yfBars = await fetchYahooFinanceBars(sym, timeframe, range);
+  if (yfBars && yfBars.length > 0) {
+    return yfBars;
+  }
+
   const cacheKey = `eod_${sym}`;
   const now = Date.now();
 
