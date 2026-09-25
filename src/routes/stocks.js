@@ -10,6 +10,7 @@ import {
   calculatePerformanceReturns 
 } from '../services/stockAnalyticsService.js';
 import { fetchStockFinancials } from '../services/financialsService.js';
+import { fetchStockPayouts, fetchStockAnnouncements } from '../services/payoutsService.js';
 
 const router = express.Router();
 
@@ -227,6 +228,48 @@ router.get('/:symbol/financials', async (req, res) => {
     });
   } catch (err) {
     console.error(`Financials endpoint error for ${req.params.symbol}:`, err.message);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ==========================================
+// 4. GET 100% REAL DIVIDENDS & PAYOUTS HISTORY (GET /api/stocks/:symbol/payouts)
+// ==========================================
+router.get('/:symbol/payouts', async (req, res) => {
+  try {
+    const sym = req.params.symbol.toUpperCase().trim();
+    const data = await fetchStockPayouts(sym);
+    if (!data) {
+      return res.status(404).json({ success: false, message: `Payouts not available for ${sym}` });
+    }
+    res.set('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=172800');
+    res.json({
+      success: true,
+      data
+    });
+  } catch (err) {
+    console.error(`Payouts endpoint error for ${req.params.symbol}:`, err.message);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ==========================================
+// 5. GET 100% OFFICIAL PSX ANNOUNCEMENTS & BOARD MEETINGS (GET /api/stocks/:symbol/announcements)
+// ==========================================
+router.get('/:symbol/announcements', async (req, res) => {
+  try {
+    const sym = req.params.symbol.toUpperCase().trim();
+    const data = await fetchStockAnnouncements(sym);
+    if (!data) {
+      return res.status(404).json({ success: false, message: `Announcements not available for ${sym}` });
+    }
+    res.set('Cache-Control', 'public, max-age=1800, s-maxage=43200, stale-while-revalidate=86400');
+    res.json({
+      success: true,
+      data
+    });
+  } catch (err) {
+    console.error(`Announcements endpoint error for ${req.params.symbol}:`, err.message);
     res.status(500).json({ success: false, error: err.message });
   }
 });
