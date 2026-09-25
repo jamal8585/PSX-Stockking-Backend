@@ -1,0 +1,291 @@
+{
+  "cachedAt": 1790357088906,
+  "data": {
+    "symbol": "WTL",
+    "companyName": "Worldcall Telecom Limited",
+    "sector": "TECHNOLOGY & COMMUNICATION",
+    "source": "Official PSX Data Portal (DPS) - Unconsolidated Financial Statements",
+    "units": "All numbers in thousands (000's) except EPS",
+    "lastUpdated": "2026-09-25T17:24:50.428Z",
+    "quarterly": {
+      "periods": [
+        "Q2 2026",
+        "Q1 2026",
+        "Q3 2025",
+        "Q2 2025"
+      ],
+      "metrics": {
+        "sales": 1644205,
+        "salesGrowth": 13.72,
+        "netProfit": -189864,
+        "netProfitGrowth": -28.72,
+        "eps": -0.04,
+        "totalLiabilities": 11619246,
+        "totalEquity": -712022,
+        "totalDebt": 81676,
+        "totalAssets": 10907224
+      },
+      "netProfitSeries": [
+        {
+          "period": "Q2 2025",
+          "value": -223041
+        },
+        {
+          "period": "Q3 2025",
+          "value": -183320
+        },
+        {
+          "period": "Q1 2026",
+          "value": -147500
+        },
+        {
+          "period": "Q2 2026",
+          "value": -189864
+        }
+      ],
+      "totalAssetsSeries": [
+        {
+          "period": "Q2 2025",
+          "value": 10660479
+        },
+        {
+          "period": "Q3 2025",
+          "value": 10691987
+        },
+        {
+          "period": "Q1 2026",
+          "value": 10689622
+        },
+        {
+          "period": "Q2 2026",
+          "value": 10907224
+        }
+      ],
+      "balanceSheet": [
+        {
+          "period": "Q2 2026",
+          "assets": 10907224,
+          "liabilities": 11619246,
+          "equity": -712022,
+          "debt": 81676
+        },
+        {
+          "period": "Q1 2026",
+          "assets": 10689622,
+          "liabilities": 11549144,
+          "equity": -859522,
+          "debt": 81479
+        },
+        {
+          "period": "Q3 2025",
+          "assets": 10691987,
+          "liabilities": 11587329,
+          "equity": -895342,
+          "debt": 81586
+        },
+        {
+          "period": "Q2 2025",
+          "assets": 10660479,
+          "liabilities": 11595542,
+          "equity": -935063,
+          "debt": 81609
+        }
+      ],
+      "statements": {
+        "periods": [
+          "Q2 2026",
+          "Q1 2026",
+          "Q3 2025",
+          "Q2 2025"
+        ],
+        "rows": {
+          "Sales": [
+            1644205,
+            1445806,
+            1553874,
+            1577118
+          ],
+          "Profit after Taxation": [
+            -189864,
+            -147500,
+            -183320,
+            -223041
+          ],
+          "EPS": [
+            -0.04,
+            -0.03,
+            -0.04,
+            -0.05
+          ]
+        }
+      }
+    },
+    "annual": {
+      "periods": [
+        "2025",
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "metrics": {
+        "sales": 5991182,
+        "salesGrowth": 18.72,
+        "netProfit": -456019,
+        "netProfitGrowth": 66.43,
+        "eps": -0.09,
+        "totalLiabilities": 11619246,
+        "totalEquity": -712022,
+        "totalDebt": 81676,
+        "totalAssets": 10907224
+      },
+      "netProfitSeries": [
+        {
+          "period": "2022",
+          "value": -1381304
+        },
+        {
+          "period": "2023",
+          "value": -2008444
+        },
+        {
+          "period": "2024",
+          "value": -1358609
+        },
+        {
+          "period": "2025",
+          "value": -456019
+        }
+      ],
+      "totalAssetsSeries": [
+        {
+          "period": "2022",
+          "value": 9168108
+        },
+        {
+          "period": "2023",
+          "value": 8603252
+        },
+        {
+          "period": "2024",
+          "value": 9457004
+        },
+        {
+          "period": "2025",
+          "value": 10907224
+        }
+      ],
+      "balanceSheet": [
+        {
+          "period": "2025",
+          "assets": 10907224,
+          "liabilities": 11619246,
+          "equity": -712022,
+          "debt": 81676
+        },
+        {
+          "period": "2024",
+          "assets": 9457004,
+          "liabilities": 11527635,
+          "equity": -2070631,
+          "debt": 81418
+        },
+        {
+          "period": "2023",
+          "assets": 8603252,
+          "liabilities": 11323718,
+          "equity": -2720466,
+          "debt": 80845
+        },
+        {
+          "period": "2022",
+          "assets": 9168108,
+          "liabilities": 11261434,
+          "equity": -2093326,
+          "debt": 80670
+        }
+      ],
+      "statements": {
+        "periods": [
+          "2025",
+          "2024",
+          "2023",
+          "2022"
+        ],
+        "rows": {
+          "Sales": [
+            5991182,
+            5046440,
+            2943549,
+            2301245
+          ],
+          "Profit after Taxation": [
+            -456019,
+            -1358609,
+            -2008444,
+            -1381304
+          ],
+          "EPS": [
+            -0.09,
+            -0.27,
+            -0.46,
+            -0.4
+          ]
+        }
+      }
+    },
+    "ratios": {
+      "periods": [
+        "2025",
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "rows": {
+        "Gross Profit Margin (%)": [
+          9.61,
+          7.82,
+          4.47,
+          19.42
+        ],
+        "Net Profit Margin (%)": [
+          -7.61,
+          -26.92,
+          -68.23,
+          -60.02
+        ],
+        "EPS Growth (%)": [
+          66.67,
+          41.3,
+          -15,
+          21.57
+        ],
+        "PEG": [
+          -0.29,
+          -0.16,
+          0.2,
+          -0.14
+        ]
+      }
+    },
+    "radarPerformance": {
+      "year": "2025",
+      "stock": {
+        "peRatio": 5,
+        "returnOnAssets": 1.74,
+        "returnOnEquity": 26.67,
+        "operatingProfitMargin": 9.61,
+        "debtToEquity": "11.47",
+        "dividendYield": 0
+      },
+      "sectorBenchmark": {
+        "peRatio": 18.5,
+        "returnOnAssets": 12.4,
+        "returnOnEquity": 21,
+        "operatingProfitMargin": 15.2,
+        "debtToEquity": 34.5,
+        "dividendYield": 2.8
+      },
+      "sectorName": "TECHNOLOGY & COMMUNICATION"
+    }
+  }
+}
