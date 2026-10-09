@@ -157,32 +157,61 @@ router.get('/:symbol/history', async (req, res) => {
 
     // 2. Synchronize today's official closing/live candle with the chart
     if (liveQuote && liveQuote.currentPrice > 0) {
-      const todayStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' });
-      const todayFullDate = new Date().toISOString().split('T')[0];
-      const todayBar = {
-        date: todayStr,
-        fullDate: todayFullDate,
-        timestamp: Math.floor(Date.now() / 1000),
-        open: Number((liveQuote.open || liveQuote.prevClose || liveQuote.currentPrice).toFixed(2)),
-        high: Number((liveQuote.high || liveQuote.currentPrice).toFixed(2)),
-        low: Number((liveQuote.low || liveQuote.currentPrice).toFixed(2)),
-        close: Number(liveQuote.currentPrice.toFixed(2)),
-        price: Number(liveQuote.currentPrice.toFixed(2)),
-        volume: Math.round(liveQuote.volume || 0)
-      };
-
-      if (!bars || bars.length === 0) {
-        bars = [todayBar];
-      } else {
-        const lastBar = bars[bars.length - 1];
-        if (lastBar.fullDate !== todayFullDate) {
-          bars.push(todayBar);
+      if (isIntradayRequest) {
+        if (!bars || bars.length === 0) {
+          const nowTimeStr = new Date().toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+            timeZone: 'Asia/Karachi'
+          });
+          bars = [{
+            date: nowTimeStr,
+            timestamp: Math.floor(Date.now() / 1000),
+            open: Number((liveQuote.open || liveQuote.prevClose || liveQuote.currentPrice).toFixed(2)),
+            high: Number((liveQuote.high || liveQuote.currentPrice).toFixed(2)),
+            low: Number((liveQuote.low || liveQuote.currentPrice).toFixed(2)),
+            close: Number(liveQuote.currentPrice.toFixed(2)),
+            price: Number(liveQuote.currentPrice.toFixed(2)),
+            volume: Math.round(liveQuote.volume || 0)
+          }];
         } else {
-          lastBar.close = todayBar.close;
-          lastBar.price = todayBar.price;
-          lastBar.high = Math.max(lastBar.high, todayBar.high);
-          lastBar.low = Math.min(lastBar.low, todayBar.low);
-          lastBar.volume = Math.max(lastBar.volume, todayBar.volume);
+          // Keep intraday series consistent: sync the latest trade's price with official live quote
+          const lastBar = bars[bars.length - 1];
+          lastBar.close = Number(liveQuote.currentPrice.toFixed(2));
+          lastBar.price = Number(liveQuote.currentPrice.toFixed(2));
+          if (liveQuote.high) lastBar.high = Math.max(lastBar.high, Number(liveQuote.high));
+          if (liveQuote.low) lastBar.low = Math.min(lastBar.low, Number(liveQuote.low));
+        }
+      } else {
+        const todayStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' });
+        const todayFullDate = new Date().toISOString().split('T')[0];
+        const todayBar = {
+          date: todayStr,
+          fullDate: todayFullDate,
+          timestamp: Math.floor(Date.now() / 1000),
+          open: Number((liveQuote.open || liveQuote.prevClose || liveQuote.currentPrice).toFixed(2)),
+          high: Number((liveQuote.high || liveQuote.currentPrice).toFixed(2)),
+          low: Number((liveQuote.low || liveQuote.currentPrice).toFixed(2)),
+          close: Number(liveQuote.currentPrice.toFixed(2)),
+          price: Number(liveQuote.currentPrice.toFixed(2)),
+          volume: Math.round(liveQuote.volume || 0)
+        };
+
+        if (!bars || bars.length === 0) {
+          bars = [todayBar];
+        } else {
+          const lastBar = bars[bars.length - 1];
+          if (lastBar.fullDate !== todayFullDate) {
+            bars.push(todayBar);
+          } else {
+            lastBar.close = todayBar.close;
+            lastBar.price = todayBar.price;
+            lastBar.high = Math.max(lastBar.high, todayBar.high);
+            lastBar.low = Math.min(lastBar.low, todayBar.low);
+            lastBar.volume = Math.max(lastBar.volume, todayBar.volume);
+          }
         }
       }
     }

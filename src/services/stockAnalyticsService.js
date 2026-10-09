@@ -131,16 +131,40 @@ export const fetchYahooFinanceBars = async (symbol, timeframe = '1D', range = ''
   return null;
 };
 
-// 2. Fetch Real PSX Intraday Timeseries
+// Cached PSX Request Key for authentic DPS timeseries endpoints
+let cachedPsxKey = null;
+let psxKeyTime = 0;
+const PSX_KEY_TTL = 15 * 60 * 1000; // 15 mins
+
+export const getPsxReqKey = async (symbol = 'OGDC') => {
+  const now = Date.now();
+  if (cachedPsxKey && (now - psxKeyTime < PSX_KEY_TTL)) {
+    return cachedPsxKey;
+  }
+  try {
+    const res = await axios.get(`https://dps.psx.com.pk/company/${symbol}`, {
+      headers: HEADERS,
+      timeout: 6000
+    });
+    const m = res.data?.match(/window\.__ps\s*=\s*({[^}]+})/);
+    if (m) {
+      const ps = JSON.parse(m[1]);
+      if (ps._k) {
+        cachedPsxKey = ps._k;
+        psxKeyTime = now;
+        return cachedPsxKey;
+      }
+    }
+  } catch (err) {
+    console.warn(`[PSX REQ KEY NOTE] ${err.message}`);
+  }
+  return cachedPsxKey;
+};
+
+// 2. Fetch Real PSX Intraday Timeseries (Second-by-Second & High-Resolution Ticks)
 export const fetchIntradayBars = async (symbol, timeframe = '1D') => {
   const sym = symbol.toUpperCase().trim();
   const tf = (timeframe || '1D').toUpperCase();
-
-  // Try real Yahoo Finance intraday candles first
-  const yfBars = await fetchYahooFinanceBars(sym, tf, '1d');
-  if (yfBars && yfBars.length > 0) {
-    return yfBars;
-  }
 
   const cacheKey = `int_${sym}_${tf}`;
   const now = Date.now();
@@ -149,88 +173,96 @@ export const fetchIntradayBars = async (symbol, timeframe = '1D') => {
     return timeseriesCache.get(cacheKey).data;
   }
 
+  // 1. Primary: 100% Real DPS Intraday Second-by-Second Trades from PSX
   try {
+    const apiKey = await getPsxReqKey(sym);
     const url = `https://dps.psx.com.pk/timeseries/int/${sym}`;
-    const res = await axios.get(url, { headers: HEADERS, timeout: 6000 });
+    const res = await axios.get(url, {
+      headers: {
+        'User-Agent': HEADERS['User-Agent'],
+        'Referer': `https://dps.psx.com.pk/company/${sym}`,
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-Req-Id': apiKey || '',
+        'Accept': 'application/json, text/javascript, */*; q=0.01'
+      },
+      timeout: 8000
+    });
+
     const raw = res.data?.data || [];
+    if (Array.isArray(raw) && raw.length > 0) {
+      const sorted = [...raw].sort((a, b) => a[0] - b[0]);
 
-    if (!Array.isArray(raw) || raw.length === 0) return null;
+      // Dynamic High-Resolution Density (200 to 500 candles across the day):
+      // Provides fine-grained second-level candles, eliminating giant box bars!
+      let bucketSize = 1;
+      let formatSeconds = true;
 
-    const sorted = [...raw].sort((a, b) => a[0] - b[0]);
-    
-    // Determine bucket size based on requested timeframe resolution
-    let bucketSize = 1;
-    let formatSeconds = false;
+      if (tf === '1S') {
+        bucketSize = sorted.length > 500 ? Math.max(1, Math.floor(sorted.length / 500)) : 1;
+      } else if (tf === '5S') {
+        bucketSize = Math.max(1, Math.floor(sorted.length / 400));
+      } else if (tf === '15S' || tf === '30S') {
+        bucketSize = Math.max(1, Math.floor(sorted.length / 320));
+      } else if (tf === '1M' || tf === '3M' || tf === '5M') {
+        bucketSize = Math.max(1, Math.floor(sorted.length / 260));
+      } else if (tf === '15M' || tf === '30M' || tf === '1H') {
+        bucketSize = Math.max(1, Math.floor(sorted.length / 180));
+      } else {
+        // Default 1 Day view: ~280 candles for full trading day (approx 1 per minute)
+        bucketSize = Math.max(1, Math.floor(sorted.length / 280));
+      }
 
-    if (tf === '1S') {
-      bucketSize = 1;
-      formatSeconds = true;
-    } else if (tf === '5S') {
-      bucketSize = Math.max(1, Math.floor(sorted.length / 80));
-      formatSeconds = true;
-    } else if (tf === '15S' || tf === '30S') {
-      bucketSize = Math.max(1, Math.floor(sorted.length / 50));
-      formatSeconds = true;
-    } else if (tf === '1M' || tf === '3M' || tf === '5M') {
-      bucketSize = Math.max(1, Math.floor(sorted.length / 40));
-      formatSeconds = false;
-    } else if (tf === '15M' || tf === '30M' || tf === '1H') {
-      bucketSize = Math.max(1, Math.floor(sorted.length / 25));
-      formatSeconds = false;
-    } else {
-      const targetBuckets = Math.min(30, Math.max(12, Math.floor(sorted.length / 12)));
-      bucketSize = Math.max(1, Math.floor(sorted.length / targetBuckets));
-      formatSeconds = false;
+      const bars = [];
+      for (let i = 0; i < sorted.length; i += bucketSize) {
+        const chunk = sorted.slice(i, i + bucketSize);
+        if (chunk.length === 0) continue;
+
+        const prices = chunk.map(c => Number(c[1]) || 0).filter(p => p > 0);
+        if (prices.length === 0) continue;
+
+        const open = Number(chunk[0][1]);
+        const close = Number(chunk[chunk.length - 1][1]);
+        const high = Math.max(...prices);
+        const low = Math.min(...prices);
+        const totalVol = chunk.reduce((sum, c) => sum + (Number(c[2]) || 0), 0);
+
+        const dateObj = new Date(chunk[Math.floor(chunk.length / 2)][0] * 1000);
+        const timeStr = dateObj.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+          timeZone: 'Asia/Karachi'
+        });
+
+        bars.push({
+          date: timeStr,
+          timestamp: chunk[0][0],
+          price: close,
+          open: Number(open.toFixed(2)),
+          high: Number(high.toFixed(2)),
+          low: Number(low.toFixed(2)),
+          close: Number(close.toFixed(2)),
+          volume: totalVol
+        });
+      }
+
+      if (bars.length > 0) {
+        timeseriesCache.set(cacheKey, { time: now, data: bars });
+        return bars;
+      }
     }
-    
-    const bars = [];
-    for (let i = 0; i < sorted.length; i += bucketSize) {
-      const chunk = sorted.slice(i, i + bucketSize);
-      if (chunk.length === 0) continue;
-
-      const prices = chunk.map(c => Number(c[1]) || 0).filter(p => p > 0);
-      if (prices.length === 0) continue;
-
-      const open = Number(chunk[0][1]);
-      const close = Number(chunk[chunk.length - 1][1]);
-      const high = Math.max(...prices);
-      const low = Math.min(...prices);
-      const totalVol = chunk.reduce((sum, c) => sum + (Number(c[2]) || 0), 0);
-      
-      const dateObj = new Date(chunk[Math.floor(chunk.length / 2)][0] * 1000);
-      const timeStr = formatSeconds 
-        ? dateObj.toLocaleTimeString('en-US', { 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit',
-            hour12: false, 
-            timeZone: 'Asia/Karachi' 
-          })
-        : dateObj.toLocaleTimeString('en-US', { 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            hour12: true, 
-            timeZone: 'Asia/Karachi' 
-          });
-
-      bars.push({
-        date: timeStr,
-        timestamp: chunk[0][0],
-        price: close,
-        open: Number(open.toFixed(2)),
-        high: Number(high.toFixed(2)),
-        low: Number(low.toFixed(2)),
-        close: Number(close.toFixed(2)),
-        volume: totalVol
-      });
-    }
-
-    timeseriesCache.set(cacheKey, { time: now, data: bars });
-    return bars;
   } catch (err) {
-    console.warn(`[DPS INTRADAY FETCH ERROR] ${sym}: ${err.message}`);
-    return null;
+    console.warn(`[DPS INTRADAY FETCH NOTE] ${sym}: ${err.message}`);
   }
+
+  // Fallback: Yahoo Finance if DPS timeseries is down
+  const yfBars = await fetchYahooFinanceBars(sym, tf, '1d');
+  if (yfBars && yfBars.length > 0) {
+    return yfBars;
+  }
+
+  return null;
 };
 
 // 3. Fetch Real PSX End-Of-Day (EOD) Timeseries with granular range & timeframe support
