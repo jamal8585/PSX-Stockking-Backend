@@ -66,7 +66,9 @@ export const syncMarketData = async () => {
 
     let matchedNews = null;
     for (const n of liveNews) {
-      if (n.tradeSuggestions && n.tradeSuggestions.some(t => t.symbol === item.symbol)) {
+      const isExplicitMention = n.title && new RegExp(`\\b${item.symbol}\\b`, 'i').test(n.title);
+      const isSectorMatch = n.tradeSuggestions && n.tradeSuggestions.some(t => t.symbol === item.symbol && (!n.category || n.category === 'MACRO_ECONOMY' || t.sector === item.sector));
+      if (isExplicitMention || isSectorMatch) {
         matchedNews = n;
         break;
       }

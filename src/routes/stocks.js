@@ -11,6 +11,7 @@ import {
 } from '../services/stockAnalyticsService.js';
 import { fetchStockFinancials } from '../services/financialsService.js';
 import { fetchStockPayouts, fetchStockAnnouncements } from '../services/payoutsService.js';
+import { KNOWN_BENCHMARKS } from '../services/psxDataService.js';
 
 const router = express.Router();
 
@@ -324,11 +325,12 @@ router.get('/:symbol', async (req, res) => {
       stock = memDB.stocks.get(sym);
     }
 
-    if (!stock && !liveQuote) {
+    const benchmark = KNOWN_BENCHMARKS[sym] || null;
+    if (!stock && !liveQuote && !benchmark) {
       return res.status(404).json({ success: false, message: 'Stock ' + sym + ' not found in PSX universe.' });
     }
 
-    const currentPrice = liveQuote?.currentPrice || stock?.currentPrice || 100;
+    const currentPrice = liveQuote?.currentPrice || stock?.currentPrice || benchmark?.basePrice || 100;
     const prevClose = liveQuote?.prevClose || stock?.prevClose || (currentPrice * 0.99);
 
     // Fetch real EOD bars for real technical calculation

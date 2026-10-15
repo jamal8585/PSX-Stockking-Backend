@@ -84,33 +84,59 @@ export const isNonFinancialNews = (title = '', desc = '') => {
 export const evaluateArticleSentiment = (title = '', desc = '') => {
   const text = (title + ' ' + (desc || '')).toLowerCase();
 
-  const negativeKeywords = [
-    'drop', 'fall', 'slump', 'plunge', 'tumble', 'loss', 'decline', 'deficit', 'crash',
-    'tax hike', 'levy hike', 'tariff hike', 'cost jump', 'shutdown', 'penalty', 'fine',
-    'dispute', 'debt crisis', 'circular debt', 'default', 'curb', 'ban', 'stagnant',
-    'bearish', 'headwind', 'inflation jumps', 'inflation rises', 'warning', 'downside',
-    'probe', 'fraud', 'investigation', 'scam'
+  // Explicit positive phrases (duty rationalization, smuggling curb, tax relief, etc.)
+  const compoundPositivePhrases = [
+    'duty rationalization', 'duties rationalization', 'tariff rationalization',
+    'smuggling curb', 'curb smuggling', 'curb on smuggling', 'curbing smuggling',
+    'tax relief', 'rate cut', 'cut rate', 'rate drops', 'inflation drops',
+    'inflation falls', 'reserves rise', 'exports rise', 'sales rise', 'demand accelerates',
+    'imf approval', 'imf deal', 'agreement signed', 'capacity expansion',
+    'margin expansion', 'profit jumps', 'earnings jump'
   ];
 
   const positiveKeywords = [
     'surge', 'jump', 'rise', 'gain', 'profit', 'dividend', 'growth', 'upgrade', 'rally',
-    'cut rate', 'rate cut', 'rate drops', 'drops to', 'inflation drops', 'inflation falls',
     'soars', 'record', 'high', 'boost', 'expansion', 'recovery', 'surplus', 'rebound', 'bullish',
-    'deal', 'agreement', 'incentive', 'tax relief', 'subsidy', 'approved', 'imf approval', 'inflow',
-    'reserves rise', 'exports rise', 'sales rise', 'demand accelerates', 'holds above', 'help transform',
-    'modernization', 'package', 'tenders', 'contracts', 'order'
+    'deal', 'agreement', 'incentive', 'subsidy', 'approved', 'inflow', 'support', 'supports',
+    'supporting', 'supported', 'rationalization', 'rationalize', 'rationalized', 'improve',
+    'improves', 'improved', 'improvement', 'benefit', 'benefits', 'benefiting', 'lift',
+    'lifts', 'lifting', 'strengthen', 'strengthens', 'strengthening', 'advances', 'advance',
+    'modernization', 'package', 'tenders', 'contracts', 'order', 'upward', 'favorable',
+    'positive', 'outperform', 'accumulate', 'lucrative', 'tailwind'
   ];
 
-  let negScore = 0;
-  let posScore = 0;
+  const negativeKeywords = [
+    'slump', 'plunge', 'tumble', 'loss', 'deficit', 'crash',
+    'tax hike', 'levy hike', 'tariff hike', 'cost jump', 'shutdown', 'penalty', 'fine',
+    'dispute', 'debt crisis', 'circular debt', 'default', 'ban', 'stagnant',
+    'bearish', 'headwind', 'inflation jumps', 'inflation rises', 'warning', 'downside',
+    'probe', 'fraud', 'investigation', 'scam', 'curb imports', 'export curb', 'decline'
+  ];
 
-  negativeKeywords.forEach(kw => {
-    if (text.includes(kw)) negScore += 1;
+  let posScore = 0;
+  let negScore = 0;
+
+  compoundPositivePhrases.forEach(ph => {
+    if (text.includes(ph)) posScore += 2; // Strong weight for compound economic catalysts
   });
 
   positiveKeywords.forEach(kw => {
     if (text.includes(kw)) posScore += 1;
   });
+
+  negativeKeywords.forEach(kw => {
+    if (text.includes(kw)) negScore += 1;
+  });
+
+  // Handle standalone 'drop' or 'fall' only if not referring to rate/inflation/cost drop
+  if ((text.includes('drop') || text.includes('fall')) && !text.includes('inflation drop') && !text.includes('rate drop') && !text.includes('cost drop') && !text.includes('drops to')) {
+    negScore += 1;
+  }
+
+  // Handle standalone 'curb' only if not 'smuggling curb'
+  if (text.includes('curb') && !text.includes('smuggling')) {
+    negScore += 1;
+  }
 
   if (negScore > posScore) return 'NEGATIVE';
   if (posScore > negScore) return 'POSITIVE';
@@ -739,7 +765,7 @@ export const fetchLiveFinancialNews = async () => {
   return combinedList.map((art, idx) => {
     const text = (art.title + ' ' + (art.description || '')).toLowerCase();
 
-    let matchedSector = ALL_SECTOR_CATALYSTS[idx % ALL_SECTOR_CATALYSTS.length];
+    let matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY') || ALL_SECTOR_CATALYSTS[0];
     if (art.category) {
       const found = ALL_SECTOR_CATALYSTS.find(s => s.category === art.category);
       if (found) matchedSector = found;

@@ -6,7 +6,7 @@ const HEADERS = {
 };
 
 // Top prominent liquid stocks with known fundamentals
-const KNOWN_BENCHMARKS = {
+export const KNOWN_BENCHMARKS = {
   'OGDC': { basePrice: 328.70, pe: 4.8, eps: 51.0, divYield: 11.2, isKse100: true },
   'PPL': { basePrice: 234.50, pe: 4.4, eps: 53.8, divYield: 9.8, isKse100: true },
   'MARI': { basePrice: 663.26, pe: 5.6, eps: 119.2, divYield: 8.5, isKse100: true },
