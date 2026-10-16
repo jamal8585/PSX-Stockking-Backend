@@ -57,7 +57,12 @@ export const syncMarketData = async () => {
     else if (change < 0) declines++;
     else unchanged++;
 
+    const resolvedSector = (dpsQuote?.sector && dpsQuote.sector !== 'General Market')
+      ? dpsQuote.sector
+      : (item.sector && item.sector !== 'General Market' ? item.sector : 'Miscellaneous');
+
     const { technicals, tradePlan } = evaluateStockTechnicals({
+      symbol: item.symbol,
       currentPrice: price,
       high,
       low,
@@ -65,10 +70,19 @@ export const syncMarketData = async () => {
     });
 
     let matchedNews = null;
+    const symRegex = new RegExp(`\\b${item.symbol}\\b`, 'i');
+    const namePart = (item.name || '').split(' ')[0];
+    const nameRegex = namePart && namePart.length > 3 ? new RegExp(`\\b${namePart}\\b`, 'i') : null;
+
     for (const n of liveNews) {
-      const isExplicitMention = n.title && new RegExp(`\\b${item.symbol}\\b`, 'i').test(n.title);
-      const isSectorMatch = n.tradeSuggestions && n.tradeSuggestions.some(t => t.symbol === item.symbol && (!n.category || n.category === 'MACRO_ECONOMY' || t.sector === item.sector));
-      if (isExplicitMention || isSectorMatch) {
+      // Exclude generic macro economy or general market news from company-specific cards
+      if (!n || n.category === 'MACRO_ECONOMY' || n.category === 'GENERAL_MARKET') continue;
+
+      const titleMatchesSymbol = n.title && symRegex.test(n.title);
+      const titleMatchesName = n.title && nameRegex && nameRegex.test(n.title);
+      const descMatchesSymbol = n.description && symRegex.test(n.description);
+
+      if (titleMatchesSymbol || titleMatchesName || descMatchesSymbol) {
         matchedNews = n;
         break;
       }
@@ -82,14 +96,14 @@ export const syncMarketData = async () => {
     } : {
       sentiment: 'NEUTRAL',
       score: 0.0,
-      headline: 'No major news catalyst today'
+      headline: 'Technical Momentum Setup (No company-specific news catalyst)'
     };
 
     const stockDoc = {
       symbol: item.symbol,
       name: item.name,
-      sector: item.sector,
-      category: item.sector,
+      sector: resolvedSector,
+      category: resolvedSector,
       currentPrice: price,
       change,
       changePercent,
@@ -114,8 +128,9 @@ export const syncMarketData = async () => {
     const recDoc = {
       symbol: item.symbol,
       companyName: item.name,
-      sector: item.sector,
+      sector: resolvedSector,
       signal: tradePlan.signal,
+      isBearishExit: tradePlan.isBearishExit,
       currentPrice: price,
       entryZone: tradePlan.entryZone,
       stopLoss: tradePlan.stopLoss,
@@ -130,10 +145,14 @@ export const syncMarketData = async () => {
       orderAdvice: {
         actionNote: tradePlan.signal === 'STRONG_BUY' 
           ? 'Enter Limit Buy in Entry Zone' 
-          : (tradePlan.signal === 'ACCUMULATE' ? 'Accumulate 50% now, 50% on pullback' : (tradePlan.signal === 'AVOID_SELL' ? 'Take Profit or Trigger Stop Loss' : 'Monitor on Watchlist')),
+          : (tradePlan.signal === 'ACCUMULATE' 
+              ? 'Accumulate 50% now, 50% on pullback' 
+              : (tradePlan.signal === 'AVOID_SELL' 
+                  ? 'Take Profit / Capital Preservation (Avoid New Longs)' 
+                  : 'Monitor on Watchlist')),
         allocationPercent: tradePlan.signal === 'STRONG_BUY' ? 15 : (tradePlan.signal === 'ACCUMULATE' ? 10 : 0),
         riskPerSharePKR: Number(Math.max(0, price - tradePlan.stopLoss).toFixed(2)),
-        rewardPerSharePKR: Number(Math.max(0, tradePlan.target1 - price).toFixed(2))
+        rewardPerSharePKR: tradePlan.signal === 'AVOID_SELL' ? 0 : Number(Math.max(0, tradePlan.target1 - price).toFixed(2))
       },
       date: todayStr
     };

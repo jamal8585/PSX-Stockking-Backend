@@ -14,6 +14,7 @@ const HEADERS = {
 };
 
 import os from 'os';
+import { KNOWN_BENCHMARKS } from './psxDataService.js';
 
 // Memory Cache with 24-Hour TTL (Refreshed Daily)
 const financialsCache = new Map();
@@ -70,8 +71,10 @@ export const fetchStockFinancials = async (symbol) => {
 
     const $ = cheerio.load(res.data);
     const finTab = $('#financialTab');
-    const companyName = $('.quote__name').text().trim() || sym;
-    const sector = $('.quote__sector span').text().trim() || 'General Market';
+    const rawSector = $('.quote__sector span').text().trim() || $('.quote__sector').text().trim();
+    const sector = (rawSector && rawSector !== 'General Market') 
+      ? rawSector 
+      : (KNOWN_BENCHMARKS[sym]?.sector || 'Miscellaneous');
 
     const annualData = { periods: [], rows: {} };
     const quarterlyData = { periods: [], rows: {} };

@@ -100,8 +100,10 @@ export const fetchPSXCompanyQuote = async (symbol) => {
     if (!res.data || typeof res.data !== 'string') return null;
 
     const $ = cheerio.load(res.data);
-    const companyName = $('.quote__name').text().trim() || sym;
-    const sector = $('.quote__sector span').text().trim() || 'General Market';
+    const rawSector = $('.quote__sector span').text().trim() || $('.quote__sector').text().trim();
+    const sector = (rawSector && rawSector !== 'General Market') 
+      ? rawSector 
+      : (baseQuotes[sym]?.sector || 'Miscellaneous');
 
     const priceText = $('.quote__price .quote__close').text().replace(/Rs\.?/i, '').replace(/,/g, '').trim();
     const currentPrice = parseFloat(priceText);
@@ -207,8 +209,15 @@ export const fetchOfficialPSXMarketWatch = async () => {
               : price;
             const change = Number((price - prevClose).toFixed(2));
 
+            const existingQuote = marketMap.get(symbol);
+            const resolvedSector = baseQuotes[symbol]?.sector || existingQuote?.sector || 'Miscellaneous';
+            const resolvedName = baseQuotes[symbol]?.name || existingQuote?.name || symbol;
+
             marketMap.set(symbol, {
               symbol,
+              name: resolvedName,
+              sector: resolvedSector,
+              category: resolvedSector,
               sectorCode,
               indices,
               prevClose,

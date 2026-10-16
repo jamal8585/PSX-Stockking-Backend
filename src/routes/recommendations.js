@@ -179,9 +179,13 @@ router.get('/', async (req, res) => {
         const liveP = Number(official?.currentPrice || rec.currentPrice || 100);
         // Slightly vary historical price by -1% to +2% to reflect prior session state
         const priceVariation = 1 - (dayOffset * 0.008);
-        const histPrice = Number((liveP * priceVariation).toFixed(2));
-        const target1 = Number((histPrice * 1.095).toFixed(2));
-        const stopLoss = Number((histPrice * 0.95).toFixed(2));
+        const isAvoid = rec.signal === 'AVOID_SELL';
+        const target1 = isAvoid
+          ? Number((histPrice * 0.93).toFixed(2))
+          : Number((histPrice * 1.095).toFixed(2));
+        const stopLoss = isAvoid
+          ? Number((histPrice * 0.965).toFixed(2))
+          : Number((histPrice * 0.95).toFixed(2));
 
         return {
           ...rec,

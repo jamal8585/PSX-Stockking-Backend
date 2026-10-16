@@ -72,7 +72,8 @@ const isIrrelevantForeignNews = (title, desc) => {
     'bollywood', 'box office', 'eurovision', 'grammy', 'oscar', 'nobel prize', 'gaza', 'ukraine war',
     'syria', 'beirut', 'tel aviv', 'lebanon', 'yemen', 'sudan', 'haiti', 'prince harry', 'meghan markle',
     'royal family', 'celebrity', 'tennis', 'cricket match', 'world cup qualifier', 'premier league',
-    'la liga', 'nba', 'uefa', 'fifa', 'pga tour', 'olympic', 'formula 1', 'grand prix'
+    'la liga', 'nba', 'uefa', 'fifa', 'pga tour', 'olympic', 'formula 1', 'grand prix',
+    'lme week', 'london metal exchange', 'wall street', 'tokyo stocks', 'nikkei', 'shanghai composite', 'hang seng'
   ];
   return foreignOnlyKeywords.some(kw => combined.includes(kw));
 };
@@ -766,17 +767,21 @@ export const fetchLiveFinancialNews = async () => {
   return combinedList.map((art, idx) => {
     const text = (art.title + ' ' + (art.description || '')).toLowerCase();
 
-    let matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY') || ALL_SECTOR_CATALYSTS[0];
+    let matchedSector = null;
     if (art.category) {
       const found = ALL_SECTOR_CATALYSTS.find(s => s.category === art.category);
       if (found) matchedSector = found;
-    } else {
+    }
+    if (!matchedSector) {
       for (const sec of ALL_SECTOR_CATALYSTS) {
         if (sec.keywords.some(kw => text.includes(kw))) {
           matchedSector = sec;
           break;
         }
       }
+    }
+    if (!matchedSector) {
+      matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY') || ALL_SECTOR_CATALYSTS[0];
     }
 
     const sentiment = evaluateArticleSentiment(art.title, art.description);

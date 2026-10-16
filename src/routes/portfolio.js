@@ -141,14 +141,18 @@ router.post('/', async (req, res) => {
     }
 
     const sym = symbol.toUpperCase().trim();
-    const stockInfo = memDB.stocks.get(sym) || { name: sym, sector: 'General Market' };
+    const stockInfo = memDB.stocks.get(sym);
+    const resolvedName = stockInfo?.name || sym;
+    const resolvedSector = (stockInfo?.sector && stockInfo.sector !== 'General Market') 
+      ? stockInfo.sector 
+      : 'Miscellaneous';
 
     let createdId = 'port_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4);
 
     const newPosition = {
       symbol: sym,
-      name: stockInfo.name,
-      sector: stockInfo.sector,
+      name: resolvedName,
+      sector: resolvedSector,
       positionType,
       buyPrice: Number(buyPrice),
       quantity: Number(quantity),

@@ -49,11 +49,15 @@ router.get('/', async (req, res) => {
 
     // 1. Add all live scraped companies from official DPS
     if (liveSheet && typeof liveSheet.forEach === 'function') {
-      liveSheet.forEach((liveQuote, sym) => {
+        const symSector = (liveQuote.sector && liveQuote.sector !== 'General Market')
+          ? liveQuote.sector 
+          : (KNOWN_BENCHMARKS[sym]?.sector || 'Miscellaneous');
+
         mergedMap.set(sym, {
           symbol: sym,
           name: liveQuote.name || sym,
-          sector: liveQuote.sector || 'General Market',
+          sector: symSector,
+          category: symSector,
           currentPrice: liveQuote.currentPrice,
           prevClose: liveQuote.prevClose,
           open: liveQuote.open,
@@ -74,12 +78,19 @@ router.get('/', async (req, res) => {
     baseList.forEach(dbStock => {
       const sym = dbStock.symbol.toUpperCase().trim();
       const live = mergedMap.get(sym);
+      const resolvedSector = (dbStock.sector && dbStock.sector !== 'General Market')
+        ? dbStock.sector
+        : ((live?.sector && live.sector !== 'General Market') 
+            ? live.sector 
+            : (KNOWN_BENCHMARKS[sym]?.sector || 'Miscellaneous'));
+
       if (live) {
         mergedMap.set(sym, {
           ...dbStock,
           ...live,
           name: dbStock.name || live.name,
-          sector: dbStock.sector || live.sector,
+          sector: resolvedSector,
+          category: resolvedSector,
           currentPrice: live.currentPrice > 0 ? live.currentPrice : dbStock.currentPrice,
           prevClose: live.prevClose > 0 ? live.prevClose : dbStock.prevClose,
           change: live.change !== undefined ? live.change : dbStock.change,
