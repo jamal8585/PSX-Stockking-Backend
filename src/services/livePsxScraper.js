@@ -312,13 +312,13 @@ export const fetchLiveKSE100Summary = async () => {
   }
 
   return {
-    current: 177783.65,
-    currentValue: 177783.65,
-    prevClose: 176975.67,
-    change: 807.98,
-    changePercent: 0.46,
-    high: 177783.65,
-    low: 177353.62,
+    current: 166419.71,
+    currentValue: 166419.71,
+    prevClose: 166186.16,
+    change: 233.55,
+    changePercent: 0.14,
+    high: 166708.36,
+    low: 165956.51,
     ticks: [],
     isLive: false
   };

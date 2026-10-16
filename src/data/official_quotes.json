@@ -9,7 +9,8 @@
     "currentPrice": 23.08,
     "change": 0.03,
     "changePercent": 0.13,
-    "volume": 40754
+    "volume": 40754,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "CNERGY": {
     "symbol": "CNERGY",
@@ -21,7 +22,8 @@
     "currentPrice": 15.46,
     "change": 1.05,
     "changePercent": 7.29,
-    "volume": 293180534
+    "volume": 293180534,
+    "sector": "Refinery"
   },
   "WAVESAPPR": {
     "symbol": "WAVESAPPR",
@@ -33,7 +35,8 @@
     "currentPrice": 0.76,
     "change": 0.75,
     "changePercent": 7500,
-    "volume": 71228411
+    "volume": 71228411,
+    "sector": "Cable & Electrical Goods"
   },
   "BOP": {
     "symbol": "BOP",
@@ -45,7 +48,8 @@
     "currentPrice": 34.99,
     "change": 0.02,
     "changePercent": 0.06,
-    "volume": 52289978
+    "volume": 52289978,
+    "sector": "Commercial Banks"
   },
   "PRL": {
     "symbol": "PRL",
@@ -57,7 +61,8 @@
     "currentPrice": 93.11,
     "change": 0.97,
     "changePercent": 1.05,
-    "volume": 27558679
+    "volume": 27558679,
+    "sector": "Refinery"
   },
   "KEL": {
     "symbol": "KEL",
@@ -69,7 +74,8 @@
     "currentPrice": 7.24,
     "change": 0.09,
     "changePercent": 1.26,
-    "volume": 31725321
+    "volume": 31725321,
+    "sector": "Power Generation & Distribution"
   },
   "TISL": {
     "symbol": "TISL",
@@ -81,7 +87,8 @@
     "currentPrice": 3.24,
     "change": -0.13,
     "changePercent": -3.86,
-    "volume": 28343094
+    "volume": 28343094,
+    "sector": "Miscellaneous"
   },
   "UNITY": {
     "symbol": "UNITY",
@@ -93,7 +100,8 @@
     "currentPrice": 9.98,
     "change": -0.73,
     "changePercent": -6.82,
-    "volume": 25547088
+    "volume": 25547088,
+    "sector": "Food & Personal Care Products"
   },
   "TPLP": {
     "symbol": "TPLP",
@@ -105,7 +113,8 @@
     "currentPrice": 14.41,
     "change": 0.56,
     "changePercent": 4.04,
-    "volume": 18843765
+    "volume": 18843765,
+    "sector": "Property"
   },
   "TPL": {
     "symbol": "TPL",
@@ -117,7 +126,8 @@
     "currentPrice": 23.42,
     "change": 1.71,
     "changePercent": 7.88,
-    "volume": 18270680
+    "volume": 18270680,
+    "sector": "Technology & Communication"
   },
   "WTL": {
     "symbol": "WTL",
@@ -129,7 +139,8 @@
     "currentPrice": 1.16,
     "change": -0.01,
     "changePercent": -0.85,
-    "volume": 16355484
+    "volume": 16355484,
+    "sector": "Technology & Communication"
   },
   "FNEL": {
     "symbol": "FNEL",
@@ -141,7 +152,8 @@
     "currentPrice": 1.18,
     "change": -0.02,
     "changePercent": -1.67,
-    "volume": 13911743
+    "volume": 13911743,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "NCPL": {
     "symbol": "NCPL",
@@ -153,7 +165,8 @@
     "currentPrice": 59.36,
     "change": 2.1,
     "changePercent": 3.67,
-    "volume": 7980915
+    "volume": 7980915,
+    "sector": "Power Generation & Distribution"
   },
   "NRL": {
     "symbol": "NRL",
@@ -165,7 +178,8 @@
     "currentPrice": 549.83,
     "change": 47.94,
     "changePercent": 9.55,
-    "volume": 7829107
+    "volume": 7829107,
+    "sector": "Refinery"
   },
   "STLR": {
     "symbol": "STLR",
@@ -177,7 +191,8 @@
     "currentPrice": 13.05,
     "change": -0.92,
     "changePercent": -6.59,
-    "volume": 7662133
+    "volume": 7662133,
+    "sector": "Technology & Communication"
   },
   "TPLT": {
     "symbol": "TPLT",
@@ -189,7 +204,8 @@
     "currentPrice": 31.01,
     "change": 1.2,
     "changePercent": 4.03,
-    "volume": 7366650
+    "volume": 7366650,
+    "sector": "Technology & Communication"
   },
   "SSGC": {
     "symbol": "SSGC",
@@ -201,7 +217,8 @@
     "currentPrice": 27.66,
     "change": 0.22,
     "changePercent": 0.8,
-    "volume": 6957697
+    "volume": 6957697,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "HUMNL": {
     "symbol": "HUMNL",
@@ -213,7 +230,8 @@
     "currentPrice": 10.47,
     "change": 0.41,
     "changePercent": 4.08,
-    "volume": 6924655
+    "volume": 6924655,
+    "sector": "Technology & Communication"
   },
   "TRG": {
     "symbol": "TRG",
@@ -225,7 +243,8 @@
     "currentPrice": 56.64,
     "change": 1.65,
     "changePercent": 3,
-    "volume": 6570328
+    "volume": 6570328,
+    "sector": "Technology & Communication"
   },
   "WAVESAPP": {
     "symbol": "WAVESAPP",
@@ -237,7 +256,8 @@
     "currentPrice": 8.94,
     "change": -0.16,
     "changePercent": -1.76,
-    "volume": 6422620
+    "volume": 6422620,
+    "sector": "Cable & Electrical Goods"
   },
   "PIBTL": {
     "symbol": "PIBTL",
@@ -249,7 +269,8 @@
     "currentPrice": 16.23,
     "change": 0.07,
     "changePercent": 0.43,
-    "volume": 5879241
+    "volume": 5879241,
+    "sector": "Transport"
   },
   "BECO": {
     "symbol": "BECO",
@@ -261,7 +282,8 @@
     "currentPrice": 4.67,
     "change": -0.11,
     "changePercent": -2.3,
-    "volume": 5510579
+    "volume": 5510579,
+    "sector": "Engineering"
   },
   "THCCL": {
     "symbol": "THCCL",
@@ -273,7 +295,8 @@
     "currentPrice": 75.93,
     "change": -0.72,
     "changePercent": -0.94,
-    "volume": 5298279
+    "volume": 5298279,
+    "sector": "Cement"
   },
   "MLCF": {
     "symbol": "MLCF",
@@ -285,7 +308,8 @@
     "currentPrice": 99.58,
     "change": -1.85,
     "changePercent": -1.82,
-    "volume": 4963425
+    "volume": 4963425,
+    "sector": "Cement"
   },
   "SYS": {
     "symbol": "SYS",
@@ -297,7 +321,8 @@
     "currentPrice": 124.54,
     "change": -6.28,
     "changePercent": -4.8,
-    "volume": 4946062
+    "volume": 4946062,
+    "sector": "Technology & Communication"
   },
   "ZUMA": {
     "symbol": "ZUMA",
@@ -309,7 +334,8 @@
     "currentPrice": 19.03,
     "change": 1.56,
     "changePercent": 8.93,
-    "volume": 4842054
+    "volume": 4842054,
+    "sector": "Technology & Communication"
   },
   "WASL": {
     "symbol": "WASL",
@@ -321,7 +347,8 @@
     "currentPrice": 6.79,
     "change": 0.03,
     "changePercent": 0.44,
-    "volume": 4585613
+    "volume": 4585613,
+    "sector": "Modarabas"
   },
   "HASCOLNC": {
     "symbol": "HASCOLNC",
@@ -333,7 +360,8 @@
     "currentPrice": 20.11,
     "change": -0.19,
     "changePercent": -0.94,
-    "volume": 4238985
+    "volume": 4238985,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "PPL": {
     "symbol": "PPL",
@@ -345,7 +373,8 @@
     "currentPrice": 234.5,
     "change": -2.58,
     "changePercent": -1.09,
-    "volume": 4201228
+    "volume": 4201228,
+    "sector": "Oil & Gas Exploration Companies"
   },
   "HICL": {
     "symbol": "HICL",
@@ -357,7 +386,8 @@
     "currentPrice": 15.36,
     "change": 1.14,
     "changePercent": 8.02,
-    "volume": 4170889
+    "volume": 4170889,
+    "sector": "Insurance"
   },
   "ASCNC": {
     "symbol": "ASCNC",
@@ -369,7 +399,8 @@
     "currentPrice": 10.77,
     "change": -1.2,
     "changePercent": -10.02,
-    "volume": 4037050
+    "volume": 4037050,
+    "sector": "Food & Personal Care Products"
   },
   "PREMA": {
     "symbol": "PREMA",
@@ -381,7 +412,8 @@
     "currentPrice": 35.69,
     "change": -1.82,
     "changePercent": -4.85,
-    "volume": 3982276
+    "volume": 3982276,
+    "sector": "Food & Personal Care Products"
   },
   "LOTCHEM": {
     "symbol": "LOTCHEM",
@@ -393,7 +425,8 @@
     "currentPrice": 27.46,
     "change": -0.6,
     "changePercent": -2.14,
-    "volume": 3920627
+    "volume": 3920627,
+    "sector": "Chemical"
   },
   "NPL": {
     "symbol": "NPL",
@@ -405,7 +438,8 @@
     "currentPrice": 68.18,
     "change": 2.32,
     "changePercent": 3.52,
-    "volume": 3701398
+    "volume": 3701398,
+    "sector": "Power Generation & Distribution"
   },
   "TPLRF1": {
     "symbol": "TPLRF1",
@@ -417,7 +451,8 @@
     "currentPrice": 9.7,
     "change": 0.2,
     "changePercent": 2.11,
-    "volume": 3623685
+    "volume": 3623685,
+    "sector": "Real Estate Investment Trust"
   },
   "JSMFETF": {
     "symbol": "JSMFETF",
@@ -429,7 +464,8 @@
     "currentPrice": 11.74,
     "change": 0.54,
     "changePercent": 4.82,
-    "volume": 3602500
+    "volume": 3602500,
+    "sector": "Miscellaneous"
   },
   "SGPLR": {
     "symbol": "SGPLR",
@@ -441,7 +477,8 @@
     "currentPrice": 12.47,
     "change": -1.39,
     "changePercent": -10.03,
-    "volume": 3566017
+    "volume": 3566017,
+    "sector": "Power Generation & Distribution"
   },
   "DSIL": {
     "symbol": "DSIL",
@@ -453,7 +490,8 @@
     "currentPrice": 10.42,
     "change": -0.03,
     "changePercent": -0.29,
-    "volume": 3466264
+    "volume": 3466264,
+    "sector": "Textile Spinning"
   },
   "FPJM": {
     "symbol": "FPJM",
@@ -465,7 +503,8 @@
     "currentPrice": 21.25,
     "change": -2.36,
     "changePercent": -10,
-    "volume": 3432498
+    "volume": 3432498,
+    "sector": "Modarabas"
   },
   "CLOV": {
     "symbol": "CLOV",
@@ -477,7 +516,8 @@
     "currentPrice": 6.74,
     "change": -0.03,
     "changePercent": -0.44,
-    "volume": 3287607
+    "volume": 3287607,
+    "sector": "Food & Personal Care Products"
   },
   "NETSOL": {
     "symbol": "NETSOL",
@@ -489,7 +529,8 @@
     "currentPrice": 126.55,
     "change": 2.97,
     "changePercent": 2.4,
-    "volume": 3277049
+    "volume": 3277049,
+    "sector": "Technology & Communication"
   },
   "PACE": {
     "symbol": "PACE",
@@ -501,7 +542,8 @@
     "currentPrice": 10.25,
     "change": 0.01,
     "changePercent": 0.1,
-    "volume": 3246223
+    "volume": 3246223,
+    "sector": "Property"
   },
   "PAEL": {
     "symbol": "PAEL",
@@ -513,7 +555,8 @@
     "currentPrice": 39.36,
     "change": -0.49,
     "changePercent": -1.23,
-    "volume": 3224567
+    "volume": 3224567,
+    "sector": "Cable & Electrical Goods"
   },
   "FCCL": {
     "symbol": "FCCL",
@@ -525,7 +568,8 @@
     "currentPrice": 55.31,
     "change": -1.03,
     "changePercent": -1.83,
-    "volume": 3107844
+    "volume": 3107844,
+    "sector": "Cement"
   },
   "HCAR": {
     "symbol": "HCAR",
@@ -537,7 +581,8 @@
     "currentPrice": 247.11,
     "change": 9.03,
     "changePercent": 3.79,
-    "volume": 2974188
+    "volume": 2974188,
+    "sector": "Automobile Assembler"
   },
   "AGHA": {
     "symbol": "AGHA",
@@ -549,7 +594,8 @@
     "currentPrice": 6.89,
     "change": -0.06,
     "changePercent": -0.86,
-    "volume": 2838570
+    "volume": 2838570,
+    "sector": "Engineering"
   },
   "OGDC": {
     "symbol": "OGDC",
@@ -561,7 +607,8 @@
     "currentPrice": 328.7,
     "change": 3.5,
     "changePercent": 1.08,
-    "volume": 2824524
+    "volume": 2824524,
+    "sector": "Oil & Gas Exploration Companies"
   },
   "WAVES": {
     "symbol": "WAVES",
@@ -573,7 +620,8 @@
     "currentPrice": 10.19,
     "change": 0.22,
     "changePercent": 2.21,
-    "volume": 2755820
+    "volume": 2755820,
+    "sector": "Cable & Electrical Goods"
   },
   "FANM": {
     "symbol": "FANM",
@@ -585,7 +633,8 @@
     "currentPrice": 10.21,
     "change": -1.13,
     "changePercent": -9.96,
-    "volume": 2753697
+    "volume": 2753697,
+    "sector": "Modarabas"
   },
   "MACFL": {
     "symbol": "MACFL",
@@ -597,7 +646,8 @@
     "currentPrice": 58.32,
     "change": 1.78,
     "changePercent": 3.15,
-    "volume": 2751729
+    "volume": 2751729,
+    "sector": "Paper, Board & Packaging"
   },
   "TSBL": {
     "symbol": "TSBL",
@@ -609,7 +659,8 @@
     "currentPrice": 2.3,
     "change": -0.05,
     "changePercent": -2.13,
-    "volume": 2734717
+    "volume": 2734717,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "BAFL": {
     "symbol": "BAFL",
@@ -621,7 +672,8 @@
     "currentPrice": 58.68,
     "change": 0.39,
     "changePercent": 0.67,
-    "volume": 2732792
+    "volume": 2732792,
+    "sector": "Commercial Banks"
   },
   "FCL": {
     "symbol": "FCL",
@@ -633,7 +685,8 @@
     "currentPrice": 27.79,
     "change": 0.04,
     "changePercent": 0.14,
-    "volume": 2719416
+    "volume": 2719416,
+    "sector": "Cable & Electrical Goods"
   },
   "CLVL": {
     "symbol": "CLVL",
@@ -645,7 +698,8 @@
     "currentPrice": 41.17,
     "change": 3.74,
     "changePercent": 9.99,
-    "volume": 2635772
+    "volume": 2635772,
+    "sector": "Transport"
   },
   "DGKC": {
     "symbol": "DGKC",
@@ -657,7 +711,8 @@
     "currentPrice": 209.58,
     "change": -3.16,
     "changePercent": -1.48,
-    "volume": 2633417
+    "volume": 2633417,
+    "sector": "Cement"
   },
   "POWER": {
     "symbol": "POWER",
@@ -669,7 +724,8 @@
     "currentPrice": 22.89,
     "change": -0.47,
     "changePercent": -2.01,
-    "volume": 2620341
+    "volume": 2620341,
+    "sector": "Cement"
   },
   "EPCL": {
     "symbol": "EPCL",
@@ -681,7 +737,8 @@
     "currentPrice": 35.6,
     "change": 0.29,
     "changePercent": 0.82,
-    "volume": 2589637
+    "volume": 2589637,
+    "sector": "Chemical"
   },
   "FFL": {
     "symbol": "FFL",
@@ -693,7 +750,8 @@
     "currentPrice": 15.61,
     "change": -0.12,
     "changePercent": -0.76,
-    "volume": 2585073
+    "volume": 2585073,
+    "sector": "Food & Personal Care Products"
   },
   "PSO": {
     "symbol": "PSO",
@@ -705,7 +763,8 @@
     "currentPrice": 363.84,
     "change": 2.7,
     "changePercent": 0.75,
-    "volume": 2541456
+    "volume": 2541456,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "PIAHCLA": {
     "symbol": "PIAHCLA",
@@ -717,7 +776,8 @@
     "currentPrice": 25.36,
     "change": -0.26,
     "changePercent": -1.01,
-    "volume": 2476494
+    "volume": 2476494,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "OBOY": {
     "symbol": "OBOY",
@@ -729,7 +789,8 @@
     "currentPrice": 18.07,
     "change": 0.31,
     "changePercent": 1.75,
-    "volume": 2474119
+    "volume": 2474119,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "NBP": {
     "symbol": "NBP",
@@ -741,7 +802,8 @@
     "currentPrice": 187.08,
     "change": -1.87,
     "changePercent": -0.99,
-    "volume": 2396780
+    "volume": 2396780,
+    "sector": "Commercial Banks"
   },
   "SEARL": {
     "symbol": "SEARL",
@@ -753,7 +815,8 @@
     "currentPrice": 86.76,
     "change": -1.76,
     "changePercent": -1.99,
-    "volume": 2388329
+    "volume": 2388329,
+    "sector": "Pharmaceuticals"
   },
   "YOUW": {
     "symbol": "YOUW",
@@ -765,7 +828,8 @@
     "currentPrice": 5.14,
     "change": -0.01,
     "changePercent": -0.19,
-    "volume": 2378517
+    "volume": 2378517,
+    "sector": "Textile Weaving"
   },
   "HUBC": {
     "symbol": "HUBC",
@@ -777,7 +841,8 @@
     "currentPrice": 209.67,
     "change": -1.09,
     "changePercent": -0.52,
-    "volume": 2360932
+    "volume": 2360932,
+    "sector": "Power Generation & Distribution"
   },
   "EPCLPS": {
     "symbol": "EPCLPS",
@@ -789,7 +854,8 @@
     "currentPrice": 12.66,
     "change": -0.06,
     "changePercent": -0.47,
-    "volume": 2260705
+    "volume": 2260705,
+    "sector": "Miscellaneous"
   },
   "FCEPL": {
     "symbol": "FCEPL",
@@ -801,7 +867,8 @@
     "currentPrice": 147.76,
     "change": 2.22,
     "changePercent": 1.53,
-    "volume": 2239596
+    "volume": 2239596,
+    "sector": "Food & Personal Care Products"
   },
   "ATRL": {
     "symbol": "ATRL",
@@ -813,7 +880,8 @@
     "currentPrice": 1197.49,
     "change": 93.41,
     "changePercent": 8.46,
-    "volume": 2137514
+    "volume": 2137514,
+    "sector": "Refinery"
   },
   "SPSL": {
     "symbol": "SPSL",
@@ -825,7 +893,8 @@
     "currentPrice": 16.22,
     "change": -0.06,
     "changePercent": -0.37,
-    "volume": 2130704
+    "volume": 2130704,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "SLM": {
     "symbol": "SLM",
@@ -837,7 +906,8 @@
     "currentPrice": 24.05,
     "change": 0.02,
     "changePercent": 0.08,
-    "volume": 2129078
+    "volume": 2129078,
+    "sector": "Automobile Parts & Accessories"
   },
   "ASL": {
     "symbol": "ASL",
@@ -849,7 +919,8 @@
     "currentPrice": 14.07,
     "change": -0.34,
     "changePercent": -2.36,
-    "volume": 2056821
+    "volume": 2056821,
+    "sector": "Engineering"
   },
   "TELE": {
     "symbol": "TELE",
@@ -861,7 +932,8 @@
     "currentPrice": 7.97,
     "change": 0.21,
     "changePercent": 2.71,
-    "volume": 1979948
+    "volume": 1979948,
+    "sector": "Technology & Communication"
   },
   "SGPL": {
     "symbol": "SGPL",
@@ -873,7 +945,8 @@
     "currentPrice": 30.96,
     "change": -2.93,
     "changePercent": -8.65,
-    "volume": 1918370
+    "volume": 1918370,
+    "sector": "Power Generation & Distribution"
   },
   "HBL": {
     "symbol": "HBL",
@@ -885,7 +958,8 @@
     "currentPrice": 318.05,
     "change": -7.74,
     "changePercent": -2.38,
-    "volume": 1780414
+    "volume": 1780414,
+    "sector": "Commercial Banks"
   },
   "BERG": {
     "symbol": "BERG",
@@ -897,7 +971,8 @@
     "currentPrice": 158.27,
     "change": 8.15,
     "changePercent": 5.43,
-    "volume": 1768758
+    "volume": 1768758,
+    "sector": "Chemical"
   },
   "ILP": {
     "symbol": "ILP",
@@ -909,7 +984,8 @@
     "currentPrice": 108.67,
     "change": 3.99,
     "changePercent": 3.81,
-    "volume": 1767235
+    "volume": 1767235,
+    "sector": "Textile Composite"
   },
   "LOADS": {
     "symbol": "LOADS",
@@ -921,7 +997,8 @@
     "currentPrice": 13.08,
     "change": -0.02,
     "changePercent": -0.15,
-    "volume": 1723828
+    "volume": 1723828,
+    "sector": "Automobile Parts & Accessories"
   },
   "FATIMA": {
     "symbol": "FATIMA",
@@ -933,7 +1010,8 @@
     "currentPrice": 155.01,
     "change": -1.69,
     "changePercent": -1.08,
-    "volume": 1695746
+    "volume": 1695746,
+    "sector": "Fertilizer"
   },
   "CSIL": {
     "symbol": "CSIL",
@@ -945,7 +1023,8 @@
     "currentPrice": 5.75,
     "change": -0.13,
     "changePercent": -2.21,
-    "volume": 1651577
+    "volume": 1651577,
+    "sector": "Insurance"
   },
   "AVN": {
     "symbol": "AVN",
@@ -957,7 +1036,8 @@
     "currentPrice": 30.05,
     "change": 0.87,
     "changePercent": 2.98,
-    "volume": 1646966
+    "volume": 1646966,
+    "sector": "Technology & Communication"
   },
   "SLGL": {
     "symbol": "SLGL",
@@ -969,7 +1049,8 @@
     "currentPrice": 15.07,
     "change": 0.1,
     "changePercent": 0.67,
-    "volume": 1600706
+    "volume": 1600706,
+    "sector": "Transport"
   },
   "OCTOPUS": {
     "symbol": "OCTOPUS",
@@ -981,7 +1062,8 @@
     "currentPrice": 29.88,
     "change": 0.53,
     "changePercent": 1.81,
-    "volume": 1580255
+    "volume": 1580255,
+    "sector": "Technology & Communication"
   },
   "TOMCL": {
     "symbol": "TOMCL",
@@ -993,7 +1075,8 @@
     "currentPrice": 36.74,
     "change": 0.03,
     "changePercent": 0.08,
-    "volume": 1553768
+    "volume": 1553768,
+    "sector": "Food & Personal Care Products"
   },
   "FIBLM": {
     "symbol": "FIBLM",
@@ -1005,7 +1088,8 @@
     "currentPrice": 17,
     "change": -1.86,
     "changePercent": -9.86,
-    "volume": 1530070
+    "volume": 1530070,
+    "sector": "Modarabas"
   },
   "KOSM": {
     "symbol": "KOSM",
@@ -1017,7 +1101,8 @@
     "currentPrice": 5.37,
     "change": -0.04,
     "changePercent": -0.74,
-    "volume": 1458519
+    "volume": 1458519,
+    "sector": "Textile Spinning"
   },
   "SNGP": {
     "symbol": "SNGP",
@@ -1029,7 +1114,8 @@
     "currentPrice": 101.86,
     "change": 0.89,
     "changePercent": 0.88,
-    "volume": 1419880
+    "volume": 1419880,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "BLUEX": {
     "symbol": "BLUEX",
@@ -1041,7 +1127,8 @@
     "currentPrice": 6.7,
     "change": -0.09,
     "changePercent": -1.32,
-    "volume": 1255984
+    "volume": 1255984,
+    "sector": "Transport"
   },
   "AHCL": {
     "symbol": "AHCL",
@@ -1053,7 +1140,8 @@
     "currentPrice": 16.21,
     "change": 0.1,
     "changePercent": 0.62,
-    "volume": 1222680
+    "volume": 1222680,
+    "sector": "Fertilizer"
   },
   "BBFL": {
     "symbol": "BBFL",
@@ -1065,7 +1153,8 @@
     "currentPrice": 42.65,
     "change": -0.22,
     "changePercent": -0.51,
-    "volume": 1212741
+    "volume": 1212741,
+    "sector": "Food & Personal Care Products"
   },
   "GCIL": {
     "symbol": "GCIL",
@@ -1077,7 +1166,8 @@
     "currentPrice": 34.29,
     "change": -0.43,
     "changePercent": -1.24,
-    "volume": 1190676
+    "volume": 1190676,
+    "sector": "Chemical"
   },
   "BIPLXD": {
     "symbol": "BIPLXD",
@@ -1089,7 +1179,8 @@
     "currentPrice": 28.27,
     "change": 0.13,
     "changePercent": 0.46,
-    "volume": 1133977
+    "volume": 1133977,
+    "sector": "Commercial Banks"
   },
   "PSX": {
     "symbol": "PSX",
@@ -1101,7 +1192,8 @@
     "currentPrice": 49.7,
     "change": -0.17,
     "changePercent": -0.34,
-    "volume": 1133839
+    "volume": 1133839,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "DSLNC": {
     "symbol": "DSLNC",
@@ -1113,7 +1205,8 @@
     "currentPrice": 4.87,
     "change": -0.08,
     "changePercent": -1.62,
-    "volume": 1117939
+    "volume": 1117939,
+    "sector": "Engineering"
   },
   "ITANZ": {
     "symbol": "ITANZ",
@@ -1125,7 +1218,8 @@
     "currentPrice": 39.54,
     "change": -1.83,
     "changePercent": -4.42,
-    "volume": 1097306
+    "volume": 1097306,
+    "sector": "Technology & Communication"
   },
   "LSECL": {
     "symbol": "LSECL",
@@ -1137,7 +1231,8 @@
     "currentPrice": 6.19,
     "change": 0.03,
     "changePercent": 0.49,
-    "volume": 1088341
+    "volume": 1088341,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "LUCK": {
     "symbol": "LUCK",
@@ -1149,7 +1244,8 @@
     "currentPrice": 437.33,
     "change": -4.72,
     "changePercent": -1.07,
-    "volume": 1079351
+    "volume": 1079351,
+    "sector": "Cement"
   },
   "LSEFSL": {
     "symbol": "LSEFSL",
@@ -1161,7 +1257,8 @@
     "currentPrice": 2.74,
     "change": -0.01,
     "changePercent": -0.36,
-    "volume": 1076741
+    "volume": 1076741,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "MUGHAL": {
     "symbol": "MUGHAL",
@@ -1173,7 +1270,8 @@
     "currentPrice": 78.76,
     "change": 0.91,
     "changePercent": 1.17,
-    "volume": 1064389
+    "volume": 1064389,
+    "sector": "Engineering"
   },
   "TREET": {
     "symbol": "TREET",
@@ -1185,7 +1283,8 @@
     "currentPrice": 23.52,
     "change": -0.11,
     "changePercent": -0.47,
-    "volume": 1022537
+    "volume": 1022537,
+    "sector": "Food & Personal Care Products"
   },
   "MZNPETF": {
     "symbol": "MZNPETF",
@@ -1197,7 +1296,8 @@
     "currentPrice": 17.86,
     "change": 0,
     "changePercent": 0,
-    "volume": 1014500
+    "volume": 1014500,
+    "sector": "Miscellaneous"
   },
   "AIRLINK": {
     "symbol": "AIRLINK",
@@ -1209,7 +1309,8 @@
     "currentPrice": 133.98,
     "change": 0.57,
     "changePercent": 0.43,
-    "volume": 1012927
+    "volume": 1012927,
+    "sector": "Technology & Communication"
   },
   "UBL": {
     "symbol": "UBL",
@@ -1221,7 +1322,8 @@
     "currentPrice": 450.76,
     "change": -7.94,
     "changePercent": -1.73,
-    "volume": 1000114
+    "volume": 1000114,
+    "sector": "Commercial Banks"
   },
   "DCL": {
     "symbol": "DCL",
@@ -1233,7 +1335,8 @@
     "currentPrice": 10.21,
     "change": 0,
     "changePercent": 0,
-    "volume": 997202
+    "volume": 997202,
+    "sector": "Cement"
   },
   "NML": {
     "symbol": "NML",
@@ -1245,7 +1348,8 @@
     "currentPrice": 143.86,
     "change": 0.52,
     "changePercent": 0.36,
-    "volume": 987689
+    "volume": 987689,
+    "sector": "Textile Composite"
   },
   "JVDC": {
     "symbol": "JVDC",
@@ -1257,7 +1361,8 @@
     "currentPrice": 144.14,
     "change": -0.8,
     "changePercent": -0.55,
-    "volume": 974227
+    "volume": 974227,
+    "sector": "Property"
   },
   "PASLNC": {
     "symbol": "PASLNC",
@@ -1269,7 +1374,8 @@
     "currentPrice": 2.41,
     "change": -0.01,
     "changePercent": -0.41,
-    "volume": 955534
+    "volume": 955534,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "BML": {
     "symbol": "BML",
@@ -1281,7 +1387,8 @@
     "currentPrice": 56.54,
     "change": 3.16,
     "changePercent": 5.92,
-    "volume": 947266
+    "volume": 947266,
+    "sector": "Commercial Banks"
   },
   "PAKRI": {
     "symbol": "PAKRI",
@@ -1293,7 +1400,8 @@
     "currentPrice": 17.18,
     "change": -0.04,
     "changePercent": -0.23,
-    "volume": 938000
+    "volume": 938000,
+    "sector": "Insurance"
   },
   "AGP": {
     "symbol": "AGP",
@@ -1305,7 +1413,8 @@
     "currentPrice": 163.46,
     "change": -5.74,
     "changePercent": -3.39,
-    "volume": 888516
+    "volume": 888516,
+    "sector": "Pharmaceuticals"
   },
   "MDTL": {
     "symbol": "MDTL",
@@ -1317,7 +1426,8 @@
     "currentPrice": 5.44,
     "change": -0.01,
     "changePercent": -0.18,
-    "volume": 880423
+    "volume": 880423,
+    "sector": "Technology & Communication"
   },
   "PTC": {
     "symbol": "PTC",
@@ -1329,7 +1439,8 @@
     "currentPrice": 69.42,
     "change": -0.22,
     "changePercent": -0.32,
-    "volume": 869575
+    "volume": 869575,
+    "sector": "Technology & Communication"
   },
   "ENGROH": {
     "symbol": "ENGROH",
@@ -1341,7 +1452,8 @@
     "currentPrice": 264.86,
     "change": -0.99,
     "changePercent": -0.37,
-    "volume": 859185
+    "volume": 859185,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "FFLM": {
     "symbol": "FFLM",
@@ -1353,7 +1465,8 @@
     "currentPrice": 14.32,
     "change": -0.84,
     "changePercent": -5.54,
-    "volume": 856421
+    "volume": 856421,
+    "sector": "Modarabas"
   },
   "DCR": {
     "symbol": "DCR",
@@ -1365,7 +1478,8 @@
     "currentPrice": 40.18,
     "change": -1.12,
     "changePercent": -2.71,
-    "volume": 819641
+    "volume": 819641,
+    "sector": "Real Estate Investment Trust"
   },
   "AICL": {
     "symbol": "AICL",
@@ -1377,7 +1491,8 @@
     "currentPrice": 94.11,
     "change": 0.22,
     "changePercent": 0.23,
-    "volume": 815567
+    "volume": 815567,
+    "sector": "Insurance"
   },
   "SYM": {
     "symbol": "SYM",
@@ -1389,7 +1504,8 @@
     "currentPrice": 12.7,
     "change": -0.09,
     "changePercent": -0.7,
-    "volume": 781615
+    "volume": 781615,
+    "sector": "Technology & Communication"
   },
   "MEBLXD": {
     "symbol": "MEBLXD",
@@ -1401,7 +1517,8 @@
     "currentPrice": 578.15,
     "change": 3.81,
     "changePercent": 0.66,
-    "volume": 779420
+    "volume": 779420,
+    "sector": "Commercial Banks"
   },
   "STPL": {
     "symbol": "STPL",
@@ -1413,7 +1530,8 @@
     "currentPrice": 8.63,
     "change": -0.11,
     "changePercent": -1.26,
-    "volume": 727560
+    "volume": 727560,
+    "sector": "Miscellaneous"
   },
   "AKBL": {
     "symbol": "AKBL",
@@ -1425,7 +1543,8 @@
     "currentPrice": 106.34,
     "change": -1.05,
     "changePercent": -0.98,
-    "volume": 727216
+    "volume": 727216,
+    "sector": "Commercial Banks"
   },
   "FPRMR2": {
     "symbol": "FPRMR2",
@@ -1437,7 +1556,8 @@
     "currentPrice": 1.5,
     "change": -0.83,
     "changePercent": -35.62,
-    "volume": 691459
+    "volume": 691459,
+    "sector": "Modarabas"
   },
   "EFERT": {
     "symbol": "EFERT",
@@ -1449,7 +1569,8 @@
     "currentPrice": 181.35,
     "change": -1.26,
     "changePercent": -0.69,
-    "volume": 665969
+    "volume": 665969,
+    "sector": "Fertilizer"
   },
   "CPHL": {
     "symbol": "CPHL",
@@ -1461,7 +1582,8 @@
     "currentPrice": 75.16,
     "change": -0.39,
     "changePercent": -0.52,
-    "volume": 634669
+    "volume": 634669,
+    "sector": "Pharmaceuticals"
   },
   "SPWL": {
     "symbol": "SPWL",
@@ -1473,7 +1595,8 @@
     "currentPrice": 8.64,
     "change": -0.17,
     "changePercent": -1.93,
-    "volume": 627223
+    "volume": 627223,
+    "sector": "Power Generation & Distribution"
   },
   "SNBL": {
     "symbol": "SNBL",
@@ -1485,7 +1608,8 @@
     "currentPrice": 20.89,
     "change": -0.04,
     "changePercent": -0.19,
-    "volume": 621482
+    "volume": 621482,
+    "sector": "Commercial Banks"
   },
   "UCAPM": {
     "symbol": "UCAPM",
@@ -1497,7 +1621,8 @@
     "currentPrice": 6.4,
     "change": -0.18,
     "changePercent": -2.74,
-    "volume": 579626
+    "volume": 579626,
+    "sector": "Modarabas"
   },
   "SINDM": {
     "symbol": "SINDM",
@@ -1509,7 +1634,8 @@
     "currentPrice": 30.61,
     "change": 1.87,
     "changePercent": 6.51,
-    "volume": 571248
+    "volume": 571248,
+    "sector": "Modarabas"
   },
   "FFC": {
     "symbol": "FFC",
@@ -1521,7 +1647,8 @@
     "currentPrice": 552.7,
     "change": 2.67,
     "changePercent": 0.49,
-    "volume": 568749
+    "volume": 568749,
+    "sector": "Fertilizer"
   },
   "MIIETFXD": {
     "symbol": "MIIETFXD",
@@ -1533,7 +1660,8 @@
     "currentPrice": 16.65,
     "change": -0.05,
     "changePercent": -0.3,
-    "volume": 564500
+    "volume": 564500,
+    "sector": "Miscellaneous"
   },
   "GGGL": {
     "symbol": "GGGL",
@@ -1545,7 +1673,8 @@
     "currentPrice": 8.25,
     "change": -0.19,
     "changePercent": -2.25,
-    "volume": 526204
+    "volume": 526204,
+    "sector": "Glass & Ceramics"
   },
   "ASTM": {
     "symbol": "ASTM",
@@ -1557,7 +1686,8 @@
     "currentPrice": 152.85,
     "change": 13.9,
     "changePercent": 10,
-    "volume": 525463
+    "volume": 525463,
+    "sector": "Textile Spinning"
   },
   "FTMM": {
     "symbol": "FTMM",
@@ -1569,7 +1699,8 @@
     "currentPrice": 22.14,
     "change": 1.98,
     "changePercent": 9.82,
-    "volume": 524457
+    "volume": 524457,
+    "sector": "Modarabas"
   },
   "STL": {
     "symbol": "STL",
@@ -1581,7 +1712,8 @@
     "currentPrice": 24.78,
     "change": -0.41,
     "changePercent": -1.63,
-    "volume": 481656
+    "volume": 481656,
+    "sector": "Technology & Communication"
   },
   "QTECH": {
     "symbol": "QTECH",
@@ -1593,7 +1725,8 @@
     "currentPrice": 39.96,
     "change": -0.11,
     "changePercent": -0.27,
-    "volume": 478072
+    "volume": 478072,
+    "sector": "Technology & Communication"
   },
   "IREIT": {
     "symbol": "IREIT",
@@ -1605,7 +1738,8 @@
     "currentPrice": 7.99,
     "change": 0.03,
     "changePercent": 0.38,
-    "volume": 476331
+    "volume": 476331,
+    "sector": "Real Estate Investment Trust"
   },
   "JSBL": {
     "symbol": "JSBL",
@@ -1617,7 +1751,8 @@
     "currentPrice": 13.11,
     "change": -0.29,
     "changePercent": -2.16,
-    "volume": 473548
+    "volume": 473548,
+    "sector": "Commercial Banks"
   },
   "IPAKXB": {
     "symbol": "IPAKXB",
@@ -1629,7 +1764,8 @@
     "currentPrice": 37.82,
     "change": -0.16,
     "changePercent": -0.42,
-    "volume": 472465
+    "volume": 472465,
+    "sector": "Paper, Board & Packaging"
   },
   "HRPL": {
     "symbol": "HRPL",
@@ -1641,7 +1777,8 @@
     "currentPrice": 22.02,
     "change": 0.62,
     "changePercent": 2.9,
-    "volume": 463848
+    "volume": 463848,
+    "sector": "Sugar & Allied Industries"
   },
   "GRR": {
     "symbol": "GRR",
@@ -1653,7 +1790,8 @@
     "currentPrice": 22.6,
     "change": -0.09,
     "changePercent": -0.4,
-    "volume": 460872
+    "volume": 460872,
+    "sector": "Real Estate Investment Trust"
   },
   "BNL": {
     "symbol": "BNL",
@@ -1665,7 +1803,8 @@
     "currentPrice": 6.22,
     "change": -0.04,
     "changePercent": -0.64,
-    "volume": 447799
+    "volume": 447799,
+    "sector": "Food & Personal Care Products"
   },
   "BAHLXD": {
     "symbol": "BAHLXD",
@@ -1677,7 +1816,8 @@
     "currentPrice": 162.55,
     "change": -1.91,
     "changePercent": -1.16,
-    "volume": 445135
+    "volume": 445135,
+    "sector": "Commercial Banks"
   },
   "KML": {
     "symbol": "KML",
@@ -1689,7 +1829,8 @@
     "currentPrice": 9.46,
     "change": 0.26,
     "changePercent": 2.83,
-    "volume": 442789
+    "volume": 442789,
+    "sector": "Textile Composite"
   },
   "TBL": {
     "symbol": "TBL",
@@ -1701,7 +1842,8 @@
     "currentPrice": 9.38,
     "change": -0.04,
     "changePercent": -0.43,
-    "volume": 431060
+    "volume": 431060,
+    "sector": "Automobile Parts & Accessories"
   },
   "GGL": {
     "symbol": "GGL",
@@ -1713,7 +1855,8 @@
     "currentPrice": 22.41,
     "change": 0.38,
     "changePercent": 1.73,
-    "volume": 423101
+    "volume": 423101,
+    "sector": "Chemical"
   },
   "KOHC": {
     "symbol": "KOHC",
@@ -1725,7 +1868,8 @@
     "currentPrice": 95.74,
     "change": -1.68,
     "changePercent": -1.72,
-    "volume": 422175
+    "volume": 422175,
+    "sector": "Cement"
   },
   "ITTEFAQ": {
     "symbol": "ITTEFAQ",
@@ -1737,7 +1881,8 @@
     "currentPrice": 8.32,
     "change": -0.1,
     "changePercent": -1.19,
-    "volume": 414227
+    "volume": 414227,
+    "sector": "Engineering"
   },
   "WAHDAT": {
     "symbol": "WAHDAT",
@@ -1749,7 +1894,8 @@
     "currentPrice": 15.78,
     "change": -0.1,
     "changePercent": -0.63,
-    "volume": 392989
+    "volume": 392989,
+    "sector": "Food & Personal Care Products"
   },
   "AKDSL": {
     "symbol": "AKDSL",
@@ -1761,7 +1907,8 @@
     "currentPrice": 37.18,
     "change": 0.09,
     "changePercent": 0.24,
-    "volume": 391825
+    "volume": 391825,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "MFL": {
     "symbol": "MFL",
@@ -1773,7 +1920,8 @@
     "currentPrice": 40.54,
     "change": -0.39,
     "changePercent": -0.95,
-    "volume": 384666
+    "volume": 384666,
+    "sector": "Food & Personal Care Products"
   },
   "TRSM": {
     "symbol": "TRSM",
@@ -1785,7 +1933,8 @@
     "currentPrice": 17.16,
     "change": 0.06,
     "changePercent": 0.35,
-    "volume": 384055
+    "volume": 384055,
+    "sector": "Modarabas"
   },
   "HIRATNC": {
     "symbol": "HIRATNC",
@@ -1797,7 +1946,8 @@
     "currentPrice": 6.41,
     "change": -0.09,
     "changePercent": -1.38,
-    "volume": 382129
+    "volume": 382129,
+    "sector": "Textile Spinning"
   },
   "SELECT": {
     "symbol": "SELECT",
@@ -1809,7 +1959,8 @@
     "currentPrice": 27.77,
     "change": -0.33,
     "changePercent": -1.17,
-    "volume": 382128
+    "volume": 382128,
+    "sector": "Technology & Communication"
   },
   "GCWL": {
     "symbol": "GCWL",
@@ -1821,7 +1972,8 @@
     "currentPrice": 15.64,
     "change": 0.08,
     "changePercent": 0.51,
-    "volume": 375675
+    "volume": 375675,
+    "sector": "Chemical"
   },
   "MARI": {
     "symbol": "MARI",
@@ -1833,7 +1985,8 @@
     "currentPrice": 663.26,
     "change": -1.44,
     "changePercent": -0.22,
-    "volume": 371066
+    "volume": 371066,
+    "sector": "Oil & Gas Exploration Companies"
   },
   "CEPB": {
     "symbol": "CEPB",
@@ -1845,7 +1998,8 @@
     "currentPrice": 27.53,
     "change": -0.49,
     "changePercent": -1.75,
-    "volume": 356211
+    "volume": 356211,
+    "sector": "Paper, Board & Packaging"
   },
   "KTML": {
     "symbol": "KTML",
@@ -1857,7 +2011,8 @@
     "currentPrice": 42.92,
     "change": -0.27,
     "changePercent": -0.62,
-    "volume": 355515
+    "volume": 355515,
+    "sector": "Textile Composite"
   },
   "HMB": {
     "symbol": "HMB",
@@ -1869,7 +2024,8 @@
     "currentPrice": 101.31,
     "change": -0.7,
     "changePercent": -0.69,
-    "volume": 351849
+    "volume": 351849,
+    "sector": "Commercial Banks"
   },
   "GLAXO": {
     "symbol": "GLAXO",
@@ -1881,7 +2037,8 @@
     "currentPrice": 334.97,
     "change": -3.81,
     "changePercent": -1.12,
-    "volume": 344884
+    "volume": 344884,
+    "sector": "Pharmaceuticals"
   },
   "GWLC": {
     "symbol": "GWLC",
@@ -1893,7 +2050,8 @@
     "currentPrice": 54,
     "change": 0,
     "changePercent": 0,
-    "volume": 344301
+    "volume": 344301,
+    "sector": "Cement"
   },
   "GDL": {
     "symbol": "GDL",
@@ -1905,7 +2063,8 @@
     "currentPrice": 17.14,
     "change": -0.06,
     "changePercent": -0.35,
-    "volume": 340871
+    "volume": 340871,
+    "sector": "Food & Personal Care Products"
   },
   "PKGI": {
     "symbol": "PKGI",
@@ -1917,7 +2076,8 @@
     "currentPrice": 35.2,
     "change": 2.94,
     "changePercent": 9.11,
-    "volume": 335821
+    "volume": 335821,
+    "sector": "Insurance"
   },
   "ASTL": {
     "symbol": "ASTL",
@@ -1929,7 +2089,8 @@
     "currentPrice": 15.32,
     "change": -0.25,
     "changePercent": -1.61,
-    "volume": 325643
+    "volume": 325643,
+    "sector": "Engineering"
   },
   "TPLL": {
     "symbol": "TPLL",
@@ -1941,7 +2102,8 @@
     "currentPrice": 20.94,
     "change": -0.07,
     "changePercent": -0.33,
-    "volume": 323130
+    "volume": 323130,
+    "sector": "Insurance"
   },
   "KAPCO": {
     "symbol": "KAPCO",
@@ -1953,7 +2115,8 @@
     "currentPrice": 27.47,
     "change": -0.03,
     "changePercent": -0.11,
-    "volume": 322541
+    "volume": 322541,
+    "sector": "Power Generation & Distribution"
   },
   "FABLXD": {
     "symbol": "FABLXD",
@@ -1965,7 +2128,8 @@
     "currentPrice": 96.1,
     "change": -0.32,
     "changePercent": -0.33,
-    "volume": 321637
+    "volume": 321637,
+    "sector": "Commercial Banks"
   },
   "CHBL": {
     "symbol": "CHBL",
@@ -1977,7 +2141,8 @@
     "currentPrice": 9.07,
     "change": 0.02,
     "changePercent": 0.22,
-    "volume": 317367
+    "volume": 317367,
+    "sector": "Textile Composite"
   },
   "NRSL": {
     "symbol": "NRSL",
@@ -1989,7 +2154,8 @@
     "currentPrice": 40.07,
     "change": -0.44,
     "changePercent": -1.09,
-    "volume": 310991
+    "volume": 310991,
+    "sector": "Chemical"
   },
   "GTYR": {
     "symbol": "GTYR",
@@ -2001,7 +2167,8 @@
     "currentPrice": 29.85,
     "change": 0.58,
     "changePercent": 1.98,
-    "volume": 310205
+    "volume": 310205,
+    "sector": "Automobile Parts & Accessories"
   },
   "SGF": {
     "symbol": "SGF",
@@ -2013,7 +2180,8 @@
     "currentPrice": 117.55,
     "change": -2.46,
     "changePercent": -2.05,
-    "volume": 303428
+    "volume": 303428,
+    "sector": "Leather & Tanneries"
   },
   "NICL": {
     "symbol": "NICL",
@@ -2025,7 +2193,8 @@
     "currentPrice": 261,
     "change": 1.68,
     "changePercent": 0.65,
-    "volume": 301709
+    "volume": 301709,
+    "sector": "Chemical"
   },
   "GAL": {
     "symbol": "GAL",
@@ -2037,7 +2206,8 @@
     "currentPrice": 641.4,
     "change": 6.11,
     "changePercent": 0.96,
-    "volume": 301642
+    "volume": 301642,
+    "sector": "Automobile Assembler"
   },
   "UNIC": {
     "symbol": "UNIC",
@@ -2049,7 +2219,8 @@
     "currentPrice": 11.87,
     "change": -0.03,
     "changePercent": -0.25,
-    "volume": 301393
+    "volume": 301393,
+    "sector": "Insurance"
   },
   "PICT": {
     "symbol": "PICT",
@@ -2061,7 +2232,8 @@
     "currentPrice": 44.95,
     "change": -0.17,
     "changePercent": -0.38,
-    "volume": 292623
+    "volume": 292623,
+    "sector": "Transport"
   },
   "IMAGE": {
     "symbol": "IMAGE",
@@ -2073,7 +2245,8 @@
     "currentPrice": 26.1,
     "change": -0.37,
     "changePercent": -1.4,
-    "volume": 288577
+    "volume": 288577,
+    "sector": "Apparel"
   },
   "CSAP": {
     "symbol": "CSAP",
@@ -2085,7 +2258,8 @@
     "currentPrice": 102.37,
     "change": -0.24,
     "changePercent": -0.23,
-    "volume": 288141
+    "volume": 288141,
+    "sector": "Engineering"
   },
   "AMTEXNC": {
     "symbol": "AMTEXNC",
@@ -2097,7 +2271,8 @@
     "currentPrice": 4.14,
     "change": -0.06,
     "changePercent": -1.43,
-    "volume": 282280
+    "volume": 282280,
+    "sector": "Textile Spinning"
   },
   "PINL": {
     "symbol": "PINL",
@@ -2109,7 +2284,8 @@
     "currentPrice": 10.59,
     "change": 0,
     "changePercent": 0,
-    "volume": 280186
+    "volume": 280186,
+    "sector": "Insurance"
   },
   "CPPL": {
     "symbol": "CPPL",
@@ -2121,7 +2297,8 @@
     "currentPrice": 114.31,
     "change": -0.66,
     "changePercent": -0.57,
-    "volume": 273870
+    "volume": 273870,
+    "sector": "Paper, Board & Packaging"
   },
   "ALTN": {
     "symbol": "ALTN",
@@ -2133,7 +2310,8 @@
     "currentPrice": 7.63,
     "change": 0.21,
     "changePercent": 2.83,
-    "volume": 270175
+    "volume": 270175,
+    "sector": "Power Generation & Distribution"
   },
   "PAKOXY": {
     "symbol": "PAKOXY",
@@ -2145,7 +2323,8 @@
     "currentPrice": 332.57,
     "change": 6.57,
     "changePercent": 2.02,
-    "volume": 267774
+    "volume": 267774,
+    "sector": "Chemical"
   },
   "GATM": {
     "symbol": "GATM",
@@ -2157,7 +2336,8 @@
     "currentPrice": 24,
     "change": -0.07,
     "changePercent": -0.29,
-    "volume": 259848
+    "volume": 259848,
+    "sector": "Textile Composite"
   },
   "NCL": {
     "symbol": "NCL",
@@ -2169,7 +2349,8 @@
     "currentPrice": 36.72,
     "change": -0.5,
     "changePercent": -1.34,
-    "volume": 255742
+    "volume": 255742,
+    "sector": "Textile Composite"
   },
   "PIOC": {
     "symbol": "PIOC",
@@ -2181,7 +2362,8 @@
     "currentPrice": 258.48,
     "change": -3.97,
     "changePercent": -1.51,
-    "volume": 238609
+    "volume": 238609,
+    "sector": "Cement"
   },
   "BGL": {
     "symbol": "BGL",
@@ -2193,7 +2375,8 @@
     "currentPrice": 10.53,
     "change": -0.3,
     "changePercent": -2.77,
-    "volume": 237163
+    "volume": 237163,
+    "sector": "Glass & Ceramics"
   },
   "DFML": {
     "symbol": "DFML",
@@ -2205,7 +2388,8 @@
     "currentPrice": 16.94,
     "change": 0.14,
     "changePercent": 0.83,
-    "volume": 228949
+    "volume": 228949,
+    "sector": "Automobile Assembler"
   },
   "PTL": {
     "symbol": "PTL",
@@ -2217,7 +2401,8 @@
     "currentPrice": 54.65,
     "change": 0.16,
     "changePercent": 0.29,
-    "volume": 228685
+    "volume": 228685,
+    "sector": "Automobile Parts & Accessories"
   },
   "SBL": {
     "symbol": "SBL",
@@ -2229,7 +2414,8 @@
     "currentPrice": 13.66,
     "change": -0.14,
     "changePercent": -1.01,
-    "volume": 227685
+    "volume": 227685,
+    "sector": "Commercial Banks"
   },
   "PGLC": {
     "symbol": "PGLC",
@@ -2241,7 +2427,8 @@
     "currentPrice": 16.17,
     "change": 0.56,
     "changePercent": 3.59,
-    "volume": 227045
+    "volume": 227045,
+    "sector": "Leasing Companies"
   },
   "KOHE": {
     "symbol": "KOHE",
@@ -2253,7 +2440,8 @@
     "currentPrice": 15.7,
     "change": -0.28,
     "changePercent": -1.75,
-    "volume": 223382
+    "volume": 223382,
+    "sector": "Power Generation & Distribution"
   },
   "ANL": {
     "symbol": "ANL",
@@ -2265,7 +2453,8 @@
     "currentPrice": 10,
     "change": -0.05,
     "changePercent": -0.5,
-    "volume": 222951
+    "volume": 222951,
+    "sector": "Textile Composite"
   },
   "SPEL": {
     "symbol": "SPEL",
@@ -2277,7 +2466,8 @@
     "currentPrice": 44.44,
     "change": -0.08,
     "changePercent": -0.18,
-    "volume": 222587
+    "volume": 222587,
+    "sector": "Paper, Board & Packaging"
   },
   "FCSC": {
     "symbol": "FCSC",
@@ -2289,7 +2479,8 @@
     "currentPrice": 4.72,
     "change": -0.03,
     "changePercent": -0.63,
-    "volume": 216154
+    "volume": 216154,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "GHGL": {
     "symbol": "GHGL",
@@ -2301,7 +2492,8 @@
     "currentPrice": 41.8,
     "change": -0.97,
     "changePercent": -2.27,
-    "volume": 215742
+    "volume": 215742,
+    "sector": "Glass & Ceramics"
   },
   "SPAC2": {
     "symbol": "SPAC2",
@@ -2313,7 +2505,8 @@
     "currentPrice": 13.5,
     "change": 0,
     "changePercent": 0,
-    "volume": 214844
+    "volume": 214844,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "PAKQATAR": {
     "symbol": "PAKQATAR",
@@ -2325,7 +2518,8 @@
     "currentPrice": 19.43,
     "change": -0.04,
     "changePercent": -0.21,
-    "volume": 214634
+    "volume": 214634,
+    "sector": "Insurance"
   },
   "CHCC": {
     "symbol": "CHCC",
@@ -2337,7 +2531,8 @@
     "currentPrice": 302.27,
     "change": -1.05,
     "changePercent": -0.35,
-    "volume": 214359
+    "volume": 214359,
+    "sector": "Cement"
   },
   "UBLPETF": {
     "symbol": "UBLPETF",
@@ -2349,7 +2544,8 @@
     "currentPrice": 29.25,
     "change": -0.17,
     "changePercent": -0.58,
-    "volume": 214000
+    "volume": 214000,
+    "sector": "Miscellaneous"
   },
   "MTL": {
     "symbol": "MTL",
@@ -2361,7 +2557,8 @@
     "currentPrice": 301.45,
     "change": 0.25,
     "changePercent": 0.08,
-    "volume": 206314
+    "volume": 206314,
+    "sector": "Automobile Assembler"
   },
   "BRRG": {
     "symbol": "BRRG",
@@ -2373,7 +2570,8 @@
     "currentPrice": 44.1,
     "change": -0.9,
     "changePercent": -2,
-    "volume": 200958
+    "volume": 200958,
+    "sector": "Property"
   },
   "DFSM": {
     "symbol": "DFSM",
@@ -2385,7 +2583,8 @@
     "currentPrice": 14.23,
     "change": -0.38,
     "changePercent": -2.6,
-    "volume": 198604
+    "volume": 198604,
+    "sector": "Textile Spinning"
   },
   "ISL": {
     "symbol": "ISL",
@@ -2397,7 +2596,8 @@
     "currentPrice": 92.01,
     "change": 0.32,
     "changePercent": 0.35,
-    "volume": 196560
+    "volume": 196560,
+    "sector": "Engineering"
   },
   "DBCINC": {
     "symbol": "DBCINC",
@@ -2409,7 +2609,8 @@
     "currentPrice": 12.73,
     "change": -0.24,
     "changePercent": -1.85,
-    "volume": 195337
+    "volume": 195337,
+    "sector": "Cement"
   },
   "POL": {
     "symbol": "POL",
@@ -2421,7 +2622,8 @@
     "currentPrice": 734.56,
     "change": -4.84,
     "changePercent": -0.65,
-    "volume": 194446
+    "volume": 194446,
+    "sector": "Oil & Gas Exploration Companies"
   },
   "TSPL": {
     "symbol": "TSPL",
@@ -2433,7 +2635,8 @@
     "currentPrice": 16.37,
     "change": -0.96,
     "changePercent": -5.54,
-    "volume": 185647
+    "volume": 185647,
+    "sector": "Power Generation & Distribution"
   },
   "HIFA": {
     "symbol": "HIFA",
@@ -2445,7 +2648,8 @@
     "currentPrice": 5.18,
     "change": 0.03,
     "changePercent": 0.58,
-    "volume": 182892
+    "volume": 182892,
+    "sector": "Close - End Mutual Fund"
   },
   "ALAC": {
     "symbol": "ALAC",
@@ -2457,7 +2661,8 @@
     "currentPrice": 19.91,
     "change": -0.47,
     "changePercent": -2.31,
-    "volume": 180923
+    "volume": 180923,
+    "sector": "Insurance"
   },
   "CJPLWU": {
     "symbol": "CJPLWU",
@@ -2469,7 +2674,8 @@
     "currentPrice": 17.5,
     "change": -0.5,
     "changePercent": -2.78,
-    "volume": 174258
+    "volume": 174258,
+    "sector": "Miscellaneous"
   },
   "BFBIO": {
     "symbol": "BFBIO",
@@ -2481,7 +2687,8 @@
     "currentPrice": 132.33,
     "change": -1.69,
     "changePercent": -1.26,
-    "volume": 173796
+    "volume": 173796,
+    "sector": "Pharmaceuticals"
   },
   "ZAL": {
     "symbol": "ZAL",
@@ -2493,7 +2700,8 @@
     "currentPrice": 39.5,
     "change": -0.36,
     "changePercent": -0.9,
-    "volume": 173430
+    "volume": 173430,
+    "sector": "Technology & Communication"
   },
   "ABLXD": {
     "symbol": "ABLXD",
@@ -2505,7 +2713,8 @@
     "currentPrice": 169.53,
     "change": 0.06,
     "changePercent": 0.03,
-    "volume": 172770
+    "volume": 172770,
+    "sector": "Commercial Banks"
   },
   "LEUL": {
     "symbol": "LEUL",
@@ -2517,7 +2726,8 @@
     "currentPrice": 59.52,
     "change": 5.41,
     "changePercent": 10,
-    "volume": 169059
+    "volume": 169059,
+    "sector": "Leather & Tanneries"
   },
   "UDLI": {
     "symbol": "UDLI",
@@ -2529,7 +2739,8 @@
     "currentPrice": 17.99,
     "change": -0.17,
     "changePercent": -0.94,
-    "volume": 163177
+    "volume": 163177,
+    "sector": "Miscellaneous"
   },
   "PQGTL": {
     "symbol": "PQGTL",
@@ -2541,7 +2752,8 @@
     "currentPrice": 14,
     "change": 0.04,
     "changePercent": 0.29,
-    "volume": 156115
+    "volume": 156115,
+    "sector": "Insurance"
   },
   "LCI": {
     "symbol": "LCI",
@@ -2553,7 +2765,8 @@
     "currentPrice": 220.5,
     "change": -3.44,
     "changePercent": -1.54,
-    "volume": 155001
+    "volume": 155001,
+    "sector": "Chemical"
   },
   "MCB": {
     "symbol": "MCB",
@@ -2565,7 +2778,8 @@
     "currentPrice": 405.27,
     "change": 2.59,
     "changePercent": 0.64,
-    "volume": 154736
+    "volume": 154736,
+    "sector": "Commercial Banks"
   },
   "BFMOD": {
     "symbol": "BFMOD",
@@ -2577,7 +2791,8 @@
     "currentPrice": 24,
     "change": 0.65,
     "changePercent": 2.78,
-    "volume": 150222
+    "volume": 150222,
+    "sector": "Modarabas"
   },
   "INKL": {
     "symbol": "INKL",
@@ -2589,7 +2804,8 @@
     "currentPrice": 98.2,
     "change": -1.78,
     "changePercent": -1.78,
-    "volume": 146755
+    "volume": 146755,
+    "sector": "Apparel"
   },
   "RPL": {
     "symbol": "RPL",
@@ -2601,7 +2817,8 @@
     "currentPrice": 16.04,
     "change": -0.06,
     "changePercent": -0.37,
-    "volume": 138852
+    "volume": 138852,
+    "sector": "Paper, Board & Packaging"
   },
   "SAZEW": {
     "symbol": "SAZEW",
@@ -2613,7 +2830,8 @@
     "currentPrice": 1883.76,
     "change": 15.34,
     "changePercent": 0.82,
-    "volume": 135808
+    "volume": 135808,
+    "sector": "Automobile Assembler"
   },
   "TATM": {
     "symbol": "TATM",
@@ -2625,7 +2843,8 @@
     "currentPrice": 172.6,
     "change": 0.11,
     "changePercent": 0.06,
-    "volume": 135091
+    "volume": 135091,
+    "sector": "Textile Spinning"
   },
   "RUBYNC": {
     "symbol": "RUBYNC",
@@ -2637,7 +2856,8 @@
     "currentPrice": 22.91,
     "change": -2.09,
     "changePercent": -8.36,
-    "volume": 131912
+    "volume": 131912,
+    "sector": "Textile Spinning"
   },
   "WAFI": {
     "symbol": "WAFI",
@@ -2649,7 +2869,8 @@
     "currentPrice": 172.68,
     "change": -0.48,
     "changePercent": -0.28,
-    "volume": 131819
+    "volume": 131819,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "FDPL": {
     "symbol": "FDPL",
@@ -2661,7 +2882,8 @@
     "currentPrice": 4.74,
     "change": -0.04,
     "changePercent": -0.84,
-    "volume": 130861
+    "volume": 130861,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "EMCO": {
     "symbol": "EMCO",
@@ -2673,7 +2895,8 @@
     "currentPrice": 43.54,
     "change": -3.6,
     "changePercent": -7.64,
-    "volume": 127813
+    "volume": 127813,
+    "sector": "Cable & Electrical Goods"
   },
   "FEM": {
     "symbol": "FEM",
@@ -2685,7 +2908,8 @@
     "currentPrice": 11.81,
     "change": -0.64,
     "changePercent": -5.14,
-    "volume": 127074
+    "volume": 127074,
+    "sector": "Modarabas"
   },
   "KOIL": {
     "symbol": "KOIL",
@@ -2697,7 +2921,8 @@
     "currentPrice": 40.42,
     "change": 0.31,
     "changePercent": 0.77,
-    "volume": 126788
+    "volume": 126788,
+    "sector": "Textile Composite"
   },
   "BCL": {
     "symbol": "BCL",
@@ -2709,7 +2934,8 @@
     "currentPrice": 76.87,
     "change": 6.37,
     "changePercent": 9.04,
-    "volume": 126124
+    "volume": 126124,
+    "sector": "Engineering"
   },
   "DIIL": {
     "symbol": "DIIL",
@@ -2721,7 +2947,8 @@
     "currentPrice": 66.01,
     "change": 5.99,
     "changePercent": 9.98,
-    "volume": 123188
+    "volume": 123188,
+    "sector": "Miscellaneous"
   },
   "FPRM": {
     "symbol": "FPRM",
@@ -2733,7 +2960,8 @@
     "currentPrice": 11.21,
     "change": -0.65,
     "changePercent": -5.48,
-    "volume": 113092
+    "volume": 113092,
+    "sector": "Modarabas"
   },
   "ABOT": {
     "symbol": "ABOT",
@@ -2745,7 +2973,8 @@
     "currentPrice": 940.26,
     "change": -31.41,
     "changePercent": -3.23,
-    "volume": 109610
+    "volume": 109610,
+    "sector": "Pharmaceuticals"
   },
   "DOL": {
     "symbol": "DOL",
@@ -2757,7 +2986,8 @@
     "currentPrice": 29.79,
     "change": -0.21,
     "changePercent": -0.7,
-    "volume": 108579
+    "volume": 108579,
+    "sector": "Chemical"
   },
   "APL": {
     "symbol": "APL",
@@ -2769,7 +2999,8 @@
     "currentPrice": 584.3,
     "change": -6.79,
     "changePercent": -1.15,
-    "volume": 106503
+    "volume": 106503,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "GHNI": {
     "symbol": "GHNI",
@@ -2781,7 +3012,8 @@
     "currentPrice": 1290.11,
     "change": -13.18,
     "changePercent": -1.01,
-    "volume": 106154
+    "volume": 106154,
+    "sector": "Automobile Assembler"
   },
   "CENIXD": {
     "symbol": "CENIXD",
@@ -2793,7 +3025,8 @@
     "currentPrice": 58.06,
     "change": -3.22,
     "changePercent": -5.25,
-    "volume": 103347
+    "volume": 103347,
+    "sector": "Insurance"
   },
   "CTM": {
     "symbol": "CTM",
@@ -2805,7 +3038,8 @@
     "currentPrice": 6.74,
     "change": 0.18,
     "changePercent": 2.74,
-    "volume": 100721
+    "volume": 100721,
+    "sector": "Textile Spinning"
   },
   "HTL": {
     "symbol": "HTL",
@@ -2817,7 +3051,8 @@
     "currentPrice": 40.34,
     "change": 0.04,
     "changePercent": 0.1,
-    "volume": 98490
+    "volume": 98490,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "LSEVL": {
     "symbol": "LSEVL",
@@ -2829,7 +3064,8 @@
     "currentPrice": 12.69,
     "change": -0.19,
     "changePercent": -1.47,
-    "volume": 98281
+    "volume": 98281,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "DNCC": {
     "symbol": "DNCC",
@@ -2841,7 +3077,8 @@
     "currentPrice": 16.05,
     "change": -0.54,
     "changePercent": -3.26,
-    "volume": 96424
+    "volume": 96424,
+    "sector": "Cement"
   },
   "SRVI": {
     "symbol": "SRVI",
@@ -2853,7 +3090,8 @@
     "currentPrice": 199.53,
     "change": -0.49,
     "changePercent": -0.24,
-    "volume": 93721
+    "volume": 93721,
+    "sector": "Leather & Tanneries"
   },
   "ADMM": {
     "symbol": "ADMM",
@@ -2865,7 +3103,8 @@
     "currentPrice": 51.93,
     "change": 0.71,
     "changePercent": 1.39,
-    "volume": 92588
+    "volume": 92588,
+    "sector": "Textile Composite"
   },
   "QUICE": {
     "symbol": "QUICE",
@@ -2877,7 +3116,8 @@
     "currentPrice": 30.45,
     "change": -0.24,
     "changePercent": -0.78,
-    "volume": 92311
+    "volume": 92311,
+    "sector": "Food & Personal Care Products"
   },
   "SPLNC": {
     "symbol": "SPLNC",
@@ -2889,7 +3129,8 @@
     "currentPrice": 50.55,
     "change": 1.36,
     "changePercent": 2.77,
-    "volume": 88971
+    "volume": 88971,
+    "sector": "Chemical"
   },
   "DLL": {
     "symbol": "DLL",
@@ -2901,7 +3142,8 @@
     "currentPrice": 50.79,
     "change": -1.32,
     "changePercent": -2.53,
-    "volume": 83596
+    "volume": 83596,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "MSOT": {
     "symbol": "MSOT",
@@ -2913,7 +3155,8 @@
     "currentPrice": 168.99,
     "change": -3.83,
     "changePercent": -2.22,
-    "volume": 82356
+    "volume": 82356,
+    "sector": "Apparel"
   },
   "ARCTM": {
     "symbol": "ARCTM",
@@ -2925,7 +3168,8 @@
     "currentPrice": 43.58,
     "change": -0.46,
     "changePercent": -1.04,
-    "volume": 81859
+    "volume": 81859,
+    "sector": "Textile Spinning"
   },
   "DWTMWU": {
     "symbol": "DWTMWU",
@@ -2937,7 +3181,8 @@
     "currentPrice": 10.56,
     "change": -0.82,
     "changePercent": -7.21,
-    "volume": 80357
+    "volume": 80357,
+    "sector": "Miscellaneous"
   },
   "FML": {
     "symbol": "FML",
@@ -2949,7 +3194,8 @@
     "currentPrice": 49.74,
     "change": -1.37,
     "changePercent": -2.68,
-    "volume": 79686
+    "volume": 79686,
+    "sector": "Textile Composite"
   },
   "FTSM": {
     "symbol": "FTSM",
@@ -2961,7 +3207,8 @@
     "currentPrice": 48.87,
     "change": 3.68,
     "changePercent": 8.14,
-    "volume": 78619
+    "volume": 78619,
+    "sector": "Modarabas"
   },
   "HGFA": {
     "symbol": "HGFA",
@@ -2973,7 +3220,8 @@
     "currentPrice": 14.66,
     "change": 0.31,
     "changePercent": 2.16,
-    "volume": 76929
+    "volume": 76929,
+    "sector": "Close - End Mutual Fund"
   },
   "ECOP": {
     "symbol": "ECOP",
@@ -2985,7 +3233,8 @@
     "currentPrice": 48.5,
     "change": -0.52,
     "changePercent": -1.06,
-    "volume": 72813
+    "volume": 72813,
+    "sector": "Miscellaneous"
   },
   "TGL": {
     "symbol": "TGL",
@@ -2997,7 +3246,8 @@
     "currentPrice": 180.95,
     "change": 0.96,
     "changePercent": 0.53,
-    "volume": 71741
+    "volume": 71741,
+    "sector": "Glass & Ceramics"
   },
   "FECTC": {
     "symbol": "FECTC",
@@ -3009,7 +3259,8 @@
     "currentPrice": 106.55,
     "change": -0.36,
     "changePercent": -0.34,
-    "volume": 67083
+    "volume": 67083,
+    "sector": "Cement"
   },
   "GSPMNC": {
     "symbol": "GSPMNC",
@@ -3021,7 +3272,8 @@
     "currentPrice": 6.58,
     "change": 0.28,
     "changePercent": 4.44,
-    "volume": 64330
+    "volume": 64330,
+    "sector": "Textile Spinning"
   },
   "MQTM": {
     "symbol": "MQTM",
@@ -3033,7 +3285,8 @@
     "currentPrice": 30.35,
     "change": -0.37,
     "changePercent": -1.2,
-    "volume": 63431
+    "volume": 63431,
+    "sector": "Textile Spinning"
   },
   "GAMONNC": {
     "symbol": "GAMONNC",
@@ -3045,7 +3298,8 @@
     "currentPrice": 23.41,
     "change": -1.5,
     "changePercent": -6.02,
-    "volume": 63360
+    "volume": 63360,
+    "sector": "Miscellaneous"
   },
   "CLCPS": {
     "symbol": "CLCPS",
@@ -3057,7 +3311,8 @@
     "currentPrice": 3.5,
     "change": -0.13,
     "changePercent": -3.58,
-    "volume": 63038
+    "volume": 63038,
+    "sector": "Miscellaneous"
   },
   "FECM": {
     "symbol": "FECM",
@@ -3069,7 +3324,8 @@
     "currentPrice": 27.72,
     "change": 0.04,
     "changePercent": 0.15,
-    "volume": 60095
+    "volume": 60095,
+    "sector": "Modarabas"
   },
   "LPL": {
     "symbol": "LPL",
@@ -3081,7 +3337,8 @@
     "currentPrice": 21.02,
     "change": -0.21,
     "changePercent": -0.99,
-    "volume": 58529
+    "volume": 58529,
+    "sector": "Power Generation & Distribution"
   },
   "AGSML": {
     "symbol": "AGSML",
@@ -3093,7 +3350,8 @@
     "currentPrice": 8.77,
     "change": -0.06,
     "changePercent": -0.68,
-    "volume": 56276
+    "volume": 56276,
+    "sector": "Sugar & Allied Industries"
   },
   "KSBP": {
     "symbol": "KSBP",
@@ -3105,7 +3363,8 @@
     "currentPrice": 233.69,
     "change": -11.79,
     "changePercent": -4.8,
-    "volume": 56041
+    "volume": 56041,
+    "sector": "Engineering"
   },
   "PABC": {
     "symbol": "PABC",
@@ -3117,7 +3376,8 @@
     "currentPrice": 99.99,
     "change": -1.68,
     "changePercent": -1.65,
-    "volume": 55897
+    "volume": 55897,
+    "sector": "Miscellaneous"
   },
   "GEMPAPL": {
     "symbol": "GEMPAPL",
@@ -3129,7 +3389,8 @@
     "currentPrice": 10.5,
     "change": 0,
     "changePercent": 0,
-    "volume": 55000
+    "volume": 55000,
+    "sector": "Paper, Board & Packaging"
   },
   "ICL": {
     "symbol": "ICL",
@@ -3141,7 +3402,8 @@
     "currentPrice": 134.06,
     "change": -0.44,
     "changePercent": -0.33,
-    "volume": 54729
+    "volume": 54729,
+    "sector": "Chemical"
   },
   "BUXL": {
     "symbol": "BUXL",
@@ -3153,7 +3415,8 @@
     "currentPrice": 842.52,
     "change": 76.59,
     "changePercent": 10,
-    "volume": 54279
+    "volume": 54279,
+    "sector": "Chemical"
   },
   "BFAGRO": {
     "symbol": "BFAGRO",
@@ -3165,7 +3428,8 @@
     "currentPrice": 33.03,
     "change": -0.16,
     "changePercent": -0.48,
-    "volume": 53830
+    "volume": 53830,
+    "sector": "Food & Personal Care Products"
   },
   "NATF": {
     "symbol": "NATF",
@@ -3177,7 +3441,8 @@
     "currentPrice": 370.21,
     "change": -0.76,
     "changePercent": -0.21,
-    "volume": 53534
+    "volume": 53534,
+    "sector": "Food & Personal Care Products"
   },
   "FCELNC": {
     "symbol": "FCELNC",
@@ -3189,7 +3454,8 @@
     "currentPrice": 4.91,
     "change": -0.06,
     "changePercent": -1.21,
-    "volume": 53135
+    "volume": 53135,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "TOWL": {
     "symbol": "TOWL",
@@ -3201,7 +3467,8 @@
     "currentPrice": 144.19,
     "change": -3.38,
     "changePercent": -2.29,
-    "volume": 52923
+    "volume": 52923,
+    "sector": "Textile Composite"
   },
   "MEHT": {
     "symbol": "MEHT",
@@ -3213,7 +3480,8 @@
     "currentPrice": 141.41,
     "change": -0.56,
     "changePercent": -0.39,
-    "volume": 52722
+    "volume": 52722,
+    "sector": "Textile Composite"
   },
   "SHDT": {
     "symbol": "SHDT",
@@ -3225,7 +3493,8 @@
     "currentPrice": 57.2,
     "change": -1.64,
     "changePercent": -2.79,
-    "volume": 52288
+    "volume": 52288,
+    "sector": "Textile Spinning"
   },
   "IMS": {
     "symbol": "IMS",
@@ -3237,7 +3506,8 @@
     "currentPrice": 20.8,
     "change": -0.17,
     "changePercent": -0.81,
-    "volume": 52195
+    "volume": 52195,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "SHNI": {
     "symbol": "SHNI",
@@ -3249,7 +3519,8 @@
     "currentPrice": 8.71,
     "change": -0.08,
     "changePercent": -0.91,
-    "volume": 51935
+    "volume": 51935,
+    "sector": "Insurance"
   },
   "IGIL": {
     "symbol": "IGIL",
@@ -3261,7 +3532,8 @@
     "currentPrice": 19.49,
     "change": 0.03,
     "changePercent": 0.15,
-    "volume": 51373
+    "volume": 51373,
+    "sector": "Insurance"
   },
   "ARPAK": {
     "symbol": "ARPAK",
@@ -3273,7 +3545,8 @@
     "currentPrice": 172.88,
     "change": -13.79,
     "changePercent": -7.39,
-    "volume": 50741
+    "volume": 50741,
+    "sector": "Miscellaneous"
   },
   "AHL": {
     "symbol": "AHL",
@@ -3285,7 +3558,8 @@
     "currentPrice": 135.22,
     "change": 0.37,
     "changePercent": 0.27,
-    "volume": 50719
+    "volume": 50719,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "ALIFE": {
     "symbol": "ALIFE",
@@ -3297,7 +3571,8 @@
     "currentPrice": 32.67,
     "change": -0.44,
     "changePercent": -1.33,
-    "volume": 49168
+    "volume": 49168,
+    "sector": "Insurance"
   },
   "PIM": {
     "symbol": "PIM",
@@ -3309,7 +3584,8 @@
     "currentPrice": 58.27,
     "change": 2.36,
     "changePercent": 4.22,
-    "volume": 49125
+    "volume": 49125,
+    "sector": "Modarabas"
   },
   "KOHP": {
     "symbol": "KOHP",
@@ -3321,7 +3597,8 @@
     "currentPrice": 22.05,
     "change": 0.17,
     "changePercent": 0.78,
-    "volume": 48639
+    "volume": 48639,
+    "sector": "Power Generation & Distribution"
   },
   "ORM": {
     "symbol": "ORM",
@@ -3333,7 +3610,8 @@
     "currentPrice": 11.35,
     "change": 0.14,
     "changePercent": 1.25,
-    "volume": 48448
+    "volume": 48448,
+    "sector": "Modarabas"
   },
   "JSGBETF": {
     "symbol": "JSGBETF",
@@ -3345,7 +3623,8 @@
     "currentPrice": 41.48,
     "change": 0.06,
     "changePercent": 0.15,
-    "volume": 46500
+    "volume": 46500,
+    "sector": "Miscellaneous"
   },
   "UBDL": {
     "symbol": "UBDL",
@@ -3357,7 +3636,8 @@
     "currentPrice": 29.42,
     "change": -0.74,
     "changePercent": -2.45,
-    "volume": 45466
+    "volume": 45466,
+    "sector": "Miscellaneous"
   },
   "BIFO": {
     "symbol": "BIFO",
@@ -3369,7 +3649,8 @@
     "currentPrice": 125.97,
     "change": -0.76,
     "changePercent": -0.6,
-    "volume": 45119
+    "volume": 45119,
+    "sector": "Chemical"
   },
   "TRIPF": {
     "symbol": "TRIPF",
@@ -3381,7 +3662,8 @@
     "currentPrice": 139.19,
     "change": -2.02,
     "changePercent": -1.43,
-    "volume": 45027
+    "volume": 45027,
+    "sector": "Miscellaneous"
   },
   "NBPGETFXD": {
     "symbol": "NBPGETFXD",
@@ -3393,7 +3675,8 @@
     "currentPrice": 27.71,
     "change": 0.06,
     "changePercent": 0.22,
-    "volume": 45000
+    "volume": 45000,
+    "sector": "Miscellaneous"
   },
   "GUSMWU": {
     "symbol": "GUSMWU",
@@ -3405,7 +3688,8 @@
     "currentPrice": 8.88,
     "change": -0.7,
     "changePercent": -7.31,
-    "volume": 44857
+    "volume": 44857,
+    "sector": "Miscellaneous"
   },
   "DWSMNC": {
     "symbol": "DWSMNC",
@@ -3417,7 +3701,8 @@
     "currentPrice": 6.71,
     "change": -0.06,
     "changePercent": -0.89,
-    "volume": 42379
+    "volume": 42379,
+    "sector": "Sugar & Allied Industries"
   },
   "ANTM": {
     "symbol": "ANTM",
@@ -3429,7 +3714,8 @@
     "currentPrice": 69.93,
     "change": 6.11,
     "changePercent": 9.57,
-    "volume": 42355
+    "volume": 42355,
+    "sector": "Textile Composite"
   },
   "PILNC": {
     "symbol": "PILNC",
@@ -3441,7 +3727,8 @@
     "currentPrice": 5.04,
     "change": -0.09,
     "changePercent": -1.75,
-    "volume": 41748
+    "volume": 41748,
+    "sector": "Insurance"
   },
   "PASMNC": {
     "symbol": "PASMNC",
@@ -3453,7 +3740,8 @@
     "currentPrice": 8.95,
     "change": 0.25,
     "changePercent": 2.87,
-    "volume": 41258
+    "volume": 41258,
+    "sector": "Textile Composite"
   },
   "JLICLXDXB": {
     "symbol": "JLICLXDXB",
@@ -3465,7 +3753,8 @@
     "currentPrice": 116.05,
     "change": -3.27,
     "changePercent": -2.74,
-    "volume": 41084
+    "volume": 41084,
+    "sector": "Insurance"
   },
   "HALEON": {
     "symbol": "HALEON",
@@ -3477,7 +3766,8 @@
     "currentPrice": 714.69,
     "change": -2.77,
     "changePercent": -0.39,
-    "volume": 40581
+    "volume": 40581,
+    "sector": "Pharmaceuticals"
   },
   "FCIBL": {
     "symbol": "FCIBL",
@@ -3489,7 +3779,8 @@
     "currentPrice": 32.08,
     "change": 2.92,
     "changePercent": 10.01,
-    "volume": 38254
+    "volume": 38254,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "STML": {
     "symbol": "STML",
@@ -3501,7 +3792,8 @@
     "currentPrice": 50.03,
     "change": 1.46,
     "changePercent": 3.01,
-    "volume": 37946
+    "volume": 37946,
+    "sector": "Textile Composite"
   },
   "KOHTM": {
     "symbol": "KOHTM",
@@ -3513,7 +3805,8 @@
     "currentPrice": 121.17,
     "change": -4.18,
     "changePercent": -3.33,
-    "volume": 36858
+    "volume": 36858,
+    "sector": "Textile Spinning"
   },
   "INDU": {
     "symbol": "INDU",
@@ -3525,7 +3818,8 @@
     "currentPrice": 1928.89,
     "change": -20.19,
     "changePercent": -1.04,
-    "volume": 35455
+    "volume": 35455,
+    "sector": "Automobile Assembler"
   },
   "RICL": {
     "symbol": "RICL",
@@ -3537,7 +3831,8 @@
     "currentPrice": 12.3,
     "change": -0.11,
     "changePercent": -0.89,
-    "volume": 35382
+    "volume": 35382,
+    "sector": "Insurance"
   },
   "JSML": {
     "symbol": "JSML",
@@ -3549,7 +3844,8 @@
     "currentPrice": 57.23,
     "change": -1.08,
     "changePercent": -1.85,
-    "volume": 34530
+    "volume": 34530,
+    "sector": "Sugar & Allied Industries"
   },
   "EPQL": {
     "symbol": "EPQL",
@@ -3561,7 +3857,8 @@
     "currentPrice": 24.85,
     "change": -0.06,
     "changePercent": -0.24,
-    "volume": 33248
+    "volume": 33248,
+    "sector": "Power Generation & Distribution"
   },
   "SHCM": {
     "symbol": "SHCM",
@@ -3573,7 +3870,8 @@
     "currentPrice": 61.11,
     "change": 2.26,
     "changePercent": 3.84,
-    "volume": 32804
+    "volume": 32804,
+    "sector": "Textile Spinning"
   },
   "SRR": {
     "symbol": "SRR",
@@ -3585,7 +3883,8 @@
     "currentPrice": 16.67,
     "change": -0.02,
     "changePercent": -0.12,
-    "volume": 32712
+    "volume": 32712,
+    "sector": "Real Estate Investment Trust"
   },
   "IBLHL": {
     "symbol": "IBLHL",
@@ -3597,7 +3896,8 @@
     "currentPrice": 46.52,
     "change": -0.33,
     "changePercent": -0.7,
-    "volume": 32333
+    "volume": 32333,
+    "sector": "Pharmaceuticals"
   },
   "STCL": {
     "symbol": "STCL",
@@ -3609,7 +3909,8 @@
     "currentPrice": 10.31,
     "change": 0.09,
     "changePercent": 0.88,
-    "volume": 32218
+    "volume": 32218,
+    "sector": "Glass & Ceramics"
   },
   "TCORP": {
     "symbol": "TCORP",
@@ -3621,7 +3922,8 @@
     "currentPrice": 20.07,
     "change": 0.11,
     "changePercent": 0.55,
-    "volume": 32078
+    "volume": 32078,
+    "sector": "Sugar & Allied Industries"
   },
   "HABSM": {
     "symbol": "HABSM",
@@ -3633,7 +3935,8 @@
     "currentPrice": 81.1,
     "change": -0.83,
     "changePercent": -1.01,
-    "volume": 31300
+    "volume": 31300,
+    "sector": "Sugar & Allied Industries"
   },
   "JGICL": {
     "symbol": "JGICL",
@@ -3645,7 +3948,8 @@
     "currentPrice": 78.88,
     "change": 0.86,
     "changePercent": 1.1,
-    "volume": 31117
+    "volume": 31117,
+    "sector": "Insurance"
   },
   "MERIT": {
     "symbol": "MERIT",
@@ -3657,7 +3961,8 @@
     "currentPrice": 9.65,
     "change": -0.24,
     "changePercent": -2.43,
-    "volume": 28092
+    "volume": 28092,
+    "sector": "Paper, Board & Packaging"
   },
   "AGL": {
     "symbol": "AGL",
@@ -3669,7 +3974,8 @@
     "currentPrice": 45.56,
     "change": -0.27,
     "changePercent": -0.59,
-    "volume": 26397
+    "volume": 26397,
+    "sector": "Fertilizer"
   },
   "AGIL": {
     "symbol": "AGIL",
@@ -3681,7 +3987,8 @@
     "currentPrice": 154.77,
     "change": 1.1,
     "changePercent": 0.72,
-    "volume": 25774
+    "volume": 25774,
+    "sector": "Automobile Parts & Accessories"
   },
   "DINT": {
     "symbol": "DINT",
@@ -3693,7 +4000,8 @@
     "currentPrice": 60.38,
     "change": -1.93,
     "changePercent": -3.1,
-    "volume": 25707
+    "volume": 25707,
+    "sector": "Textile Spinning"
   },
   "SSOM": {
     "symbol": "SSOM",
@@ -3705,7 +4013,8 @@
     "currentPrice": 456.35,
     "change": -4.01,
     "changePercent": -0.87,
-    "volume": 25643
+    "volume": 25643,
+    "sector": "Vanaspati & Allied Industries"
   },
   "SCBPL": {
     "symbol": "SCBPL",
@@ -3717,7 +4026,8 @@
     "currentPrice": 67.76,
     "change": 0.26,
     "changePercent": 0.39,
-    "volume": 25020
+    "volume": 25020,
+    "sector": "Commercial Banks"
   },
   "PKGP": {
     "symbol": "PKGP",
@@ -3729,7 +4039,8 @@
     "currentPrice": 38.93,
     "change": -0.01,
     "changePercent": -0.03,
-    "volume": 22881
+    "volume": 22881,
+    "sector": "Power Generation & Distribution"
   },
   "MWMP": {
     "symbol": "MWMP",
@@ -3741,7 +4052,8 @@
     "currentPrice": 56.19,
     "change": 0.34,
     "changePercent": 0.61,
-    "volume": 22577
+    "volume": 22577,
+    "sector": "Miscellaneous"
   },
   "UDPL": {
     "symbol": "UDPL",
@@ -3753,7 +4065,8 @@
     "currentPrice": 120.14,
     "change": 2.15,
     "changePercent": 1.82,
-    "volume": 22234
+    "volume": 22234,
+    "sector": "Miscellaneous"
   },
   "RUPL": {
     "symbol": "RUPL",
@@ -3765,7 +4078,8 @@
     "currentPrice": 31.55,
     "change": -0.94,
     "changePercent": -2.89,
-    "volume": 22116
+    "volume": 22116,
+    "sector": "Synthetic & Rayon"
   },
   "INIL": {
     "symbol": "INIL",
@@ -3777,7 +4091,8 @@
     "currentPrice": 170.2,
     "change": -1.13,
     "changePercent": -0.66,
-    "volume": 21636
+    "volume": 21636,
+    "sector": "Engineering"
   },
   "JSCL": {
     "symbol": "JSCL",
@@ -3789,7 +4104,8 @@
     "currentPrice": 22.2,
     "change": -0.06,
     "changePercent": -0.27,
-    "volume": 21480
+    "volume": 21480,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "THALL": {
     "symbol": "THALL",
@@ -3801,7 +4117,8 @@
     "currentPrice": 571.47,
     "change": 7.21,
     "changePercent": 1.28,
-    "volume": 21236
+    "volume": 21236,
+    "sector": "Automobile Parts & Accessories"
   },
   "SSMLNC": {
     "symbol": "SSMLNC",
@@ -3813,7 +4130,8 @@
     "currentPrice": 22.96,
     "change": 0.14,
     "changePercent": 0.61,
-    "volume": 20601
+    "volume": 20601,
+    "sector": "Textile Spinning"
   },
   "JDMT": {
     "symbol": "JDMT",
@@ -3825,7 +4143,8 @@
     "currentPrice": 139.89,
     "change": -6.54,
     "changePercent": -4.47,
-    "volume": 20124
+    "volume": 20124,
+    "sector": "Textile Spinning"
   },
   "DAAG": {
     "symbol": "DAAG",
@@ -3837,7 +4156,8 @@
     "currentPrice": 91.16,
     "change": 0.89,
     "changePercent": 0.99,
-    "volume": 20097
+    "volume": 20097,
+    "sector": "Chemical"
   },
   "IGIHL": {
     "symbol": "IGIHL",
@@ -3849,7 +4169,8 @@
     "currentPrice": 257.05,
     "change": -6.94,
     "changePercent": -2.63,
-    "volume": 19255
+    "volume": 19255,
+    "sector": "Insurance"
   },
   "EFULXD": {
     "symbol": "EFULXD",
@@ -3861,7 +4182,8 @@
     "currentPrice": 159.42,
     "change": -11.23,
     "changePercent": -6.58,
-    "volume": 19237
+    "volume": 19237,
+    "sector": "Insurance"
   },
   "HINOON": {
     "symbol": "HINOON",
@@ -3873,7 +4195,8 @@
     "currentPrice": 934.86,
     "change": -15.61,
     "changePercent": -1.64,
-    "volume": 18231
+    "volume": 18231,
+    "sector": "Pharmaceuticals"
   },
   "SEPL": {
     "symbol": "SEPL",
@@ -3885,7 +4208,8 @@
     "currentPrice": 156.73,
     "change": -0.16,
     "changePercent": -0.1,
-    "volume": 18216
+    "volume": 18216,
+    "sector": "Paper, Board & Packaging"
   },
   "SHFA": {
     "symbol": "SHFA",
@@ -3897,7 +4221,8 @@
     "currentPrice": 484.61,
     "change": -7.38,
     "changePercent": -1.5,
-    "volume": 16587
+    "volume": 16587,
+    "sector": "Miscellaneous"
   },
   "STYLERS": {
     "symbol": "STYLERS",
@@ -3909,7 +4234,8 @@
     "currentPrice": 51.27,
     "change": 0.33,
     "changePercent": 0.65,
-    "volume": 16475
+    "volume": 16475,
+    "sector": "Apparel"
   },
   "ACPL": {
     "symbol": "ACPL",
@@ -3921,7 +4247,8 @@
     "currentPrice": 233.03,
     "change": 0.79,
     "changePercent": 0.34,
-    "volume": 16265
+    "volume": 16265,
+    "sector": "Cement"
   },
   "SMCPL": {
     "symbol": "SMCPL",
@@ -3933,7 +4260,8 @@
     "currentPrice": 40.18,
     "change": 0.01,
     "changePercent": 0.03,
-    "volume": 16220
+    "volume": 16220,
+    "sector": "Cement"
   },
   "ICIBL": {
     "symbol": "ICIBL",
@@ -3945,7 +4273,8 @@
     "currentPrice": 17.77,
     "change": -0.3,
     "changePercent": -1.66,
-    "volume": 16097
+    "volume": 16097,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "BWHL": {
     "symbol": "BWHL",
@@ -3957,7 +4286,8 @@
     "currentPrice": 234.34,
     "change": 3.3,
     "changePercent": 1.43,
-    "volume": 15968
+    "volume": 15968,
+    "sector": "Automobile Parts & Accessories"
   },
   "JATM": {
     "symbol": "JATM",
@@ -3969,7 +4299,8 @@
     "currentPrice": 39.49,
     "change": 0.66,
     "changePercent": 1.7,
-    "volume": 15815
+    "volume": 15815,
+    "sector": "Textile Spinning"
   },
   "ATIL": {
     "symbol": "ATIL",
@@ -3981,7 +4312,8 @@
     "currentPrice": 79.17,
     "change": 1.06,
     "changePercent": 1.36,
-    "volume": 15657
+    "volume": 15657,
+    "sector": "Insurance"
   },
   "PAKD": {
     "symbol": "PAKD",
@@ -3993,7 +4325,8 @@
     "currentPrice": 126,
     "change": -1.2,
     "changePercent": -0.94,
-    "volume": 15596
+    "volume": 15596,
+    "sector": "Technology & Communication"
   },
   "PPVCNC": {
     "symbol": "PPVCNC",
@@ -4005,7 +4338,8 @@
     "currentPrice": 27.22,
     "change": 0.04,
     "changePercent": 0.15,
-    "volume": 14886
+    "volume": 14886,
+    "sector": "Chemical"
   },
   "IDRT": {
     "symbol": "IDRT",
@@ -4017,7 +4351,8 @@
     "currentPrice": 37.61,
     "change": -0.58,
     "changePercent": -1.52,
-    "volume": 14668
+    "volume": 14668,
+    "sector": "Textile Spinning"
   },
   "FLYNG": {
     "symbol": "FLYNG",
@@ -4029,7 +4364,8 @@
     "currentPrice": 41.6,
     "change": -0.2,
     "changePercent": -0.48,
-    "volume": 14623
+    "volume": 14623,
+    "sector": "Cement"
   },
   "ZTL": {
     "symbol": "ZTL",
@@ -4041,7 +4377,8 @@
     "currentPrice": 16.66,
     "change": -0.32,
     "changePercent": -1.88,
-    "volume": 14557
+    "volume": 14557,
+    "sector": "Textile Weaving"
   },
   "IDYM": {
     "symbol": "IDYM",
@@ -4053,7 +4390,8 @@
     "currentPrice": 136.05,
     "change": 0.82,
     "changePercent": 0.61,
-    "volume": 14539
+    "volume": 14539,
+    "sector": "Textile Spinning"
   },
   "ESBLNC": {
     "symbol": "ESBLNC",
@@ -4065,7 +4403,8 @@
     "currentPrice": 10.3,
     "change": 0.1,
     "changePercent": 0.98,
-    "volume": 13956
+    "volume": 13956,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "MRNS": {
     "symbol": "MRNS",
@@ -4077,7 +4416,8 @@
     "currentPrice": 61.79,
     "change": -0.23,
     "changePercent": -0.37,
-    "volume": 13877
+    "volume": 13877,
+    "sector": "Sugar & Allied Industries"
   },
   "KSTMNC": {
     "symbol": "KSTMNC",
@@ -4089,7 +4429,8 @@
     "currentPrice": 12.58,
     "change": -0.27,
     "changePercent": -2.1,
-    "volume": 13423
+    "volume": 13423,
+    "sector": "Textile Spinning"
   },
   "DADX": {
     "symbol": "DADX",
@@ -4101,7 +4442,8 @@
     "currentPrice": 103.4,
     "change": -6.6,
     "changePercent": -6,
-    "volume": 12898
+    "volume": 12898,
+    "sector": "Engineering"
   },
   "LIVEN": {
     "symbol": "LIVEN",
@@ -4113,7 +4455,8 @@
     "currentPrice": 33.5,
     "change": -0.08,
     "changePercent": -0.24,
-    "volume": 12825
+    "volume": 12825,
+    "sector": "Pharmaceuticals"
   },
   "OML": {
     "symbol": "OML",
@@ -4125,7 +4468,8 @@
     "currentPrice": 87.99,
     "change": -1.47,
     "changePercent": -1.64,
-    "volume": 12355
+    "volume": 12355,
+    "sector": "Miscellaneous"
   },
   "PPP": {
     "symbol": "PPP",
@@ -4137,7 +4481,8 @@
     "currentPrice": 139.14,
     "change": -1.43,
     "changePercent": -1.02,
-    "volume": 11993
+    "volume": 11993,
+    "sector": "Paper, Board & Packaging"
   },
   "COLG": {
     "symbol": "COLG",
@@ -4149,7 +4494,8 @@
     "currentPrice": 1198.02,
     "change": -18.28,
     "changePercent": -1.5,
-    "volume": 11986
+    "volume": 11986,
+    "sector": "Food & Personal Care Products"
   },
   "ASHT": {
     "symbol": "ASHT",
@@ -4161,7 +4507,8 @@
     "currentPrice": 38.39,
     "change": -2.1,
     "changePercent": -5.19,
-    "volume": 11981
+    "volume": 11981,
+    "sector": "Textile Weaving"
   },
   "BPL": {
     "symbol": "BPL",
@@ -4173,7 +4520,8 @@
     "currentPrice": 50.61,
     "change": -0.72,
     "changePercent": -1.4,
-    "volume": 11954
+    "volume": 11954,
+    "sector": "Oil & Gas Marketing Companies"
   },
   "SAIF": {
     "symbol": "SAIF",
@@ -4185,7 +4533,8 @@
     "currentPrice": 46.2,
     "change": -0.87,
     "changePercent": -1.85,
-    "volume": 11539
+    "volume": 11539,
+    "sector": "Textile Spinning"
   },
   "FHAM": {
     "symbol": "FHAM",
@@ -4197,7 +4546,8 @@
     "currentPrice": 32.63,
     "change": -0.07,
     "changePercent": -0.21,
-    "volume": 11227
+    "volume": 11227,
+    "sector": "Modarabas"
   },
   "GATI": {
     "symbol": "GATI",
@@ -4209,7 +4559,8 @@
     "currentPrice": 93.5,
     "change": -0.37,
     "changePercent": -0.39,
-    "volume": 11208
+    "volume": 11208,
+    "sector": "Synthetic & Rayon"
   },
   "TPLI": {
     "symbol": "TPLI",
@@ -4221,7 +4572,8 @@
     "currentPrice": 55.96,
     "change": -1,
     "changePercent": -1.76,
-    "volume": 11073
+    "volume": 11073,
+    "sector": "Insurance"
   },
   "NCMLNC": {
     "symbol": "NCMLNC",
@@ -4233,7 +4585,8 @@
     "currentPrice": 16.03,
     "change": -0.94,
     "changePercent": -5.54,
-    "volume": 10480
+    "volume": 10480,
+    "sector": "Textile Spinning"
   },
   "ACIETFXD": {
     "symbol": "ACIETFXD",
@@ -4245,7 +4598,8 @@
     "currentPrice": 17.44,
     "change": 0,
     "changePercent": 0,
-    "volume": 10000
+    "volume": 10000,
+    "sector": "Miscellaneous"
   },
   "GRYL": {
     "symbol": "GRYL",
@@ -4257,7 +4611,8 @@
     "currentPrice": 22.18,
     "change": -0.57,
     "changePercent": -2.5,
-    "volume": 9866
+    "volume": 9866,
+    "sector": "Leasing Companies"
   },
   "TCORPCPS": {
     "symbol": "TCORPCPS",
@@ -4269,7 +4624,8 @@
     "currentPrice": 10.83,
     "change": 0.09,
     "changePercent": 0.84,
-    "volume": 9670
+    "volume": 9670,
+    "sector": "Miscellaneous"
   },
   "PNSC": {
     "symbol": "PNSC",
@@ -4281,7 +4637,8 @@
     "currentPrice": 509.27,
     "change": -8.3,
     "changePercent": -1.6,
-    "volume": 9546
+    "volume": 9546,
+    "sector": "Transport"
   },
   "SLYTWU": {
     "symbol": "SLYTWU",
@@ -4293,7 +4650,8 @@
     "currentPrice": 17.57,
     "change": -1.88,
     "changePercent": -9.67,
-    "volume": 9534
+    "volume": 9534,
+    "sector": "Miscellaneous"
   },
   "NITGETFXD": {
     "symbol": "NITGETFXD",
@@ -4305,7 +4663,8 @@
     "currentPrice": 37.02,
     "change": -0.47,
     "changePercent": -1.25,
-    "volume": 9500
+    "volume": 9500,
+    "sector": "Miscellaneous"
   },
   "CHAS": {
     "symbol": "CHAS",
@@ -4317,7 +4676,8 @@
     "currentPrice": 85.01,
     "change": -0.89,
     "changePercent": -1.04,
-    "volume": 9070
+    "volume": 9070,
+    "sector": "Sugar & Allied Industries"
   },
   "MIRKS": {
     "symbol": "MIRKS",
@@ -4329,7 +4689,8 @@
     "currentPrice": 32.79,
     "change": -0.23,
     "changePercent": -0.7,
-    "volume": 9066
+    "volume": 9066,
+    "sector": "Sugar & Allied Industries"
   },
   "BWCLXD": {
     "symbol": "BWCLXD",
@@ -4341,7 +4702,8 @@
     "currentPrice": 483.99,
     "change": -1.02,
     "changePercent": -0.21,
-    "volume": 8913
+    "volume": 8913,
+    "sector": "Cement"
   },
   "ARPL": {
     "symbol": "ARPL",
@@ -4353,7 +4715,8 @@
     "currentPrice": 432.6,
     "change": 5.67,
     "changePercent": 1.33,
-    "volume": 8902
+    "volume": 8902,
+    "sector": "Chemical"
   },
   "GFIL": {
     "symbol": "GFIL",
@@ -4365,7 +4728,8 @@
     "currentPrice": 29.37,
     "change": -1.11,
     "changePercent": -3.64,
-    "volume": 8755
+    "volume": 8755,
+    "sector": "Textile Composite"
   },
   "BOK": {
     "symbol": "BOK",
@@ -4377,7 +4741,8 @@
     "currentPrice": 30.06,
     "change": 0.05,
     "changePercent": 0.17,
-    "volume": 8418
+    "volume": 8418,
+    "sector": "Commercial Banks"
   },
   "ATBA": {
     "symbol": "ATBA",
@@ -4389,7 +4754,8 @@
     "currentPrice": 180.64,
     "change": -1.2,
     "changePercent": -0.66,
-    "volume": 8252
+    "volume": 8252,
+    "sector": "Automobile Parts & Accessories"
   },
   "AGTL": {
     "symbol": "AGTL",
@@ -4401,7 +4767,8 @@
     "currentPrice": 360.78,
     "change": -5.6,
     "changePercent": -1.53,
-    "volume": 8215
+    "volume": 8215,
+    "sector": "Automobile Assembler"
   },
   "ANSM": {
     "symbol": "ANSM",
@@ -4413,7 +4780,8 @@
     "currentPrice": 26.14,
     "change": -0.57,
     "changePercent": -2.13,
-    "volume": 7814
+    "volume": 7814,
+    "sector": "Sugar & Allied Industries"
   },
   "TSMF": {
     "symbol": "TSMF",
@@ -4425,7 +4793,8 @@
     "currentPrice": 16.08,
     "change": -0.09,
     "changePercent": -0.56,
-    "volume": 7801
+    "volume": 7801,
+    "sector": "Close - End Mutual Fund"
   },
   "FEROZ": {
     "symbol": "FEROZ",
@@ -4437,7 +4806,8 @@
     "currentPrice": 355.73,
     "change": 1.22,
     "changePercent": 0.34,
-    "volume": 7367
+    "volume": 7367,
+    "sector": "Pharmaceuticals"
   },
   "QUETNC": {
     "symbol": "QUETNC",
@@ -4449,7 +4819,8 @@
     "currentPrice": 15.48,
     "change": -0.31,
     "changePercent": -1.96,
-    "volume": 7314
+    "volume": 7314,
+    "sector": "Textile Composite"
   },
   "MSCL": {
     "symbol": "MSCL",
@@ -4461,7 +4832,8 @@
     "currentPrice": 23.52,
     "change": 0.41,
     "changePercent": 1.77,
-    "volume": 7299
+    "volume": 7299,
+    "sector": "Engineering"
   },
   "SERT": {
     "symbol": "SERT",
@@ -4473,7 +4845,8 @@
     "currentPrice": 43.68,
     "change": -1.25,
     "changePercent": -2.78,
-    "volume": 6915
+    "volume": 6915,
+    "sector": "Textile Spinning"
   },
   "MACTER": {
     "symbol": "MACTER",
@@ -4485,7 +4858,8 @@
     "currentPrice": 270.98,
     "change": -0.78,
     "changePercent": -0.29,
-    "volume": 6818
+    "volume": 6818,
+    "sector": "Pharmaceuticals"
   },
   "PAKL": {
     "symbol": "PAKL",
@@ -4497,7 +4871,8 @@
     "currentPrice": 56.29,
     "change": 0.04,
     "changePercent": 0.07,
-    "volume": 6495
+    "volume": 6495,
+    "sector": "Leather & Tanneries"
   },
   "SEL": {
     "symbol": "SEL",
@@ -4509,7 +4884,8 @@
     "currentPrice": 27.19,
     "change": -0.64,
     "changePercent": -2.3,
-    "volume": 6362
+    "volume": 6362,
+    "sector": "Power Generation & Distribution"
   },
   "GADT": {
     "symbol": "GADT",
@@ -4521,7 +4897,8 @@
     "currentPrice": 329.58,
     "change": 1.73,
     "changePercent": 0.53,
-    "volume": 6346
+    "volume": 6346,
+    "sector": "Textile Spinning"
   },
   "SARC": {
     "symbol": "SARC",
@@ -4533,7 +4910,8 @@
     "currentPrice": 87.53,
     "change": -4.38,
     "changePercent": -4.77,
-    "volume": 6303
+    "volume": 6303,
+    "sector": "Chemical"
   },
   "OTSU": {
     "symbol": "OTSU",
@@ -4545,7 +4923,8 @@
     "currentPrice": 417.14,
     "change": 2.18,
     "changePercent": 0.53,
-    "volume": 6226
+    "volume": 6226,
+    "sector": "Pharmaceuticals"
   },
   "JSRR": {
     "symbol": "JSRR",
@@ -4557,7 +4936,8 @@
     "currentPrice": 10.6,
     "change": 0.47,
     "changePercent": 4.64,
-    "volume": 6082
+    "volume": 6082,
+    "sector": "Real Estate Investment Trust"
   },
   "SPAC1": {
     "symbol": "SPAC1",
@@ -4569,7 +4949,8 @@
     "currentPrice": 14,
     "change": -0.38,
     "changePercent": -2.64,
-    "volume": 6073
+    "volume": 6073,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "DEL": {
     "symbol": "DEL",
@@ -4581,7 +4962,8 @@
     "currentPrice": 19.82,
     "change": -0.08,
     "changePercent": -0.4,
-    "volume": 6036
+    "volume": 6036,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "MFFL": {
     "symbol": "MFFL",
@@ -4593,7 +4975,8 @@
     "currentPrice": 174.86,
     "change": 0.86,
     "changePercent": 0.49,
-    "volume": 5950
+    "volume": 5950,
+    "sector": "Food & Personal Care Products"
   },
   "SUTM": {
     "symbol": "SUTM",
@@ -4605,7 +4988,8 @@
     "currentPrice": 120.19,
     "change": 2.16,
     "changePercent": 1.83,
-    "volume": 5862
+    "volume": 5862,
+    "sector": "Textile Spinning"
   },
   "ZAHID": {
     "symbol": "ZAHID",
@@ -4617,7 +5001,8 @@
     "currentPrice": 70.25,
     "change": -0.31,
     "changePercent": -0.44,
-    "volume": 5850
+    "volume": 5850,
+    "sector": "Textile Composite"
   },
   "CRTM": {
     "symbol": "CRTM",
@@ -4629,7 +5014,8 @@
     "currentPrice": 70,
     "change": -0.85,
     "changePercent": -1.2,
-    "volume": 5691
+    "volume": 5691,
+    "sector": "Textile Spinning"
   },
   "NEXT": {
     "symbol": "NEXT",
@@ -4641,7 +5027,8 @@
     "currentPrice": 14.19,
     "change": -0.03,
     "changePercent": -0.21,
-    "volume": 5691
+    "volume": 5691,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "NONS": {
     "symbol": "NONS",
@@ -4653,7 +5040,8 @@
     "currentPrice": 83.59,
     "change": -0.42,
     "changePercent": -0.5,
-    "volume": 5663
+    "volume": 5663,
+    "sector": "Sugar & Allied Industries"
   },
   "SHEZ": {
     "symbol": "SHEZ",
@@ -4665,7 +5053,8 @@
     "currentPrice": 235.28,
     "change": -0.78,
     "changePercent": -0.33,
-    "volume": 5247
+    "volume": 5247,
+    "sector": "Food & Personal Care Products"
   },
   "JSIL": {
     "symbol": "JSIL",
@@ -4677,7 +5066,8 @@
     "currentPrice": 45.87,
     "change": 3.05,
     "changePercent": 7.12,
-    "volume": 5069
+    "volume": 5069,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "SZTM": {
     "symbol": "SZTM",
@@ -4689,7 +5079,8 @@
     "currentPrice": 94.54,
     "change": 1.44,
     "changePercent": 1.55,
-    "volume": 4922
+    "volume": 4922,
+    "sector": "Textile Spinning"
   },
   "PCAL": {
     "symbol": "PCAL",
@@ -4701,7 +5092,8 @@
     "currentPrice": 183.18,
     "change": 1.33,
     "changePercent": 0.73,
-    "volume": 4664
+    "volume": 4664,
+    "sector": "Cable & Electrical Goods"
   },
   "EFUGXD": {
     "symbol": "EFUGXD",
@@ -4713,7 +5105,8 @@
     "currentPrice": 127.99,
     "change": 0.86,
     "changePercent": 0.68,
-    "volume": 4566
+    "volume": 4566,
+    "sector": "Insurance"
   },
   "PRWM": {
     "symbol": "PRWM",
@@ -4725,7 +5118,8 @@
     "currentPrice": 67.77,
     "change": -1.18,
     "changePercent": -1.71,
-    "volume": 4551
+    "volume": 4551,
+    "sector": "Textile Weaving"
   },
   "POML": {
     "symbol": "POML",
@@ -4737,7 +5131,8 @@
     "currentPrice": 161.93,
     "change": -0.7,
     "changePercent": -0.43,
-    "volume": 4456
+    "volume": 4456,
+    "sector": "Vanaspati & Allied Industries"
   },
   "JUBSNC": {
     "symbol": "JUBSNC",
@@ -4749,7 +5144,8 @@
     "currentPrice": 46.6,
     "change": -2.35,
     "changePercent": -4.8,
-    "volume": 4384
+    "volume": 4384,
+    "sector": "Textile Composite"
   },
   "HWQSNC": {
     "symbol": "HWQSNC",
@@ -4761,7 +5157,8 @@
     "currentPrice": 19.32,
     "change": 0.13,
     "changePercent": 0.68,
-    "volume": 4347
+    "volume": 4347,
+    "sector": "Sugar & Allied Industries"
   },
   "SKRSNC": {
     "symbol": "SKRSNC",
@@ -4773,7 +5170,8 @@
     "currentPrice": 28.41,
     "change": 0.27,
     "changePercent": 0.96,
-    "volume": 4113
+    "volume": 4113,
+    "sector": "Sugar & Allied Industries"
   },
   "HBLTETF": {
     "symbol": "HBLTETF",
@@ -4785,7 +5183,8 @@
     "currentPrice": 105.49,
     "change": 0,
     "changePercent": 0,
-    "volume": 4100
+    "volume": 4100,
+    "sector": "Miscellaneous"
   },
   "AKGL": {
     "symbol": "AKGL",
@@ -4797,7 +5196,8 @@
     "currentPrice": 56.93,
     "change": -0.55,
     "changePercent": -0.96,
-    "volume": 4035
+    "volume": 4035,
+    "sector": "Miscellaneous"
   },
   "PRET": {
     "symbol": "PRET",
@@ -4809,7 +5209,8 @@
     "currentPrice": 500,
     "change": 6.23,
     "changePercent": 1.26,
-    "volume": 3678
+    "volume": 3678,
+    "sector": "Textile Spinning"
   },
   "HINO": {
     "symbol": "HINO",
@@ -4821,7 +5222,8 @@
     "currentPrice": 348.49,
     "change": -3,
     "changePercent": -0.85,
-    "volume": 3322
+    "volume": 3322,
+    "sector": "Automobile Assembler"
   },
   "FRSM": {
     "symbol": "FRSM",
@@ -4833,7 +5235,8 @@
     "currentPrice": 41.6,
     "change": -1.48,
     "changePercent": -3.43,
-    "volume": 3296
+    "volume": 3296,
+    "sector": "Sugar & Allied Industries"
   },
   "PMRS": {
     "symbol": "PMRS",
@@ -4845,7 +5248,8 @@
     "currentPrice": 435.18,
     "change": -31.15,
     "changePercent": -6.68,
-    "volume": 3193
+    "volume": 3193,
+    "sector": "Sugar & Allied Industries"
   },
   "CCM": {
     "symbol": "CCM",
@@ -4857,7 +5261,8 @@
     "currentPrice": 46.42,
     "change": 0.07,
     "changePercent": 0.15,
-    "volume": 3021
+    "volume": 3021,
+    "sector": "Textile Spinning"
   },
   "PAKT": {
     "symbol": "PAKT",
@@ -4869,7 +5274,8 @@
     "currentPrice": 1390.43,
     "change": -5.71,
     "changePercent": -0.41,
-    "volume": 3003
+    "volume": 3003,
+    "sector": "Tobacco"
   },
   "JKSM": {
     "symbol": "JKSM",
@@ -4881,7 +5287,8 @@
     "currentPrice": 332,
     "change": -0.72,
     "changePercent": -0.22,
-    "volume": 2895
+    "volume": 2895,
+    "sector": "Textile Spinning"
   },
   "SURC": {
     "symbol": "SURC",
@@ -4893,7 +5300,8 @@
     "currentPrice": 147.3,
     "change": -1.25,
     "changePercent": -0.84,
-    "volume": 2883
+    "volume": 2883,
+    "sector": "Textile Composite"
   },
   "AGIC": {
     "symbol": "AGIC",
@@ -4905,7 +5313,8 @@
     "currentPrice": 40.89,
     "change": -0.12,
     "changePercent": -0.29,
-    "volume": 2690
+    "volume": 2690,
+    "sector": "Insurance"
   },
   "MCBIM": {
     "symbol": "MCBIM",
@@ -4917,7 +5326,8 @@
     "currentPrice": 164,
     "change": 0.02,
     "changePercent": 0.01,
-    "volume": 2624
+    "volume": 2624,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "AATM": {
     "symbol": "AATM",
@@ -4929,7 +5339,8 @@
     "currentPrice": 66.5,
     "change": -3.16,
     "changePercent": -4.54,
-    "volume": 2617
+    "volume": 2617,
+    "sector": "Textile Spinning"
   },
   "OLPL": {
     "symbol": "OLPL",
@@ -4941,7 +5352,8 @@
     "currentPrice": 49.33,
     "change": 0.33,
     "changePercent": 0.67,
-    "volume": 2580
+    "volume": 2580,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "SNAI": {
     "symbol": "SNAI",
@@ -4953,7 +5365,8 @@
     "currentPrice": 37.53,
     "change": -1.01,
     "changePercent": -2.62,
-    "volume": 2498
+    "volume": 2498,
+    "sector": "Textile Spinning"
   },
   "BAFS": {
     "symbol": "BAFS",
@@ -4965,7 +5378,8 @@
     "currentPrice": 500.94,
     "change": -20.02,
     "changePercent": -3.84,
-    "volume": 2455
+    "volume": 2455,
+    "sector": "Sugar & Allied Industries"
   },
   "ICCI": {
     "symbol": "ICCI",
@@ -4977,7 +5391,8 @@
     "currentPrice": 15.06,
     "change": 0.17,
     "changePercent": 1.14,
-    "volume": 2211
+    "volume": 2211,
+    "sector": "Textile Weaving"
   },
   "BELANC": {
     "symbol": "BELANC",
@@ -4989,7 +5404,8 @@
     "currentPrice": 55.81,
     "change": -0.48,
     "changePercent": -0.85,
-    "volume": 2168
+    "volume": 2168,
+    "sector": "Automobile Parts & Accessories"
   },
   "GEMNETS": {
     "symbol": "GEMNETS",
@@ -5001,7 +5417,8 @@
     "currentPrice": 23.72,
     "change": 2.16,
     "changePercent": 10.02,
-    "volume": 2100
+    "volume": 2100,
+    "sector": "Technology & Communication"
   },
   "HUSI": {
     "symbol": "HUSI",
@@ -5013,7 +5430,8 @@
     "currentPrice": 51.18,
     "change": -1.43,
     "changePercent": -2.72,
-    "volume": 2079
+    "volume": 2079,
+    "sector": "Property"
   },
   "ALNRS": {
     "symbol": "ALNRS",
@@ -5025,7 +5443,8 @@
     "currentPrice": 123.22,
     "change": 0.36,
     "changePercent": 0.29,
-    "volume": 2067
+    "volume": 2067,
+    "sector": "Sugar & Allied Industries"
   },
   "BNWM": {
     "symbol": "BNWM",
@@ -5037,7 +5456,8 @@
     "currentPrice": 66.01,
     "change": -0.97,
     "changePercent": -1.45,
-    "volume": 2047
+    "volume": 2047,
+    "sector": "Woollen"
   },
   "DYNO": {
     "symbol": "DYNO",
@@ -5049,7 +5469,8 @@
     "currentPrice": 349.02,
     "change": 0.01,
     "changePercent": 0,
-    "volume": 2038
+    "volume": 2038,
+    "sector": "Chemical"
   },
   "ADAMS": {
     "symbol": "ADAMS",
@@ -5061,7 +5482,8 @@
     "currentPrice": 67.62,
     "change": -2.14,
     "changePercent": -3.07,
-    "volume": 1976
+    "volume": 1976,
+    "sector": "Sugar & Allied Industries"
   },
   "KHTC": {
     "symbol": "KHTC",
@@ -5073,7 +5495,8 @@
     "currentPrice": 305.01,
     "change": -6.99,
     "changePercent": -2.24,
-    "volume": 1943
+    "volume": 1943,
+    "sector": "Tobacco"
   },
   "UVIC": {
     "symbol": "UVIC",
@@ -5085,7 +5508,8 @@
     "currentPrice": 19.07,
     "change": -0.51,
     "changePercent": -2.6,
-    "volume": 1937
+    "volume": 1937,
+    "sector": "Insurance"
   },
   "POWERPS": {
     "symbol": "POWERPS",
@@ -5097,7 +5521,8 @@
     "currentPrice": 28.03,
     "change": -1.97,
     "changePercent": -6.57,
-    "volume": 1844
+    "volume": 1844,
+    "sector": "Miscellaneous"
   },
   "EXIDE": {
     "symbol": "EXIDE",
@@ -5109,7 +5534,8 @@
     "currentPrice": 480.24,
     "change": 1.91,
     "changePercent": 0.4,
-    "volume": 1757
+    "volume": 1757,
+    "sector": "Automobile Parts & Accessories"
   },
   "ARMG": {
     "symbol": "ARMG",
@@ -5121,7 +5547,8 @@
     "currentPrice": 56.13,
     "change": -5.69,
     "changePercent": -9.2,
-    "volume": 1734
+    "volume": 1734,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "STJT": {
     "symbol": "STJT",
@@ -5133,7 +5560,8 @@
     "currentPrice": 175.97,
     "change": 6.29,
     "changePercent": 3.71,
-    "volume": 1722
+    "volume": 1722,
+    "sector": "Textile Weaving"
   },
   "OLPM": {
     "symbol": "OLPM",
@@ -5145,7 +5573,8 @@
     "currentPrice": 24.94,
     "change": -0.65,
     "changePercent": -2.54,
-    "volume": 1717
+    "volume": 1717,
+    "sector": "Modarabas"
   },
   "SANSM": {
     "symbol": "SANSM",
@@ -5157,7 +5586,8 @@
     "currentPrice": 126.3,
     "change": 2.21,
     "changePercent": 1.78,
-    "volume": 1708
+    "volume": 1708,
+    "sector": "Sugar & Allied Industries"
   },
   "SHJS": {
     "symbol": "SHJS",
@@ -5169,7 +5599,8 @@
     "currentPrice": 148.02,
     "change": -3.93,
     "changePercent": -2.59,
-    "volume": 1705
+    "volume": 1705,
+    "sector": "Sugar & Allied Industries"
   },
   "BAPL": {
     "symbol": "BAPL",
@@ -5181,7 +5612,8 @@
     "currentPrice": 30.96,
     "change": 0.52,
     "changePercent": 1.71,
-    "volume": 1693
+    "volume": 1693,
+    "sector": "Chemical"
   },
   "GOC": {
     "symbol": "GOC",
@@ -5193,7 +5625,8 @@
     "currentPrice": 167.98,
     "change": -8,
     "changePercent": -4.55,
-    "volume": 1656
+    "volume": 1656,
+    "sector": "Miscellaneous"
   },
   "FZCM": {
     "symbol": "FZCM",
@@ -5205,7 +5638,8 @@
     "currentPrice": 252.6,
     "change": -1.72,
     "changePercent": -0.68,
-    "volume": 1500
+    "volume": 1500,
+    "sector": "Textile Composite"
   },
   "NATM": {
     "symbol": "NATM",
@@ -5217,7 +5651,8 @@
     "currentPrice": 75.01,
     "change": -7.15,
     "changePercent": -8.7,
-    "volume": 1485
+    "volume": 1485,
+    "sector": "Textile Spinning"
   },
   "GEMBCEM": {
     "symbol": "GEMBCEM",
@@ -5229,7 +5664,8 @@
     "currentPrice": 11.02,
     "change": -0.95,
     "changePercent": -7.94,
-    "volume": 1400
+    "volume": 1400,
+    "sector": "Modarabas"
   },
   "REDCO": {
     "symbol": "REDCO",
@@ -5241,7 +5677,8 @@
     "currentPrice": 30.67,
     "change": -0.11,
     "changePercent": -0.36,
-    "volume": 1372
+    "volume": 1372,
+    "sector": "Textile Composite"
   },
   "WAHN": {
     "symbol": "WAHN",
@@ -5253,7 +5690,8 @@
     "currentPrice": 276,
     "change": -4,
     "changePercent": -1.43,
-    "volume": 1343
+    "volume": 1343,
+    "sector": "Chemical"
   },
   "SITC": {
     "symbol": "SITC",
@@ -5265,7 +5703,8 @@
     "currentPrice": 756.94,
     "change": -5.42,
     "changePercent": -0.71,
-    "volume": 1309
+    "volume": 1309,
+    "sector": "Chemical"
   },
   "ATLH": {
     "symbol": "ATLH",
@@ -5277,7 +5716,8 @@
     "currentPrice": 1591.75,
     "change": -4.55,
     "changePercent": -0.29,
-    "volume": 1218
+    "volume": 1218,
+    "sector": "Automobile Assembler"
   },
   "GCWLPRS": {
     "symbol": "GCWLPRS",
@@ -5289,7 +5729,8 @@
     "currentPrice": 119.83,
     "change": -13.15,
     "changePercent": -9.89,
-    "volume": 1139
+    "volume": 1139,
+    "sector": "Chemical"
   },
   "LPGL": {
     "symbol": "LPGL",
@@ -5301,7 +5742,8 @@
     "currentPrice": 96.81,
     "change": -1.29,
     "changePercent": -1.31,
-    "volume": 1113
+    "volume": 1113,
+    "sector": "Chemical"
   },
   "DWAENC": {
     "symbol": "DWAENC",
@@ -5313,7 +5755,8 @@
     "currentPrice": 22.78,
     "change": -0.19,
     "changePercent": -0.83,
-    "volume": 1045
+    "volume": 1045,
+    "sector": "Automobile Parts & Accessories"
   },
   "SMLNC": {
     "symbol": "SMLNC",
@@ -5325,7 +5768,8 @@
     "currentPrice": 90.51,
     "change": -2.18,
     "changePercent": -2.35,
-    "volume": 1013
+    "volume": 1013,
+    "sector": "Sugar & Allied Industries"
   },
   "KPUS": {
     "symbol": "KPUS",
@@ -5337,7 +5781,8 @@
     "currentPrice": 868.62,
     "change": -8.31,
     "changePercent": -0.95,
-    "volume": 1001
+    "volume": 1001,
+    "sector": "Sugar & Allied Industries"
   },
   "ASLCPS": {
     "symbol": "ASLCPS",
@@ -5349,7 +5794,8 @@
     "currentPrice": 121.76,
     "change": -6.32,
     "changePercent": -4.93,
-    "volume": 964
+    "volume": 964,
+    "sector": "Miscellaneous"
   },
   "GVGL": {
     "symbol": "GVGL",
@@ -5361,7 +5807,8 @@
     "currentPrice": 54.45,
     "change": 0.07,
     "changePercent": 0.13,
-    "volume": 915
+    "volume": 915,
+    "sector": "Glass & Ceramics"
   },
   "ASIC": {
     "symbol": "ASIC",
@@ -5373,7 +5820,8 @@
     "currentPrice": 39.52,
     "change": -0.31,
     "changePercent": -0.78,
-    "volume": 837
+    "volume": 837,
+    "sector": "Insurance"
   },
   "IDEAL": {
     "symbol": "IDEAL",
@@ -5385,7 +5833,8 @@
     "currentPrice": 50.58,
     "change": -2.81,
     "changePercent": -5.26,
-    "volume": 786
+    "volume": 786,
+    "sector": "Textile Spinning"
   },
   "AMBL": {
     "symbol": "AMBL",
@@ -5397,7 +5846,8 @@
     "currentPrice": 19.29,
     "change": 0.3,
     "changePercent": 1.58,
-    "volume": 663
+    "volume": 663,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "ANLNV": {
     "symbol": "ANLNV",
@@ -5409,7 +5859,8 @@
     "currentPrice": 7.6,
     "change": -0.85,
     "changePercent": -10.06,
-    "volume": 652
+    "volume": 652,
+    "sector": "Miscellaneous"
   },
   "SFL": {
     "symbol": "SFL",
@@ -5421,7 +5872,8 @@
     "currentPrice": 1136.26,
     "change": 0.01,
     "changePercent": 0,
-    "volume": 629
+    "volume": 629,
+    "sector": "Textile Composite"
   },
   "ASLPS": {
     "symbol": "ASLPS",
@@ -5433,7 +5885,8 @@
     "currentPrice": 25.49,
     "change": -0.63,
     "changePercent": -2.41,
-    "volume": 603
+    "volume": 603,
+    "sector": "Miscellaneous"
   },
   "HAEL": {
     "symbol": "HAEL",
@@ -5445,7 +5898,8 @@
     "currentPrice": 27.88,
     "change": 0.77,
     "changePercent": 2.84,
-    "volume": 512
+    "volume": 512,
+    "sector": "Textile Composite"
   },
   "HPL": {
     "symbol": "HPL",
@@ -5457,7 +5911,8 @@
     "currentPrice": 4079.93,
     "change": 34.44,
     "changePercent": 0.85,
-    "volume": 499
+    "volume": 499,
+    "sector": "Pharmaceuticals"
   },
   "NESTLE": {
     "symbol": "NESTLE",
@@ -5469,7 +5924,8 @@
     "currentPrice": 7473.54,
     "change": -47.45,
     "changePercent": -0.63,
-    "volume": 493
+    "volume": 493,
+    "sector": "Food & Personal Care Products"
   },
   "TICL": {
     "symbol": "TICL",
@@ -5481,7 +5937,8 @@
     "currentPrice": 1339.4,
     "change": -30.6,
     "changePercent": -2.23,
-    "volume": 486
+    "volume": 486,
+    "sector": "Sugar & Allied Industries"
   },
   "TSML": {
     "symbol": "TSML",
@@ -5493,7 +5950,8 @@
     "currentPrice": 501.1,
     "change": -29.41,
     "changePercent": -5.54,
-    "volume": 467
+    "volume": 467,
+    "sector": "Sugar & Allied Industries"
   },
   "GEMMEL": {
     "symbol": "GEMMEL",
@@ -5505,7 +5963,8 @@
     "currentPrice": 31.77,
     "change": 0,
     "changePercent": 0,
-    "volume": 452
+    "volume": 452,
+    "sector": "Power Generation & Distribution"
   },
   "NSRM": {
     "symbol": "NSRM",
@@ -5517,7 +5976,8 @@
     "currentPrice": 211.85,
     "change": -3.15,
     "changePercent": -1.46,
-    "volume": 435
+    "volume": 435,
+    "sector": "Synthetic & Rayon"
   },
   "SIEM": {
     "symbol": "SIEM",
@@ -5529,7 +5989,8 @@
     "currentPrice": 1585,
     "change": 6.69,
     "changePercent": 0.42,
-    "volume": 422
+    "volume": 422,
+    "sector": "Cable & Electrical Goods"
   },
   "IBFL": {
     "symbol": "IBFL",
@@ -5541,7 +6002,8 @@
     "currentPrice": 267.68,
     "change": 2.38,
     "changePercent": 0.9,
-    "volume": 364
+    "volume": 364,
+    "sector": "Synthetic & Rayon"
   },
   "BATA": {
     "symbol": "BATA",
@@ -5553,7 +6015,8 @@
     "currentPrice": 888.87,
     "change": 1.83,
     "changePercent": 0.21,
-    "volume": 351
+    "volume": 351,
+    "sector": "Leather & Tanneries"
   },
   "SHSML": {
     "symbol": "SHSML",
@@ -5565,7 +6028,8 @@
     "currentPrice": 374.91,
     "change": -0.16,
     "changePercent": -0.04,
-    "volume": 321
+    "volume": 321,
+    "sector": "Sugar & Allied Industries"
   },
   "PKGS": {
     "symbol": "PKGS",
@@ -5577,7 +6041,8 @@
     "currentPrice": 790.97,
     "change": -6.53,
     "changePercent": -0.82,
-    "volume": 313
+    "volume": 313,
+    "sector": "Paper, Board & Packaging"
   },
   "FSWLNC": {
     "symbol": "FSWLNC",
@@ -5589,7 +6054,8 @@
     "currentPrice": 153.57,
     "change": 0.44,
     "changePercent": 0.29,
-    "volume": 306
+    "volume": 306,
+    "sector": "Textile Composite"
   },
   "SUHJNC": {
     "symbol": "SUHJNC",
@@ -5601,7 +6067,8 @@
     "currentPrice": 181,
     "change": 0,
     "changePercent": 0,
-    "volume": 296
+    "volume": 296,
+    "sector": "Jute"
   },
   "FILNC": {
     "symbol": "FILNC",
@@ -5613,7 +6080,8 @@
     "currentPrice": 213.03,
     "change": -11.6,
     "changePercent": -5.16,
-    "volume": 276
+    "volume": 276,
+    "sector": "Leather & Tanneries"
   },
   "ELCM": {
     "symbol": "ELCM",
@@ -5625,7 +6093,8 @@
     "currentPrice": 200.57,
     "change": -9.79,
     "changePercent": -4.65,
-    "volume": 253
+    "volume": 253,
+    "sector": "Textile Spinning"
   },
   "DMC": {
     "symbol": "DMC",
@@ -5637,7 +6106,8 @@
     "currentPrice": 176.49,
     "change": -2.74,
     "changePercent": -1.53,
-    "volume": 229
+    "volume": 229,
+    "sector": "Textile Spinning"
   },
   "ELSM": {
     "symbol": "ELSM",
@@ -5649,7 +6119,8 @@
     "currentPrice": 151.38,
     "change": -7.98,
     "changePercent": -5.01,
-    "volume": 217
+    "volume": 217,
+    "sector": "Textile Spinning"
   },
   "AABS": {
     "symbol": "AABS",
@@ -5661,7 +6132,8 @@
     "currentPrice": 815.28,
     "change": -10.71,
     "changePercent": -1.3,
-    "volume": 195
+    "volume": 195,
+    "sector": "Sugar & Allied Industries"
   },
   "MUREB": {
     "symbol": "MUREB",
@@ -5673,7 +6145,8 @@
     "currentPrice": 936.22,
     "change": 11.22,
     "changePercent": 1.21,
-    "volume": 173
+    "volume": 173,
+    "sector": "Food & Personal Care Products"
   },
   "IMLNC": {
     "symbol": "IMLNC",
@@ -5685,7 +6158,8 @@
     "currentPrice": 28.05,
     "change": 0,
     "changePercent": 0,
-    "volume": 172
+    "volume": 172,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "AHTM": {
     "symbol": "AHTM",
@@ -5697,7 +6171,8 @@
     "currentPrice": 101.5,
     "change": 0,
     "changePercent": 0,
-    "volume": 153
+    "volume": 153,
+    "sector": "Textile Composite"
   },
   "MUGHALC": {
     "symbol": "MUGHALC",
@@ -5709,7 +6184,8 @@
     "currentPrice": 61.98,
     "change": 0,
     "changePercent": 0,
-    "volume": 144
+    "volume": 144,
+    "sector": "Engineering"
   },
   "ARUJNC": {
     "symbol": "ARUJNC",
@@ -5721,7 +6197,8 @@
     "currentPrice": 11.96,
     "change": 0,
     "changePercent": 0,
-    "volume": 142
+    "volume": 142,
+    "sector": "Textile Composite"
   },
   "SASML": {
     "symbol": "SASML",
@@ -5733,7 +6210,8 @@
     "currentPrice": 350,
     "change": -11.46,
     "changePercent": -3.17,
-    "volume": 117
+    "volume": 117,
+    "sector": "Sugar & Allied Industries"
   },
   "JDWS": {
     "symbol": "JDWS",
@@ -5745,7 +6223,8 @@
     "currentPrice": 895,
     "change": -7.79,
     "changePercent": -0.86,
-    "volume": 108
+    "volume": 108,
+    "sector": "Sugar & Allied Industries"
   },
   "PECONC": {
     "symbol": "PECONC",
@@ -5757,7 +6236,8 @@
     "currentPrice": 678.58,
     "change": -7.87,
     "changePercent": -1.15,
-    "volume": 107
+    "volume": 107,
+    "sector": "Engineering"
   },
   "CFL": {
     "symbol": "CFL",
@@ -5769,7 +6249,8 @@
     "currentPrice": 64.19,
     "change": 0,
     "changePercent": 0,
-    "volume": 102
+    "volume": 102,
+    "sector": "Textile Spinning"
   },
   "UPFL": {
     "symbol": "UPFL",
@@ -5781,7 +6262,8 @@
     "currentPrice": 25674.98,
     "change": 143.62,
     "changePercent": 0.56,
-    "volume": 85
+    "volume": 85,
+    "sector": "Food & Personal Care Products"
   },
   "FIMM": {
     "symbol": "FIMM",
@@ -5793,7 +6275,8 @@
     "currentPrice": 219.15,
     "change": 0,
     "changePercent": 0,
-    "volume": 72
+    "volume": 72,
+    "sector": "Modarabas"
   },
   "NAGC": {
     "symbol": "NAGC",
@@ -5805,7 +6288,8 @@
     "currentPrice": 79.62,
     "change": 0,
     "changePercent": 0,
-    "volume": 62
+    "volume": 62,
+    "sector": "Textile Spinning"
   },
   "ZIL": {
     "symbol": "ZIL",
@@ -5817,7 +6301,8 @@
     "currentPrice": 341.53,
     "change": 0,
     "changePercent": 0,
-    "volume": 51
+    "volume": 51,
+    "sector": "Food & Personal Care Products"
   },
   "PSEL": {
     "symbol": "PSEL",
@@ -5829,7 +6314,8 @@
     "currentPrice": 896.16,
     "change": 5.67,
     "changePercent": 0.64,
-    "volume": 43
+    "volume": 43,
+    "sector": "Miscellaneous"
   },
   "FASM": {
     "symbol": "FASM",
@@ -5841,7 +6327,8 @@
     "currentPrice": 332.89,
     "change": 0,
     "changePercent": 0,
-    "volume": 42
+    "volume": 42,
+    "sector": "Textile Composite"
   },
   "SIBL": {
     "symbol": "SIBL",
@@ -5853,7 +6340,8 @@
     "currentPrice": 7.09,
     "change": 0,
     "changePercent": 0,
-    "volume": 40
+    "volume": 40,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "RMPL": {
     "symbol": "RMPL",
@@ -5865,7 +6353,8 @@
     "currentPrice": 9250.11,
     "change": -49.89,
     "changePercent": -0.54,
-    "volume": 32
+    "volume": 32,
+    "sector": "Food & Personal Care Products"
   },
   "KHYT": {
     "symbol": "KHYT",
@@ -5877,7 +6366,8 @@
     "currentPrice": 1944.26,
     "change": -15.74,
     "changePercent": -0.8,
-    "volume": 26
+    "volume": 26,
+    "sector": "Textile Composite"
   },
   "JVDCPS": {
     "symbol": "JVDCPS",
@@ -5889,7 +6379,8 @@
     "currentPrice": 57.91,
     "change": 0,
     "changePercent": 0,
-    "volume": 21
+    "volume": 21,
+    "sector": "Miscellaneous"
   },
   "FRCL": {
     "symbol": "FRCL",
@@ -5901,7 +6392,8 @@
     "currentPrice": 98.32,
     "change": 0,
     "changePercent": 0,
-    "volume": 15
+    "volume": 15,
+    "sector": "Glass & Ceramics"
   },
   "SAPT": {
     "symbol": "SAPT",
@@ -5913,7 +6405,8 @@
     "currentPrice": 1440.31,
     "change": 0,
     "changePercent": 0,
-    "volume": 14
+    "volume": 14,
+    "sector": "Textile Composite"
   },
   "PIAHCLB": {
     "symbol": "PIAHCLB",
@@ -5925,7 +6418,8 @@
     "currentPrice": 17198,
     "change": -2,
     "changePercent": -0.01,
-    "volume": 13
+    "volume": 13,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "JSGCL": {
     "symbol": "JSGCL",
@@ -5937,7 +6431,8 @@
     "currentPrice": 174.1,
     "change": 0,
     "changePercent": 0,
-    "volume": 10
+    "volume": 10,
+    "sector": "Inv. Banks / Inv. Cos. / Securities Cos."
   },
   "ISIL": {
     "symbol": "ISIL",
@@ -5949,7 +6444,8 @@
     "currentPrice": 1864,
     "change": 0,
     "changePercent": 0,
-    "volume": 9
+    "volume": 9,
+    "sector": "Food & Personal Care Products"
   },
   "BHAT": {
     "symbol": "BHAT",
@@ -5961,7 +6457,8 @@
     "currentPrice": 819.53,
     "change": 0,
     "changePercent": 0,
-    "volume": 6
+    "volume": 6,
+    "sector": "Textile Composite"
   },
   "BTL": {
     "symbol": "BTL",
@@ -5973,7 +6470,8 @@
     "currentPrice": 900.6,
     "change": 0,
     "changePercent": 0,
-    "volume": 4
+    "volume": 4,
+    "sector": "Textile Composite"
   },
   "AGLNCPS": {
     "symbol": "AGLNCPS",
@@ -5985,7 +6483,8 @@
     "currentPrice": 43.94,
     "change": 0,
     "changePercent": 0,
-    "volume": 3
+    "volume": 3,
+    "sector": "Miscellaneous"
   },
   "EWIC": {
     "symbol": "EWIC",
@@ -5997,7 +6496,8 @@
     "currentPrice": 66.83,
     "change": 0,
     "changePercent": 0,
-    "volume": 2
+    "volume": 2,
+    "sector": "Insurance"
   },
   "PSYL": {
     "symbol": "PSYL",
@@ -6009,7 +6509,8 @@
     "currentPrice": 126,
     "change": 0,
     "changePercent": 0,
-    "volume": 2
+    "volume": 2,
+    "sector": "Synthetic & Rayon"
   },
   "AKDHL": {
     "symbol": "AKDHL",
@@ -6021,7 +6522,8 @@
     "currentPrice": 148.1,
     "change": 0,
     "changePercent": 0,
-    "volume": 1
+    "volume": 1,
+    "sector": "Miscellaneous"
   },
   "HAFL": {
     "symbol": "HAFL",
@@ -6033,6 +6535,7 @@
     "currentPrice": 475.23,
     "change": 0,
     "changePercent": 0,
-    "volume": 1
+    "volume": 1,
+    "sector": "Textile Composite"
   }
 }

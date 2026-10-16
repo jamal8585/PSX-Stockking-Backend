@@ -8,7 +8,8 @@ const HEADERS = {
 const RSS_FEEDS = [
   { url: 'https://www.dawn.com/feeds/business', name: 'Dawn Business News', sector: 'MACRO_ECONOMY' },
   { url: 'https://tribune.com.pk/feed/business', name: 'Express Tribune Business', sector: 'GENERAL_MARKET' },
-  { url: 'https://www.brecorder.com/feeds/latest-news/', name: 'Business Recorder Latest', sector: 'GENERAL_MARKET' },
+  { url: 'https://www.brecorder.com/feeds/markets/', name: 'Business Recorder Markets', sector: 'GENERAL_MARKET' },
+  { url: 'https://www.brecorder.com/feeds/business-and-finance/', name: 'Business Recorder Finance', sector: 'GENERAL_MARKET' },
   { url: 'https://www.brecorder.com/feeds/br-research/', name: 'Business Recorder BR Research', sector: 'GENERAL_MARKET' },
   { url: 'https://www.brecorder.com/feeds/pakistan/', name: 'Business Recorder Pakistan', sector: 'MACRO_ECONOMY' }
 ];
@@ -65,7 +66,13 @@ const isIrrelevantForeignNews = (title, desc) => {
   const foreignOnlyKeywords = [
     'india ', 'indian ', 'rbi ', 'delhi', 'mumbai', 'nri deposits', 'capri global', 'soyoil imports',
     'bengaluru', 'gandhinagar', 'lok sabha', 'tamil nadu', 'britons face removal', 'tumbler ridge',
-    'scaramucci', 'kemi badenoch', 'hegseth', 'dan driscoll', 'sweden refuses', 'potomac fever'
+    'scaramucci', 'kemi badenoch', 'hegseth', 'dan driscoll', 'sweden refuses', 'potomac fever',
+    'albania', 'albanian', 'chilean', 'isabel allende', 'planeta prize', 'anti-government protests',
+    'protest in', 'protests in', 'demonstrators', 'novel', 'author', 'actress', 'actor', 'hollywood',
+    'bollywood', 'box office', 'eurovision', 'grammy', 'oscar', 'nobel prize', 'gaza', 'ukraine war',
+    'syria', 'beirut', 'tel aviv', 'lebanon', 'yemen', 'sudan', 'haiti', 'prince harry', 'meghan markle',
+    'royal family', 'celebrity', 'tennis', 'cricket match', 'world cup qualifier', 'premier league',
+    'la liga', 'nba', 'uefa', 'fifa', 'pga tour', 'olympic', 'formula 1', 'grand prix'
   ];
   return foreignOnlyKeywords.some(kw => combined.includes(kw));
 };
@@ -76,7 +83,10 @@ export const isNonFinancialNews = (title = '', desc = '') => {
     'mir raza', 'judicial commission', 'taxi driver', 'statements of business partner',
     'murder', 'robbery', 'killed', 'arrested', 'police encounter', 'smuggling bid foiled',
     'dead in road accident', 'scooty', 'gunpoint', 'firing', 'bail plea', 'court rejects',
-    'kidnapped', 'dacoits', 'extortion', 'rape', 'dead body', 'injured in', 'terrorist'
+    'kidnapped', 'dacoits', 'extortion', 'rape', 'dead body', 'injured in', 'terrorist',
+    'suicide', 'assassination', 'traffic jam', 'weather update', 'cold wave', 'fog',
+    'smog in lahore', 'winter vacation', 'school closed', 'exam date', 'matric results',
+    'anti-government', 'protesters clash', 'tear gas', 'riot police'
   ];
   return nonFinancialKeywords.some(kw => text.includes(kw));
 };
@@ -91,7 +101,8 @@ export const evaluateArticleSentiment = (title = '', desc = '') => {
     'tax relief', 'rate cut', 'cut rate', 'rate drops', 'inflation drops',
     'inflation falls', 'reserves rise', 'exports rise', 'sales rise', 'demand accelerates',
     'imf approval', 'imf deal', 'agreement signed', 'capacity expansion',
-    'margin expansion', 'profit jumps', 'earnings jump'
+    'margin expansion', 'profit jumps', 'earnings jump', 'steel scrap raw material supports',
+    'supports international industries', 'duties rationalization on steel scrap'
   ];
 
   const positiveKeywords = [
@@ -326,18 +337,8 @@ export const ALL_SECTOR_CATALYSTS = [
     category: 'MACRO_ECONOMY',
     name: 'Macro Economy, Trade & IMF',
     keywords: ['imf', 'sbp', 'reserves', 'current account', 'fbr', 'tax collection', 'budget', 'gdp', 'rupee', 'dollar', 'remittance'],
-    bullishStocks: [
-      { symbol: 'CNERGY', name: 'Cynergico PK Limited', sector: 'Refinery', price: 15.46 },
-      { symbol: 'MEBL', name: 'Meezan Bank Limited', sector: 'Commercial Banks', price: 573.99 },
-      { symbol: 'MLCF', name: 'Maple Leaf Cement Factory', sector: 'Cement', price: 100.00 },
-      { symbol: 'SYS', name: 'Systems Limited', sector: 'Technology & Communication', price: 124.54 },
-      { symbol: 'PAEL', name: 'Pak Elektron Limited', sector: 'Cable & Electrical Goods', price: 26.80 }
-    ],
-    bearishStocks: [
-      { symbol: 'PSO', name: 'Pakistan State Oil', sector: 'Oil & Gas Marketing', price: 363.84 },
-      { symbol: 'HBL', name: 'Habib Bank Limited', sector: 'Commercial Banks', price: 154.50 },
-      { symbol: 'KEL', name: 'K-Electric Limited', sector: 'Power Generation', price: 5.20 }
-    ]
+    bullishStocks: [],
+    bearishStocks: []
   }
 ];
 
@@ -782,7 +783,23 @@ export const fetchLiveFinancialNews = async () => {
     const isPositive = sentiment === 'POSITIVE';
 
     // Build Sector Specific Stocks with Dynamic Price Targets
-    const allSectorStocks = [...matchedSector.bullishStocks, ...matchedSector.bearishStocks];
+    // For MACRO_ECONOMY news, ONLY tag stocks that are explicitly named in the text
+    let allSectorStocks = [];
+    if (matchedSector.category === 'MACRO_ECONOMY') {
+      const explicitStocks = [];
+      ALL_SECTOR_CATALYSTS.forEach(sec => {
+        if (sec.category === 'MACRO_ECONOMY') return;
+        [...sec.bullishStocks, ...sec.bearishStocks].forEach(st => {
+          const symWord = new RegExp(`\\b${st.symbol.toLowerCase()}\\b`, 'i');
+          if (symWord.test(text)) {
+            explicitStocks.push(st);
+          }
+        });
+      });
+      allSectorStocks = explicitStocks;
+    } else {
+      allSectorStocks = [...matchedSector.bullishStocks, ...matchedSector.bearishStocks];
+    }
 
     const upStocks = isPositive 
       ? allSectorStocks.slice(0, 4).map(st => {
