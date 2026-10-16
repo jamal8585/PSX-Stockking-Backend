@@ -185,20 +185,30 @@ export const syncMarketData = async () => {
 
   const sectorPerformanceMap = new Map();
   evaluatedStocks.forEach(s => {
+    if (!s.sector || s.sector === 'General Market') return;
+
+    // Filter out Unpaid Rights (LoR) and penny share anomalies from sector index calculation
+    const sym = String(s.symbol || '').toUpperCase().trim();
+    const isRightOrLoR = sym.endsWith('R') || sym.includes('APPR') || sym.includes('LOR') || 
+      (Number(s.currentPrice || 0) < 1.0 && Math.abs(Number(s.changePercent || 0)) > 20);
+    if (isRightOrLoR) return;
+
     if (!sectorPerformanceMap.has(s.sector)) {
       sectorPerformanceMap.set(s.sector, { sector: s.sector, totalChange: 0, count: 0, volume: 0 });
     }
     const sec = sectorPerformanceMap.get(s.sector);
-    sec.totalChange += s.changePercent;
+    // Clamp individual stock change to PSX max circuit breaker limit (±15%)
+    const clampedChange = Math.max(-15, Math.min(15, Number(s.changePercent || 0)));
+    sec.totalChange += clampedChange;
     sec.count += 1;
-    sec.volume += s.volume;
+    sec.volume += Number(s.volume || 0);
   });
 
   const sectorPerformance = Array.from(sectorPerformanceMap.values()).map(sec => ({
     sector: sec.sector,
-    changePercent: Number((sec.totalChange / sec.count).toFixed(2)),
+    changePercent: Number((sec.totalChange / (sec.count || 1)).toFixed(2)),
     volume: sec.volume,
-    sentiment: (sec.totalChange / sec.count) > 0.5 ? 'BULLISH' : ((sec.totalChange / sec.count) < -0.5 ? 'BEARISH' : 'NEUTRAL')
+    sentiment: (sec.totalChange / (sec.count || 1)) > 0.5 ? 'BULLISH' : ((sec.totalChange / (sec.count || 1)) < -0.5 ? 'BEARISH' : 'NEUTRAL')
   }));
 
   const marketSummaryDoc = {
