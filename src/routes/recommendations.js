@@ -177,20 +177,34 @@ router.get('/', async (req, res) => {
         const sym = (rec.symbol || '').toUpperCase().trim();
         const official = officialQuotes ? officialQuotes[sym] : null;
         const liveP = Number(official?.currentPrice || rec.currentPrice || 100);
-        // Slightly vary historical price by -1% to +2% to reflect prior session state
         const priceVariation = 1 - (dayOffset * 0.008);
+        const histPrice = Number((liveP * priceVariation).toFixed(2));
         const isAvoid = rec.signal === 'AVOID_SELL';
-        const target1 = isAvoid
-          ? Number((histPrice * 0.93).toFixed(2))
-          : Number((histPrice * 1.095).toFixed(2));
-        const stopLoss = isAvoid
-          ? Number((histPrice * 0.965).toFixed(2))
-          : Number((histPrice * 0.95).toFixed(2));
+        
+        // Scale proportionally from rec's dynamic levels so volatility profiles are preserved
+        const target1 = rec.target1 
+          ? Number((rec.target1 * priceVariation).toFixed(2)) 
+          : (isAvoid ? Number((histPrice * 0.925).toFixed(2)) : Number((histPrice * 1.095).toFixed(2)));
+        const target2 = rec.target2 
+          ? Number((rec.target2 * priceVariation).toFixed(2)) 
+          : (isAvoid ? Number((histPrice * 0.875).toFixed(2)) : Number((histPrice * 1.18).toFixed(2)));
+        const stopLoss = rec.stopLoss 
+          ? Number((rec.stopLoss * priceVariation).toFixed(2)) 
+          : (isAvoid ? Number((histPrice * 0.96).toFixed(2)) : Number((histPrice * 0.95).toFixed(2)));
+        const entryZone = rec.entryZone ? {
+          min: Number((rec.entryZone.min * priceVariation).toFixed(2)),
+          max: Number((rec.entryZone.max * priceVariation).toFixed(2))
+        } : {
+          min: Number((histPrice * 0.985).toFixed(2)),
+          max: Number((histPrice * 1.015).toFixed(2))
+        };
 
         return {
           ...rec,
           currentPrice: histPrice,
+          entryZone,
           target1,
+          target2,
           stopLoss,
           date: requestedSession.dateStr,
           isHistoricalSnapshot: true

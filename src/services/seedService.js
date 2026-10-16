@@ -66,7 +66,9 @@ export const syncMarketData = async () => {
       currentPrice: price,
       high,
       low,
-      historicalPrices: history
+      historicalPrices: history,
+      changePercent,
+      volume
     });
 
     let matchedNews = null;
@@ -131,6 +133,8 @@ export const syncMarketData = async () => {
       sector: resolvedSector,
       signal: tradePlan.signal,
       isBearishExit: tradePlan.isBearishExit,
+      isMomentumBreakout: tradePlan.isMomentumBreakout,
+      tradeStrategy: tradePlan.tradeStrategy,
       currentPrice: price,
       entryZone: tradePlan.entryZone,
       stopLoss: tradePlan.stopLoss,
@@ -139,17 +143,21 @@ export const syncMarketData = async () => {
       riskReward: tradePlan.riskReward,
       riskRewardRatio: tradePlan.riskRewardRatio,
       confidence: tradePlan.confidence,
-      timeHorizon: tradePlan.signal === 'STRONG_BUY' ? '1 to 4 Weeks (Swing Momentum)' : '1 to 8 Weeks',
+      timeHorizon: tradePlan.isMomentumBreakout 
+        ? 'Trailing Stop / Momentum Lock' 
+        : (tradePlan.signal === 'STRONG_BUY' ? '1 to 4 Weeks (Swing Momentum)' : '1 to 8 Weeks'),
       reasons: tradePlan.reasons,
       newsSentimentImpact: newsImpact,
       orderAdvice: {
-        actionNote: tradePlan.signal === 'STRONG_BUY' 
-          ? 'Enter Limit Buy in Entry Zone' 
-          : (tradePlan.signal === 'ACCUMULATE' 
-              ? 'Accumulate 50% now, 50% on pullback' 
-              : (tradePlan.signal === 'AVOID_SELL' 
-                  ? 'Take Profit / Capital Preservation (Avoid New Longs)' 
-                  : 'Monitor on Watchlist')),
+        actionNote: tradePlan.isMomentumBreakout
+          ? `Strong Momentum Breakout (+${changePercent.toFixed(2)}%): Hold existing long positions and trail stop-loss to PKR ${tradePlan.stopLoss} to lock in gains. Avoid shorting strong momentum.`
+          : (tradePlan.signal === 'STRONG_BUY' 
+              ? 'Enter Limit Buy in Entry Zone' 
+              : (tradePlan.signal === 'ACCUMULATE' 
+                  ? 'Accumulate 50% now, 50% on pullback' 
+                  : (tradePlan.signal === 'AVOID_SELL' 
+                      ? 'Take Profit / Capital Preservation (Avoid New Longs)' 
+                      : 'Monitor on Watchlist'))),
         allocationPercent: tradePlan.signal === 'STRONG_BUY' ? 15 : (tradePlan.signal === 'ACCUMULATE' ? 10 : 0),
         riskPerSharePKR: Number(Math.max(0, price - tradePlan.stopLoss).toFixed(2)),
         rewardPerSharePKR: tradePlan.signal === 'AVOID_SELL' ? 0 : Number(Math.max(0, tradePlan.target1 - price).toFixed(2))

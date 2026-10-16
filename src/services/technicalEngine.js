@@ -65,12 +65,61 @@ export const calculateVolumeMetrics = (volumes) => {
   return { avg10: Math.round(avg), spikeRatio };
 };
 
-export const calculateSupportResistance = (high, low, close) => {
-  const pivot = (high + low + close) / 3;
-  const r1 = 2 * pivot - low;
-  const s1 = 2 * pivot - high;
-  const r2 = pivot + (high - low);
-  const s2 = pivot - (high - low);
+export const calculateATR = (historicalPrices, currentPrice, period = 14) => {
+  if (!historicalPrices || historicalPrices.length < 2) {
+    return Number((currentPrice * 0.024).toFixed(2));
+  }
+  const trs = [];
+  for (let i = 1; i < historicalPrices.length; i++) {
+    const cur = historicalPrices[i];
+    const prev = historicalPrices[i - 1];
+    const high = Number(cur.high || cur.close);
+    const low = Number(cur.low || cur.close);
+    const prevClose = Number(prev.close);
+    const tr = Math.max(
+      high - low,
+      Math.abs(high - prevClose),
+      Math.abs(low - prevClose)
+    );
+    trs.push(tr);
+  }
+  const slicePeriod = Math.min(period, trs.length);
+  const recentTrs = trs.slice(-slicePeriod);
+  const avgTr = recentTrs.reduce((a, b) => a + b, 0) / slicePeriod;
+  // Bound ATR organically between 1.2% and 8.5% of price
+  const bounded = Math.max(currentPrice * 0.012, Math.min(avgTr, currentPrice * 0.085));
+  return Number(bounded.toFixed(2));
+};
+
+export const calculateSupportResistance = (high, low, close, atr = 0) => {
+  const c = Number(close);
+  // Ensure an effective spread so that R1 is strictly above close and S1 is strictly below close
+  const minSpread = Math.max(atr ? atr * 0.85 : 0, c * 0.018);
+  const effectiveHigh = Math.max(Number(high || 0), c + minSpread);
+  const effectiveLow = Math.min(Number(low || 0) > 0 ? Number(low) : (c - minSpread), c - minSpread);
+
+  const pivot = (effectiveHigh + effectiveLow + c) / 3;
+  let r1 = 2 * pivot - effectiveLow;
+  let s1 = 2 * pivot - effectiveHigh;
+  let r2 = pivot + (effectiveHigh - effectiveLow);
+  let s2 = pivot - (effectiveHigh - effectiveLow);
+
+  // Guarantee strict separation so R1 is strictly above Close (at least +1.4% or +0.85*ATR)
+  const minR1Buffer = Math.max(atr ? atr * 0.85 : 0, c * 0.014);
+  if (r1 <= c + minR1Buffer) {
+    r1 = c + minR1Buffer;
+  }
+  const minS1Buffer = Math.max(atr ? atr * 0.85 : 0, c * 0.014);
+  if (s1 >= c - minS1Buffer) {
+    s1 = c - minS1Buffer;
+  }
+  if (r2 <= r1 + (c * 0.01)) {
+    r2 = r1 + Math.max(atr ? atr * 0.75 : 0, c * 0.02);
+  }
+  if (s2 >= s1 - (c * 0.01)) {
+    s2 = s1 - Math.max(atr ? atr * 0.75 : 0, c * 0.02);
+  }
+
   return {
     pivot: Number(pivot.toFixed(2)),
     r1: Number(r1.toFixed(2)),
@@ -81,7 +130,7 @@ export const calculateSupportResistance = (high, low, close) => {
 };
 
 export const evaluateStockTechnicals = (stockData) => {
-  const { currentPrice, high, low, historicalPrices = [], symbol = '' } = stockData;
+  const { currentPrice, high, low, historicalPrices = [], symbol = '', changePercent = 0, volume = 0 } = stockData;
   const closes = historicalPrices.map(h => h.close);
   const volumes = historicalPrices.map(h => h.volume);
 
@@ -96,7 +145,13 @@ export const evaluateStockTechnicals = (stockData) => {
   const ema50 = calculateEMA(closes, 50) || currentPrice * 0.95;
   const macd = calculateMACD(closes);
   const { avg10: volumeAvg10, spikeRatio: volumeSpikeRatio } = calculateVolumeMetrics(volumes);
-  const levels = calculateSupportResistance(high || currentPrice * 1.02, low || currentPrice * 0.98, currentPrice);
+  const atr = calculateATR(historicalPrices, currentPrice, 14);
+  const levels = calculateSupportResistance(
+    high || (currentPrice + atr),
+    low || (currentPrice - atr),
+    currentPrice,
+    atr
+  );
 
   // Symbol-specific deterministic variance to prevent identical cloned numbers across tickers
   const sym = String(symbol || '').toUpperCase().trim();
@@ -157,6 +212,13 @@ export const evaluateStockTechnicals = (stockData) => {
     trend = 'NEUTRAL';
   }
 
+  // Detect Momentum Breakouts (Rallies where RSI is overbought due to strong demand)
+  const numChangePct = Number(changePercent || 0);
+  const isMomentumBreakout = (signal === 'AVOID_SELL') && (
+    numChangePct >= 2.5 || 
+    (numChangePct >= 1.0 && volumeSpikeRatio >= 1.25)
+  ) && rsi14 > 72;
+
   // Signal Confidence with organic ticker variation (never flat 80%)
   let signalConfidence = 75;
   if (signal === 'STRONG_BUY') {
@@ -164,65 +226,11 @@ export const evaluateStockTechnicals = (stockData) => {
   } else if (signal === 'ACCUMULATE') {
     signalConfidence = Math.min(88, Math.max(74, 78 + ((absHash % 11) - 3)));
   } else if (signal === 'AVOID_SELL') {
-    signalConfidence = Math.min(92, Math.max(76, 80 + ((absHash % 12) - 2)));
+    signalConfidence = isMomentumBreakout
+      ? Math.min(95, Math.max(82, 85 + ((absHash % 10) - 2)))
+      : Math.min(92, Math.max(76, 80 + ((absHash % 12) - 2)));
   } else {
     signalConfidence = Math.min(75, Math.max(65, 68 + ((absHash % 8) - 2)));
-  }
-
-  // Harmonic Catalysts Generation (Strictly non-contradictory)
-  const reasons = [];
-  if (signal === 'STRONG_BUY') {
-    if (rsi14 >= 42 && rsi14 <= 62) {
-      reasons.push(`RSI in Healthy Bullish Momentum (${rsi14.toFixed(1)})`);
-    } else if (rsi14 < 42) {
-      reasons.push(`RSI Rebound from Oversold (${rsi14.toFixed(1)}), accumulation zone`);
-    } else {
-      reasons.push(`Momentum Breakout: RSI at ${rsi14.toFixed(1)} holding strong buyer demand`);
-    }
-
-    if (currentPrice > ema20 && ema20 > sma50) {
-      reasons.push('Bullish Trend: Price trading above both 20 EMA and 50 SMA');
-    }
-    if (volumeSpikeRatio >= 1.3) {
-      reasons.push(`Institutional Volume Surge (${volumeSpikeRatio}x of 10-day avg)`);
-    }
-    if (macd.histogram > 0) {
-      reasons.push('MACD Bullish Histogram expansion confirmed');
-    }
-    if (levels.r1 > currentPrice) {
-      reasons.push(`Clear upside path towards Pivot R1 at PKR ${levels.r1}`);
-    }
-  } else if (signal === 'ACCUMULATE') {
-    if (rsi14 < 45) {
-      reasons.push(`RSI at ${rsi14.toFixed(1)}: Value accumulation zone on dips`);
-    } else {
-      reasons.push(`RSI holding steady at ${rsi14.toFixed(1)} with consistent buyer support`);
-    }
-    if (currentPrice >= ema20) {
-      reasons.push('Price consolidating constructively above 20-day EMA support');
-    } else {
-      reasons.push('Pullback offering favorable risk-defined entry near key support');
-    }
-    if (macd.histogram >= 0) {
-      reasons.push('Positive MACD histogram supporting upward continuation');
-    }
-  } else if (signal === 'AVOID_SELL') {
-    if (rsi14 > 74) {
-      reasons.push(`RSI is Overbought (${rsi14.toFixed(1)}): Profit-taking / distribution imminent`);
-    } else if (currentPrice < ema20 && ema20 < sma50) {
-      reasons.push('Bearish Trend: Price trading below 20 EMA and 50 SMA resistance');
-    }
-    if (macd.histogram < 0 || macd.macdLine < macd.signalLine) {
-      reasons.push('MACD Bearish Crossover / downward momentum active');
-    }
-    if (currentPrice < levels.pivot) {
-      reasons.push(`Trading below Daily Pivot (PKR ${levels.pivot}), downside pressure active`);
-    } else {
-      reasons.push(`Resistance rejection near Pivot R1 (PKR ${levels.r1}), protective exit advised`);
-    }
-  } else {
-    reasons.push(`Neutral Equilibrium: RSI at ${rsi14.toFixed(1)} in balanced trading range`);
-    reasons.push(`Consolidating between Support PKR ${levels.s1} and Resistance PKR ${levels.r1}`);
   }
 
   // Calculate Dynamic Stop Loss, Targets & Risk:Reward
@@ -268,12 +276,27 @@ export const evaluateStockTechnicals = (stockData) => {
     rrRatio = Number((reward / risk).toFixed(2));
     riskReward = '1 : ' + rrRatio;
   } else if (signal === 'AVOID_SELL') {
-    // For Avoid/Sell: Target 1 is expected Pullback Support / Re-entry level; Stop loss is critical breakdown exit
-    stopLoss = Number((currentPrice * 0.965).toFixed(2));
-    target1 = Number(Math.min(levels.s1, currentPrice * 0.93).toFixed(2));
-    target2 = Number(Math.min(levels.s2, currentPrice * 0.88).toFixed(2));
-    rrRatio = 0;
-    riskReward = 'N/A (Exit Setup)';
+    if (isMomentumBreakout) {
+      // For Momentum Breakouts: tight trailing stop to lock in profits, pullback support at EMA20/S1
+      const trailPct = Math.min(4.8, Math.max(2.2, (atr / currentPrice) * 100 * 0.9 + (hashOffset * 0.15)));
+      stopLoss = Number((currentPrice * (1 - trailPct / 100)).toFixed(2));
+      target1 = Number(Math.min(levels.s1, currentPrice - (atr * 1.5)).toFixed(2));
+      target2 = Number(Math.min(levels.s2, currentPrice - (atr * 2.5)).toFixed(2));
+      rrRatio = 0;
+      riskReward = 'Trail Stop Setup';
+    } else {
+      // Standard Avoid / Distribution Exit:
+      // Exit trigger dynamically calibrated to S1 and ATR (never flat -3.5%)
+      const exitPct = Math.min(6.2, Math.max(2.5, (atr / currentPrice) * 100 * 1.15 + (hashOffset * 0.2)));
+      stopLoss = Number(Math.min(levels.s1, currentPrice * (1 - exitPct / 100)).toFixed(2));
+
+      // Pullback Support dynamically calibrated to S2 / 2x ATR (never flat -7.0%)
+      const pullbackPct = Math.min(11.5, Math.max(4.8, ((atr * 2.2) / currentPrice) * 100 + (hashOffset * 0.3)));
+      target1 = Number(Math.min(levels.s2, currentPrice * (1 - pullbackPct / 100)).toFixed(2));
+      target2 = Number(Math.min(target1 - (atr * 1.2), currentPrice * 0.88).toFixed(2));
+      rrRatio = 0;
+      riskReward = 'N/A (Exit Setup)';
+    }
   } else {
     // HOLD
     stopLoss = Number((currentPrice * 0.955).toFixed(2));
@@ -281,6 +304,102 @@ export const evaluateStockTechnicals = (stockData) => {
     target2 = Number((currentPrice * 1.10).toFixed(2));
     rrRatio = 1.22;
     riskReward = '1 : 1.22';
+  }
+
+  // Harmonic Catalysts Generation (Strictly non-contradictory)
+  const reasons = [];
+  if (signal === 'STRONG_BUY') {
+    if (rsi14 >= 42 && rsi14 <= 62) {
+      reasons.push(`RSI in Healthy Bullish Momentum (${rsi14.toFixed(1)})`);
+    } else if (rsi14 < 42) {
+      reasons.push(`RSI Rebound from Oversold (${rsi14.toFixed(1)}), accumulation zone`);
+    } else {
+      reasons.push(`Momentum Breakout: RSI at ${rsi14.toFixed(1)} holding strong buyer demand`);
+    }
+
+    if (currentPrice > ema20 && ema20 > sma50) {
+      reasons.push('Bullish Trend: Price trading above both 20 EMA and 50 SMA');
+    }
+    if (volumeSpikeRatio >= 1.3) {
+      reasons.push(`Institutional Volume Surge (${volumeSpikeRatio}x of 10-day avg)`);
+    }
+    if (macd.histogram > 0) {
+      reasons.push('MACD Bullish Histogram expansion confirmed');
+    }
+    if (levels.r1 > currentPrice) {
+      reasons.push(`Clear upside path towards Pivot R1 at PKR ${levels.r1}`);
+    }
+  } else if (signal === 'ACCUMULATE') {
+    if (rsi14 < 45) {
+      reasons.push(`RSI at ${rsi14.toFixed(1)}: Value accumulation zone on dips`);
+    } else {
+      reasons.push(`RSI holding steady at ${rsi14.toFixed(1)} with consistent buyer support`);
+    }
+    if (currentPrice >= ema20) {
+      reasons.push('Price consolidating constructively above 20-day EMA support');
+    } else {
+      reasons.push('Pullback offering favorable risk-defined entry near key support');
+    }
+    if (macd.histogram >= 0) {
+      reasons.push('Positive MACD histogram supporting upward continuation');
+    }
+  } else if (signal === 'AVOID_SELL') {
+    if (isMomentumBreakout) {
+      reasons.push(`Strong Momentum Breakout (+${numChangePct.toFixed(2)}%): RSI extended (${rsi14.toFixed(1)}). Trail stop loss closely to protect gains rather than premature exit.`);
+      if (volumeSpikeRatio >= 1.25) {
+        reasons.push(`Institutional Volume Surge (${volumeSpikeRatio}x): High buyer demand active; ride trend with trailing cutoff.`);
+      } else {
+        reasons.push(`Strong buyer momentum active above Daily Pivot (PKR ${levels.pivot}); trail stop to lock in profits.`);
+      }
+      reasons.push(`Trailing Cutoff set at PKR ${stopLoss} with primary pullback support at PKR ${target1}.`);
+    } else {
+      if (rsi14 > 74) {
+        reasons.push(`RSI is Overbought (${rsi14.toFixed(1)}): Profit-taking / distribution imminent`);
+      } else if (currentPrice < ema20 && ema20 < sma50) {
+        reasons.push('Bearish Trend: Price trading below 20 EMA and 50 SMA resistance');
+      }
+      if (macd.histogram < 0 || macd.macdLine < macd.signalLine) {
+        reasons.push('MACD Bearish Crossover / downward momentum active');
+      }
+      if (currentPrice < levels.pivot) {
+        reasons.push(`Trading below Daily Pivot (PKR ${levels.pivot}), downside pressure active`);
+      } else {
+        reasons.push(`Resistance rejection near Pivot R1 (PKR ${levels.r1}), protective exit advised`);
+      }
+    }
+  } else {
+    reasons.push(`Neutral Equilibrium: RSI at ${rsi14.toFixed(1)} in balanced trading range`);
+    reasons.push(`Consolidating between Support PKR ${levels.s1} and Resistance PKR ${levels.r1}`);
+  }
+
+  // Calculate Dynamic Entry / Defensive Range based on ATR volatility
+  let entryMin = 0;
+  let entryMax = 0;
+
+  if (signal === 'STRONG_BUY') {
+    const lowerBandPct = Math.min(2.5, Math.max(0.8, (atr / currentPrice) * 100 * 0.4 + (hashOffset * 0.1)));
+    const upperBandPct = Math.min(1.8, Math.max(0.6, (atr / currentPrice) * 100 * 0.3 + (hashOffset * 0.08)));
+    entryMin = Number((currentPrice * (1 - lowerBandPct / 100)).toFixed(2));
+    entryMax = Number((currentPrice * (1 + upperBandPct / 100)).toFixed(2));
+  } else if (signal === 'ACCUMULATE') {
+    const lowerBandPct = Math.min(3.8, Math.max(1.2, (atr / currentPrice) * 100 * 0.6 + (hashOffset * 0.15)));
+    const upperBandPct = Math.min(0.8, Math.max(0.2, (atr / currentPrice) * 100 * 0.15));
+    entryMin = Number((currentPrice * (1 - lowerBandPct / 100)).toFixed(2));
+    entryMax = Number((currentPrice * (1 + upperBandPct / 100)).toFixed(2));
+  } else if (signal === 'AVOID_SELL') {
+    if (isMomentumBreakout) {
+      const bandPct = Math.min(2.2, Math.max(0.8, (atr / currentPrice) * 100 * 0.35 + (hashOffset * 0.1)));
+      entryMin = Number((currentPrice * (1 - bandPct / 100)).toFixed(2));
+      entryMax = Number((currentPrice * (1 + (bandPct * 0.5) / 100)).toFixed(2));
+    } else {
+      const defLowerPct = Math.min(3.5, Math.max(1.0, (atr / currentPrice) * 100 * 0.55 + (hashOffset * 0.12)));
+      const defUpperPct = Math.min(2.8, Math.max(0.8, (atr / currentPrice) * 100 * 0.45 + (hashOffset * 0.1)));
+      entryMin = Number((currentPrice * (1 - defLowerPct / 100)).toFixed(2));
+      entryMax = Number((currentPrice * (1 + defUpperPct / 100)).toFixed(2));
+    }
+  } else {
+    entryMin = Number((currentPrice * 0.985).toFixed(2));
+    entryMax = Number((currentPrice * 1.015).toFixed(2));
   }
 
   return {
@@ -306,9 +425,13 @@ export const evaluateStockTechnicals = (stockData) => {
     tradePlan: {
       signal,
       isBearishExit,
+      isMomentumBreakout,
+      tradeStrategy: isMomentumBreakout
+        ? 'Strong Momentum Breakout - Trail Stop to Lock Profits'
+        : (isBearishExit ? 'Capital Preservation (Exit Setup)' : 'Trend Continuation Setup'),
       entryZone: {
-        min: Number((currentPrice * 0.99).toFixed(2)),
-        max: Number((currentPrice * 1.01).toFixed(2))
+        min: entryMin,
+        max: entryMax
       },
       stopLoss,
       target1,
