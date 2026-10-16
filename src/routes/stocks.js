@@ -96,7 +96,7 @@ router.get('/', async (req, res) => {
           prevClose: live.prevClose > 0 ? live.prevClose : dbStock.prevClose,
           change: live.change !== undefined ? live.change : dbStock.change,
           changePercent: live.changePercent !== undefined ? live.changePercent : dbStock.changePercent,
-          volume: live.volume || dbStock.volume,
+          volume: (live.volume && live.volume > 0) ? live.volume : (dbStock.volume || 0),
           technicals: dbStock.technicals || live.technicals,
           peRatio: dbStock.peRatio || live.peRatio,
           dividendYield: dbStock.dividendYield || live.dividendYield
@@ -401,7 +401,7 @@ router.get('/:symbol', async (req, res) => {
       prevClose,
       change: liveQuote?.change !== undefined ? liveQuote.change : (stock?.change ?? Number((currentPrice - prevClose).toFixed(2))),
       changePercent: liveQuote?.changePercent !== undefined ? liveQuote.changePercent : (stock?.changePercent ?? Number((((currentPrice - prevClose) / prevClose) * 100).toFixed(2))),
-      volume: liveQuote?.volume || stock?.volume || 1500000,
+      volume: (liveQuote?.volume && liveQuote.volume > 0) ? liveQuote.volume : (stock?.volume || 0),
       technicals: {
         ...(stock?.technicals || {}),
         ...realTechnicals
