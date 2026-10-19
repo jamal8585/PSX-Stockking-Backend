@@ -202,6 +202,43 @@ export const syncMarketData = async (force = false) => {
   const sortedLosers = [...evaluatedStocks].sort((a, b) => a.changePercent - b.changePercent).slice(0, 5);
   const sortedVolume = [...evaluatedStocks].sort((a, b) => b.volume - a.volume).slice(0, 5);
 
+  // 1. Calculate Full Listed Universe Breadth & Sectors from officialMarketSheet
+  let fullAdv = 0;
+  let fullDec = 0;
+  let fullUnc = 0;
+  const fullSectorMap = new Map();
+
+  for (const s of officialMarketSheet.values()) {
+    const chg = Number(s.change || 0);
+    if (chg > 0) fullAdv++;
+    else if (chg < 0) fullDec++;
+    else fullUnc++;
+
+    if (s.sector && s.sector !== 'General Market') {
+      const sym = String(s.symbol || '').toUpperCase().trim();
+      const isRightOrLoR = sym.endsWith('R') || sym.includes('APPR') || sym.includes('LOR') || 
+        (Number(s.currentPrice || 0) < 1.0 && Math.abs(Number(s.changePercent || 0)) > 20);
+      if (isRightOrLoR) continue;
+
+      if (!fullSectorMap.has(s.sector)) {
+        fullSectorMap.set(s.sector, { sector: s.sector, totalChange: 0, count: 0, volume: 0 });
+      }
+      const rec = fullSectorMap.get(s.sector);
+      rec.count += 1;
+      rec.totalChange += Math.max(-15, Math.min(15, Number(s.changePercent || 0)));
+      rec.volume += Number(s.volume || 0);
+    }
+  }
+
+  const fullSectorPerformance = Array.from(fullSectorMap.values()).map(sec => ({
+    sector: sec.sector,
+    changePercent: Number((sec.totalChange / (sec.count || 1)).toFixed(2)),
+    volume: sec.volume,
+    count: sec.count,
+    sentiment: (sec.totalChange / (sec.count || 1)) > 0.5 ? 'BULLISH' : ((sec.totalChange / (sec.count || 1)) < -0.5 ? 'BEARISH' : 'NEUTRAL')
+  }));
+
+  // 2. Curated 64-stock Universe
   const sectorPerformanceMap = new Map();
   evaluatedStocks.forEach(s => {
     if (!s.sector || s.sector === 'General Market') return;
@@ -223,21 +260,38 @@ export const syncMarketData = async (force = false) => {
     sec.volume += Number(s.volume || 0);
   });
 
-  const sectorPerformance = Array.from(sectorPerformanceMap.values()).map(sec => ({
+  const curatedSectorPerformance = Array.from(sectorPerformanceMap.values()).map(sec => ({
     sector: sec.sector,
     changePercent: Number((sec.totalChange / (sec.count || 1)).toFixed(2)),
     volume: sec.volume,
+    count: sec.count,
     sentiment: (sec.totalChange / (sec.count || 1)) > 0.5 ? 'BULLISH' : ((sec.totalChange / (sec.count || 1)) < -0.5 ? 'BEARISH' : 'NEUTRAL')
   }));
+
+  const sectorPerformance = fullSectorPerformance.length >= 10 ? fullSectorPerformance : curatedSectorPerformance;
 
   const marketSummaryDoc = {
     ...liveKSE100,
     marketStatus: marketTiming,
-    advances,
-    declines,
-    unchanged,
+    advances: fullAdv > 0 ? fullAdv : advances,
+    declines: fullDec > 0 ? fullDec : declines,
+    unchanged: fullUnc > 0 ? fullUnc : unchanged,
     marketSentiment: liveKSE100.change >= 0 ? 'BULLISH' : 'BEARISH',
     sectorPerformance,
+    fullBreadth: {
+      advances: fullAdv,
+      declines: fullDec,
+      unchanged: fullUnc,
+      total: fullAdv + fullDec + fullUnc
+    },
+    curatedBreadth: {
+      advances,
+      declines,
+      unchanged,
+      total: advances + declines + unchanged
+    },
+    fullSectorPerformance,
+    curatedSectorPerformance,
     topGainers: sortedGainers.map(s => ({ symbol: s.symbol, price: s.currentPrice, change: s.change, changePercent: s.changePercent, volume: s.volume })),
     topLosers: sortedLosers.map(s => ({ symbol: s.symbol, price: s.currentPrice, change: s.change, changePercent: s.changePercent, volume: s.volume })),
     volumeLeaders: sortedVolume.map(s => ({ symbol: s.symbol, price: s.currentPrice, changePercent: s.changePercent, volume: s.volume })),
