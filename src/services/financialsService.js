@@ -14,7 +14,7 @@ const HEADERS = {
 };
 
 import os from 'os';
-import { KNOWN_BENCHMARKS } from './psxDataService.js';
+import { KNOWN_BENCHMARKS, PSX_COMPANY_NAMES } from './psxDataService.js';
 
 // Memory Cache with 24-Hour TTL (Refreshed Daily)
 const financialsCache = new Map();
@@ -75,6 +75,9 @@ export const fetchStockFinancials = async (symbol) => {
     const sector = (rawSector && rawSector !== 'General Market') 
       ? rawSector 
       : (KNOWN_BENCHMARKS[sym]?.sector || 'Miscellaneous');
+
+    const scrapedName = $('.quote__name').text().replace(/DELISTED|XD|XB|XR/gi, '').trim();
+    const companyName = scrapedName || PSX_COMPANY_NAMES[sym] || sym;
 
     const annualData = { periods: [], rows: {} };
     const quarterlyData = { periods: [], rows: {} };
