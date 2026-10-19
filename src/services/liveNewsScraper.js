@@ -339,7 +339,7 @@ export const ALL_SECTOR_CATALYSTS = [
   {
     category: 'TEXTILE',
     name: 'Textile & Apparel Exports',
-    keywords: ['textile', 'cotton', 'garments', 'yarn', 'spinning', 'interloop', 'nishat', 'exports', 'eu gsp', 'apparel', 'gul ahmed'],
+    keywords: ['textile exports', 'textile', 'cotton', 'garments', 'yarn', 'spinning', 'interloop', 'nishat mills', 'knitwear', 'eu gsp', 'apparel exports', 'gul ahmed textile'],
     bullishStocks: [
       { symbol: 'ILP', name: 'Interloop Limited', sector: 'Textile Composite', price: 88.50 },
       { symbol: 'NML', name: 'Nishat Mills Limited', sector: 'Textile Composite', price: 92.20 },
@@ -843,6 +843,9 @@ export const fetchLiveFinancialNews = async () => {
             if (sec.category === 'CEMENT' && !isValidCementCatalyst(art.title, art.description)) {
               continue;
             }
+            if (sec.category === 'TEXTILE' && /\b(sugar|sugarcane|crushing|cane|ethanol|molasses)\b/i.test(text)) {
+              continue;
+            }
             matchedSector = sec;
             break;
           }
@@ -851,6 +854,9 @@ export const fetchLiveFinancialNews = async () => {
     }
     if (matchedSector && matchedSector.category === 'CEMENT' && !isValidCementCatalyst(art.title, art.description)) {
       matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY');
+    }
+    if (matchedSector && matchedSector.category === 'TEXTILE' && /\b(sugar|sugarcane|crushing|cane|ethanol|molasses)\b/i.test(text)) {
+      matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'SUGAR_FOOD') || ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY');
     }
     if (!matchedSector) {
       matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY') || ALL_SECTOR_CATALYSTS[0];
