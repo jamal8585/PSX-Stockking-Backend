@@ -87,13 +87,73 @@ export const isNonFinancialNews = (title = '', desc = '') => {
     'kidnapped', 'dacoits', 'extortion', 'rape', 'dead body', 'injured in', 'terrorist',
     'suicide', 'assassination', 'traffic jam', 'weather update', 'cold wave', 'fog',
     'smog in lahore', 'winter vacation', 'school closed', 'exam date', 'matric results',
-    'anti-government', 'protesters clash', 'tear gas', 'riot police'
+    'anti-government', 'protesters clash', 'tear gas', 'riot police',
+    'peace efforts', 'peace talks', 'never gave up', 'naqvi says', 'us-iran', 'iran peace',
+    'ceasefire', 'hostage', 'border skirmish'
   ];
   return nonFinancialKeywords.some(kw => text.includes(kw));
 };
 
+// Check if an article is a generic geopolitical or diplomatic statement that should not attach to individual sector cards
+export const isGeopoliticalOrDiplomaticNews = (title = '', desc = '') => {
+  const text = (title + ' ' + (desc || '')).toLowerCase();
+  const geopoliticalKeywords = [
+    'peace efforts', 'peace talks', 'never gave up', 'naqvi says', 'us-iran', 'iran peace',
+    'ceasefire', 'hostage', 'border skirmish', 'bilateral ties', 'diplomatic ties',
+    'foreign policy', 'geopolitical tension'
+  ];
+  return geopoliticalKeywords.some(kw => text.includes(kw));
+};
+
+// Restrict Cement sector news filters strictly to: Infrastructure, dispatches, PSDP tenders, coal prices, and monetary easing
+export const isValidCementCatalyst = (title = '', desc = '') => {
+  const text = (title + ' ' + (desc || '')).toLowerCase();
+
+  // 1. Explicit Cement Tickers or Company Names
+  const cementCompanyPatterns = [
+    'lucky cement', 'maple leaf', 'cherat cement', 'pioneer cement',
+    'fauji cement', 'd.g. khan cement', 'dg khan cement', 'attock cement',
+    'flying cement', 'power cement', 'clinker',
+    '\\bluck\\b', '\\bmlcf\\b', '\\bchcc\\b', '\\bpioc\\b', '\\bfccl\\b', '\\bdgkc\\b', '\\bacpl\\b'
+  ];
+  const hasCementCompany = cementCompanyPatterns.some(p => {
+    if (p.startsWith('\\b')) return new RegExp(p, 'i').test(text);
+    return text.includes(p);
+  });
+  if (hasCementCompany) return true;
+
+  // 2. Strict Cement Sector Themes: Infrastructure, dispatches, PSDP tenders, coal prices, monetary easing
+  const cementThemes = [
+    'infrastructure', 'construction', 'housing', 'mega project', 'mega projects', 'highways', 'dams', 'cpec',
+    'dispatch', 'dispatches', 'cement sale', 'cement sales', 'cement export', 'cement demand', 'off-take', 'offtakes',
+    'psdp', 'psdp tender', 'psdp tenders', 'tenders', 'development spending', 'development budget',
+    'coal', 'coal price', 'coal prices', 'imported coal', 'clinker cost',
+    'monetary easing', 'rate cut', 'cut rate', 'policy rate', 'interest rate', 'borrowing cost', 'leverage cost'
+  ];
+
+  return cementThemes.some(th => text.includes(th));
+};
+
 export const evaluateArticleSentiment = (title = '', desc = '') => {
   const text = (title + ' ' + (desc || '')).toLowerCase();
+
+  // High-Priority Macroeconomic & Prestige Overrides
+  // (e.g. Chairing World Bank / IMF boards, landmark diplomatic/macro achievements)
+  const isPrestigeMilestone = 
+    (text.includes('chair') && (text.includes('world bank') || text.includes('imf'))) ||
+    text.includes('chair world bank') ||
+    text.includes('chair imf') ||
+    text.includes('chairing world bank') ||
+    text.includes('chairing imf') ||
+    text.includes('world bank, imf boards') ||
+    text.includes('first time since 1953') ||
+    text.includes('first time since') ||
+    text.includes('prestige milestone') ||
+    text.includes('diplomatic milestone');
+
+  if (isPrestigeMilestone) {
+    return 'POSITIVE';
+  }
 
   // Explicit positive phrases (duty rationalization, smuggling curb, tax relief, etc.)
   const compoundPositivePhrases = [
@@ -103,7 +163,8 @@ export const evaluateArticleSentiment = (title = '', desc = '') => {
     'inflation falls', 'reserves rise', 'exports rise', 'sales rise', 'demand accelerates',
     'imf approval', 'imf deal', 'agreement signed', 'capacity expansion',
     'margin expansion', 'profit jumps', 'earnings jump', 'steel scrap raw material supports',
-    'supports international industries', 'duties rationalization on steel scrap'
+    'supports international industries', 'duties rationalization on steel scrap',
+    'chair world bank', 'chair imf', 'first time since 1953', 'macroeconomic prestige'
   ];
 
   const positiveKeywords = [
@@ -768,23 +829,40 @@ export const fetchLiveFinancialNews = async () => {
     const text = (art.title + ' ' + (art.description || '')).toLowerCase();
 
     let matchedSector = null;
-    if (art.category) {
-      const found = ALL_SECTOR_CATALYSTS.find(s => s.category === art.category);
-      if (found) matchedSector = found;
-    }
-    if (!matchedSector) {
-      for (const sec of ALL_SECTOR_CATALYSTS) {
-        if (sec.keywords.some(kw => text.includes(kw))) {
-          matchedSector = sec;
-          break;
+    const isGeopolitical = isGeopoliticalOrDiplomaticNews(art.title, art.description);
+    if (isGeopolitical) {
+      matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY');
+    } else {
+      if (art.category) {
+        const found = ALL_SECTOR_CATALYSTS.find(s => s.category === art.category);
+        if (found) matchedSector = found;
+      }
+      if (!matchedSector) {
+        for (const sec of ALL_SECTOR_CATALYSTS) {
+          if (sec.keywords.some(kw => text.includes(kw))) {
+            if (sec.category === 'CEMENT' && !isValidCementCatalyst(art.title, art.description)) {
+              continue;
+            }
+            matchedSector = sec;
+            break;
+          }
         }
       }
+    }
+    if (matchedSector && matchedSector.category === 'CEMENT' && !isValidCementCatalyst(art.title, art.description)) {
+      matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY');
     }
     if (!matchedSector) {
       matchedSector = ALL_SECTOR_CATALYSTS.find(s => s.category === 'MACRO_ECONOMY') || ALL_SECTOR_CATALYSTS[0];
     }
 
-    const sentiment = evaluateArticleSentiment(art.title, art.description);
+    const isPrestigeMilestone = 
+      (text.includes('chair') && (text.includes('world bank') || text.includes('imf'))) ||
+      text.includes('first time since 1953') ||
+      text.includes('chair world bank') ||
+      text.includes('chair imf');
+
+    const sentiment = isPrestigeMilestone ? 'POSITIVE' : evaluateArticleSentiment(art.title, art.description);
     const isPositive = sentiment === 'POSITIVE';
 
     // Build Sector Specific Stocks with Dynamic Price Targets
@@ -815,6 +893,10 @@ export const fetchLiveFinancialNews = async () => {
           const entryMin = Number((price * 0.985).toFixed(2));
           const entryMax = Number((price * 1.01).toFixed(2));
 
+          const tradeReason = isPrestigeMilestone
+            ? `Diplomatic and macroeconomic prestige milestone: ${art.title}. Enhanced global investor confidence.`
+            : `Positive catalyst: ${art.title}. Target PKR ${targetSell} projected.`;
+
           return {
             symbol: st.symbol,
             name: st.name,
@@ -830,7 +912,7 @@ export const fetchLiveFinancialNews = async () => {
             targetSellPrice: targetSell,
             expectedGainPct: gainPct,
             riskReward: '1 : 2.8',
-            tradeReason: `Positive catalyst: ${art.title}. Target PKR ${targetSell} projected.`
+            tradeReason
           };
         })
       : [];
