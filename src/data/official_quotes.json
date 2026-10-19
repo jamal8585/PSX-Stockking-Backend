@@ -1169,6 +1169,20 @@
     "volume": 1190676,
     "sector": "Chemical"
   },
+  "BIPL": {
+    "symbol": "BIPL",
+    "name": "BankIslami Pakistan Limited",
+    "sector": "Commercial Banks",
+    "sectorCode": "0805",
+    "prevClose": 24.08,
+    "open": 24.08,
+    "high": 24.8,
+    "low": 23.9,
+    "currentPrice": 24.33,
+    "change": 0.25,
+    "changePercent": 1.04,
+    "volume": 125460
+  },
   "BIPLXD": {
     "symbol": "BIPLXD",
     "sectorCode": "0807",

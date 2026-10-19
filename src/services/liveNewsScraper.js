@@ -191,7 +191,7 @@ export const ALL_SECTOR_CATALYSTS = [
     bearishStocks: [
       { symbol: 'HBL', name: 'Habib Bank Limited', sector: 'Commercial Banks', price: 154.50 },
       { symbol: 'NBP', name: 'National Bank of Pakistan', sector: 'Commercial Banks', price: 76.10 },
-      { symbol: 'BIPL', name: 'BankIslami Pakistan', sector: 'Commercial Banks', price: 28.50 }
+      { symbol: 'BIPL', name: 'BankIslami Pakistan', sector: 'Commercial Banks', price: 24.33 }
     ]
   },
   {

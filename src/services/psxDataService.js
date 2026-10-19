@@ -46,7 +46,7 @@ export const KNOWN_BENCHMARKS = {
   'BAHL': { basePrice: 115.00, pe: 3.5, eps: 32.8, divYield: 13.0, isKse100: true, sector: 'Commercial Banks' },
   'NBP': { basePrice: 76.10, pe: 3.2, eps: 23.7, divYield: 0.0, isKse100: true, sector: 'Commercial Banks' },
   'BOP': { basePrice: 34.99, pe: 4.8, eps: 1.42, divYield: 0.0, isKse100: true, sector: 'Commercial Banks' },
-  'BIPL': { basePrice: 28.50, pe: 4.1, eps: 6.9, divYield: 7.0, isKse100: false, sector: 'Commercial Banks' },
+  'BIPL': { basePrice: 24.33, pe: 4.1, eps: 6.9, divYield: 7.0, isKse100: false, sector: 'Commercial Banks' },
   'HUBC': { basePrice: 210.71, pe: 3.9, eps: 54.0, divYield: 16.5, isKse100: true, sector: 'Power Generation & Distribution' },
   'KAPCO': { basePrice: 38.50, pe: 4.0, eps: 9.6, divYield: 14.0, isKse100: true, sector: 'Power Generation & Distribution' },
   'KEL': { basePrice: 5.20, pe: 8.0, eps: 0.65, divYield: 0.0, isKse100: true, sector: 'Power Generation & Distribution' },
