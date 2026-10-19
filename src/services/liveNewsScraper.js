@@ -162,10 +162,10 @@ export const ALL_SECTOR_CATALYSTS = [
     name: 'Oil, Gas & Refineries',
     keywords: ['oil', 'gas', 'petroleum', 'circular debt', 'e&p', 'omc', 'refinery', 'crude', 'mari', 'ogdc', 'ppl', 'pso', 'fuel', 'petrol', 'diesel', 'lng', 'sngp', 'cnergy', 'prl', 'atrl'],
     bullishStocks: [
-      { symbol: 'CNERGY', name: 'Cynergico PK Limited', sector: 'Refinery', price: 15.46 },
+      { symbol: 'CNERGY', name: 'Cnergyico PK Limited', sector: 'Refinery', price: 15.46 },
       { symbol: 'PRL', name: 'Pakistan Refinery Limited', sector: 'Refinery', price: 108.81 },
       { symbol: 'ATRL', name: 'Attock Refinery Limited', sector: 'Refinery', price: 385.00 },
-      { symbol: 'OGDC', name: 'Oil & Gas Development Co', sector: 'Oil & Gas Exploration', price: 328.70 },
+      { symbol: 'OGDC', name: 'Oil & Gas Development Company Ltd', sector: 'Oil & Gas Exploration', price: 328.70 },
       { symbol: 'MARI', name: 'Mari Petroleum Company', sector: 'Oil & Gas Exploration', price: 663.26 },
       { symbol: 'PPL', name: 'Pakistan Petroleum Limited', sector: 'Oil & Gas Exploration', price: 234.50 }
     ],
@@ -191,7 +191,7 @@ export const ALL_SECTOR_CATALYSTS = [
     bearishStocks: [
       { symbol: 'HBL', name: 'Habib Bank Limited', sector: 'Commercial Banks', price: 154.50 },
       { symbol: 'NBP', name: 'National Bank of Pakistan', sector: 'Commercial Banks', price: 76.10 },
-      { symbol: 'BIPL', name: 'BankIslami Pakistan', sector: 'Commercial Banks', price: 24.33 }
+      { symbol: 'BIPL', name: 'BankIslami Pakistan Limited', sector: 'Commercial Banks', price: 24.33 }
     ]
   },
   {
@@ -265,7 +265,7 @@ export const ALL_SECTOR_CATALYSTS = [
     name: 'Power Generation & Distribution',
     keywords: ['power', 'electricity', 'energy', 'capacity payment', 'hubco', 'kapco', 'nepra', 'tariff', 'kelectric', 'solar', 'grid', 'nishat power'],
     bullishStocks: [
-      { symbol: 'HUBC', name: 'The Hub Power Company', sector: 'Power Generation', price: 210.71 },
+      { symbol: 'HUBC', name: 'The Hub Power Company Limited', sector: 'Power Generation', price: 210.71 },
       { symbol: 'KAPCO', name: 'Kot Addu Power Company', sector: 'Power Generation', price: 38.50 },
       { symbol: 'NCPL', name: 'Nishat Chunian Power', sector: 'Power Generation', price: 32.00 },
       { symbol: 'NPL', name: 'Nishat Power Limited', sector: 'Power Generation', price: 28.50 }
@@ -555,7 +555,7 @@ export const fetchLiveFinancialNews = async () => {
   const sectorDefaults = [
     // 1. OIL & GAS & REFINERIES
     {
-      title: 'Petroleum Division notifies refinery upgrades; Cynergico, PRL and Attock Refinery lead surge',
+      title: 'Petroleum Division notifies refinery upgrades; Cnergyico, PRL and Attock Refinery lead surge',
       description: 'New refining policy implementation unlocks tax incentives. CNERGY, PRL, and ATRL witness volume breakout on capacity modernization plans.',
       source: 'Business Recorder Pakistan',
       publishedAt: new Date(now - 12 * 60000),

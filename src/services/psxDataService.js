@@ -75,10 +75,10 @@ export const KNOWN_BENCHMARKS = {
 
 export const PSX_COMPANY_NAMES = {
   'PRL': 'Pakistan Refinery Limited',
-  'CNERGY': 'Cynergico PK Limited',
+  'CNERGY': 'Cnergyico PK Limited',
   'ATRL': 'Attock Refinery Limited',
   'NRL': 'National Refinery Limited',
-  'OGDC': 'Oil & Gas Development Company Limited',
+  'OGDC': 'Oil & Gas Development Company Ltd',
   'PPL': 'Pakistan Petroleum Limited',
   'MARI': 'Mari Petroleum Company Limited',
   'POL': 'Pakistan Oilfields Limited',
@@ -111,7 +111,7 @@ export const PSX_COMPANY_NAMES = {
   'AGL': 'Agritech Limited',
   'LUCK': 'Lucky Cement Limited',
   'DGKC': 'D.G. Khan Cement Company Limited',
-  'MLCF': 'Maple Leaf Cement Factory Limited',
+  'MLCF': 'Maple Leaf Cement Factory',
   'CHCC': 'Cherat Cement Company Limited',
   'FCCL': 'Fauji Cement Company Limited',
   'PIOC': 'Pioneer Cement Limited',
