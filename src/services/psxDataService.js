@@ -73,6 +73,75 @@ export const KNOWN_BENCHMARKS = {
   'GATM': { basePrice: 48.50, pe: 4.5, eps: 10.7, divYield: 8.0, isKse100: false, sector: 'Textile Composite' }
 };
 
+export const PSX_COMPANY_NAMES = {
+  'PRL': 'Pakistan Refinery Limited',
+  'CNERGY': 'Cynergico PK Limited',
+  'ATRL': 'Attock Refinery Limited',
+  'NRL': 'National Refinery Limited',
+  'OGDC': 'Oil & Gas Development Company Limited',
+  'PPL': 'Pakistan Petroleum Limited',
+  'MARI': 'Mari Petroleum Company Limited',
+  'POL': 'Pakistan Oilfields Limited',
+  'PSO': 'Pakistan State Oil Company Limited',
+  'SNGP': 'Sui Northern Gas Pipelines Limited',
+  'SSGC': 'Sui Southern Gas Company Limited',
+  'MEBL': 'Meezan Bank Limited',
+  'MCB': 'MCB Bank Limited',
+  'UBL': 'United Bank Limited',
+  'HBL': 'Habib Bank Limited',
+  'BAFL': 'Bank Alfalah Limited',
+  'BAHL': 'Bank AL Habib Limited',
+  'NBP': 'National Bank of Pakistan',
+  'BOP': 'The Bank of Punjab',
+  'BIPL': 'BankIslami Pakistan Limited',
+  'SYS': 'Systems Limited',
+  'TRG': 'TRG Pakistan Limited',
+  'NETSOL': 'NetSol Technologies Limited',
+  'AVN': 'Avanceon Limited',
+  'PTC': 'Pakistan Telecommunication Company Limited',
+  'WTL': 'WorldCall Telecom Limited',
+  'TELE': 'Telecard Limited',
+  'HUMNL': 'Hum Network Limited',
+  'PAEL': 'Pak Elektron Limited',
+  'ENGRO': 'Engro Corporation Limited',
+  'FFC': 'Fauji Fertilizer Company Limited',
+  'EFERT': 'Engro Fertilizers Limited',
+  'FATIMA': 'Fatima Fertilizer Company Limited',
+  'FFBL': 'Fauji Fertilizer Bin Qasim Limited',
+  'AGL': 'Agritech Limited',
+  'LUCK': 'Lucky Cement Limited',
+  'DGKC': 'D.G. Khan Cement Company Limited',
+  'MLCF': 'Maple Leaf Cement Factory Limited',
+  'CHCC': 'Cherat Cement Company Limited',
+  'FCCL': 'Fauji Cement Company Limited',
+  'PIOC': 'Pioneer Cement Limited',
+  'ACPL': 'Attock Cement Pakistan Limited',
+  'HUBC': 'The Hub Power Company Limited',
+  'KAPCO': 'Kot Addu Power Company Limited',
+  'KEL': 'K-Electric Limited',
+  'NCPL': 'Nishat Chunian Power Limited',
+  'NPL': 'Nishat Power Limited',
+  'INDU': 'Indus Motor Company Limited',
+  'MTL': 'Millat Tractors Limited',
+  'HCAR': 'Honda Atlas Cars (Pakistan) Limited',
+  'PSMC': 'Pak Suzuki Motor Company Limited',
+  'SEARL': 'The Searle Company Limited',
+  'AGP': 'AGP Limited',
+  'ABOT': 'Abbott Laboratories (Pakistan) Limited',
+  'GLAXO': 'GlaxoSmithKline (Pakistan) Limited',
+  'MUGHAL': 'Mughal Iron & Steel Industries Limited',
+  'ISL': 'International Steels Limited',
+  'INIL': 'International Industries Limited',
+  'ASTL': 'Amreli Steels Limited',
+  'NESTLE': 'Nestle Pakistan Limited',
+  'NATF': 'National Foods Limited',
+  'UNITY': 'Unity Foods Limited',
+  'TOMCL': 'The Organic Meat Company Limited',
+  'ILP': 'Interloop Limited',
+  'NML': 'Nishat Mills Limited',
+  'GATM': 'Gul Ahmed Textile Mills Limited'
+};
+
 let cachedUniverse = null;
 let lastUniverseFetch = 0;
 
@@ -101,6 +170,7 @@ export const fetchFullPSXUniverse = async () => {
       const sym = eq.symbol.trim();
       const known = KNOWN_BENCHMARKS[sym];
       const sector = known?.sector || eq.sectorName || 'Miscellaneous';
+      const fullName = PSX_COMPANY_NAMES[sym] || (eq.name && eq.name.trim() !== sym ? eq.name.trim() : null) || known?.name || sym;
 
       // Deterministic synthetic baseline if not in known benchmark list
       let basePrice = 45.0;
@@ -121,7 +191,7 @@ export const fetchFullPSXUniverse = async () => {
 
       return {
         symbol: sym,
-        name: eq.name ? eq.name.trim() : sym,
+        name: fullName,
         sector,
         basePrice,
         pe,
@@ -139,38 +209,65 @@ export const fetchFullPSXUniverse = async () => {
     // Fallback to list of known benchmarks
     return Object.entries(KNOWN_BENCHMARKS).map(([sym, val]) => ({
       symbol: sym,
-      name: sym,
+      name: PSX_COMPANY_NAMES[sym] || sym,
       sector: val.sector || 'Miscellaneous',
       ...val
     }));
   }
 };
 
-export const generateHistoricalSeries = (basePrice, trendBias = 0.001) => {
+export const generateHistoricalSeries = (basePrice, symbol = 'PSX', trendBias = 0.001) => {
   const points = [];
   const now = new Date();
-  let current = basePrice * 0.92;
   const baseVolume = 1500000;
+  
+  // Seed deterministic hash from symbol
+  const symStr = String(symbol || 'PSX').toUpperCase().trim();
+  let symHash = 0;
+  for (let c = 0; c < symStr.length; c++) {
+    symHash = (symHash << 5) - symHash + symStr.charCodeAt(c);
+    symHash |= 0;
+  }
+  const absHash = Math.abs(symHash);
 
-  for (let i = 30; i >= 0; i--) {
+  // Generate 100 historical bars so 20 SMA, 50 SMA, 50 EMA always have full history
+  const barCount = 100;
+  let current = basePrice * (0.88 + ((absHash % 15) / 100));
+
+  for (let i = barCount; i >= 1; i--) {
     const d = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-    const dailyChange = (Math.random() - 0.48 + trendBias) * (basePrice * 0.024);
-    current = Math.max(basePrice * 0.4, current + dailyChange);
-    const dayHigh = current + Math.random() * (basePrice * 0.012);
-    const dayLow = Math.max(basePrice * 0.35, current - Math.random() * (basePrice * 0.012));
-    const dayOpen = dayLow + Math.random() * (dayHigh - dayLow);
-    const volMultiplier = 0.6 + Math.random() * 1.8;
+    // Deterministic sinusoidal wave combined with symbol hash
+    const cycle = Math.sin((barCount - i) * 0.18 + (absHash % 10)) * 0.012;
+    const progress = ((barCount - i) / barCount) * (basePrice - current);
+    current = Number((current + cycle * basePrice + progress * 0.035).toFixed(2));
+    
+    const daySpread = Math.max(0.2, basePrice * (0.012 + ((absHash % 8) / 1000)));
+    const dayHigh = Number((current + daySpread * 0.6).toFixed(2));
+    const dayLow = Number((Math.max(0.1, current - daySpread * 0.6)).toFixed(2));
+    const dayOpen = Number(((dayHigh + dayLow) / 2).toFixed(2));
+    const vol = Math.round(baseVolume * (0.8 + Math.cos(i * 0.25) * 0.35 + ((absHash % 5) * 0.1)));
 
     points.push({
       date: d.toISOString().split('T')[0],
-      open: Number(dayOpen.toFixed(2)),
-      high: Number(dayHigh.toFixed(2)),
-      low: Number(dayLow.toFixed(2)),
-      close: Number(current.toFixed(2)),
-      volume: Math.round(baseVolume * volMultiplier)
+      open: dayOpen,
+      high: dayHigh,
+      low: dayLow,
+      close: current,
+      volume: vol
     });
   }
 
-  points[points.length - 1].close = basePrice;
+  // Final bar is today's basePrice
+  const todayDate = now.toISOString().split('T')[0];
+  const todaySpread = Math.max(0.2, basePrice * 0.012);
+  points.push({
+    date: todayDate,
+    open: Number((basePrice * 0.995).toFixed(2)),
+    high: Number((basePrice + todaySpread * 0.6).toFixed(2)),
+    low: Number((Math.max(0.1, basePrice - todaySpread * 0.6)).toFixed(2)),
+    close: basePrice,
+    volume: baseVolume
+  });
+
   return points;
 };

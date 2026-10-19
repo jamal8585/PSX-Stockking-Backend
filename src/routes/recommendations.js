@@ -92,6 +92,7 @@ const evaluateHistoricalOutcome = (item, livePrice) => {
   const target1 = Number(item.target1 || (signalPrice * 1.095));
   const stopLoss = Number(item.stopLoss || (signalPrice * 0.95));
   const currentLive = Number(livePrice || signalPrice);
+  const isAvoid = item.signal === 'AVOID_SELL';
 
   const gainSinceSignalPct = Number((((currentLive - signalPrice) / signalPrice) * 100).toFixed(2));
 
@@ -99,22 +100,38 @@ const evaluateHistoricalOutcome = (item, livePrice) => {
   let outcomeLabel = `In Progress (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}%)`;
   let badgeColor = 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20';
 
-  if (currentLive >= target1) {
-    outcomeStatus = 'TARGET_HIT';
-    outcomeLabel = `Target 1 Hit (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}% Win 🎯)`;
-    badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30';
-  } else if (currentLive <= stopLoss) {
-    outcomeStatus = 'STOP_LOSS_HIT';
-    outcomeLabel = `Stop Loss Triggered (${gainSinceSignalPct}%)`;
-    badgeColor = 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30';
-  } else if (gainSinceSignalPct > 1.5) {
-    outcomeStatus = 'IN_PROFIT';
-    outcomeLabel = `Running in Profit (+${gainSinceSignalPct}% 🚀)`;
-    badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
-  } else if (gainSinceSignalPct < -1.5) {
-    outcomeStatus = 'HOLDING_SUPPORT';
-    outcomeLabel = `Holding Support (${gainSinceSignalPct}%)`;
-    badgeColor = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
+  if (isAvoid) {
+    if (currentLive <= target1) {
+      outcomeStatus = 'TARGET_HIT';
+      outcomeLabel = `Support Reached (${gainSinceSignalPct}% Pullback)`;
+      badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30';
+    } else if (currentLive >= signalPrice * 1.03) {
+      outcomeStatus = 'STOP_LOSS_HIT';
+      outcomeLabel = `Defensive Trigger (${gainSinceSignalPct}%)`;
+      badgeColor = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30';
+    } else {
+      outcomeStatus = 'IN_PROGRESS';
+      outcomeLabel = `Capital Preserved (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}%)`;
+      badgeColor = 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20';
+    }
+  } else {
+    if (currentLive >= target1) {
+      outcomeStatus = 'TARGET_HIT';
+      outcomeLabel = `Target 1 Hit (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}% Win)`;
+      badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30';
+    } else if (currentLive <= stopLoss) {
+      outcomeStatus = 'STOP_LOSS_HIT';
+      outcomeLabel = `Stop Loss Triggered (${gainSinceSignalPct}%)`;
+      badgeColor = 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30';
+    } else if (gainSinceSignalPct > 1.5) {
+      outcomeStatus = 'IN_PROFIT';
+      outcomeLabel = `Running in Profit (+${gainSinceSignalPct}%)`;
+      badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
+    } else if (gainSinceSignalPct < -1.5) {
+      outcomeStatus = 'HOLDING_SUPPORT';
+      outcomeLabel = `Holding Support (${gainSinceSignalPct}%)`;
+      badgeColor = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
+    }
   }
 
   return {
@@ -233,11 +250,18 @@ router.get('/', async (req, res) => {
     const hold = enrichedList.filter(r => r.signal === 'HOLD');
     const avoidSell = enrichedList.filter(r => r.signal === 'AVOID_SELL');
 
+    const marketTiming = getPSXMarketStatus();
+
     res.set('Cache-Control', 'public, max-age=10, s-maxage=30, stale-while-revalidate=60');
     res.json({
       success: true,
       sessions: availableSessions,
       selectedSession: requestedSession || availableSessions[0],
+      marketStatus: marketTiming,
+      isEodFrozen: marketTiming.isEodFrozen,
+      eodSnapshotDate: marketTiming.eodSnapshotDate,
+      nextTradingDate: marketTiming.nextTradingDate,
+      actionableLabel: marketTiming.actionableLabel,
       summary: {
         total: enrichedList.length,
         strongBuyCount: strongBuy.length,

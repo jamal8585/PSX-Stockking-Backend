@@ -24,6 +24,36 @@ const HEADERS = {
   'Accept-Language': 'en-US,en;q=0.9'
 };
 
+// Calculate the upcoming PSX trading date (skipping weekends)
+export const getNextPSXTradingDate = (pktTime = null) => {
+  const d = pktTime ? new Date(pktTime) : (() => {
+    const now = new Date();
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    return new Date(utc + (3600000 * 5));
+  })();
+  const day = d.getDay(); // 0 = Sun, 1 = Mon, ..., 5 = Fri, 6 = Sat
+  const hours = d.getHours();
+  const minutes = d.getMinutes();
+  const timeNum = hours * 100 + minutes;
+
+  const next = new Date(d);
+  if (day === 5 && timeNum >= 1600) {
+    next.setDate(d.getDate() + 3); // Friday after close -> Monday
+  } else if (day === 6) {
+    next.setDate(d.getDate() + 2); // Saturday -> Monday
+  } else if (day === 0) {
+    next.setDate(d.getDate() + 1); // Sunday -> Monday
+  } else if (timeNum >= 1600) {
+    next.setDate(d.getDate() + 1); // Mon-Thu after close -> Tomorrow
+  } else {
+    next.setDate(d.getDate() + 1);
+  }
+
+  const weekday = next.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Asia/Karachi' });
+  const dateFmt = next.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' });
+  return `${weekday}, ${dateFmt}`;
+};
+
 // Check if PSX is currently in live session (Mon-Thu 9:30-15:30, Fri 9:00-12:00 & 14:30-16:30 PKT)
 export const getPSXMarketStatus = () => {
   const now = new Date();
@@ -33,11 +63,17 @@ export const getPSXMarketStatus = () => {
   const hours = pktTime.getHours();
   const minutes = pktTime.getMinutes();
   const timeInMinutes = hours * 60 + minutes;
+  const nextTradingDate = getNextPSXTradingDate(pktTime);
+  const todayDateStr = pktTime.toISOString().split('T')[0];
 
   // Weekends
   if (day === 0 || day === 6) {
     return {
       isOpen: false,
+      isEodFrozen: true,
+      eodSnapshotDate: todayDateStr,
+      nextTradingDate,
+      actionableLabel: `Post-Market Analysis • Actionable for Tomorrow's PSX Market Open (${nextTradingDate})`,
       statusText: 'MARKET CLOSED (Weekend)',
       sessionNote: 'Official PSX Last Closing Rates Active • Re-opens Monday 09:30 AM PKT'
     };
@@ -50,6 +86,10 @@ export const getPSXMarketStatus = () => {
     if (isMorning || isAfternoon) {
       return {
         isOpen: true,
+        isEodFrozen: false,
+        eodSnapshotDate: todayDateStr,
+        nextTradingDate,
+        actionableLabel: 'Live Session • Active Trading Telemetry',
         statusText: 'LIVE MARKET SESSION',
         sessionNote: 'Real-time Tick Telemetry Active'
       };
@@ -59,6 +99,10 @@ export const getPSXMarketStatus = () => {
     if (timeInMinutes >= (9 * 60 + 30) && timeInMinutes <= (15 * 60 + 30)) {
       return {
         isOpen: true,
+        isEodFrozen: false,
+        eodSnapshotDate: todayDateStr,
+        nextTradingDate,
+        actionableLabel: 'Live Session • Active Trading Telemetry',
         statusText: 'LIVE MARKET SESSION',
         sessionNote: 'Real-time Tick Telemetry Active'
       };
@@ -68,6 +112,10 @@ export const getPSXMarketStatus = () => {
   if (timeInMinutes < (9 * 60 + 30)) {
     return {
       isOpen: false,
+      isEodFrozen: true,
+      eodSnapshotDate: todayDateStr,
+      nextTradingDate: pktTime.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' }),
+      actionableLabel: `Pre-Market Analysis • Actionable for Today's PSX Market Open (09:30 AM PKT)`,
       statusText: 'PRE-MARKET (Closed)',
       sessionNote: 'Official Previous Day Closing Rates Active • Opens at 09:30 AM PKT'
     };
@@ -75,6 +123,10 @@ export const getPSXMarketStatus = () => {
 
   return {
     isOpen: false,
+    isEodFrozen: true,
+    eodSnapshotDate: todayDateStr,
+    nextTradingDate,
+    actionableLabel: `Post-Market Analysis • Actionable for Tomorrow's PSX Market Open (${nextTradingDate})`,
     statusText: 'MARKET CLOSED (Post-Market)',
     sessionNote: 'Official DPS Final Closing Rates Active • Opens Next Trading Day 09:30 AM PKT'
   };

@@ -91,6 +91,23 @@ export const calculateATR = (historicalPrices, currentPrice, period = 14) => {
   return Number(bounded.toFixed(2));
 };
 
+export const getRsiDescription = (rsi14) => {
+  const r = Number(rsi14);
+  if (r > 70) {
+    return `Overbought / Extended Momentum (${r.toFixed(1)}) — Trail Stop loss advised`;
+  }
+  if (r >= 50 && r <= 65) {
+    return `Healthy Bullish Momentum (${r.toFixed(1)})`;
+  }
+  if (r < 35) {
+    return `Oversold / Capitulation (${r.toFixed(1)}) — Watch for Mean Reversion`;
+  }
+  if (r > 65 && r <= 70) {
+    return `Moderate Bullish Momentum (${r.toFixed(1)})`;
+  }
+  return `Balanced / Neutral Range (${r.toFixed(1)})`;
+};
+
 export const calculateSupportResistance = (high, low, close, atr = 0) => {
   const c = Number(close);
   // Ensure an effective spread so that R1 is strictly above close and S1 is strictly below close
@@ -104,19 +121,19 @@ export const calculateSupportResistance = (high, low, close, atr = 0) => {
   let r2 = pivot + (effectiveHigh - effectiveLow);
   let s2 = pivot - (effectiveHigh - effectiveLow);
 
-  // Guarantee strict separation so R1 is strictly above Close (at least +1.4% or +0.85*ATR)
-  const minR1Buffer = Math.max(atr ? atr * 0.85 : 0, c * 0.014);
+  // Guarantee strict separation: R1 strictly above Close (at least +1.8% or +0.85*ATR)
+  const minR1Buffer = Math.max(atr ? atr * 0.85 : 0, c * 0.018);
   if (r1 <= c + minR1Buffer) {
     r1 = c + minR1Buffer;
   }
-  const minS1Buffer = Math.max(atr ? atr * 0.85 : 0, c * 0.014);
+  const minS1Buffer = Math.max(atr ? atr * 0.85 : 0, c * 0.018);
   if (s1 >= c - minS1Buffer) {
     s1 = c - minS1Buffer;
   }
-  if (r2 <= r1 + (c * 0.01)) {
+  if (r2 <= r1 + (c * 0.015)) {
     r2 = r1 + Math.max(atr ? atr * 0.75 : 0, c * 0.02);
   }
-  if (s2 >= s1 - (c * 0.01)) {
+  if (s2 >= s1 - (c * 0.015)) {
     s2 = s1 - Math.max(atr ? atr * 0.75 : 0, c * 0.02);
   }
 
@@ -233,7 +250,36 @@ export const evaluateStockTechnicals = (stockData) => {
     signalConfidence = Math.min(75, Math.max(65, 68 + ((absHash % 8) - 2)));
   }
 
-  // Calculate Dynamic Stop Loss, Targets & Risk:Reward
+  // 1. Compute Dynamic Entry / Defensive Range first based on ATR volatility
+  let entryMin = 0;
+  let entryMax = 0;
+
+  if (signal === 'STRONG_BUY') {
+    const lowerBandPct = Math.min(2.5, Math.max(0.8, (atr / currentPrice) * 100 * 0.4 + (hashOffset * 0.1)));
+    const upperBandPct = Math.min(1.8, Math.max(0.6, (atr / currentPrice) * 100 * 0.3 + (hashOffset * 0.08)));
+    entryMin = Number((currentPrice * (1 - lowerBandPct / 100)).toFixed(2));
+    entryMax = Number((currentPrice * (1 + upperBandPct / 100)).toFixed(2));
+  } else if (signal === 'ACCUMULATE') {
+    const lowerBandPct = Math.min(3.8, Math.max(1.2, (atr / currentPrice) * 100 * 0.6 + (hashOffset * 0.15)));
+    const upperBandPct = Math.min(0.8, Math.max(0.2, (atr / currentPrice) * 100 * 0.15));
+    entryMin = Number((currentPrice * (1 - lowerBandPct / 100)).toFixed(2));
+    entryMax = Number((currentPrice * (1 + upperBandPct / 100)).toFixed(2));
+  } else if (signal === 'AVOID_SELL') {
+    if (isMomentumBreakout) {
+      const bandPct = Math.min(2.2, Math.max(0.8, (atr / currentPrice) * 100 * 0.35 + (hashOffset * 0.1)));
+      entryMin = Number((currentPrice * (1 - bandPct / 100)).toFixed(2));
+      entryMax = Number((currentPrice * (1 + (bandPct * 0.5) / 100)).toFixed(2));
+    } else {
+      // Defensive Range / Key Resistance Zone near Pivot to R1
+      entryMin = Number(Math.max(levels.pivot * 0.995, currentPrice * (1 - (atr * 0.4 / currentPrice))).toFixed(2));
+      entryMax = Number(Math.max(levels.r1, currentPrice * (1 + (atr * 0.75 / currentPrice))).toFixed(2));
+    }
+  } else {
+    entryMin = Number((currentPrice * 0.985).toFixed(2));
+    entryMax = Number((currentPrice * 1.015).toFixed(2));
+  }
+
+  // 2. Calculate Dynamic Stop Loss, Targets & Risk:Reward
   let stopLoss = 0;
   let target1 = 0;
   let target2 = 0;
@@ -254,6 +300,13 @@ export const evaluateStockTechnicals = (stockData) => {
     target1 = Number((currentPrice * (1 + target1Pct / 100)).toFixed(2));
     target2 = Number((currentPrice * (1 + target2Pct / 100)).toFixed(2));
 
+    // STRICT INVARIANT FOR LONG: Stop Loss < Entry Min < Entry Max < Target 1 < Target 2
+    if (entryMin >= currentPrice) entryMin = Number((currentPrice * 0.985).toFixed(2));
+    if (entryMax <= entryMin) entryMax = Number((entryMin + Math.max(atr * 0.4, currentPrice * 0.015)).toFixed(2));
+    if (stopLoss >= entryMin) stopLoss = Number((entryMin - Math.max(atr * 0.6, currentPrice * 0.02)).toFixed(2));
+    if (target1 <= entryMax) target1 = Number((entryMax + Math.max(atr * 1.5, currentPrice * 0.05)).toFixed(2));
+    if (target2 <= target1) target2 = Number((target1 + Math.max(atr * 1.2, currentPrice * 0.04)).toFixed(2));
+
     const risk = Math.max(0.1, currentPrice - stopLoss);
     const reward = Math.max(0.1, target1 - currentPrice);
     rrRatio = Number((reward / risk).toFixed(2));
@@ -271,6 +324,13 @@ export const evaluateStockTechnicals = (stockData) => {
     target1 = Number((currentPrice * (1 + target1Pct / 100)).toFixed(2));
     target2 = Number((currentPrice * (1 + target2Pct / 100)).toFixed(2));
 
+    // STRICT INVARIANT FOR LONG: Stop Loss < Entry Min < Entry Max < Target 1 < Target 2
+    if (entryMin >= currentPrice) entryMin = Number((currentPrice * 0.985).toFixed(2));
+    if (entryMax <= entryMin) entryMax = Number((entryMin + Math.max(atr * 0.4, currentPrice * 0.015)).toFixed(2));
+    if (stopLoss >= entryMin) stopLoss = Number((entryMin - Math.max(atr * 0.6, currentPrice * 0.02)).toFixed(2));
+    if (target1 <= entryMax) target1 = Number((entryMax + Math.max(atr * 1.5, currentPrice * 0.05)).toFixed(2));
+    if (target2 <= target1) target2 = Number((target1 + Math.max(atr * 1.2, currentPrice * 0.04)).toFixed(2));
+
     const risk = Math.max(0.1, currentPrice - stopLoss);
     const reward = Math.max(0.1, target1 - currentPrice);
     rrRatio = Number((reward / risk).toFixed(2));
@@ -280,20 +340,20 @@ export const evaluateStockTechnicals = (stockData) => {
       // For Momentum Breakouts: tight trailing stop to lock in profits, pullback support at EMA20/S1
       const trailPct = Math.min(4.8, Math.max(2.2, (atr / currentPrice) * 100 * 0.9 + (hashOffset * 0.15)));
       stopLoss = Number((currentPrice * (1 - trailPct / 100)).toFixed(2));
-      target1 = Number(Math.min(levels.s1, currentPrice - (atr * 1.5)).toFixed(2));
-      target2 = Number(Math.min(levels.s2, currentPrice - (atr * 2.5)).toFixed(2));
+      target1 = Number(Math.min(levels.s1, currentPrice - Math.max(atr * 1.5, currentPrice * 0.035)).toFixed(2));
+      target2 = Number(Math.min(levels.s2, target1 - Math.max(atr * 1.2, currentPrice * 0.03)).toFixed(2));
       rrRatio = 0;
       riskReward = 'Trail Stop Setup';
     } else {
       // Standard Avoid / Distribution Exit:
-      // Exit trigger dynamically calibrated to S1 and ATR (never flat -3.5%)
+      // Exit trigger dynamically calibrated below Pivot / S1 and ATR (never flat -3.5%)
       const exitPct = Math.min(6.2, Math.max(2.5, (atr / currentPrice) * 100 * 1.15 + (hashOffset * 0.2)));
       stopLoss = Number(Math.min(levels.s1, currentPrice * (1 - exitPct / 100)).toFixed(2));
 
       // Pullback Support dynamically calibrated to S2 / 2x ATR (never flat -7.0%)
       const pullbackPct = Math.min(11.5, Math.max(4.8, ((atr * 2.2) / currentPrice) * 100 + (hashOffset * 0.3)));
       target1 = Number(Math.min(levels.s2, currentPrice * (1 - pullbackPct / 100)).toFixed(2));
-      target2 = Number(Math.min(target1 - (atr * 1.2), currentPrice * 0.88).toFixed(2));
+      target2 = Number(Math.min(target1 - Math.max(atr * 1.2, currentPrice * 0.03), currentPrice * 0.88).toFixed(2));
       rrRatio = 0;
       riskReward = 'N/A (Exit Setup)';
     }
@@ -302,39 +362,32 @@ export const evaluateStockTechnicals = (stockData) => {
     stopLoss = Number((currentPrice * 0.955).toFixed(2));
     target1 = Number((currentPrice * 1.055).toFixed(2));
     target2 = Number((currentPrice * 1.10).toFixed(2));
+    if (stopLoss >= entryMin) stopLoss = Number((entryMin * 0.98).toFixed(2));
+    if (target1 <= entryMax) target1 = Number((entryMax * 1.04).toFixed(2));
+    if (target2 <= target1) target2 = Number((target1 * 1.04).toFixed(2));
     rrRatio = 1.22;
     riskReward = '1 : 1.22';
   }
 
   // Harmonic Catalysts Generation (Strictly non-contradictory)
   const reasons = [];
-  if (signal === 'STRONG_BUY') {
-    if (rsi14 >= 42 && rsi14 <= 62) {
-      reasons.push(`RSI in Healthy Bullish Momentum (${rsi14.toFixed(1)})`);
-    } else if (rsi14 < 42) {
-      reasons.push(`RSI Rebound from Oversold (${rsi14.toFixed(1)}), accumulation zone`);
-    } else {
-      reasons.push(`Momentum Breakout: RSI at ${rsi14.toFixed(1)} holding strong buyer demand`);
-    }
+  const rsiSummary = getRsiDescription(rsi14);
 
+  if (signal === 'STRONG_BUY') {
+    reasons.push(rsiSummary);
     if (currentPrice > ema20 && ema20 > sma50) {
       reasons.push('Bullish Trend: Price trading above both 20 EMA and 50 SMA');
     }
     if (volumeSpikeRatio >= 1.3) {
       reasons.push(`Institutional Volume Surge (${volumeSpikeRatio}x of 10-day avg)`);
-    }
-    if (macd.histogram > 0) {
+    } else if (macd.histogram > 0) {
       reasons.push('MACD Bullish Histogram expansion confirmed');
     }
     if (levels.r1 > currentPrice) {
       reasons.push(`Clear upside path towards Pivot R1 at PKR ${levels.r1}`);
     }
   } else if (signal === 'ACCUMULATE') {
-    if (rsi14 < 45) {
-      reasons.push(`RSI at ${rsi14.toFixed(1)}: Value accumulation zone on dips`);
-    } else {
-      reasons.push(`RSI holding steady at ${rsi14.toFixed(1)} with consistent buyer support`);
-    }
+    reasons.push(rsiSummary);
     if (currentPrice >= ema20) {
       reasons.push('Price consolidating constructively above 20-day EMA support');
     } else {
@@ -345,7 +398,7 @@ export const evaluateStockTechnicals = (stockData) => {
     }
   } else if (signal === 'AVOID_SELL') {
     if (isMomentumBreakout) {
-      reasons.push(`Strong Momentum Breakout (+${numChangePct.toFixed(2)}%): RSI extended (${rsi14.toFixed(1)}). Trail stop loss closely to protect gains rather than premature exit.`);
+      reasons.push(`Strong Momentum Breakout (+${numChangePct.toFixed(2)}%): ${rsiSummary}`);
       if (volumeSpikeRatio >= 1.25) {
         reasons.push(`Institutional Volume Surge (${volumeSpikeRatio}x): High buyer demand active; ride trend with trailing cutoff.`);
       } else {
@@ -353,53 +406,21 @@ export const evaluateStockTechnicals = (stockData) => {
       }
       reasons.push(`Trailing Cutoff set at PKR ${stopLoss} with primary pullback support at PKR ${target1}.`);
     } else {
-      if (rsi14 > 74) {
-        reasons.push(`RSI is Overbought (${rsi14.toFixed(1)}): Profit-taking / distribution imminent`);
-      } else if (currentPrice < ema20 && ema20 < sma50) {
+      reasons.push(rsiSummary);
+      if (currentPrice < ema20 && ema20 < sma50) {
         reasons.push('Bearish Trend: Price trading below 20 EMA and 50 SMA resistance');
-      }
-      if (macd.histogram < 0 || macd.macdLine < macd.signalLine) {
+      } else if (macd.histogram < 0 || macd.macdLine < macd.signalLine) {
         reasons.push('MACD Bearish Crossover / downward momentum active');
       }
       if (currentPrice < levels.pivot) {
         reasons.push(`Trading below Daily Pivot (PKR ${levels.pivot}), downside pressure active`);
-      } else {
+      } else if (levels.r1 > currentPrice) {
         reasons.push(`Resistance rejection near Pivot R1 (PKR ${levels.r1}), protective exit advised`);
       }
     }
   } else {
-    reasons.push(`Neutral Equilibrium: RSI at ${rsi14.toFixed(1)} in balanced trading range`);
+    reasons.push(rsiSummary);
     reasons.push(`Consolidating between Support PKR ${levels.s1} and Resistance PKR ${levels.r1}`);
-  }
-
-  // Calculate Dynamic Entry / Defensive Range based on ATR volatility
-  let entryMin = 0;
-  let entryMax = 0;
-
-  if (signal === 'STRONG_BUY') {
-    const lowerBandPct = Math.min(2.5, Math.max(0.8, (atr / currentPrice) * 100 * 0.4 + (hashOffset * 0.1)));
-    const upperBandPct = Math.min(1.8, Math.max(0.6, (atr / currentPrice) * 100 * 0.3 + (hashOffset * 0.08)));
-    entryMin = Number((currentPrice * (1 - lowerBandPct / 100)).toFixed(2));
-    entryMax = Number((currentPrice * (1 + upperBandPct / 100)).toFixed(2));
-  } else if (signal === 'ACCUMULATE') {
-    const lowerBandPct = Math.min(3.8, Math.max(1.2, (atr / currentPrice) * 100 * 0.6 + (hashOffset * 0.15)));
-    const upperBandPct = Math.min(0.8, Math.max(0.2, (atr / currentPrice) * 100 * 0.15));
-    entryMin = Number((currentPrice * (1 - lowerBandPct / 100)).toFixed(2));
-    entryMax = Number((currentPrice * (1 + upperBandPct / 100)).toFixed(2));
-  } else if (signal === 'AVOID_SELL') {
-    if (isMomentumBreakout) {
-      const bandPct = Math.min(2.2, Math.max(0.8, (atr / currentPrice) * 100 * 0.35 + (hashOffset * 0.1)));
-      entryMin = Number((currentPrice * (1 - bandPct / 100)).toFixed(2));
-      entryMax = Number((currentPrice * (1 + (bandPct * 0.5) / 100)).toFixed(2));
-    } else {
-      const defLowerPct = Math.min(3.5, Math.max(1.0, (atr / currentPrice) * 100 * 0.55 + (hashOffset * 0.12)));
-      const defUpperPct = Math.min(2.8, Math.max(0.8, (atr / currentPrice) * 100 * 0.45 + (hashOffset * 0.1)));
-      entryMin = Number((currentPrice * (1 - defLowerPct / 100)).toFixed(2));
-      entryMax = Number((currentPrice * (1 + defUpperPct / 100)).toFixed(2));
-    }
-  } else {
-    entryMin = Number((currentPrice * 0.985).toFixed(2));
-    entryMax = Number((currentPrice * 1.015).toFixed(2));
   }
 
   return {
