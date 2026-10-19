@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { calculateFloorPivots } from '../utils/pivotPoints.js';
 
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
@@ -530,19 +531,24 @@ export const calculateTechnicalAnalysis = (bars = [], currentQuote = {}) => {
   const bbUpper = Number((mean + (2 * stdDev)).toFixed(2));
   const bbLower = Number((mean - (2 * stdDev)).toFixed(2));
 
-  // E. Pivot Points (Standard)
-  const latestBar = bars[bars.length - 1];
-  const barH = latestBar.high || currentPrice * 1.02;
-  const barL = latestBar.low || currentPrice * 0.98;
-  const barC = latestBar.close || currentPrice;
+  // E. Pivot Points (Standard floor pivots from previous completed daily candle)
+  let prevCandle = null;
+  if (bars && bars.length >= 2) {
+    prevCandle = bars[bars.length - 2];
+    if (!prevCandle.high || prevCandle.high <= prevCandle.low) {
+      prevCandle = bars.slice(0, -1).reverse().find(b => b.high > b.low);
+    }
+  }
+  if (!prevCandle && bars && bars.length > 0) {
+    prevCandle = bars[bars.length - 1];
+  }
 
-  const pp = Number(((barH + barL + barC) / 3).toFixed(2));
-  const r1 = Number((2 * pp - barL).toFixed(2));
-  const s1 = Number((2 * pp - barH).toFixed(2));
-  const r2 = Number((pp + (barH - barL)).toFixed(2));
-  const s2 = Number((pp - (barH - barL)).toFixed(2));
-  const r3 = Number((barH + 2 * (pp - barL)).toFixed(2));
-  const s3 = Number((barL - 2 * (barH - pp)).toFixed(2));
+  const barH = Number(prevCandle?.high || currentQuote.high || 0);
+  const barL = Number(prevCandle?.low || currentQuote.low || 0);
+  const barC = Number(prevCandle?.close || currentQuote.prevClose || currentQuote.currentPrice || currentPrice);
+
+  const pivotPoints = calculateFloorPivots(barH, barL, barC);
+  const pp = pivotPoints.hasRange ? pivotPoints.pp : currentPrice;
 
   // F. Consensus Signal
   let signal = 'NEUTRAL';
