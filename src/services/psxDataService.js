@@ -142,6 +142,26 @@ export const PSX_COMPANY_NAMES = {
   'GATM': 'Gul Ahmed Textile Mills Limited'
 };
 
+export function canonicalizeSector(rawSector, symbol = '') {
+  const sym = String(symbol || '').toUpperCase().trim();
+  if (sym === 'ENGRO') return 'Fertilizer';
+  if (!rawSector || rawSector === 'General Market' || rawSector === 'Miscellaneous') {
+    return 'Miscellaneous';
+  }
+  const s = rawSector.trim();
+  if (s === 'Chemicals') return 'Chemical';
+  if (s === 'Oil & Gas (E&P)' || s === 'Oil & Gas Exploration') return 'Oil & Gas Exploration Companies';
+  if (s === 'Oil & Gas (Marketing)' || s === 'Oil & Gas Marketing') return 'Oil & Gas Marketing Companies';
+  if (s === 'Power Generation' || s === 'Power Generation & Energy') return 'Power Generation & Distribution';
+  if (s === 'Automobile' || s === 'Automobile & Tractors') return 'Automobile Assembler';
+  if (s === 'Cement & Construction') return 'Cement';
+  if (s === 'Textile & Apparel' || s === 'Textile') return 'Textile Composite';
+  if (s === 'Technology' || s === 'Technology & Telecom') return 'Technology & Communication';
+  if (s === 'Food & Personal Care' || s === 'Consumer & Staples' || s === 'Food, Dairy & Sugar') return 'Food & Personal Care Products';
+  if (s === 'Engineering & Steel' || s === 'Steel & Engineering') return 'Engineering';
+  return s;
+}
+
 let cachedUniverse = null;
 let lastUniverseFetch = 0;
 
@@ -169,7 +189,7 @@ export const fetchFullPSXUniverse = async () => {
     const fullUniverse = equities.map((eq) => {
       const sym = eq.symbol.trim();
       const known = KNOWN_BENCHMARKS[sym];
-      const sector = known?.sector || eq.sectorName || 'Miscellaneous';
+      const sector = canonicalizeSector(known?.sector || eq.sectorName, sym);
       const fullName = PSX_COMPANY_NAMES[sym] || (eq.name && eq.name.trim() !== sym ? eq.name.trim() : null) || known?.name || sym;
 
       // Deterministic synthetic baseline if not in known benchmark list

@@ -4,7 +4,7 @@ import Stock from '../models/Stock.js';
 import Recommendation from '../models/Recommendation.js';
 import News from '../models/News.js';
 import MarketSummary from '../models/MarketSummary.js';
-import { fetchFullPSXUniverse, generateHistoricalSeries } from './psxDataService.js';
+import { fetchFullPSXUniverse, generateHistoricalSeries, canonicalizeSector } from './psxDataService.js';
 import { evaluateStockTechnicals } from './technicalEngine.js';
 import { fetchLiveFinancialNews } from './liveNewsScraper.js';
 import { fetchOfficialPSXMarketWatch, fetchLiveKSE100Summary, getPSXMarketStatus } from './livePsxScraper.js';
@@ -72,9 +72,10 @@ export const syncMarketData = async (force = false) => {
     else if (change < 0) declines++;
     else unchanged++;
 
-    const resolvedSector = (dpsQuote?.sector && dpsQuote.sector !== 'General Market')
+    const rawSector = (dpsQuote?.sector && dpsQuote.sector !== 'General Market')
       ? dpsQuote.sector
       : (item.sector && item.sector !== 'General Market' ? item.sector : 'Miscellaneous');
+    const resolvedSector = canonicalizeSector(rawSector, item.symbol);
 
     const { technicals, tradePlan } = evaluateStockTechnicals({
       symbol: item.symbol,
@@ -220,10 +221,11 @@ export const syncMarketData = async (force = false) => {
         (Number(s.currentPrice || 0) < 1.0 && Math.abs(Number(s.changePercent || 0)) > 20);
       if (isRightOrLoR) continue;
 
-      if (!fullSectorMap.has(s.sector)) {
-        fullSectorMap.set(s.sector, { sector: s.sector, totalChange: 0, count: 0, volume: 0 });
+      const canonSec = canonicalizeSector(s.sector, sym);
+      if (!fullSectorMap.has(canonSec)) {
+        fullSectorMap.set(canonSec, { sector: canonSec, totalChange: 0, count: 0, volume: 0 });
       }
-      const rec = fullSectorMap.get(s.sector);
+      const rec = fullSectorMap.get(canonSec);
       rec.count += 1;
       rec.totalChange += Math.max(-15, Math.min(15, Number(s.changePercent || 0)));
       rec.volume += Number(s.volume || 0);
@@ -249,10 +251,11 @@ export const syncMarketData = async (force = false) => {
       (Number(s.currentPrice || 0) < 1.0 && Math.abs(Number(s.changePercent || 0)) > 20);
     if (isRightOrLoR) return;
 
-    if (!sectorPerformanceMap.has(s.sector)) {
-      sectorPerformanceMap.set(s.sector, { sector: s.sector, totalChange: 0, count: 0, volume: 0 });
+    const canonSec = canonicalizeSector(s.sector, sym);
+    if (!sectorPerformanceMap.has(canonSec)) {
+      sectorPerformanceMap.set(canonSec, { sector: canonSec, totalChange: 0, count: 0, volume: 0 });
     }
-    const sec = sectorPerformanceMap.get(s.sector);
+    const sec = sectorPerformanceMap.get(canonSec);
     // Clamp individual stock change to PSX max circuit breaker limit (±15%)
     const clampedChange = Math.max(-15, Math.min(15, Number(s.changePercent || 0)));
     sec.totalChange += clampedChange;

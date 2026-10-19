@@ -5,7 +5,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'OGDC',
     name: 'Oil & Gas Development Company Limited',
-    sector: 'Oil & Gas (E&P)',
+    sector: 'Oil & Gas Exploration Companies',
     month: 'September',
     dividendType: 'Final Cash Dividend (FY24/25)',
     payoutCycle: 'Quarterly Regular (4x/yr)',
@@ -25,7 +25,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'POL',
     name: 'Pakistan Oilfields Limited',
-    sector: 'Oil & Gas (E&P)',
+    sector: 'Oil & Gas Exploration Companies',
     month: 'September',
     dividendType: 'Final Mega Cash Dividend',
     payoutCycle: 'Semi-Annual / Annual Heavy Payout',
@@ -45,7 +45,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'MARI',
     name: 'Mari Petroleum / Energies Limited',
-    sector: 'Oil & Gas (E&P)',
+    sector: 'Oil & Gas Exploration Companies',
     month: 'September',
     dividendType: 'Final Cash Dividend + Bonus Issue',
     payoutCycle: 'Final Annual Payout',
@@ -65,7 +65,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'HUBC',
     name: 'The Hub Power Company Limited',
-    sector: 'Power Generation',
+    sector: 'Power Generation & Distribution',
     month: 'September',
     dividendType: '4th Interim / Final Cash Dividend',
     payoutCycle: 'Quarterly Regular (4x/yr)',
@@ -85,7 +85,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'PPL',
     name: 'Pakistan Petroleum Limited',
-    sector: 'Oil & Gas (E&P)',
+    sector: 'Oil & Gas Exploration Companies',
     month: 'September',
     dividendType: 'Final Cash Dividend (FY24/25)',
     payoutCycle: 'Annual / Final Payout',
@@ -105,7 +105,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'INDU',
     name: 'Indus Motor Company Limited (Toyota)',
-    sector: 'Automobile',
+    sector: 'Automobile Assembler',
     month: 'September',
     dividendType: 'Final Cash Dividend (FY24/25)',
     payoutCycle: 'Quarterly / Final Payout',
@@ -125,7 +125,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'COLG',
     name: 'Colgate-Palmolive (Pakistan) Limited',
-    sector: 'Consumer & Staples',
+    sector: 'Food & Personal Care Products',
     month: 'September',
     dividendType: 'Final Cash Dividend (FY24/25)',
     payoutCycle: 'Annual / Final Payout',
@@ -145,7 +145,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'LUCK',
     name: 'Lucky Cement Limited',
-    sector: 'Cement & Construction',
+    sector: 'Cement',
     month: 'September',
     dividendType: 'Final Cash Dividend (FY24/25)',
     payoutCycle: 'Annual / Final Payout',
@@ -165,7 +165,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'ILP',
     name: 'Interloop Limited',
-    sector: 'Textile & Apparel',
+    sector: 'Textile Composite',
     month: 'September',
     dividendType: 'Final Cash Dividend',
     payoutCycle: 'Semi-Annual / Final Payout',
@@ -289,7 +289,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'KAPCO',
     name: 'Kot Addu Power Company Limited',
-    sector: 'Power Generation',
+    sector: 'Power Generation & Distribution',
     month: 'October',
     dividendType: 'Final Cash Dividend (Super High Yield)',
     payoutCycle: 'Final Heavy Payout',
@@ -329,7 +329,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'NESTLE',
     name: 'Nestle Pakistan Limited',
-    sector: 'Consumer & Staples',
+    sector: 'Food & Personal Care Products',
     month: 'October',
     dividendType: '3rd Interim Cash Dividend',
     payoutCycle: 'Quarterly Regular (4x/yr)',
@@ -353,7 +353,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'HUBC',
     name: 'The Hub Power Company (Q1 FY26)',
-    sector: 'Power Generation',
+    sector: 'Power Generation & Distribution',
     month: 'November',
     dividendType: '1st Interim Cash Dividend (FY26)',
     payoutCycle: 'Quarterly Regular (4x/yr)',
@@ -373,7 +373,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'PSO',
     name: 'Pakistan State Oil Company Limited',
-    sector: 'Oil & Gas (Marketing)',
+    sector: 'Oil & Gas Marketing Companies',
     month: 'November',
     dividendType: 'Final / Q1 Interim Cash Dividend',
     payoutCycle: 'Semi-Annual / Annual',
@@ -457,7 +457,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'SYS',
     name: 'Systems Limited',
-    sector: 'Technology',
+    sector: 'Technology & Communication',
     month: 'December',
     dividendType: 'Pre-Year End Bonus / Cash Payout',
     payoutCycle: 'Annual Payout',
@@ -497,7 +497,7 @@ export const UPCOMING_DIVIDEND_STOCKS = [
   {
     symbol: 'ENGRO',
     name: 'Engro Corporation Limited',
-    sector: 'Conglomerates',
+    sector: 'Fertilizer',
     month: 'December',
     dividendType: 'Year-End Pre-Closing Payout',
     payoutCycle: 'Quarterly / Semi-Annual',
