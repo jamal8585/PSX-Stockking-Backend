@@ -54,14 +54,14 @@
   "PRL": {
     "symbol": "PRL",
     "sectorCode": "0825",
-    "prevClose": 92.14,
-    "open": 90.98,
-    "high": 94.19,
-    "low": 89.45,
-    "currentPrice": 93.11,
-    "change": 0.97,
-    "changePercent": 1.05,
-    "volume": 27558679,
+    "prevClose": 106.95,
+    "open": 107.00,
+    "high": 109.50,
+    "low": 106.50,
+    "currentPrice": 108.81,
+    "change": 1.86,
+    "changePercent": 1.74,
+    "volume": 46611818,
     "sector": "Refinery"
   },
   "KEL": {

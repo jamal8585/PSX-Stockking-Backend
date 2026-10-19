@@ -93,17 +93,17 @@ export const calculateATR = (historicalPrices, currentPrice, period = 14) => {
 
 export const getRsiDescription = (rsi14) => {
   const r = Number(rsi14);
-  if (r > 70) {
-    return `Overbought / Extended Momentum (${r.toFixed(1)}) — Trail Stop loss advised`;
+  if (r >= 70) {
+    return `Overbought / Extended Momentum (${r.toFixed(1)}) — Trail stop loss advised`;
   }
-  if (r >= 50 && r <= 65) {
+  if (r >= 50 && r < 70) {
     return `Healthy Bullish Momentum (${r.toFixed(1)})`;
+  }
+  if (r >= 40 && r < 50) {
+    return `Balanced / Neutral Range (${r.toFixed(1)})`;
   }
   if (r < 35) {
     return `Oversold / Capitulation (${r.toFixed(1)}) — Watch for Mean Reversion`;
-  }
-  if (r > 65 && r <= 70) {
-    return `Moderate Bullish Momentum (${r.toFixed(1)})`;
   }
   return `Balanced / Neutral Range (${r.toFixed(1)})`;
 };
@@ -210,13 +210,10 @@ export const evaluateStockTechnicals = (stockData) => {
     score -= 10;
   }
 
-  // Detect Momentum Breakouts (Rallies where RSI is extended > 70 with positive price momentum)
+  // Detect Momentum Breakouts (Rallies where RSI is extended >= 70 with positive price momentum)
   const numChangePct = Number(changePercent || 0);
   const isMomentumBreakout = Boolean(
-    sym === 'PRL' || 
-    sym === 'NRL' || 
-    sym === 'MUGHAL' || 
-    (effRsi14 > 70 && numChangePct > 0)
+    (sym === 'PRL' || effRsi14 >= 70) && numChangePct > 0
   );
 
   // Determine Signal with STRICT Technical Invariants:

@@ -68,20 +68,23 @@ export const getPSXMarketStatus = () => {
 
   // Weekends
   if (day === 0 || day === 6) {
+    const isSun = day === 0;
     return {
       isOpen: false,
       isEodFrozen: true,
       eodSnapshotDate: todayDateStr,
       nextTradingDate,
-      actionableLabel: `Post-Market Analysis • Actionable for Tomorrow's PSX Market Open (${nextTradingDate})`,
+      actionableLabel: isSun 
+        ? `Pre-Market Intelligence • Actionable for Tomorrow's Monday PSX Market Open (${nextTradingDate})`
+        : `Post-Market Analysis • Actionable for Upcoming Monday PSX Market Open (${nextTradingDate})`,
       statusText: 'MARKET CLOSED (Weekend)',
-      sessionNote: 'Official PSX Last Closing Rates Active • Re-opens Monday 09:30 AM PKT'
+      sessionNote: 'Official PSX Last Closing Rates Active • Re-opens Monday 09:15 AM PKT'
     };
   }
 
   // Friday Special Timing
   if (day === 5) {
-    const isMorning = timeInMinutes >= (9 * 60) && timeInMinutes <= (12 * 60);
+    const isMorning = timeInMinutes >= (9 * 60 + 15) && timeInMinutes <= (12 * 60);
     const isAfternoon = timeInMinutes >= (14 * 60 + 30) && timeInMinutes <= (16 * 60 + 30);
     if (isMorning || isAfternoon) {
       return {
@@ -89,35 +92,36 @@ export const getPSXMarketStatus = () => {
         isEodFrozen: false,
         eodSnapshotDate: todayDateStr,
         nextTradingDate,
-        actionableLabel: 'Live Session • Active Trading Telemetry',
+        actionableLabel: 'Live Trading Session • Active Trading Telemetry',
         statusText: 'LIVE MARKET SESSION',
         sessionNote: 'Real-time Tick Telemetry Active'
       };
     }
   } else {
-    // Monday to Thursday: 09:30 AM to 03:30 PM (9:30 - 15:30)
-    if (timeInMinutes >= (9 * 60 + 30) && timeInMinutes <= (15 * 60 + 30)) {
+    // Monday to Thursday: 09:15 AM to 03:30 PM (9:15 - 15:30)
+    if (timeInMinutes >= (9 * 60 + 15) && timeInMinutes <= (15 * 60 + 30)) {
       return {
         isOpen: true,
         isEodFrozen: false,
         eodSnapshotDate: todayDateStr,
         nextTradingDate,
-        actionableLabel: 'Live Session • Active Trading Telemetry',
+        actionableLabel: 'Live Trading Session • Active Trading Telemetry',
         statusText: 'LIVE MARKET SESSION',
         sessionNote: 'Real-time Tick Telemetry Active'
       };
     }
   }
 
-  if (timeInMinutes < (9 * 60 + 30)) {
+  if (timeInMinutes < (9 * 60 + 15)) {
+    const todayFmt = pktTime.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' });
     return {
       isOpen: false,
       isEodFrozen: true,
       eodSnapshotDate: todayDateStr,
-      nextTradingDate: pktTime.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' }),
-      actionableLabel: `Pre-Market Analysis • Actionable for Today's PSX Market Open (09:30 AM PKT)`,
+      nextTradingDate: todayFmt,
+      actionableLabel: `Pre-Market Intelligence • Actionable for Today's PSX Market Open (${todayFmt})`,
       statusText: 'PRE-MARKET (Closed)',
-      sessionNote: 'Official Previous Day Closing Rates Active • Opens at 09:30 AM PKT'
+      sessionNote: 'Official Previous Day Closing Rates Active • Opens at 09:15 AM PKT'
     };
   }
 
@@ -128,7 +132,7 @@ export const getPSXMarketStatus = () => {
     nextTradingDate,
     actionableLabel: `Post-Market Analysis • Actionable for Tomorrow's PSX Market Open (${nextTradingDate})`,
     statusText: 'MARKET CLOSED (Post-Market)',
-    sessionNote: 'Official DPS Final Closing Rates Active • Opens Next Trading Day 09:30 AM PKT'
+    sessionNote: 'Official DPS Final Closing Rates Active • Opens Next Trading Day 09:15 AM PKT'
   };
 };
 
