@@ -156,6 +156,8 @@ export const fetchPSXCompanyQuote = async (symbol) => {
     if (!res.data || typeof res.data !== 'string') return null;
 
     const $ = cheerio.load(res.data);
+    const scrapedName = $('.quote__name').text().replace(/DELISTED|XD|XB|XR/gi, '').trim();
+    const companyName = scrapedName || baseQuotes[sym]?.name || sym;
     const rawSector = $('.quote__sector span').text().trim() || $('.quote__sector').text().trim();
     const sector = (rawSector && rawSector !== 'General Market') 
       ? rawSector 

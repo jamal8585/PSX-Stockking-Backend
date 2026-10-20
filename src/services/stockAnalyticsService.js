@@ -549,6 +549,12 @@ export const calculateTechnicalAnalysis = (bars = [], currentQuote = {}) => {
 
   const pivotPoints = calculateFloorPivots(barH, barL, barC);
   const pp = pivotPoints.hasRange ? pivotPoints.pp : currentPrice;
+  const r1 = pivotPoints.hasRange ? pivotPoints.r1 : Number((currentPrice * 1.02).toFixed(2));
+  const r2 = pivotPoints.hasRange ? pivotPoints.r2 : Number((currentPrice * 1.04).toFixed(2));
+  const r3 = pivotPoints.hasRange ? pivotPoints.r3 : Number((currentPrice * 1.06).toFixed(2));
+  const s1 = pivotPoints.hasRange ? pivotPoints.s1 : Number((currentPrice * 0.98).toFixed(2));
+  const s2 = pivotPoints.hasRange ? pivotPoints.s2 : Number((currentPrice * 0.96).toFixed(2));
+  const s3 = pivotPoints.hasRange ? pivotPoints.s3 : Number((currentPrice * 0.94).toFixed(2));
 
   // F. Consensus Signal
   let signal = 'NEUTRAL';
