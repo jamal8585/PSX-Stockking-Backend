@@ -62,7 +62,7 @@ const saveToCloudVault = async () => {
   }
 };
 
-// Evaluate dynamic outcome of a historical signal vs live market price
+// Evaluate dynamic outcome of a historical signal vs next session price action
 export const computeHistoricalOutcome = (item, livePrice) => {
   const signalPrice = Number(item.closing_price || item.currentPrice || 100);
   const target1 = Number(item.target_1 || item.target1 || (signalPrice * 1.095));
@@ -73,57 +73,54 @@ export const computeHistoricalOutcome = (item, livePrice) => {
 
   const gainSinceSignalPct = Number((((currentLive - signalPrice) / signalPrice) * 100).toFixed(2));
 
-  let status = 'IN_PROGRESS';
-  let label = `In Progress (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}%)`;
-  let badgeColor = 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20';
+  let status = 'CLOSED';
+  let label = 'Closed';
+  let badgeColor = 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20';
 
   if (isAvoid) {
     if (isMomentumBreakout) {
-      if (currentLive <= stopLoss) {
+      if (currentLive <= stopLoss || gainSinceSignalPct < 0) {
         status = 'CLOSED_NEXT_DAY_DROP';
         label = 'Closed on Next Day Drop';
         badgeColor = 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30';
-      } else if (currentLive >= signalPrice * 1.03) {
+      } else {
         status = 'TARGET_HIT';
         label = `Momentum Extended (+${gainSinceSignalPct}%)`;
         badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30';
-      } else {
-        status = 'IN_PROGRESS';
-        label = `Trailing Band Active (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}%)`;
-        badgeColor = 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20';
       }
     } else {
-      if (currentLive <= target1) {
+      if (currentLive <= target1 || gainSinceSignalPct <= -2.0) {
         status = 'TARGET_HIT';
         label = `Support Reached (${gainSinceSignalPct}% Pullback)`;
         badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30';
-      } else if (currentLive >= signalPrice * 1.03) {
+      } else if (currentLive >= signalPrice * 1.02) {
         status = 'STOP_LOSS_HIT';
         label = `Defensive Trigger (${gainSinceSignalPct}%)`;
         badgeColor = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30';
       } else {
-        status = 'HOLDING_SUPPORT';
-        label = `Capital Preserved (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}%)`;
+        status = 'CAPITAL_PRESERVED';
+        label = 'Capital Preserved';
         badgeColor = 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20';
       }
     }
   } else {
-    if (currentLive >= target1) {
+    // Buy / Accumulate / Hold
+    if (currentLive >= target1 || gainSinceSignalPct >= 3.0) {
       status = 'TARGET_HIT';
       label = `Target 1 Hit (${gainSinceSignalPct >= 0 ? '+' : ''}${gainSinceSignalPct}% Win)`;
       badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30';
-    } else if (currentLive <= stopLoss) {
+    } else if (currentLive <= stopLoss || gainSinceSignalPct <= -2.5) {
       status = 'STOP_LOSS_HIT';
-      label = `Stop Loss Triggered (${gainSinceSignalPct}%)`;
+      label = `Stopped Out (${gainSinceSignalPct}%)`;
       badgeColor = 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30';
-    } else if (gainSinceSignalPct > 1.5) {
-      status = 'IN_PROFIT';
-      label = `Running in Profit (+${gainSinceSignalPct}%)`;
+    } else if (gainSinceSignalPct > 0) {
+      status = 'CLOSED_PROFIT';
+      label = `Closed in Profit (+${gainSinceSignalPct}%)`;
       badgeColor = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
-    } else if (gainSinceSignalPct < -1.5) {
-      status = 'HOLDING_SUPPORT';
-      label = `Holding Support (${gainSinceSignalPct}%)`;
-      badgeColor = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
+    } else {
+      status = 'CLOSED_NEUTRAL';
+      label = `Closed at Session Close (${gainSinceSignalPct}%)`;
+      badgeColor = 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20';
     }
   }
 

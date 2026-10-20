@@ -23,7 +23,7 @@ export const KNOWN_BENCHMARKS = {
   'NETSOL': { basePrice: 118.00, pe: 9.8, eps: 12.0, divYield: 3.2, isKse100: true, sector: 'Technology & Communication' },
   'AVN': { basePrice: 56.40, pe: 8.5, eps: 6.6, divYield: 4.0, isKse100: true, sector: 'Technology & Communication' },
   'PTC': { basePrice: 18.50, pe: 16.0, eps: 1.15, divYield: 0.0, isKse100: true, sector: 'Technology & Communication' },
-  'WTL': { basePrice: 1.16, pe: 12.0, eps: 0.15, divYield: 0.0, isKse100: false, sector: 'Technology & Communication' },
+  'WTL': { basePrice: 0.93, pe: 12.0, eps: 0.15, divYield: 0.0, isKse100: false, sector: 'Technology & Communication' },
   'TELE': { basePrice: 7.45, pe: 10.0, eps: 0.74, divYield: 0.0, isKse100: false, sector: 'Technology & Communication' },
   'HUMNL': { basePrice: 9.80, pe: 8.5, eps: 1.15, divYield: 5.0, isKse100: false, sector: 'Technology & Communication' },
   'PAEL': { basePrice: 26.80, pe: 7.5, eps: 3.5, divYield: 4.0, isKse100: true, sector: 'Cable & Electrical Goods' },

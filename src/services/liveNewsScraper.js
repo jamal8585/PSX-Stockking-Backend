@@ -224,7 +224,7 @@ export const ALL_SECTOR_CATALYSTS = [
     keywords: ['oil', 'gas', 'petroleum', 'circular debt', 'e&p', 'omc', 'refinery', 'crude', 'mari', 'ogdc', 'ppl', 'pso', 'fuel', 'petrol', 'diesel', 'lng', 'sngp', 'cnergy', 'prl', 'atrl'],
     bullishStocks: [
       { symbol: 'CNERGY', name: 'Cnergyico PK Limited', sector: 'Refinery', price: 15.46 },
-      { symbol: 'PRL', name: 'Pakistan Refinery Limited', sector: 'Refinery', price: 108.81 },
+      { symbol: 'PRL', name: 'Pakistan Refinery Limited', sector: 'Refinery', price: 101.44 },
       { symbol: 'ATRL', name: 'Attock Refinery Limited', sector: 'Refinery', price: 385.00 },
       { symbol: 'OGDC', name: 'Oil & Gas Development Company Ltd', sector: 'Oil & Gas Exploration', price: 328.70 },
       { symbol: 'MARI', name: 'Mari Petroleum Company', sector: 'Oil & Gas Exploration', price: 663.26 },
@@ -285,7 +285,7 @@ export const ALL_SECTOR_CATALYSTS = [
     ],
     bearishStocks: [
       { symbol: 'TRG', name: 'TRG Pakistan Limited', sector: 'Technology & Communication', price: 68.20 },
-      { symbol: 'WTL', name: 'WorldCall Telecom', sector: 'Technology & Communication', price: 1.16 },
+      { symbol: 'WTL', name: 'WorldCall Telecom', sector: 'Technology & Communication', price: 0.93 },
       { symbol: 'TELE', name: 'Telecard Limited', sector: 'Technology & Communication', price: 7.45 },
       { symbol: 'PTC', name: 'Pakistan Telecommunication', sector: 'Technology & Communication', price: 18.50 }
     ]
