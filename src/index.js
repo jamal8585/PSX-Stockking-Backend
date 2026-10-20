@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB, getDBStatus } from './config/db.js';
 import { syncMarketData } from './services/seedService.js';
+import { initSnapshotEngine } from './services/snapshotService.js';
 
 import stockRoutes from './routes/stocks.js';
 import recRoutes from './routes/recommendations.js';
@@ -101,6 +102,7 @@ app.get('/api/health', (req, res) => {
 const startServer = async () => {
   try {
     await connectDB();
+    await initSnapshotEngine();
     
     // Seed / Ensure Official Admin User and Load Cloud Store
     const seedUsers = async () => {

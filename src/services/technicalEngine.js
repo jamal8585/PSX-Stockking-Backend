@@ -172,7 +172,7 @@ export const evaluateStockTechnicals = (stockData) => {
 
   // Symbol-specific deterministic variance to prevent identical cloned numbers across tickers
   const sym = String(symbol || '').toUpperCase().trim();
-  const effRsi14 = sym === 'PRL' ? 78.7 : rsi14;
+  const effRsi14 = rsi14;
   let symHash = 0;
   for (let i = 0; i < sym.length; i++) {
     symHash = (symHash << 5) - symHash + sym.charCodeAt(i);
@@ -213,7 +213,7 @@ export const evaluateStockTechnicals = (stockData) => {
   // Detect Momentum Breakouts (Rallies where RSI is extended >= 70 with positive price momentum)
   const numChangePct = Number(changePercent || 0);
   const isMomentumBreakout = Boolean(
-    (sym === 'PRL' || effRsi14 >= 70) && numChangePct > 0
+    effRsi14 >= 70 && numChangePct > 0
   );
 
   // Determine Signal with STRICT Technical Invariants:
@@ -341,19 +341,11 @@ export const evaluateStockTechnicals = (stockData) => {
     riskReward = '1 : ' + rrRatio;
   } else if (signal === 'AVOID_SELL') {
     if (isMomentumBreakout) {
-      if (sym === 'PRL') {
-        entryMin = 107.89;
-        entryMax = 109.27;
-        stopLoss = 106.42;
-        target1 = 105.47;
-        target2 = 103.50;
-      } else {
-        // For Momentum Breakouts: tight trailing stop to lock in profits, pullback support at EMA20/S1
-        const trailPct = Math.min(4.8, Math.max(2.2, (atr / currentPrice) * 100 * 0.9 + (hashOffset * 0.15)));
-        stopLoss = Number((currentPrice * (1 - trailPct / 100)).toFixed(2));
-        target1 = Number(Math.min(levels.s1, currentPrice - Math.max(atr * 1.5, currentPrice * 0.035)).toFixed(2));
-        target2 = Number(Math.min(levels.s2, target1 - Math.max(atr * 1.2, currentPrice * 0.03)).toFixed(2));
-      }
+      // For Momentum Breakouts: tight trailing stop to lock in profits, pullback support at EMA20/S1
+      const trailPct = Math.min(4.8, Math.max(2.2, (atr / currentPrice) * 100 * 0.9 + (hashOffset * 0.15)));
+      stopLoss = Number((currentPrice * (1 - trailPct / 100)).toFixed(2));
+      target1 = Number(Math.min(levels.s1, currentPrice - Math.max(atr * 1.5, currentPrice * 0.035)).toFixed(2));
+      target2 = Number(Math.min(levels.s2, target1 - Math.max(atr * 1.2, currentPrice * 0.03)).toFixed(2));
       rrRatio = 0;
       riskReward = 'Trail Stop Setup';
     } else {

@@ -33,8 +33,8 @@
     "high": 1,
     "low": 0.65,
     "currentPrice": 0.76,
-    "change": 0.00,
-    "changePercent": 0.00,
+    "change": 0,
+    "changePercent": 0,
     "volume": 71228411,
     "sector": "Cable & Electrical Goods"
   },
@@ -54,14 +54,14 @@
   "PRL": {
     "symbol": "PRL",
     "sectorCode": "0825",
-    "prevClose": 106.95,
-    "open": 107.00,
-    "high": 109.50,
-    "low": 106.50,
-    "currentPrice": 108.81,
-    "change": 1.86,
-    "changePercent": 1.74,
-    "volume": 46611818,
+    "prevClose": 108.81,
+    "open": 108,
+    "high": 108.5,
+    "low": 101,
+    "currentPrice": 101.44,
+    "change": -7.37,
+    "changePercent": -6.77,
+    "volume": 48920150,
     "sector": "Refinery"
   },
   "KEL": {
