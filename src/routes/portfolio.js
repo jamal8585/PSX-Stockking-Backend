@@ -108,8 +108,9 @@ router.get('/', async (req, res) => {
       };
     }));
 
+    const totalPrevValue = totalCurrentValue - totalTodayPnl;
     const totalPnlPercent = totalInvested > 0 ? Number(((totalUnrealizedPnl / totalInvested) * 100).toFixed(2)) : 0;
-    const totalTodayPnlPercent = totalInvested > 0 ? Number(((totalTodayPnl / totalInvested) * 100).toFixed(2)) : 0;
+    const totalTodayPnlPercent = totalPrevValue > 0 ? Number(((totalTodayPnl / totalPrevValue) * 100).toFixed(2)) : 0;
 
     res.json({
       success: true,
