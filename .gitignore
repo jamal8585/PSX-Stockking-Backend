@@ -4,5 +4,3 @@ node_modules/
 .DS_Store
 dist/
 temp/
-src/data/financials_cache/
-src/data/payouts_cache/

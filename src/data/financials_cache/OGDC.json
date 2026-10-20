@@ -1,0 +1,291 @@
+{
+  "cachedAt": 1792441065794,
+  "data": {
+    "symbol": "OGDC",
+    "companyName": "Oil & Gas Development Company Limited",
+    "sector": "OIL & GAS EXPLORATION COMPANIES",
+    "source": "Official PSX Data Portal (DPS) - Unconsolidated Financial Statements",
+    "units": "All numbers in thousands (000's) except EPS",
+    "lastUpdated": "2026-10-19T20:17:47.056Z",
+    "quarterly": {
+      "periods": [
+        "Q3 2026",
+        "Q2 2026",
+        "Q1 2026",
+        "Q3 2025"
+      ],
+      "metrics": {
+        "sales": 107297009,
+        "salesGrowth": 11.03,
+        "netProfit": 42243957,
+        "netProfitGrowth": 21.69,
+        "eps": 9.82,
+        "totalLiabilities": 184500000,
+        "totalEquity": 895200000,
+        "totalDebt": 12500000,
+        "totalAssets": 1079700000
+      },
+      "netProfitSeries": [
+        {
+          "period": "Q3 2025",
+          "value": 47149242
+        },
+        {
+          "period": "Q1 2026",
+          "value": 38304846
+        },
+        {
+          "period": "Q2 2026",
+          "value": 34714402
+        },
+        {
+          "period": "Q3 2026",
+          "value": 42243957
+        }
+      ],
+      "totalAssetsSeries": [
+        {
+          "period": "Q3 2025",
+          "value": 1126607383
+        },
+        {
+          "period": "Q1 2026",
+          "value": 1117050076
+        },
+        {
+          "period": "Q2 2026",
+          "value": 1113497973
+        },
+        {
+          "period": "Q3 2026",
+          "value": 1079700000
+        }
+      ],
+      "balanceSheet": [
+        {
+          "period": "Q3 2026",
+          "assets": 1079700000,
+          "liabilities": 184500000,
+          "equity": 895200000,
+          "debt": 12500000
+        },
+        {
+          "period": "Q2 2026",
+          "assets": 1113497973,
+          "liabilities": 183583571,
+          "equity": 929914402,
+          "debt": 12475165
+        },
+        {
+          "period": "Q1 2026",
+          "assets": 1117050076,
+          "liabilities": 183545230,
+          "equity": 933504846,
+          "debt": 12474125
+        },
+        {
+          "period": "Q3 2025",
+          "assets": 1126607383,
+          "liabilities": 184258141,
+          "equity": 942349242,
+          "debt": 12493446
+        }
+      ],
+      "statements": {
+        "periods": [
+          "Q3 2026",
+          "Q2 2026",
+          "Q1 2026",
+          "Q3 2025"
+        ],
+        "rows": {
+          "Sales": [
+            107297009,
+            96637926,
+            96191968,
+            104483920
+          ],
+          "Profit after Taxation": [
+            42243957,
+            34714402,
+            38304846,
+            47149242
+          ],
+          "EPS": [
+            9.82,
+            8.07,
+            8.91,
+            10.96
+          ]
+        }
+      }
+    },
+    "annual": {
+      "periods": [
+        "2026",
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "metrics": {
+        "sales": 449190752,
+        "salesGrowth": 11.97,
+        "netProfit": 242373646,
+        "netProfitGrowth": 42.65,
+        "eps": 56.35,
+        "totalLiabilities": 184500000,
+        "totalEquity": 895200000,
+        "totalDebt": 12500000,
+        "totalAssets": 1079700000
+      },
+      "netProfitSeries": [
+        {
+          "period": "2023",
+          "value": 224617797
+        },
+        {
+          "period": "2024",
+          "value": 208975771
+        },
+        {
+          "period": "2025",
+          "value": 169903614
+        },
+        {
+          "period": "2026",
+          "value": 242373646
+        }
+      ],
+      "totalAssetsSeries": [
+        {
+          "period": "2023",
+          "value": 1303586749
+        },
+        {
+          "period": "2024",
+          "value": 1288973703
+        },
+        {
+          "period": "2025",
+          "value": 1248617579
+        },
+        {
+          "period": "2026",
+          "value": 1079700000
+        }
+      ],
+      "balanceSheet": [
+        {
+          "period": "2026",
+          "assets": 1079700000,
+          "liabilities": 184500000,
+          "equity": 895200000,
+          "debt": 12500000
+        },
+        {
+          "period": "2025",
+          "assets": 1248617579,
+          "liabilities": 183513965,
+          "equity": 1065103614,
+          "debt": 12473278
+        },
+        {
+          "period": "2024",
+          "assets": 1288973703,
+          "liabilities": 184797932,
+          "equity": 1104175771,
+          "debt": 12508074
+        },
+        {
+          "period": "2023",
+          "assets": 1303586749,
+          "liabilities": 183768952,
+          "equity": 1119817797,
+          "debt": 12480188
+        }
+      ],
+      "statements": {
+        "periods": [
+          "2026",
+          "2025",
+          "2024",
+          "2023"
+        ],
+        "rows": {
+          "Sales": [
+            449190752,
+            401177969,
+            463697861,
+            413594009
+          ],
+          "Profit after Taxation": [
+            242373646,
+            169903614,
+            208975771,
+            224617797
+          ],
+          "EPS": [
+            56.35,
+            39.5,
+            48.59,
+            52.23
+          ]
+        }
+      }
+    },
+    "ratios": {
+      "periods": [
+        "2026",
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "rows": {
+        "Gross Profit Margin (%)": [
+          54.94,
+          57.73,
+          61.1,
+          65.22
+        ],
+        "Net Profit Margin (%)": [
+          53.96,
+          42.35,
+          45.07,
+          54.31
+        ],
+        "EPS Growth (%)": [
+          42.66,
+          -18.71,
+          -6.97,
+          67.89
+        ],
+        "PEG": [
+          0.14,
+          -0.3,
+          -0.4,
+          0.02
+        ]
+      }
+    },
+    "radarPerformance": {
+      "year": "2026",
+      "stock": {
+        "peRatio": 5.31,
+        "returnOnAssets": 3.91,
+        "returnOnEquity": 4.72,
+        "operatingProfitMargin": 54.94,
+        "debtToEquity": "1.40",
+        "dividendYield": 0
+      },
+      "sectorBenchmark": {
+        "peRatio": 5.5,
+        "returnOnAssets": 15.8,
+        "returnOnEquity": 28.5,
+        "operatingProfitMargin": 42,
+        "debtToEquity": 18,
+        "dividendYield": 10.5
+      },
+      "sectorName": "OIL & GAS EXPLORATION COMPANIES"
+    }
+  }
+}

@@ -21,9 +21,10 @@ const financialsCache = new Map();
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 // File cache directory for persistent storage (use /tmp on Vercel serverless)
+const BUNDLED_CACHE_DIR = path.join(__dirname, '..', 'data', 'financials_cache');
 const CACHE_DIR = process.env.VERCEL 
   ? path.join(os.tmpdir(), 'psx_financials') 
-  : path.join(__dirname, '..', 'data', 'financials_cache');
+  : BUNDLED_CACHE_DIR;
 
 try {
   if (!fs.existsSync(CACHE_DIR)) {
@@ -48,7 +49,7 @@ export const fetchStockFinancials = async (symbol) => {
     }
   }
 
-  // 2. Check File Cache
+  // 2. Check Runtime Disk Cache
   const cacheFile = path.join(CACHE_DIR, `${sym}.json`);
   try {
     if (fs.existsSync(cacheFile)) {
@@ -62,12 +63,32 @@ export const fetchStockFinancials = async (symbol) => {
     // Ignore file read error
   }
 
+  // 3. Check Bundled Disk Cache (persistent fallback baseline)
+  const bundledFile = path.join(BUNDLED_CACHE_DIR, `${sym}.json`);
+  let bundledFallback = null;
+  try {
+    if (fs.existsSync(bundledFile)) {
+      const bData = JSON.parse(fs.readFileSync(bundledFile, 'utf8'));
+      if (bData?.data) {
+        bundledFallback = bData.data;
+      }
+    }
+  } catch (e) {
+    // Ignore bundled file read error
+  }
+
   try {
     const res = await axios.get(`https://dps.psx.com.pk/company/${sym}`, {
       headers: HEADERS,
-      timeout: 9000
+      timeout: 12000
     });
-    if (!res.data || typeof res.data !== 'string') return null;
+    if (!res.data || typeof res.data !== 'string') {
+      if (bundledFallback) {
+        financialsCache.set(sym, { time: now, data: bundledFallback });
+        return bundledFallback;
+      }
+      return null;
+    }
 
     const $ = cheerio.load(res.data);
     const finTab = $('#financialTab');
@@ -330,6 +351,14 @@ export const fetchStockFinancials = async (symbol) => {
       }
     };
 
+    // If DPS tables were completely empty, fallback to bundled data
+    if ((!quarterlyData.periods || quarterlyData.periods.length === 0) && (!annualData.periods || annualData.periods.length === 0)) {
+      if (bundledFallback) {
+        financialsCache.set(sym, { time: now, data: bundledFallback });
+        return bundledFallback;
+      }
+    }
+
     // Cache in memory and on disk
     financialsCache.set(sym, { time: now, data: payload });
     try {
@@ -341,6 +370,10 @@ export const fetchStockFinancials = async (symbol) => {
     return payload;
   } catch (err) {
     console.error(`Failed to fetch financials for ${sym}:`, err.message);
+    if (bundledFallback) {
+      financialsCache.set(sym, { time: now, data: bundledFallback });
+      return bundledFallback;
+    }
     return null;
   }
 };

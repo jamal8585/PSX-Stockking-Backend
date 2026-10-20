@@ -1,0 +1,291 @@
+{
+  "cachedAt": 1792441064080,
+  "data": {
+    "symbol": "ENGRO",
+    "companyName": "Engro Corporation Limited",
+    "sector": "FERTILIZER",
+    "source": "Official PSX Data Portal (DPS) - Unconsolidated Financial Statements",
+    "units": "All numbers in thousands (000's) except EPS",
+    "lastUpdated": "2026-10-19T20:17:45.766Z",
+    "quarterly": {
+      "periods": [
+        "Q3 2024",
+        "Q2 2024",
+        "Q1 2024",
+        "Q3 2023"
+      ],
+      "metrics": {
+        "sales": 0,
+        "salesGrowth": 0,
+        "netProfit": 3668624,
+        "netProfitGrowth": -55.42,
+        "eps": 6.84,
+        "totalLiabilities": 245000000,
+        "totalEquity": 285000000,
+        "totalDebt": 78500000,
+        "totalAssets": 530000000
+      },
+      "netProfitSeries": [
+        {
+          "period": "Q3 2023",
+          "value": 3693776
+        },
+        {
+          "period": "Q1 2024",
+          "value": 5966408
+        },
+        {
+          "period": "Q2 2024",
+          "value": 8230062
+        },
+        {
+          "period": "Q3 2024",
+          "value": 3668624
+        }
+      ],
+      "totalAssetsSeries": [
+        {
+          "period": "Q3 2023",
+          "value": 12250521443776
+        },
+        {
+          "period": "Q1 2024",
+          "value": 12250523716408
+        },
+        {
+          "period": "Q2 2024",
+          "value": 12250525980062
+        },
+        {
+          "period": "Q3 2024",
+          "value": 530000000
+        }
+      ],
+      "balanceSheet": [
+        {
+          "period": "Q3 2024",
+          "assets": 530000000,
+          "liabilities": 245000000,
+          "equity": 285000000,
+          "debt": 78500000
+        },
+        {
+          "period": "Q2 2024",
+          "assets": 12250525980062,
+          "liabilities": 12250232750000,
+          "equity": 293230062,
+          "debt": 1570076930000
+        },
+        {
+          "period": "Q1 2024",
+          "assets": 12250523716408,
+          "liabilities": 12250232750000,
+          "equity": 290966408,
+          "debt": 1570076930000
+        },
+        {
+          "period": "Q3 2023",
+          "assets": 12250521443776,
+          "liabilities": 12250232750000,
+          "equity": 288693776,
+          "debt": 1570076930000
+        }
+      ],
+      "statements": {
+        "periods": [
+          "Q3 2024",
+          "Q2 2024",
+          "Q1 2024",
+          "Q3 2023"
+        ],
+        "rows": {
+          "Sales": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "Profit after Taxation": [
+            3668624,
+            8230062,
+            5966408,
+            3693776
+          ],
+          "EPS": [
+            6.84,
+            15.34,
+            11.12,
+            6.88
+          ]
+        }
+      }
+    },
+    "annual": {
+      "periods": [
+        "2023",
+        "2022",
+        "2021",
+        "2020"
+      ],
+      "metrics": {
+        "sales": 0,
+        "salesGrowth": 0,
+        "netProfit": 17566235,
+        "netProfitGrowth": -17.13,
+        "eps": 32.26,
+        "totalLiabilities": 245000000,
+        "totalEquity": 285000000,
+        "totalDebt": 78500000,
+        "totalAssets": 530000000
+      },
+      "netProfitSeries": [
+        {
+          "period": "2020",
+          "value": 16301478
+        },
+        {
+          "period": "2021",
+          "value": 18516153
+        },
+        {
+          "period": "2022",
+          "value": 21196420
+        },
+        {
+          "period": "2023",
+          "value": 17566235
+        }
+      ],
+      "totalAssetsSeries": [
+        {
+          "period": "2020",
+          "value": 12250534051478
+        },
+        {
+          "period": "2021",
+          "value": 12250536266153
+        },
+        {
+          "period": "2022",
+          "value": 12250538946420
+        },
+        {
+          "period": "2023",
+          "value": 530000000
+        }
+      ],
+      "balanceSheet": [
+        {
+          "period": "2023",
+          "assets": 530000000,
+          "liabilities": 245000000,
+          "equity": 285000000,
+          "debt": 78500000
+        },
+        {
+          "period": "2022",
+          "assets": 12250538946420,
+          "liabilities": 12250232750000,
+          "equity": 306196420,
+          "debt": 1570076930000
+        },
+        {
+          "period": "2021",
+          "assets": 12250536266153,
+          "liabilities": 12250232750000,
+          "equity": 303516153,
+          "debt": 1570076930000
+        },
+        {
+          "period": "2020",
+          "assets": 12250534051478,
+          "liabilities": 12250232750000,
+          "equity": 301301478,
+          "debt": 1570076930000
+        }
+      ],
+      "statements": {
+        "periods": [
+          "2023",
+          "2022",
+          "2021",
+          "2020"
+        ],
+        "rows": {
+          "Sales": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "Profit after Taxation": [
+            17566235,
+            21196420,
+            18516153,
+            16301478
+          ],
+          "EPS": [
+            32.26,
+            36.79,
+            32.14,
+            28.29
+          ]
+        }
+      }
+    },
+    "ratios": {
+      "periods": [
+        "2023",
+        "2022",
+        "2021",
+        "2020"
+      ],
+      "rows": {
+        "Gross Profit Margin (%)": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Net Profit Margin (%)": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "EPS Growth (%)": [
+          -12.31,
+          14.47,
+          13.61,
+          13.93
+        ],
+        "PEG": [
+          -0.74,
+          0.49,
+          0.62,
+          0.78
+        ]
+      }
+    },
+    "radarPerformance": {
+      "year": "2023",
+      "stock": {
+        "peRatio": 5,
+        "returnOnAssets": 0.69,
+        "returnOnEquity": 1.29,
+        "operatingProfitMargin": 9.61,
+        "debtToEquity": "27.54",
+        "dividendYield": 0
+      },
+      "sectorBenchmark": {
+        "peRatio": 6,
+        "returnOnAssets": 14.2,
+        "returnOnEquity": 32,
+        "operatingProfitMargin": 24,
+        "debtToEquity": 40,
+        "dividendYield": 13
+      },
+      "sectorName": "FERTILIZER"
+    }
+  }
+}

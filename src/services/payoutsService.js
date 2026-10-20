@@ -20,9 +20,10 @@ const HEADERS = {
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const memoryCache = new Map();
 
+const BUNDLED_PAYOUTS_DIR = path.join(__dirname, '..', 'data', 'payouts_cache');
 const CACHE_DIR = process.env.VERCEL 
   ? path.join(os.tmpdir(), 'psx_payouts_cache') 
-  : path.join(__dirname, '..', 'data', 'payouts_cache');
+  : BUNDLED_PAYOUTS_DIR;
 
 try {
   if (!fs.existsSync(CACHE_DIR)) {
@@ -314,12 +315,31 @@ export const fetchStockAnnouncements = async (symbol) => {
     // Ignore cache read error
   }
 
+  const bundledFile = path.join(BUNDLED_PAYOUTS_DIR, `ann_${sym}.json`);
+  let bundledFallback = null;
+  try {
+    if (fs.existsSync(bundledFile)) {
+      const bData = JSON.parse(fs.readFileSync(bundledFile, 'utf8'));
+      if (bData?.data) {
+        bundledFallback = bData.data;
+      }
+    }
+  } catch (e) {
+    // Ignore bundled cache read error
+  }
+
   try {
     const res = await axios.get(`https://dps.psx.com.pk/company/${sym}`, {
       headers: HEADERS,
-      timeout: 9000
+      timeout: 12000
     });
-    if (!res.data || typeof res.data !== 'string') return null;
+    if (!res.data || typeof res.data !== 'string') {
+      if (bundledFallback) {
+        memoryCache.set(cacheKey, { time: now, data: bundledFallback });
+        return bundledFallback;
+      }
+      return null;
+    }
 
     const $ = cheerio.load(res.data);
     const companyName = $('.quote__name').text().trim() || sym;
@@ -411,6 +431,10 @@ export const fetchStockAnnouncements = async (symbol) => {
     return payload;
   } catch (err) {
     console.error(`Failed to fetch announcements for ${sym}:`, err.message);
+    if (bundledFallback) {
+      memoryCache.set(cacheKey, { time: now, data: bundledFallback });
+      return bundledFallback;
+    }
     return null;
   }
 };
