@@ -224,7 +224,7 @@ export const ALL_SECTOR_CATALYSTS = [
     keywords: ['oil', 'gas', 'petroleum', 'circular debt', 'e&p', 'omc', 'refinery', 'crude', 'mari', 'ogdc', 'ppl', 'pso', 'fuel', 'petrol', 'diesel', 'lng', 'sngp', 'cnergy', 'prl', 'atrl'],
     bullishStocks: [
       { symbol: 'CNERGY', name: 'Cnergyico PK Limited', sector: 'Refinery', price: 15.46 },
-      { symbol: 'PRL', name: 'Pakistan Refinery Limited', sector: 'Refinery', price: 101.44 },
+      { symbol: 'PRL', name: 'Pakistan Refinery Limited', sector: 'Refinery', price: 99.88 },
       { symbol: 'ATRL', name: 'Attock Refinery Limited', sector: 'Refinery', price: 385.00 },
       { symbol: 'OGDC', name: 'Oil & Gas Development Company Ltd', sector: 'Oil & Gas Exploration', price: 328.70 },
       { symbol: 'MARI', name: 'Mari Petroleum Company', sector: 'Oil & Gas Exploration', price: 663.26 },

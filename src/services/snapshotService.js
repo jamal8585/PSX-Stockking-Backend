@@ -215,11 +215,11 @@ export const seedHistoricalSnapshots = async () => {
 
   // Authoritative historical dates
   const dates = [
-    { dateStr: '2026-10-15', offset: 4 },
-    { dateStr: '2026-10-16', offset: 3 },
-    { dateStr: '2026-10-19', offset: 2 },
-    { dateStr: '2026-10-20', offset: 1 },
-    { dateStr: '2026-10-21', offset: 0 }
+    { dateStr: '2026-10-16', offset: 4 },
+    { dateStr: '2026-10-19', offset: 3 },
+    { dateStr: '2026-10-20', offset: 2 },
+    { dateStr: '2026-10-21', offset: 1 },
+    { dateStr: '2026-10-22', offset: 0 }
   ];
 
   for (const d of dates) {
@@ -274,7 +274,7 @@ export const seedHistoricalSnapshots = async () => {
           });
           continue;
         } else if (d.dateStr === '2026-10-20') {
-          // Today, Oct 20: PRL Closing 101.44 (-6.77%), Defensive Capital Preservation (NOT Momentum Breakout)
+          // Tue, Oct 20: PRL Closing 101.44 (-6.77%), Defensive Capital Preservation
           await insertImmutableSnapshot({
             ticker: 'PRL',
             session_date: '2026-10-20',
@@ -299,37 +299,70 @@ export const seedHistoricalSnapshots = async () => {
               'Key defensive demand band located at 98.50 - 101.50.'
             ],
             outcome: {
-              status: 'HOLDING_SUPPORT',
-              label: 'Capital Preserved (Waiting for Base)',
+              status: 'CLOSED_NEXT_DAY_DROP',
+              label: 'Closed at Next Session (-1.54%)',
+              badgeColor: 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20',
+              gainSinceSignalPct: -1.54
+            }
+          });
+          continue;
+        } else if (d.dateStr === '2026-10-21') {
+          // Wed, Oct 21: PRL EOD Closing 99.88 (-1.54%)
+          await insertImmutableSnapshot({
+            ticker: 'PRL',
+            session_date: '2026-10-21',
+            closing_price: 99.88,
+            prev_close: 101.44,
+            change: -1.56,
+            change_percent: -1.54,
+            signal_type: 'AVOID_SELL',
+            is_momentum_breakout: false,
+            entry_min: 98.20,
+            entry_max: 100.80,
+            stop_loss: 96.50,
+            target_1: 103.50,
+            target_2: 107.00,
+            rsi: 44.5,
+            confidence: 86,
+            sector: 'Refinery',
+            name: 'Pakistan Refinery Limited',
+            reasons: [
+              'Oct 21 Close: Closed at PKR 99.88 (-1.54%) testing critical 98.20 - 100.80 support floor.',
+              'Defensive stance maintained; high-volume selling tapering near support base.',
+              'RSI stabilized at 44.5 with capital preservation protocol active.'
+            ],
+            outcome: {
+              status: 'IN_PROGRESS',
+              label: "Today Closing / EOD",
               badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
               gainSinceSignalPct: 0
             }
           });
           continue;
-        } else if (d.dateStr === '2026-10-21') {
-          // Wed, Oct 21: Actionable setup for Tomorrow's Open
+        } else if (d.dateStr === '2026-10-22') {
+          // Thu, Oct 22: Actionable setup for Tomorrow's Open (Benchmark Close: Oct 21 @ 99.88)
           await insertImmutableSnapshot({
             ticker: 'PRL',
-            session_date: '2026-10-21',
-            closing_price: 101.44,
-            prev_close: 108.81,
-            change: -7.37,
-            change_percent: -6.77,
+            session_date: '2026-10-22',
+            closing_price: 99.88,
+            prev_close: 101.44,
+            change: -1.56,
+            change_percent: -1.54,
             signal_type: 'AVOID_SELL',
             is_momentum_breakout: false,
-            entry_min: 98.50,
-            entry_max: 101.50,
-            stop_loss: 96.37,
-            target_1: 106.50,
-            target_2: 110.00,
-            rsi: 48.2,
+            entry_min: 98.20,
+            entry_max: 100.80,
+            stop_loss: 96.50,
+            target_1: 103.50,
+            target_2: 107.00,
+            rsi: 44.5,
             confidence: 86,
             sector: 'Refinery',
             name: 'Pakistan Refinery Limited',
             reasons: [
-              "Tomorrow's Open: Defensive stance advised; let high-volume sell-off absorb around 98.50-101.50 support.",
-              'Trailing stop from Oct 19 (106.42) successfully triggered to prevent deeper drawdown.',
-              'Refinery sector undergoing short-term profit booking after multi-day rally.'
+              "Tomorrow's Open (Oct 22): Avoid fresh buying. If holding existing positions, use morning pullbacks toward PKR 100.80 to exit.",
+              'Trigger defensive stop if price breaches below PKR 96.50.',
+              'Benchmark reference: Last EOD Close (Oct 21) at PKR 99.88 (-1.54%).'
             ],
             outcome: {
               status: 'IN_PROGRESS',

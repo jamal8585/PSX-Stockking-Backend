@@ -1,7 +1,7 @@
 [
   {
     "ticker": "OGDC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 322.78,
     "prev_close": 320.2,
     "change": 2.58,
@@ -31,7 +31,7 @@
   },
   {
     "ticker": "PPL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 230.75,
     "prev_close": 228.9,
     "change": 1.85,
@@ -61,7 +61,7 @@
   },
   {
     "ticker": "MARI",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 653.97,
     "prev_close": 648.74,
     "change": 5.23,
@@ -91,7 +91,7 @@
   },
   {
     "ticker": "POL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 721.34,
     "prev_close": 715.57,
     "change": 5.77,
@@ -121,7 +121,7 @@
   },
   {
     "ticker": "PSO",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 355.11,
     "prev_close": 352.27,
     "change": 2.84,
@@ -151,7 +151,7 @@
   },
   {
     "ticker": "SNGP",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 99.42,
     "prev_close": 98.62,
     "change": 0.8,
@@ -181,7 +181,7 @@
   },
   {
     "ticker": "SSGC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 27.11,
     "prev_close": 26.89,
     "change": 0.22,
@@ -211,23 +211,23 @@
   },
   {
     "ticker": "PRL",
-    "session_date": "2026-10-15",
-    "closing_price": 100.22,
-    "prev_close": 99.42,
-    "change": 0.8,
-    "change_percent": 0.8,
+    "session_date": "2026-10-16",
+    "closing_price": 98.68,
+    "prev_close": 97.89,
+    "change": 0.79,
+    "change_percent": 0.81,
     "signal_type": "STRONG_BUY",
-    "entry_min": 98.72,
-    "entry_max": 101.42,
-    "stop_loss": 95.21,
-    "target_1": 109.74,
-    "target_2": 118.26,
+    "entry_min": 97.2,
+    "entry_max": 99.86,
+    "stop_loss": 93.75,
+    "target_1": 108.05,
+    "target_2": 116.44,
     "rsi": 62,
     "confidence": 88,
     "reasons": [
       "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 98.72 - 101.42.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 95.21."
+      "RSI at 62.0 with key support band at PKR 97.2 - 99.86.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 93.75."
     ],
     "sector": "Refinery",
     "name": "Pakistan Refinery Limited",
@@ -241,7 +241,7 @@
   },
   {
     "ticker": "ATRL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 1180.73,
     "prev_close": 1171.28,
     "change": 9.45,
@@ -271,7 +271,7 @@
   },
   {
     "ticker": "NRL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 541.03,
     "prev_close": 536.7,
     "change": 4.33,
@@ -301,7 +301,7 @@
   },
   {
     "ticker": "CNERGY",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 15.21,
     "prev_close": 15.09,
     "change": 0.12,
@@ -331,7 +331,7 @@
   },
   {
     "ticker": "SYS",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 122.3,
     "prev_close": 121.32,
     "change": 0.98,
@@ -361,7 +361,7 @@
   },
   {
     "ticker": "TRG",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 55.85,
     "prev_close": 55.4,
     "change": 0.45,
@@ -391,7 +391,7 @@
   },
   {
     "ticker": "NETSOL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 124.78,
     "prev_close": 123.78,
     "change": 1,
@@ -421,7 +421,7 @@
   },
   {
     "ticker": "AVN",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 29.75,
     "prev_close": 29.51,
     "change": 0.24,
@@ -451,7 +451,7 @@
   },
   {
     "ticker": "PTC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 67.62,
     "prev_close": 67.08,
     "change": 0.54,
@@ -481,7 +481,7 @@
   },
   {
     "ticker": "WTL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 0.92,
     "prev_close": 0.91,
     "change": 0.01,
@@ -511,7 +511,7 @@
   },
   {
     "ticker": "TELE",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 7.87,
     "prev_close": 7.81,
     "change": 0.06,
@@ -541,7 +541,7 @@
   },
   {
     "ticker": "HUMNL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 10.34,
     "prev_close": 10.26,
     "change": 0.08,
@@ -571,7 +571,7 @@
   },
   {
     "ticker": "PAEL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 38.26,
     "prev_close": 37.95,
     "change": 0.31,
@@ -601,7 +601,7 @@
   },
   {
     "ticker": "ENGRO",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 381.15,
     "prev_close": 378.1,
     "change": 3.05,
@@ -631,7 +631,7 @@
   },
   {
     "ticker": "FFC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 544.96,
     "prev_close": 540.6,
     "change": 4.36,
@@ -661,7 +661,7 @@
   },
   {
     "ticker": "EFERT",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 177.72,
     "prev_close": 176.3,
     "change": 1.42,
@@ -691,7 +691,7 @@
   },
   {
     "ticker": "FATIMA",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 151.91,
     "prev_close": 150.69,
     "change": 1.22,
@@ -721,7 +721,7 @@
   },
   {
     "ticker": "FFBL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 41.48,
     "prev_close": 41.15,
     "change": 0.33,
@@ -751,7 +751,7 @@
   },
   {
     "ticker": "LUCK",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 427.71,
     "prev_close": 424.29,
     "change": 3.42,
@@ -781,7 +781,7 @@
   },
   {
     "ticker": "DGKC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 204.13,
     "prev_close": 202.5,
     "change": 1.63,
@@ -811,7 +811,7 @@
   },
   {
     "ticker": "MLCF",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 96.79,
     "prev_close": 96.02,
     "change": 0.77,
@@ -841,7 +841,7 @@
   },
   {
     "ticker": "CHCC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 295.62,
     "prev_close": 293.26,
     "change": 2.36,
@@ -871,7 +871,7 @@
   },
   {
     "ticker": "FCCL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 53.76,
     "prev_close": 53.33,
     "change": 0.43,
@@ -901,7 +901,7 @@
   },
   {
     "ticker": "PIOC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 255.9,
     "prev_close": 253.85,
     "change": 2.05,
@@ -931,7 +931,7 @@
   },
   {
     "ticker": "MEBL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 567.1,
     "prev_close": 562.56,
     "change": 4.54,
@@ -961,7 +961,7 @@
   },
   {
     "ticker": "MCB",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 393.92,
     "prev_close": 390.77,
     "change": 3.15,
@@ -991,7 +991,7 @@
   },
   {
     "ticker": "HBL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 311.69,
     "prev_close": 309.2,
     "change": 2.49,
@@ -1021,7 +1021,7 @@
   },
   {
     "ticker": "UBL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 444.45,
     "prev_close": 440.89,
     "change": 3.56,
@@ -1051,7 +1051,7 @@
   },
   {
     "ticker": "BAFL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 57.86,
     "prev_close": 57.4,
     "change": 0.46,
@@ -1081,7 +1081,7 @@
   },
   {
     "ticker": "BAHL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 113.85,
     "prev_close": 112.94,
     "change": 0.91,
@@ -1111,7 +1111,7 @@
   },
   {
     "ticker": "NBP",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 183.34,
     "prev_close": 181.87,
     "change": 1.47,
@@ -1141,7 +1141,7 @@
   },
   {
     "ticker": "BOP",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 34.36,
     "prev_close": 34.09,
     "change": 0.27,
@@ -1171,7 +1171,7 @@
   },
   {
     "ticker": "BIPL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 23.89,
     "prev_close": 23.7,
     "change": 0.19,
@@ -1201,7 +1201,7 @@
   },
   {
     "ticker": "HUBC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 203.8,
     "prev_close": 202.17,
     "change": 1.63,
@@ -1231,7 +1231,7 @@
   },
   {
     "ticker": "KAPCO",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 27.03,
     "prev_close": 26.81,
     "change": 0.22,
@@ -1261,7 +1261,7 @@
   },
   {
     "ticker": "KEL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 7.04,
     "prev_close": 6.98,
     "change": 0.06,
@@ -1291,7 +1291,7 @@
   },
   {
     "ticker": "NCPL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 57.82,
     "prev_close": 57.36,
     "change": 0.46,
@@ -1321,7 +1321,7 @@
   },
   {
     "ticker": "NPL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 66.82,
     "prev_close": 66.29,
     "change": 0.53,
@@ -1351,7 +1351,7 @@
   },
   {
     "ticker": "INDU",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 1890.31,
     "prev_close": 1875.19,
     "change": 15.12,
@@ -1381,7 +1381,7 @@
   },
   {
     "ticker": "MTL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 297.23,
     "prev_close": 294.85,
     "change": 2.38,
@@ -1411,7 +1411,7 @@
   },
   {
     "ticker": "HCAR",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 243.16,
     "prev_close": 241.21,
     "change": 1.95,
@@ -1441,7 +1441,7 @@
   },
   {
     "ticker": "PSMC",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 596.53,
     "prev_close": 591.76,
     "change": 4.77,
@@ -1471,7 +1471,7 @@
   },
   {
     "ticker": "AGP",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 160.84,
     "prev_close": 159.55,
     "change": 1.29,
@@ -1501,7 +1501,7 @@
   },
   {
     "ticker": "SEARL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 85.2,
     "prev_close": 84.52,
     "change": 0.68,
@@ -1531,7 +1531,7 @@
   },
   {
     "ticker": "ABOT",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 921.45,
     "prev_close": 914.08,
     "change": 7.37,
@@ -1561,7 +1561,7 @@
   },
   {
     "ticker": "GLAXO",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 331.62,
     "prev_close": 328.97,
     "change": 2.65,
@@ -1591,7 +1591,7 @@
   },
   {
     "ticker": "MUGHAL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 76.55,
     "prev_close": 75.94,
     "change": 0.61,
@@ -1621,7 +1621,7 @@
   },
   {
     "ticker": "ISL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 89.8,
     "prev_close": 89.08,
     "change": 0.72,
@@ -1651,7 +1651,7 @@
   },
   {
     "ticker": "INIL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 165.43,
     "prev_close": 164.11,
     "change": 1.32,
@@ -1681,7 +1681,7 @@
   },
   {
     "ticker": "ASTL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 15.14,
     "prev_close": 15.02,
     "change": 0.12,
@@ -1711,7 +1711,7 @@
   },
   {
     "ticker": "NESTLE",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 7368.91,
     "prev_close": 7309.96,
     "change": 58.95,
@@ -1741,7 +1741,7 @@
   },
   {
     "ticker": "NATF",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 365.03,
     "prev_close": 362.11,
     "change": 2.92,
@@ -1771,7 +1771,7 @@
   },
   {
     "ticker": "UNITY",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 9.88,
     "prev_close": 9.8,
     "change": 0.08,
@@ -1801,7 +1801,7 @@
   },
   {
     "ticker": "TOMCL",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 35.93,
     "prev_close": 35.64,
     "change": 0.29,
@@ -1831,7 +1831,7 @@
   },
   {
     "ticker": "ILP",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 107.58,
     "prev_close": 106.72,
     "change": 0.86,
@@ -1861,7 +1861,7 @@
   },
   {
     "ticker": "NML",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 140.12,
     "prev_close": 139,
     "change": 1.12,
@@ -1891,7 +1891,7 @@
   },
   {
     "ticker": "GATM",
-    "session_date": "2026-10-15",
+    "session_date": "2026-10-16",
     "closing_price": 23.66,
     "prev_close": 23.47,
     "change": 0.19,
@@ -1921,7 +1921,7 @@
   },
   {
     "ticker": "OGDC",
-    "session_date": "2026-10-16",
+    "session_date": "2026-10-19",
     "closing_price": 325.08,
     "prev_close": 322.48,
     "change": 2.6,
@@ -1951,7 +1951,7 @@
   },
   {
     "ticker": "PPL",
-    "session_date": "2026-10-16",
+    "session_date": "2026-10-19",
     "closing_price": 232.39,
     "prev_close": 230.53,
     "change": 1.86,
@@ -1981,7 +1981,7 @@
   },
   {
     "ticker": "MARI",
-    "session_date": "2026-10-16",
+    "session_date": "2026-10-19",
     "closing_price": 658.62,
     "prev_close": 653.35,
     "change": 5.27,
@@ -2011,7 +2011,7 @@
   },
   {
     "ticker": "POL",
-    "session_date": "2026-10-16",
+    "session_date": "2026-10-19",
     "closing_price": 726.48,
     "prev_close": 720.67,
     "change": 5.81,
@@ -2041,7 +2041,7 @@
   },
   {
     "ticker": "PSO",
-    "session_date": "2026-10-16",
+    "session_date": "2026-10-19",
     "closing_price": 357.65,
     "prev_close": 354.79,
     "change": 2.86,
@@ -2071,7 +2071,7 @@
   },
   {
     "ticker": "SNGP",
-    "session_date": "2026-10-16",
+    "session_date": "2026-10-19",
     "closing_price": 100.13,
     "prev_close": 99.33,
     "change": 0.8,
@@ -2101,7 +2101,7 @@
   },
   {
     "ticker": "SSGC",
-    "session_date": "2026-10-16",
+    "session_date": "2026-10-19",
     "closing_price": 27.3,
     "prev_close": 27.08,
     "change": 0.22,
@@ -2127,1926 +2127,6 @@
       "label": "Closed in Profit (+1.32%)",
       "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
       "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "PRL",
-    "session_date": "2026-10-16",
-    "closing_price": 100.93,
-    "prev_close": 100.12,
-    "change": 0.81,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 99.42,
-    "entry_max": 102.14,
-    "stop_loss": 95.88,
-    "target_1": 110.52,
-    "target_2": 119.1,
-    "rsi": 62,
-    "confidence": 88,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 99.42 - 102.14.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 95.88."
-    ],
-    "sector": "Refinery",
-    "name": "Pakistan Refinery Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.51%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.51
-    }
-  },
-  {
-    "ticker": "ATRL",
-    "session_date": "2026-10-16",
-    "closing_price": 1189.11,
-    "prev_close": 1179.6,
-    "change": 9.51,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 1171.27,
-    "entry_max": 1203.38,
-    "stop_loss": 1129.65,
-    "target_1": 1302.08,
-    "target_2": 1403.15,
-    "rsi": 65,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 65.0 with key support band at PKR 1171.27 - 1203.38.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 1129.65."
-    ],
-    "sector": "Refinery",
-    "name": "Attock Refinery Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.7%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.7
-    }
-  },
-  {
-    "ticker": "NRL",
-    "session_date": "2026-10-16",
-    "closing_price": 544.88,
-    "prev_close": 540.52,
-    "change": 4.36,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 536.71,
-    "entry_max": 551.42,
-    "stop_loss": 517.64,
-    "target_1": 596.64,
-    "target_2": 642.96,
-    "rsi": 60,
-    "confidence": 86,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 60.0 with key support band at PKR 536.71 - 551.42.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 517.64."
-    ],
-    "sector": "Refinery",
-    "name": "National Refinery Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.91%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.91
-    }
-  },
-  {
-    "ticker": "CNERGY",
-    "session_date": "2026-10-16",
-    "closing_price": 15.32,
-    "prev_close": 15.2,
-    "change": 0.12,
-    "change_percent": 0.79,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 15.09,
-    "entry_max": 15.5,
-    "stop_loss": 14.55,
-    "target_1": 16.78,
-    "target_2": 18.08,
-    "rsi": 62,
-    "confidence": 88,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 15.09 - 15.5.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 14.55."
-    ],
-    "sector": "Refinery",
-    "name": "Cnergyico PK Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.91%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.91
-    }
-  },
-  {
-    "ticker": "SYS",
-    "session_date": "2026-10-16",
-    "closing_price": 123.17,
-    "prev_close": 122.18,
-    "change": 0.99,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 121.32,
-    "entry_max": 124.65,
-    "stop_loss": 117.01,
-    "target_1": 134.87,
-    "target_2": 145.34,
-    "rsi": 65,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 65.0 with key support band at PKR 121.32 - 124.65.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 117.01."
-    ],
-    "sector": "Technology & Communication",
-    "name": "Systems Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.11%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.11
-    }
-  },
-  {
-    "ticker": "TRG",
-    "session_date": "2026-10-16",
-    "closing_price": 56.24,
-    "prev_close": 55.79,
-    "change": 0.45,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 55.4,
-    "entry_max": 56.91,
-    "stop_loss": 53.43,
-    "target_1": 61.58,
-    "target_2": 66.36,
-    "rsi": 61,
-    "confidence": 87,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 61.0 with key support band at PKR 55.4 - 56.91.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 53.43."
-    ],
-    "sector": "Technology & Communication",
-    "name": "TRG Pakistan Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.71%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.71
-    }
-  },
-  {
-    "ticker": "NETSOL",
-    "session_date": "2026-10-16",
-    "closing_price": 125.66,
-    "prev_close": 124.65,
-    "change": 1.01,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 123.78,
-    "entry_max": 127.17,
-    "stop_loss": 119.38,
-    "target_1": 137.6,
-    "target_2": 148.28,
-    "rsi": 65,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 65.0 with key support band at PKR 123.78 - 127.17.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 119.38."
-    ],
-    "sector": "Technology & Communication",
-    "name": "NetSol Technologies Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.71%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.71
-    }
-  },
-  {
-    "ticker": "AVN",
-    "session_date": "2026-10-16",
-    "closing_price": 29.96,
-    "prev_close": 29.72,
-    "change": 0.24,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 29.51,
-    "entry_max": 30.32,
-    "stop_loss": 28.46,
-    "target_1": 32.81,
-    "target_2": 35.35,
-    "rsi": 61,
-    "confidence": 87,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 61.0 with key support band at PKR 29.51 - 30.32.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 28.46."
-    ],
-    "sector": "Technology & Communication",
-    "name": "Avanceon Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.3%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.3
-    }
-  },
-  {
-    "ticker": "PTC",
-    "session_date": "2026-10-16",
-    "closing_price": 68.1,
-    "prev_close": 67.56,
-    "change": 0.54,
-    "change_percent": 0.8,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 67.08,
-    "entry_max": 68.92,
-    "stop_loss": 64.69,
-    "target_1": 74.57,
-    "target_2": 80.36,
-    "rsi": 67,
-    "confidence": 93,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 67.0 with key support band at PKR 67.08 - 68.92.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 64.69."
-    ],
-    "sector": "Technology & Communication",
-    "name": "Pakistan Telecommunication Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.94%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.94
-    }
-  },
-  {
-    "ticker": "WTL",
-    "session_date": "2026-10-16",
-    "closing_price": 0.92,
-    "prev_close": 0.91,
-    "change": 0.01,
-    "change_percent": 1.1,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 0.91,
-    "entry_max": 0.93,
-    "stop_loss": 0.87,
-    "target_1": 1.01,
-    "target_2": 1.09,
-    "rsi": 67,
-    "confidence": 93,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 67.0 with key support band at PKR 0.91 - 0.93.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 0.87."
-    ],
-    "sector": "Technology & Communication",
-    "name": "WorldCall Telecom Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.09%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.09
-    }
-  },
-  {
-    "ticker": "TELE",
-    "session_date": "2026-10-16",
-    "closing_price": 7.93,
-    "prev_close": 7.87,
-    "change": 0.06,
-    "change_percent": 0.76,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 7.81,
-    "entry_max": 8.03,
-    "stop_loss": 7.53,
-    "target_1": 8.68,
-    "target_2": 9.36,
-    "rsi": 62,
-    "confidence": 88,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 7.81 - 8.03.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 7.53."
-    ],
-    "sector": "Technology & Communication",
-    "name": "Telecard Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.5%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.5
-    }
-  },
-  {
-    "ticker": "HUMNL",
-    "session_date": "2026-10-16",
-    "closing_price": 10.42,
-    "prev_close": 10.34,
-    "change": 0.08,
-    "change_percent": 0.77,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 10.26,
-    "entry_max": 10.55,
-    "stop_loss": 9.9,
-    "target_1": 11.41,
-    "target_2": 12.3,
-    "rsi": 66,
-    "confidence": 92,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 66.0 with key support band at PKR 10.26 - 10.55.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 9.9."
-    ],
-    "sector": "Technology & Communication",
-    "name": "Hum Network Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.48%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.48
-    }
-  },
-  {
-    "ticker": "PAEL",
-    "session_date": "2026-10-16",
-    "closing_price": 38.53,
-    "prev_close": 38.22,
-    "change": 0.31,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 37.95,
-    "entry_max": 38.99,
-    "stop_loss": 36.6,
-    "target_1": 42.19,
-    "target_2": 45.47,
-    "rsi": 60,
-    "confidence": 86,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 60.0 with key support band at PKR 37.95 - 38.99.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 36.6."
-    ],
-    "sector": "Cable & Electrical Goods",
-    "name": "Pak Elektron Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.15%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.15
-    }
-  },
-  {
-    "ticker": "ENGRO",
-    "session_date": "2026-10-16",
-    "closing_price": 383.85,
-    "prev_close": 380.78,
-    "change": 3.07,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 378.09,
-    "entry_max": 388.46,
-    "stop_loss": 364.66,
-    "target_1": 420.32,
-    "target_2": 452.94,
-    "rsi": 63,
-    "confidence": 89,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 63.0 with key support band at PKR 378.09 - 388.46.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 364.66."
-    ],
-    "sector": "Fertilizer",
-    "name": "Engro Corporation Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.3%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.3
-    }
-  },
-  {
-    "ticker": "FFC",
-    "session_date": "2026-10-16",
-    "closing_price": 548.83,
-    "prev_close": 544.44,
-    "change": 4.39,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 540.6,
-    "entry_max": 555.42,
-    "stop_loss": 521.39,
-    "target_1": 600.97,
-    "target_2": 647.62,
-    "rsi": 55,
-    "confidence": 83,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 55.0 with key support band at PKR 540.6 - 555.42.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 521.39."
-    ],
-    "sector": "Fertilizer",
-    "name": "Fauji Fertilizer Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.71%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.71
-    }
-  },
-  {
-    "ticker": "EFERT",
-    "session_date": "2026-10-16",
-    "closing_price": 178.99,
-    "prev_close": 177.56,
-    "change": 1.43,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 176.31,
-    "entry_max": 181.14,
-    "stop_loss": 170.04,
-    "target_1": 195.99,
-    "target_2": 211.21,
-    "rsi": 58,
-    "confidence": 92,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 58.0 with key support band at PKR 176.31 - 181.14.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 170.04."
-    ],
-    "sector": "Fertilizer",
-    "name": "Engro Fertilizers Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.32%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "FATIMA",
-    "session_date": "2026-10-16",
-    "closing_price": 152.99,
-    "prev_close": 151.77,
-    "change": 1.22,
-    "change_percent": 0.8,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 150.7,
-    "entry_max": 154.83,
-    "stop_loss": 145.34,
-    "target_1": 167.52,
-    "target_2": 180.53,
-    "rsi": 56,
-    "confidence": 84,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 56.0 with key support band at PKR 150.7 - 154.83.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 145.34."
-    ],
-    "sector": "Fertilizer",
-    "name": "Fatima Fertilizer Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.32%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "FFBL",
-    "session_date": "2026-10-16",
-    "closing_price": 41.78,
-    "prev_close": 41.45,
-    "change": 0.33,
-    "change_percent": 0.8,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 41.15,
-    "entry_max": 42.28,
-    "stop_loss": 39.69,
-    "target_1": 45.75,
-    "target_2": 49.3,
-    "rsi": 62,
-    "confidence": 88,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 41.15 - 42.28.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 39.69."
-    ],
-    "sector": "Fertilizer",
-    "name": "Fauji Fertilizer Bin Qasim Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.72%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.72
-    }
-  },
-  {
-    "ticker": "LUCK",
-    "session_date": "2026-10-16",
-    "closing_price": 430.77,
-    "prev_close": 427.32,
-    "change": 3.45,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 424.31,
-    "entry_max": 435.94,
-    "stop_loss": 409.23,
-    "target_1": 471.69,
-    "target_2": 508.31,
-    "rsi": 53,
-    "confidence": 81,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 53.0 with key support band at PKR 424.31 - 435.94.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 409.23."
-    ],
-    "sector": "Cement",
-    "name": "Lucky Cement Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.52%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.52
-    }
-  },
-  {
-    "ticker": "DGKC",
-    "session_date": "2026-10-16",
-    "closing_price": 205.6,
-    "prev_close": 203.96,
-    "change": 1.64,
-    "change_percent": 0.8,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 202.52,
-    "entry_max": 208.07,
-    "stop_loss": 195.32,
-    "target_1": 225.13,
-    "target_2": 242.61,
-    "rsi": 63,
-    "confidence": 89,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 63.0 with key support band at PKR 202.52 - 208.07.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 195.32."
-    ],
-    "sector": "Cement",
-    "name": "D.G. Khan Cement Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.94%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.94
-    }
-  },
-  {
-    "ticker": "MLCF",
-    "session_date": "2026-10-16",
-    "closing_price": 97.49,
-    "prev_close": 96.71,
-    "change": 0.78,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 96.03,
-    "entry_max": 98.66,
-    "stop_loss": 92.62,
-    "target_1": 106.75,
-    "target_2": 115.04,
-    "rsi": 54,
-    "confidence": 82,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 54.0 with key support band at PKR 96.03 - 98.66.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 92.62."
-    ],
-    "sector": "Cement",
-    "name": "Maple Leaf Cement Factory",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.14%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.14
-    }
-  },
-  {
-    "ticker": "CHCC",
-    "session_date": "2026-10-16",
-    "closing_price": 297.74,
-    "prev_close": 295.36,
-    "change": 2.38,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 293.27,
-    "entry_max": 301.31,
-    "stop_loss": 282.85,
-    "target_1": 326.03,
-    "target_2": 351.33,
-    "rsi": 57,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 57.0 with key support band at PKR 293.27 - 301.31.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 282.85."
-    ],
-    "sector": "Cement",
-    "name": "Cherat Cement Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.52%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.52
-    }
-  },
-  {
-    "ticker": "FCCL",
-    "session_date": "2026-10-16",
-    "closing_price": 54.15,
-    "prev_close": 53.72,
-    "change": 0.43,
-    "change_percent": 0.8,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 53.34,
-    "entry_max": 54.8,
-    "stop_loss": 51.44,
-    "target_1": 59.29,
-    "target_2": 63.9,
-    "rsi": 58,
-    "confidence": 92,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 58.0 with key support band at PKR 53.34 - 54.8.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 51.44."
-    ],
-    "sector": "Cement",
-    "name": "Fauji Cement Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.14%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.14
-    }
-  },
-  {
-    "ticker": "PIOC",
-    "session_date": "2026-10-16",
-    "closing_price": 257.7,
-    "prev_close": 255.64,
-    "change": 2.06,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 253.83,
-    "entry_max": 260.79,
-    "stop_loss": 244.81,
-    "target_1": 282.18,
-    "target_2": 304.09,
-    "rsi": 65,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 65.0 with key support band at PKR 253.83 - 260.79.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 244.81."
-    ],
-    "sector": "Cement",
-    "name": "Pioneer Cement Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.3%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.3
-    }
-  },
-  {
-    "ticker": "MEBL",
-    "session_date": "2026-10-16",
-    "closing_price": 571.12,
-    "prev_close": 566.55,
-    "change": 4.57,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 562.55,
-    "entry_max": 577.97,
-    "stop_loss": 542.56,
-    "target_1": 625.38,
-    "target_2": 673.92,
-    "rsi": 54,
-    "confidence": 82,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 54.0 with key support band at PKR 562.55 - 577.97.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 542.56."
-    ],
-    "sector": "Commercial Banks",
-    "name": "Meezan Bank Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.5%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.5
-    }
-  },
-  {
-    "ticker": "MCB",
-    "session_date": "2026-10-16",
-    "closing_price": 396.76,
-    "prev_close": 393.59,
-    "change": 3.17,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 390.81,
-    "entry_max": 401.52,
-    "stop_loss": 376.92,
-    "target_1": 434.45,
-    "target_2": 468.18,
-    "rsi": 64,
-    "confidence": 90,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 64.0 with key support band at PKR 390.81 - 401.52.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 376.92."
-    ],
-    "sector": "Commercial Banks",
-    "name": "MCB Bank Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.14%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.14
-    }
-  },
-  {
-    "ticker": "HBL",
-    "session_date": "2026-10-16",
-    "closing_price": 313.92,
-    "prev_close": 311.41,
-    "change": 2.51,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 309.21,
-    "entry_max": 317.69,
-    "stop_loss": 298.22,
-    "target_1": 343.74,
-    "target_2": 370.43,
-    "rsi": 54,
-    "confidence": 82,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 54.0 with key support band at PKR 309.21 - 317.69.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 298.22."
-    ],
-    "sector": "Commercial Banks",
-    "name": "Habib Bank Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.32%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "UBL",
-    "session_date": "2026-10-16",
-    "closing_price": 447.6,
-    "prev_close": 444.02,
-    "change": 3.58,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 440.89,
-    "entry_max": 452.97,
-    "stop_loss": 425.22,
-    "target_1": 490.12,
-    "target_2": 528.17,
-    "rsi": 67,
-    "confidence": 93,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 67.0 with key support band at PKR 440.89 - 452.97.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 425.22."
-    ],
-    "sector": "Commercial Banks",
-    "name": "United Bank Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.71%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.71
-    }
-  },
-  {
-    "ticker": "BAFL",
-    "session_date": "2026-10-16",
-    "closing_price": 58.27,
-    "prev_close": 57.8,
-    "change": 0.47,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 57.4,
-    "entry_max": 58.97,
-    "stop_loss": 55.36,
-    "target_1": 63.81,
-    "target_2": 68.76,
-    "rsi": 57,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 57.0 with key support band at PKR 57.4 - 58.97.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 55.36."
-    ],
-    "sector": "Commercial Banks",
-    "name": "Bank Alfalah Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.7%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.7
-    }
-  },
-  {
-    "ticker": "BAHL",
-    "session_date": "2026-10-16",
-    "closing_price": 114.66,
-    "prev_close": 113.74,
-    "change": 0.92,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 112.94,
-    "entry_max": 116.04,
-    "stop_loss": 108.93,
-    "target_1": 125.55,
-    "target_2": 135.3,
-    "rsi": 55,
-    "confidence": 83,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 55.0 with key support band at PKR 112.94 - 116.04.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 108.93."
-    ],
-    "sector": "Commercial Banks",
-    "name": "Bank AL Habib Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.3%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.3
-    }
-  },
-  {
-    "ticker": "NBP",
-    "session_date": "2026-10-16",
-    "closing_price": 184.65,
-    "prev_close": 183.17,
-    "change": 1.48,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 181.88,
-    "entry_max": 186.87,
-    "stop_loss": 175.42,
-    "target_1": 202.19,
-    "target_2": 217.89,
-    "rsi": 64,
-    "confidence": 90,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 64.0 with key support band at PKR 181.88 - 186.87.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 175.42."
-    ],
-    "sector": "Commercial Banks",
-    "name": "National Bank of Pakistan",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.32%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "BOP",
-    "session_date": "2026-10-16",
-    "closing_price": 34.61,
-    "prev_close": 34.33,
-    "change": 0.28,
-    "change_percent": 0.82,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 34.09,
-    "entry_max": 35.03,
-    "stop_loss": 32.88,
-    "target_1": 37.9,
-    "target_2": 40.84,
-    "rsi": 55,
-    "confidence": 83,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 55.0 with key support band at PKR 34.09 - 35.03.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 32.88."
-    ],
-    "sector": "Commercial Banks",
-    "name": "The Bank of Punjab",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.1%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.1
-    }
-  },
-  {
-    "ticker": "BIPL",
-    "session_date": "2026-10-16",
-    "closing_price": 24.06,
-    "prev_close": 23.87,
-    "change": 0.19,
-    "change_percent": 0.8,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 23.7,
-    "entry_max": 24.35,
-    "stop_loss": 22.86,
-    "target_1": 26.35,
-    "target_2": 28.39,
-    "rsi": 55,
-    "confidence": 83,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 55.0 with key support band at PKR 23.7 - 24.35.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 22.86."
-    ],
-    "sector": "Commercial Banks",
-    "name": "BankIslami Pakistan Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.12%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.12
-    }
-  },
-  {
-    "ticker": "HUBC",
-    "session_date": "2026-10-16",
-    "closing_price": 205.27,
-    "prev_close": 203.63,
-    "change": 1.64,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 202.19,
-    "entry_max": 207.73,
-    "stop_loss": 195.01,
-    "target_1": 224.77,
-    "target_2": 242.22,
-    "rsi": 66,
-    "confidence": 92,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 66.0 with key support band at PKR 202.19 - 207.73.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 195.01."
-    ],
-    "sector": "Power Generation & Distribution",
-    "name": "The Hub Power Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.14%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.14
-    }
-  },
-  {
-    "ticker": "KAPCO",
-    "session_date": "2026-10-16",
-    "closing_price": 27.22,
-    "prev_close": 27,
-    "change": 0.22,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 26.81,
-    "entry_max": 27.55,
-    "stop_loss": 25.86,
-    "target_1": 29.81,
-    "target_2": 32.12,
-    "rsi": 58,
-    "confidence": 92,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 58.0 with key support band at PKR 26.81 - 27.55.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 25.86."
-    ],
-    "sector": "Power Generation & Distribution",
-    "name": "Kot Addu Power Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.92%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.92
-    }
-  },
-  {
-    "ticker": "KEL",
-    "session_date": "2026-10-16",
-    "closing_price": 7.09,
-    "prev_close": 7.03,
-    "change": 0.06,
-    "change_percent": 0.85,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 6.98,
-    "entry_max": 7.18,
-    "stop_loss": 6.74,
-    "target_1": 7.76,
-    "target_2": 8.37,
-    "rsi": 54,
-    "confidence": 82,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 54.0 with key support band at PKR 6.98 - 7.18.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 6.74."
-    ],
-    "sector": "Power Generation & Distribution",
-    "name": "K-Electric Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.12%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.12
-    }
-  },
-  {
-    "ticker": "NCPL",
-    "session_date": "2026-10-16",
-    "closing_price": 58.23,
-    "prev_close": 57.76,
-    "change": 0.47,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 57.36,
-    "entry_max": 58.93,
-    "stop_loss": 55.32,
-    "target_1": 63.76,
-    "target_2": 68.71,
-    "rsi": 53,
-    "confidence": 81,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 53.0 with key support band at PKR 57.36 - 58.93.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 55.32."
-    ],
-    "sector": "Power Generation & Distribution",
-    "name": "Nishat Chunian Power Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.94%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.94
-    }
-  },
-  {
-    "ticker": "NPL",
-    "session_date": "2026-10-16",
-    "closing_price": 67.29,
-    "prev_close": 66.75,
-    "change": 0.54,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 66.28,
-    "entry_max": 68.1,
-    "stop_loss": 63.93,
-    "target_1": 73.68,
-    "target_2": 79.4,
-    "rsi": 62,
-    "confidence": 88,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 66.28 - 68.1.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 63.93."
-    ],
-    "sector": "Power Generation & Distribution",
-    "name": "Nishat Power Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.32%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "INDU",
-    "session_date": "2026-10-16",
-    "closing_price": 1903.81,
-    "prev_close": 1888.58,
-    "change": 15.23,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 1875.25,
-    "entry_max": 1926.66,
-    "stop_loss": 1808.62,
-    "target_1": 2084.67,
-    "target_2": 2246.5,
-    "rsi": 58,
-    "confidence": 92,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 58.0 with key support band at PKR 1875.25 - 1926.66.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 1808.62."
-    ],
-    "sector": "Automobile Assembler",
-    "name": "Indus Motor Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.32%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "MTL",
-    "session_date": "2026-10-16",
-    "closing_price": 299.34,
-    "prev_close": 296.95,
-    "change": 2.39,
-    "change_percent": 0.8,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 294.85,
-    "entry_max": 302.93,
-    "stop_loss": 284.37,
-    "target_1": 327.78,
-    "target_2": 353.22,
-    "rsi": 57,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 57.0 with key support band at PKR 294.85 - 302.93.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 284.37."
-    ],
-    "sector": "Automobile Assembler",
-    "name": "Millat Tractors Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.7%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.7
-    }
-  },
-  {
-    "ticker": "HCAR",
-    "session_date": "2026-10-16",
-    "closing_price": 244.89,
-    "prev_close": 242.93,
-    "change": 1.96,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 241.22,
-    "entry_max": 247.83,
-    "stop_loss": 232.65,
-    "target_1": 268.15,
-    "target_2": 288.97,
-    "rsi": 64,
-    "confidence": 90,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 64.0 with key support band at PKR 241.22 - 247.83.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 232.65."
-    ],
-    "sector": "Automobile Assembler",
-    "name": "Honda Atlas Cars (Pakistan) Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.91%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.91
-    }
-  },
-  {
-    "ticker": "PSMC",
-    "session_date": "2026-10-16",
-    "closing_price": 600.76,
-    "prev_close": 595.95,
-    "change": 4.81,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 591.75,
-    "entry_max": 607.97,
-    "stop_loss": 570.72,
-    "target_1": 657.83,
-    "target_2": 708.9,
-    "rsi": 61,
-    "confidence": 87,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 61.0 with key support band at PKR 591.75 - 607.97.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 570.72."
-    ],
-    "sector": "Automobile Assembler",
-    "name": "Pak Suzuki Motor Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.71%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.71
-    }
-  },
-  {
-    "ticker": "AGP",
-    "session_date": "2026-10-16",
-    "closing_price": 161.99,
-    "prev_close": 160.69,
-    "change": 1.3,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 159.56,
-    "entry_max": 163.93,
-    "stop_loss": 153.89,
-    "target_1": 177.38,
-    "target_2": 191.15,
-    "rsi": 62,
-    "confidence": 88,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 159.56 - 163.93.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 153.89."
-    ],
-    "sector": "Pharmaceuticals",
-    "name": "AGP Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.91%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.91
-    }
-  },
-  {
-    "ticker": "SEARL",
-    "session_date": "2026-10-16",
-    "closing_price": 85.81,
-    "prev_close": 85.12,
-    "change": 0.69,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 84.52,
-    "entry_max": 86.84,
-    "stop_loss": 81.52,
-    "target_1": 93.96,
-    "target_2": 101.26,
-    "rsi": 61,
-    "confidence": 87,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 61.0 with key support band at PKR 84.52 - 86.84.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 81.52."
-    ],
-    "sector": "Pharmaceuticals",
-    "name": "The Searle Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.11%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.11
-    }
-  },
-  {
-    "ticker": "ABOT",
-    "session_date": "2026-10-16",
-    "closing_price": 928.04,
-    "prev_close": 920.62,
-    "change": 7.42,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 914.12,
-    "entry_max": 939.18,
-    "stop_loss": 881.64,
-    "target_1": 1016.2,
-    "target_2": 1095.09,
-    "rsi": 58,
-    "confidence": 92,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 58.0 with key support band at PKR 914.12 - 939.18.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 881.64."
-    ],
-    "sector": "Pharmaceuticals",
-    "name": "Abbott Laboratories (Pakistan) Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.32%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.32
-    }
-  },
-  {
-    "ticker": "GLAXO",
-    "session_date": "2026-10-16",
-    "closing_price": 333.97,
-    "prev_close": 331.3,
-    "change": 2.67,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 328.96,
-    "entry_max": 337.98,
-    "stop_loss": 317.27,
-    "target_1": 365.7,
-    "target_2": 394.08,
-    "rsi": 55,
-    "confidence": 83,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 55.0 with key support band at PKR 328.96 - 337.98.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 317.27."
-    ],
-    "sector": "Pharmaceuticals",
-    "name": "GlaxoSmithKline (Pakistan) Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.3%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.3
-    }
-  },
-  {
-    "ticker": "MUGHAL",
-    "session_date": "2026-10-16",
-    "closing_price": 77.11,
-    "prev_close": 76.49,
-    "change": 0.62,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 75.95,
-    "entry_max": 78.04,
-    "stop_loss": 73.25,
-    "target_1": 84.44,
-    "target_2": 90.99,
-    "rsi": 64,
-    "confidence": 90,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 64.0 with key support band at PKR 75.95 - 78.04.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 73.25."
-    ],
-    "sector": "Engineering",
-    "name": "Mughal Iron & Steel Industries Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.14%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.14
-    }
-  },
-  {
-    "ticker": "ISL",
-    "session_date": "2026-10-16",
-    "closing_price": 90.45,
-    "prev_close": 89.73,
-    "change": 0.72,
-    "change_percent": 0.8,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 89.09,
-    "entry_max": 91.54,
-    "stop_loss": 85.93,
-    "target_1": 99.04,
-    "target_2": 106.73,
-    "rsi": 54,
-    "confidence": 82,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 54.0 with key support band at PKR 89.09 - 91.54.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 85.93."
-    ],
-    "sector": "Engineering",
-    "name": "International Steels Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.72%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.72
-    }
-  },
-  {
-    "ticker": "INIL",
-    "session_date": "2026-10-16",
-    "closing_price": 166.63,
-    "prev_close": 165.3,
-    "change": 1.33,
-    "change_percent": 0.8,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 164.13,
-    "entry_max": 168.63,
-    "stop_loss": 158.3,
-    "target_1": 182.46,
-    "target_2": 196.62,
-    "rsi": 60,
-    "confidence": 86,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 60.0 with key support band at PKR 164.13 - 168.63.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 158.3."
-    ],
-    "sector": "Engineering",
-    "name": "International Industries Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+2.14%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 2.14
-    }
-  },
-  {
-    "ticker": "ASTL",
-    "session_date": "2026-10-16",
-    "closing_price": 15.24,
-    "prev_close": 15.12,
-    "change": 0.12,
-    "change_percent": 0.79,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 15.01,
-    "entry_max": 15.42,
-    "stop_loss": 14.48,
-    "target_1": 16.69,
-    "target_2": 17.98,
-    "rsi": 62,
-    "confidence": 88,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 62.0 with key support band at PKR 15.01 - 15.42.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 14.48."
-    ],
-    "sector": "Engineering",
-    "name": "Amreli Steels Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.52%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.52
-    }
-  },
-  {
-    "ticker": "NESTLE",
-    "session_date": "2026-10-16",
-    "closing_price": 7421.23,
-    "prev_close": 7361.86,
-    "change": 59.37,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 7309.91,
-    "entry_max": 7510.28,
-    "stop_loss": 7050.17,
-    "target_1": 8126.25,
-    "target_2": 8757.05,
-    "rsi": 67,
-    "confidence": 93,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 67.0 with key support band at PKR 7309.91 - 7510.28.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 7050.17."
-    ],
-    "sector": "Food & Personal Care Products",
-    "name": "Nestle Pakistan Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.7%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.7
-    }
-  },
-  {
-    "ticker": "NATF",
-    "session_date": "2026-10-16",
-    "closing_price": 367.62,
-    "prev_close": 364.68,
-    "change": 2.94,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 362.11,
-    "entry_max": 372.03,
-    "stop_loss": 349.24,
-    "target_1": 402.54,
-    "target_2": 433.79,
-    "rsi": 57,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 57.0 with key support band at PKR 362.11 - 372.03.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 349.24."
-    ],
-    "sector": "Food & Personal Care Products",
-    "name": "National Foods Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.7%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.7
-    }
-  },
-  {
-    "ticker": "UNITY",
-    "session_date": "2026-10-16",
-    "closing_price": 9.95,
-    "prev_close": 9.87,
-    "change": 0.08,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 9.8,
-    "entry_max": 10.07,
-    "stop_loss": 9.45,
-    "target_1": 10.9,
-    "target_2": 11.74,
-    "rsi": 57,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 57.0 with key support band at PKR 9.8 - 10.07.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 9.45."
-    ],
-    "sector": "Food & Personal Care Products",
-    "name": "Unity Foods Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.3%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.3
-    }
-  },
-  {
-    "ticker": "TOMCL",
-    "session_date": "2026-10-16",
-    "closing_price": 36.19,
-    "prev_close": 35.9,
-    "change": 0.29,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 35.65,
-    "entry_max": 36.62,
-    "stop_loss": 34.38,
-    "target_1": 39.63,
-    "target_2": 42.7,
-    "rsi": 63,
-    "confidence": 89,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 63.0 with key support band at PKR 35.65 - 36.62.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 34.38."
-    ],
-    "sector": "Food & Personal Care Products",
-    "name": "The Organic Meat Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.52%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.52
-    }
-  },
-  {
-    "ticker": "ILP",
-    "session_date": "2026-10-16",
-    "closing_price": 108.34,
-    "prev_close": 107.47,
-    "change": 0.87,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 106.71,
-    "entry_max": 109.64,
-    "stop_loss": 102.92,
-    "target_1": 118.63,
-    "target_2": 127.84,
-    "rsi": 65,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 65.0 with key support band at PKR 106.71 - 109.64.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 102.92."
-    ],
-    "sector": "Textile Composite",
-    "name": "Interloop Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.3%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.3
-    }
-  },
-  {
-    "ticker": "NML",
-    "session_date": "2026-10-16",
-    "closing_price": 141.13,
-    "prev_close": 140,
-    "change": 1.13,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 139.01,
-    "entry_max": 142.82,
-    "stop_loss": 134.07,
-    "target_1": 154.54,
-    "target_2": 166.53,
-    "rsi": 65,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 65.0 with key support band at PKR 139.01 - 142.82.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 134.07."
-    ],
-    "sector": "Textile Composite",
-    "name": "Nishat Mills Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.93%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.93
-    }
-  },
-  {
-    "ticker": "GATM",
-    "session_date": "2026-10-16",
-    "closing_price": 23.83,
-    "prev_close": 23.64,
-    "change": 0.19,
-    "change_percent": 0.8,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 23.47,
-    "entry_max": 24.12,
-    "stop_loss": 22.64,
-    "target_1": 26.09,
-    "target_2": 28.12,
-    "rsi": 55,
-    "confidence": 83,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 55.0 with key support band at PKR 23.47 - 24.12.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 22.64."
-    ],
-    "sector": "Textile Composite",
-    "name": "Gul Ahmed Textile Mills Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.71%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.71
-    }
-  },
-  {
-    "ticker": "OGDC",
-    "session_date": "2026-10-19",
-    "closing_price": 327.39,
-    "prev_close": 324.77,
-    "change": 2.62,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 322.48,
-    "entry_max": 331.32,
-    "stop_loss": 311.02,
-    "target_1": 358.49,
-    "target_2": 386.32,
-    "rsi": 59,
-    "confidence": 93,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 59.0 with key support band at PKR 322.48 - 331.32.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 311.02."
-    ],
-    "sector": "Oil & Gas Exploration Companies",
-    "name": "Oil & Gas Development Company Ltd",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.4%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.4
-    }
-  },
-  {
-    "ticker": "PPL",
-    "session_date": "2026-10-19",
-    "closing_price": 234.03,
-    "prev_close": 232.16,
-    "change": 1.87,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 230.52,
-    "entry_max": 236.84,
-    "stop_loss": 222.33,
-    "target_1": 256.26,
-    "target_2": 276.16,
-    "rsi": 64,
-    "confidence": 90,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 64.0 with key support band at PKR 230.52 - 236.84.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 222.33."
-    ],
-    "sector": "Oil & Gas Exploration Companies",
-    "name": "Pakistan Petroleum Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.2%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.2
-    }
-  },
-  {
-    "ticker": "MARI",
-    "session_date": "2026-10-19",
-    "closing_price": 663.26,
-    "prev_close": 657.95,
-    "change": 5.31,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 653.31,
-    "entry_max": 671.22,
-    "stop_loss": 630.1,
-    "target_1": 726.27,
-    "target_2": 782.65,
-    "rsi": 63,
-    "confidence": 89,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 63.0 with key support band at PKR 653.31 - 671.22.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 630.1."
-    ],
-    "sector": "Oil & Gas Exploration Companies",
-    "name": "Mari Petroleum Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_NEUTRAL",
-      "label": "Closed at Session Close (0%)",
-      "badgeColor": "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20",
-      "gainSinceSignalPct": 0
-    }
-  },
-  {
-    "ticker": "POL",
-    "session_date": "2026-10-19",
-    "closing_price": 731.62,
-    "prev_close": 725.77,
-    "change": 5.85,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 720.65,
-    "entry_max": 740.4,
-    "stop_loss": 695.04,
-    "target_1": 801.12,
-    "target_2": 863.31,
-    "rsi": 65,
-    "confidence": 91,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 65.0 with key support band at PKR 720.65 - 740.4.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 695.04."
-    ],
-    "sector": "Oil & Gas Exploration Companies",
-    "name": "Pakistan Oilfields Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.4%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.4
-    }
-  },
-  {
-    "ticker": "PSO",
-    "session_date": "2026-10-19",
-    "closing_price": 360.2,
-    "prev_close": 357.32,
-    "change": 2.88,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 354.8,
-    "entry_max": 364.52,
-    "stop_loss": 342.19,
-    "target_1": 394.42,
-    "target_2": 425.04,
-    "rsi": 64,
-    "confidence": 90,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 64.0 with key support band at PKR 354.8 - 364.52.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 342.19."
-    ],
-    "sector": "Oil & Gas Marketing Companies",
-    "name": "Pakistan State Oil Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.01%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.01
-    }
-  },
-  {
-    "ticker": "SNGP",
-    "session_date": "2026-10-19",
-    "closing_price": 100.84,
-    "prev_close": 100.03,
-    "change": 0.81,
-    "change_percent": 0.81,
-    "signal_type": "ACCUMULATE",
-    "entry_min": 99.33,
-    "entry_max": 102.05,
-    "stop_loss": 95.8,
-    "target_1": 110.42,
-    "target_2": 118.99,
-    "rsi": 56,
-    "confidence": 84,
-    "reasons": [
-      "ACCUMULATE: Technical setup confirmed on EOD volume.",
-      "RSI at 56.0 with key support band at PKR 99.33 - 102.05.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 95.8."
-    ],
-    "sector": "Oil & Gas Marketing Companies",
-    "name": "Sui Northern Gas Pipelines Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+1.01%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 1.01
-    }
-  },
-  {
-    "ticker": "SSGC",
-    "session_date": "2026-10-19",
-    "closing_price": 27.49,
-    "prev_close": 27.27,
-    "change": 0.22,
-    "change_percent": 0.81,
-    "signal_type": "STRONG_BUY",
-    "entry_min": 27.08,
-    "entry_max": 27.82,
-    "stop_loss": 26.12,
-    "target_1": 30.1,
-    "target_2": 32.44,
-    "rsi": 64,
-    "confidence": 90,
-    "reasons": [
-      "STRONG BUY: Technical setup confirmed on EOD volume.",
-      "RSI at 64.0 with key support band at PKR 27.08 - 27.82.",
-      "Calculated risk/reward profile with stop loss anchored at PKR 26.12."
-    ],
-    "sector": "Oil & Gas Marketing Companies",
-    "name": "Sui Southern Gas Company Limited",
-    "is_momentum_breakout": false,
-    "outcome": {
-      "status": "CLOSED_PROFIT",
-      "label": "Closed in Profit (+0.62%)",
-      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-      "gainSinceSignalPct": 0.62
     }
   },
   {
@@ -4082,6 +2162,1926 @@
   {
     "ticker": "ATRL",
     "session_date": "2026-10-19",
+    "closing_price": 1189.11,
+    "prev_close": 1179.6,
+    "change": 9.51,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 1171.27,
+    "entry_max": 1203.38,
+    "stop_loss": 1129.65,
+    "target_1": 1302.08,
+    "target_2": 1403.15,
+    "rsi": 65,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 65.0 with key support band at PKR 1171.27 - 1203.38.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 1129.65."
+    ],
+    "sector": "Refinery",
+    "name": "Attock Refinery Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.7%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.7
+    }
+  },
+  {
+    "ticker": "NRL",
+    "session_date": "2026-10-19",
+    "closing_price": 544.88,
+    "prev_close": 540.52,
+    "change": 4.36,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 536.71,
+    "entry_max": 551.42,
+    "stop_loss": 517.64,
+    "target_1": 596.64,
+    "target_2": 642.96,
+    "rsi": 60,
+    "confidence": 86,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 60.0 with key support band at PKR 536.71 - 551.42.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 517.64."
+    ],
+    "sector": "Refinery",
+    "name": "National Refinery Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.91%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.91
+    }
+  },
+  {
+    "ticker": "CNERGY",
+    "session_date": "2026-10-19",
+    "closing_price": 15.32,
+    "prev_close": 15.2,
+    "change": 0.12,
+    "change_percent": 0.79,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 15.09,
+    "entry_max": 15.5,
+    "stop_loss": 14.55,
+    "target_1": 16.78,
+    "target_2": 18.08,
+    "rsi": 62,
+    "confidence": 88,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 62.0 with key support band at PKR 15.09 - 15.5.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 14.55."
+    ],
+    "sector": "Refinery",
+    "name": "Cnergyico PK Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.91%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.91
+    }
+  },
+  {
+    "ticker": "SYS",
+    "session_date": "2026-10-19",
+    "closing_price": 123.17,
+    "prev_close": 122.18,
+    "change": 0.99,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 121.32,
+    "entry_max": 124.65,
+    "stop_loss": 117.01,
+    "target_1": 134.87,
+    "target_2": 145.34,
+    "rsi": 65,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 65.0 with key support band at PKR 121.32 - 124.65.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 117.01."
+    ],
+    "sector": "Technology & Communication",
+    "name": "Systems Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.11%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.11
+    }
+  },
+  {
+    "ticker": "TRG",
+    "session_date": "2026-10-19",
+    "closing_price": 56.24,
+    "prev_close": 55.79,
+    "change": 0.45,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 55.4,
+    "entry_max": 56.91,
+    "stop_loss": 53.43,
+    "target_1": 61.58,
+    "target_2": 66.36,
+    "rsi": 61,
+    "confidence": 87,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 61.0 with key support band at PKR 55.4 - 56.91.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 53.43."
+    ],
+    "sector": "Technology & Communication",
+    "name": "TRG Pakistan Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.71%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.71
+    }
+  },
+  {
+    "ticker": "NETSOL",
+    "session_date": "2026-10-19",
+    "closing_price": 125.66,
+    "prev_close": 124.65,
+    "change": 1.01,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 123.78,
+    "entry_max": 127.17,
+    "stop_loss": 119.38,
+    "target_1": 137.6,
+    "target_2": 148.28,
+    "rsi": 65,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 65.0 with key support band at PKR 123.78 - 127.17.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 119.38."
+    ],
+    "sector": "Technology & Communication",
+    "name": "NetSol Technologies Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.71%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.71
+    }
+  },
+  {
+    "ticker": "AVN",
+    "session_date": "2026-10-19",
+    "closing_price": 29.96,
+    "prev_close": 29.72,
+    "change": 0.24,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 29.51,
+    "entry_max": 30.32,
+    "stop_loss": 28.46,
+    "target_1": 32.81,
+    "target_2": 35.35,
+    "rsi": 61,
+    "confidence": 87,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 61.0 with key support band at PKR 29.51 - 30.32.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 28.46."
+    ],
+    "sector": "Technology & Communication",
+    "name": "Avanceon Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.3%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.3
+    }
+  },
+  {
+    "ticker": "PTC",
+    "session_date": "2026-10-19",
+    "closing_price": 68.1,
+    "prev_close": 67.56,
+    "change": 0.54,
+    "change_percent": 0.8,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 67.08,
+    "entry_max": 68.92,
+    "stop_loss": 64.69,
+    "target_1": 74.57,
+    "target_2": 80.36,
+    "rsi": 67,
+    "confidence": 93,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 67.0 with key support band at PKR 67.08 - 68.92.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 64.69."
+    ],
+    "sector": "Technology & Communication",
+    "name": "Pakistan Telecommunication Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.94%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.94
+    }
+  },
+  {
+    "ticker": "WTL",
+    "session_date": "2026-10-19",
+    "closing_price": 0.92,
+    "prev_close": 0.91,
+    "change": 0.01,
+    "change_percent": 1.1,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 0.91,
+    "entry_max": 0.93,
+    "stop_loss": 0.87,
+    "target_1": 1.01,
+    "target_2": 1.09,
+    "rsi": 67,
+    "confidence": 93,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 67.0 with key support band at PKR 0.91 - 0.93.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 0.87."
+    ],
+    "sector": "Technology & Communication",
+    "name": "WorldCall Telecom Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.09%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.09
+    }
+  },
+  {
+    "ticker": "TELE",
+    "session_date": "2026-10-19",
+    "closing_price": 7.93,
+    "prev_close": 7.87,
+    "change": 0.06,
+    "change_percent": 0.76,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 7.81,
+    "entry_max": 8.03,
+    "stop_loss": 7.53,
+    "target_1": 8.68,
+    "target_2": 9.36,
+    "rsi": 62,
+    "confidence": 88,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 62.0 with key support band at PKR 7.81 - 8.03.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 7.53."
+    ],
+    "sector": "Technology & Communication",
+    "name": "Telecard Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.5%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.5
+    }
+  },
+  {
+    "ticker": "HUMNL",
+    "session_date": "2026-10-19",
+    "closing_price": 10.42,
+    "prev_close": 10.34,
+    "change": 0.08,
+    "change_percent": 0.77,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 10.26,
+    "entry_max": 10.55,
+    "stop_loss": 9.9,
+    "target_1": 11.41,
+    "target_2": 12.3,
+    "rsi": 66,
+    "confidence": 92,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 66.0 with key support band at PKR 10.26 - 10.55.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 9.9."
+    ],
+    "sector": "Technology & Communication",
+    "name": "Hum Network Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.48%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.48
+    }
+  },
+  {
+    "ticker": "PAEL",
+    "session_date": "2026-10-19",
+    "closing_price": 38.53,
+    "prev_close": 38.22,
+    "change": 0.31,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 37.95,
+    "entry_max": 38.99,
+    "stop_loss": 36.6,
+    "target_1": 42.19,
+    "target_2": 45.47,
+    "rsi": 60,
+    "confidence": 86,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 60.0 with key support band at PKR 37.95 - 38.99.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 36.6."
+    ],
+    "sector": "Cable & Electrical Goods",
+    "name": "Pak Elektron Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.15%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.15
+    }
+  },
+  {
+    "ticker": "ENGRO",
+    "session_date": "2026-10-19",
+    "closing_price": 383.85,
+    "prev_close": 380.78,
+    "change": 3.07,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 378.09,
+    "entry_max": 388.46,
+    "stop_loss": 364.66,
+    "target_1": 420.32,
+    "target_2": 452.94,
+    "rsi": 63,
+    "confidence": 89,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 63.0 with key support band at PKR 378.09 - 388.46.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 364.66."
+    ],
+    "sector": "Fertilizer",
+    "name": "Engro Corporation Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.3%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.3
+    }
+  },
+  {
+    "ticker": "FFC",
+    "session_date": "2026-10-19",
+    "closing_price": 548.83,
+    "prev_close": 544.44,
+    "change": 4.39,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 540.6,
+    "entry_max": 555.42,
+    "stop_loss": 521.39,
+    "target_1": 600.97,
+    "target_2": 647.62,
+    "rsi": 55,
+    "confidence": 83,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 55.0 with key support band at PKR 540.6 - 555.42.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 521.39."
+    ],
+    "sector": "Fertilizer",
+    "name": "Fauji Fertilizer Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.71%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.71
+    }
+  },
+  {
+    "ticker": "EFERT",
+    "session_date": "2026-10-19",
+    "closing_price": 178.99,
+    "prev_close": 177.56,
+    "change": 1.43,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 176.31,
+    "entry_max": 181.14,
+    "stop_loss": 170.04,
+    "target_1": 195.99,
+    "target_2": 211.21,
+    "rsi": 58,
+    "confidence": 92,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 58.0 with key support band at PKR 176.31 - 181.14.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 170.04."
+    ],
+    "sector": "Fertilizer",
+    "name": "Engro Fertilizers Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.32%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.32
+    }
+  },
+  {
+    "ticker": "FATIMA",
+    "session_date": "2026-10-19",
+    "closing_price": 152.99,
+    "prev_close": 151.77,
+    "change": 1.22,
+    "change_percent": 0.8,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 150.7,
+    "entry_max": 154.83,
+    "stop_loss": 145.34,
+    "target_1": 167.52,
+    "target_2": 180.53,
+    "rsi": 56,
+    "confidence": 84,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 56.0 with key support band at PKR 150.7 - 154.83.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 145.34."
+    ],
+    "sector": "Fertilizer",
+    "name": "Fatima Fertilizer Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.32%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.32
+    }
+  },
+  {
+    "ticker": "FFBL",
+    "session_date": "2026-10-19",
+    "closing_price": 41.78,
+    "prev_close": 41.45,
+    "change": 0.33,
+    "change_percent": 0.8,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 41.15,
+    "entry_max": 42.28,
+    "stop_loss": 39.69,
+    "target_1": 45.75,
+    "target_2": 49.3,
+    "rsi": 62,
+    "confidence": 88,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 62.0 with key support band at PKR 41.15 - 42.28.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 39.69."
+    ],
+    "sector": "Fertilizer",
+    "name": "Fauji Fertilizer Bin Qasim Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.72%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.72
+    }
+  },
+  {
+    "ticker": "LUCK",
+    "session_date": "2026-10-19",
+    "closing_price": 430.77,
+    "prev_close": 427.32,
+    "change": 3.45,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 424.31,
+    "entry_max": 435.94,
+    "stop_loss": 409.23,
+    "target_1": 471.69,
+    "target_2": 508.31,
+    "rsi": 53,
+    "confidence": 81,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 53.0 with key support band at PKR 424.31 - 435.94.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 409.23."
+    ],
+    "sector": "Cement",
+    "name": "Lucky Cement Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.52%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.52
+    }
+  },
+  {
+    "ticker": "DGKC",
+    "session_date": "2026-10-19",
+    "closing_price": 205.6,
+    "prev_close": 203.96,
+    "change": 1.64,
+    "change_percent": 0.8,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 202.52,
+    "entry_max": 208.07,
+    "stop_loss": 195.32,
+    "target_1": 225.13,
+    "target_2": 242.61,
+    "rsi": 63,
+    "confidence": 89,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 63.0 with key support band at PKR 202.52 - 208.07.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 195.32."
+    ],
+    "sector": "Cement",
+    "name": "D.G. Khan Cement Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.94%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.94
+    }
+  },
+  {
+    "ticker": "MLCF",
+    "session_date": "2026-10-19",
+    "closing_price": 97.49,
+    "prev_close": 96.71,
+    "change": 0.78,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 96.03,
+    "entry_max": 98.66,
+    "stop_loss": 92.62,
+    "target_1": 106.75,
+    "target_2": 115.04,
+    "rsi": 54,
+    "confidence": 82,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 54.0 with key support band at PKR 96.03 - 98.66.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 92.62."
+    ],
+    "sector": "Cement",
+    "name": "Maple Leaf Cement Factory",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.14%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.14
+    }
+  },
+  {
+    "ticker": "CHCC",
+    "session_date": "2026-10-19",
+    "closing_price": 297.74,
+    "prev_close": 295.36,
+    "change": 2.38,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 293.27,
+    "entry_max": 301.31,
+    "stop_loss": 282.85,
+    "target_1": 326.03,
+    "target_2": 351.33,
+    "rsi": 57,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 57.0 with key support band at PKR 293.27 - 301.31.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 282.85."
+    ],
+    "sector": "Cement",
+    "name": "Cherat Cement Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.52%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.52
+    }
+  },
+  {
+    "ticker": "FCCL",
+    "session_date": "2026-10-19",
+    "closing_price": 54.15,
+    "prev_close": 53.72,
+    "change": 0.43,
+    "change_percent": 0.8,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 53.34,
+    "entry_max": 54.8,
+    "stop_loss": 51.44,
+    "target_1": 59.29,
+    "target_2": 63.9,
+    "rsi": 58,
+    "confidence": 92,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 58.0 with key support band at PKR 53.34 - 54.8.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 51.44."
+    ],
+    "sector": "Cement",
+    "name": "Fauji Cement Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.14%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.14
+    }
+  },
+  {
+    "ticker": "PIOC",
+    "session_date": "2026-10-19",
+    "closing_price": 257.7,
+    "prev_close": 255.64,
+    "change": 2.06,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 253.83,
+    "entry_max": 260.79,
+    "stop_loss": 244.81,
+    "target_1": 282.18,
+    "target_2": 304.09,
+    "rsi": 65,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 65.0 with key support band at PKR 253.83 - 260.79.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 244.81."
+    ],
+    "sector": "Cement",
+    "name": "Pioneer Cement Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.3%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.3
+    }
+  },
+  {
+    "ticker": "MEBL",
+    "session_date": "2026-10-19",
+    "closing_price": 571.12,
+    "prev_close": 566.55,
+    "change": 4.57,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 562.55,
+    "entry_max": 577.97,
+    "stop_loss": 542.56,
+    "target_1": 625.38,
+    "target_2": 673.92,
+    "rsi": 54,
+    "confidence": 82,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 54.0 with key support band at PKR 562.55 - 577.97.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 542.56."
+    ],
+    "sector": "Commercial Banks",
+    "name": "Meezan Bank Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.5%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.5
+    }
+  },
+  {
+    "ticker": "MCB",
+    "session_date": "2026-10-19",
+    "closing_price": 396.76,
+    "prev_close": 393.59,
+    "change": 3.17,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 390.81,
+    "entry_max": 401.52,
+    "stop_loss": 376.92,
+    "target_1": 434.45,
+    "target_2": 468.18,
+    "rsi": 64,
+    "confidence": 90,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 64.0 with key support band at PKR 390.81 - 401.52.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 376.92."
+    ],
+    "sector": "Commercial Banks",
+    "name": "MCB Bank Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.14%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.14
+    }
+  },
+  {
+    "ticker": "HBL",
+    "session_date": "2026-10-19",
+    "closing_price": 313.92,
+    "prev_close": 311.41,
+    "change": 2.51,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 309.21,
+    "entry_max": 317.69,
+    "stop_loss": 298.22,
+    "target_1": 343.74,
+    "target_2": 370.43,
+    "rsi": 54,
+    "confidence": 82,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 54.0 with key support band at PKR 309.21 - 317.69.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 298.22."
+    ],
+    "sector": "Commercial Banks",
+    "name": "Habib Bank Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.32%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.32
+    }
+  },
+  {
+    "ticker": "UBL",
+    "session_date": "2026-10-19",
+    "closing_price": 447.6,
+    "prev_close": 444.02,
+    "change": 3.58,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 440.89,
+    "entry_max": 452.97,
+    "stop_loss": 425.22,
+    "target_1": 490.12,
+    "target_2": 528.17,
+    "rsi": 67,
+    "confidence": 93,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 67.0 with key support band at PKR 440.89 - 452.97.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 425.22."
+    ],
+    "sector": "Commercial Banks",
+    "name": "United Bank Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.71%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.71
+    }
+  },
+  {
+    "ticker": "BAFL",
+    "session_date": "2026-10-19",
+    "closing_price": 58.27,
+    "prev_close": 57.8,
+    "change": 0.47,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 57.4,
+    "entry_max": 58.97,
+    "stop_loss": 55.36,
+    "target_1": 63.81,
+    "target_2": 68.76,
+    "rsi": 57,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 57.0 with key support band at PKR 57.4 - 58.97.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 55.36."
+    ],
+    "sector": "Commercial Banks",
+    "name": "Bank Alfalah Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.7%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.7
+    }
+  },
+  {
+    "ticker": "BAHL",
+    "session_date": "2026-10-19",
+    "closing_price": 114.66,
+    "prev_close": 113.74,
+    "change": 0.92,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 112.94,
+    "entry_max": 116.04,
+    "stop_loss": 108.93,
+    "target_1": 125.55,
+    "target_2": 135.3,
+    "rsi": 55,
+    "confidence": 83,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 55.0 with key support band at PKR 112.94 - 116.04.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 108.93."
+    ],
+    "sector": "Commercial Banks",
+    "name": "Bank AL Habib Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.3%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.3
+    }
+  },
+  {
+    "ticker": "NBP",
+    "session_date": "2026-10-19",
+    "closing_price": 184.65,
+    "prev_close": 183.17,
+    "change": 1.48,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 181.88,
+    "entry_max": 186.87,
+    "stop_loss": 175.42,
+    "target_1": 202.19,
+    "target_2": 217.89,
+    "rsi": 64,
+    "confidence": 90,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 64.0 with key support band at PKR 181.88 - 186.87.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 175.42."
+    ],
+    "sector": "Commercial Banks",
+    "name": "National Bank of Pakistan",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.32%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.32
+    }
+  },
+  {
+    "ticker": "BOP",
+    "session_date": "2026-10-19",
+    "closing_price": 34.61,
+    "prev_close": 34.33,
+    "change": 0.28,
+    "change_percent": 0.82,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 34.09,
+    "entry_max": 35.03,
+    "stop_loss": 32.88,
+    "target_1": 37.9,
+    "target_2": 40.84,
+    "rsi": 55,
+    "confidence": 83,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 55.0 with key support band at PKR 34.09 - 35.03.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 32.88."
+    ],
+    "sector": "Commercial Banks",
+    "name": "The Bank of Punjab",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.1%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.1
+    }
+  },
+  {
+    "ticker": "BIPL",
+    "session_date": "2026-10-19",
+    "closing_price": 24.06,
+    "prev_close": 23.87,
+    "change": 0.19,
+    "change_percent": 0.8,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 23.7,
+    "entry_max": 24.35,
+    "stop_loss": 22.86,
+    "target_1": 26.35,
+    "target_2": 28.39,
+    "rsi": 55,
+    "confidence": 83,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 55.0 with key support band at PKR 23.7 - 24.35.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 22.86."
+    ],
+    "sector": "Commercial Banks",
+    "name": "BankIslami Pakistan Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.12%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.12
+    }
+  },
+  {
+    "ticker": "HUBC",
+    "session_date": "2026-10-19",
+    "closing_price": 205.27,
+    "prev_close": 203.63,
+    "change": 1.64,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 202.19,
+    "entry_max": 207.73,
+    "stop_loss": 195.01,
+    "target_1": 224.77,
+    "target_2": 242.22,
+    "rsi": 66,
+    "confidence": 92,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 66.0 with key support band at PKR 202.19 - 207.73.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 195.01."
+    ],
+    "sector": "Power Generation & Distribution",
+    "name": "The Hub Power Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.14%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.14
+    }
+  },
+  {
+    "ticker": "KAPCO",
+    "session_date": "2026-10-19",
+    "closing_price": 27.22,
+    "prev_close": 27,
+    "change": 0.22,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 26.81,
+    "entry_max": 27.55,
+    "stop_loss": 25.86,
+    "target_1": 29.81,
+    "target_2": 32.12,
+    "rsi": 58,
+    "confidence": 92,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 58.0 with key support band at PKR 26.81 - 27.55.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 25.86."
+    ],
+    "sector": "Power Generation & Distribution",
+    "name": "Kot Addu Power Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.92%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.92
+    }
+  },
+  {
+    "ticker": "KEL",
+    "session_date": "2026-10-19",
+    "closing_price": 7.09,
+    "prev_close": 7.03,
+    "change": 0.06,
+    "change_percent": 0.85,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 6.98,
+    "entry_max": 7.18,
+    "stop_loss": 6.74,
+    "target_1": 7.76,
+    "target_2": 8.37,
+    "rsi": 54,
+    "confidence": 82,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 54.0 with key support band at PKR 6.98 - 7.18.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 6.74."
+    ],
+    "sector": "Power Generation & Distribution",
+    "name": "K-Electric Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.12%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.12
+    }
+  },
+  {
+    "ticker": "NCPL",
+    "session_date": "2026-10-19",
+    "closing_price": 58.23,
+    "prev_close": 57.76,
+    "change": 0.47,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 57.36,
+    "entry_max": 58.93,
+    "stop_loss": 55.32,
+    "target_1": 63.76,
+    "target_2": 68.71,
+    "rsi": 53,
+    "confidence": 81,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 53.0 with key support band at PKR 57.36 - 58.93.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 55.32."
+    ],
+    "sector": "Power Generation & Distribution",
+    "name": "Nishat Chunian Power Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.94%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.94
+    }
+  },
+  {
+    "ticker": "NPL",
+    "session_date": "2026-10-19",
+    "closing_price": 67.29,
+    "prev_close": 66.75,
+    "change": 0.54,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 66.28,
+    "entry_max": 68.1,
+    "stop_loss": 63.93,
+    "target_1": 73.68,
+    "target_2": 79.4,
+    "rsi": 62,
+    "confidence": 88,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 62.0 with key support band at PKR 66.28 - 68.1.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 63.93."
+    ],
+    "sector": "Power Generation & Distribution",
+    "name": "Nishat Power Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.32%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.32
+    }
+  },
+  {
+    "ticker": "INDU",
+    "session_date": "2026-10-19",
+    "closing_price": 1903.81,
+    "prev_close": 1888.58,
+    "change": 15.23,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 1875.25,
+    "entry_max": 1926.66,
+    "stop_loss": 1808.62,
+    "target_1": 2084.67,
+    "target_2": 2246.5,
+    "rsi": 58,
+    "confidence": 92,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 58.0 with key support band at PKR 1875.25 - 1926.66.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 1808.62."
+    ],
+    "sector": "Automobile Assembler",
+    "name": "Indus Motor Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.32%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.32
+    }
+  },
+  {
+    "ticker": "MTL",
+    "session_date": "2026-10-19",
+    "closing_price": 299.34,
+    "prev_close": 296.95,
+    "change": 2.39,
+    "change_percent": 0.8,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 294.85,
+    "entry_max": 302.93,
+    "stop_loss": 284.37,
+    "target_1": 327.78,
+    "target_2": 353.22,
+    "rsi": 57,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 57.0 with key support band at PKR 294.85 - 302.93.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 284.37."
+    ],
+    "sector": "Automobile Assembler",
+    "name": "Millat Tractors Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.7%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.7
+    }
+  },
+  {
+    "ticker": "HCAR",
+    "session_date": "2026-10-19",
+    "closing_price": 244.89,
+    "prev_close": 242.93,
+    "change": 1.96,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 241.22,
+    "entry_max": 247.83,
+    "stop_loss": 232.65,
+    "target_1": 268.15,
+    "target_2": 288.97,
+    "rsi": 64,
+    "confidence": 90,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 64.0 with key support band at PKR 241.22 - 247.83.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 232.65."
+    ],
+    "sector": "Automobile Assembler",
+    "name": "Honda Atlas Cars (Pakistan) Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.91%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.91
+    }
+  },
+  {
+    "ticker": "PSMC",
+    "session_date": "2026-10-19",
+    "closing_price": 600.76,
+    "prev_close": 595.95,
+    "change": 4.81,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 591.75,
+    "entry_max": 607.97,
+    "stop_loss": 570.72,
+    "target_1": 657.83,
+    "target_2": 708.9,
+    "rsi": 61,
+    "confidence": 87,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 61.0 with key support band at PKR 591.75 - 607.97.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 570.72."
+    ],
+    "sector": "Automobile Assembler",
+    "name": "Pak Suzuki Motor Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.71%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.71
+    }
+  },
+  {
+    "ticker": "AGP",
+    "session_date": "2026-10-19",
+    "closing_price": 161.99,
+    "prev_close": 160.69,
+    "change": 1.3,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 159.56,
+    "entry_max": 163.93,
+    "stop_loss": 153.89,
+    "target_1": 177.38,
+    "target_2": 191.15,
+    "rsi": 62,
+    "confidence": 88,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 62.0 with key support band at PKR 159.56 - 163.93.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 153.89."
+    ],
+    "sector": "Pharmaceuticals",
+    "name": "AGP Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.91%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.91
+    }
+  },
+  {
+    "ticker": "SEARL",
+    "session_date": "2026-10-19",
+    "closing_price": 85.81,
+    "prev_close": 85.12,
+    "change": 0.69,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 84.52,
+    "entry_max": 86.84,
+    "stop_loss": 81.52,
+    "target_1": 93.96,
+    "target_2": 101.26,
+    "rsi": 61,
+    "confidence": 87,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 61.0 with key support band at PKR 84.52 - 86.84.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 81.52."
+    ],
+    "sector": "Pharmaceuticals",
+    "name": "The Searle Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.11%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.11
+    }
+  },
+  {
+    "ticker": "ABOT",
+    "session_date": "2026-10-19",
+    "closing_price": 928.04,
+    "prev_close": 920.62,
+    "change": 7.42,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 914.12,
+    "entry_max": 939.18,
+    "stop_loss": 881.64,
+    "target_1": 1016.2,
+    "target_2": 1095.09,
+    "rsi": 58,
+    "confidence": 92,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 58.0 with key support band at PKR 914.12 - 939.18.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 881.64."
+    ],
+    "sector": "Pharmaceuticals",
+    "name": "Abbott Laboratories (Pakistan) Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.32%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.32
+    }
+  },
+  {
+    "ticker": "GLAXO",
+    "session_date": "2026-10-19",
+    "closing_price": 333.97,
+    "prev_close": 331.3,
+    "change": 2.67,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 328.96,
+    "entry_max": 337.98,
+    "stop_loss": 317.27,
+    "target_1": 365.7,
+    "target_2": 394.08,
+    "rsi": 55,
+    "confidence": 83,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 55.0 with key support band at PKR 328.96 - 337.98.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 317.27."
+    ],
+    "sector": "Pharmaceuticals",
+    "name": "GlaxoSmithKline (Pakistan) Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.3%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.3
+    }
+  },
+  {
+    "ticker": "MUGHAL",
+    "session_date": "2026-10-19",
+    "closing_price": 77.11,
+    "prev_close": 76.49,
+    "change": 0.62,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 75.95,
+    "entry_max": 78.04,
+    "stop_loss": 73.25,
+    "target_1": 84.44,
+    "target_2": 90.99,
+    "rsi": 64,
+    "confidence": 90,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 64.0 with key support band at PKR 75.95 - 78.04.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 73.25."
+    ],
+    "sector": "Engineering",
+    "name": "Mughal Iron & Steel Industries Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.14%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.14
+    }
+  },
+  {
+    "ticker": "ISL",
+    "session_date": "2026-10-19",
+    "closing_price": 90.45,
+    "prev_close": 89.73,
+    "change": 0.72,
+    "change_percent": 0.8,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 89.09,
+    "entry_max": 91.54,
+    "stop_loss": 85.93,
+    "target_1": 99.04,
+    "target_2": 106.73,
+    "rsi": 54,
+    "confidence": 82,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 54.0 with key support band at PKR 89.09 - 91.54.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 85.93."
+    ],
+    "sector": "Engineering",
+    "name": "International Steels Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.72%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.72
+    }
+  },
+  {
+    "ticker": "INIL",
+    "session_date": "2026-10-19",
+    "closing_price": 166.63,
+    "prev_close": 165.3,
+    "change": 1.33,
+    "change_percent": 0.8,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 164.13,
+    "entry_max": 168.63,
+    "stop_loss": 158.3,
+    "target_1": 182.46,
+    "target_2": 196.62,
+    "rsi": 60,
+    "confidence": 86,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 60.0 with key support band at PKR 164.13 - 168.63.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 158.3."
+    ],
+    "sector": "Engineering",
+    "name": "International Industries Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+2.14%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 2.14
+    }
+  },
+  {
+    "ticker": "ASTL",
+    "session_date": "2026-10-19",
+    "closing_price": 15.24,
+    "prev_close": 15.12,
+    "change": 0.12,
+    "change_percent": 0.79,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 15.01,
+    "entry_max": 15.42,
+    "stop_loss": 14.48,
+    "target_1": 16.69,
+    "target_2": 17.98,
+    "rsi": 62,
+    "confidence": 88,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 62.0 with key support band at PKR 15.01 - 15.42.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 14.48."
+    ],
+    "sector": "Engineering",
+    "name": "Amreli Steels Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.52%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.52
+    }
+  },
+  {
+    "ticker": "NESTLE",
+    "session_date": "2026-10-19",
+    "closing_price": 7421.23,
+    "prev_close": 7361.86,
+    "change": 59.37,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 7309.91,
+    "entry_max": 7510.28,
+    "stop_loss": 7050.17,
+    "target_1": 8126.25,
+    "target_2": 8757.05,
+    "rsi": 67,
+    "confidence": 93,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 67.0 with key support band at PKR 7309.91 - 7510.28.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 7050.17."
+    ],
+    "sector": "Food & Personal Care Products",
+    "name": "Nestle Pakistan Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.7%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.7
+    }
+  },
+  {
+    "ticker": "NATF",
+    "session_date": "2026-10-19",
+    "closing_price": 367.62,
+    "prev_close": 364.68,
+    "change": 2.94,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 362.11,
+    "entry_max": 372.03,
+    "stop_loss": 349.24,
+    "target_1": 402.54,
+    "target_2": 433.79,
+    "rsi": 57,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 57.0 with key support band at PKR 362.11 - 372.03.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 349.24."
+    ],
+    "sector": "Food & Personal Care Products",
+    "name": "National Foods Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.7%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.7
+    }
+  },
+  {
+    "ticker": "UNITY",
+    "session_date": "2026-10-19",
+    "closing_price": 9.95,
+    "prev_close": 9.87,
+    "change": 0.08,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 9.8,
+    "entry_max": 10.07,
+    "stop_loss": 9.45,
+    "target_1": 10.9,
+    "target_2": 11.74,
+    "rsi": 57,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 57.0 with key support band at PKR 9.8 - 10.07.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 9.45."
+    ],
+    "sector": "Food & Personal Care Products",
+    "name": "Unity Foods Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.3%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.3
+    }
+  },
+  {
+    "ticker": "TOMCL",
+    "session_date": "2026-10-19",
+    "closing_price": 36.19,
+    "prev_close": 35.9,
+    "change": 0.29,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 35.65,
+    "entry_max": 36.62,
+    "stop_loss": 34.38,
+    "target_1": 39.63,
+    "target_2": 42.7,
+    "rsi": 63,
+    "confidence": 89,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 63.0 with key support band at PKR 35.65 - 36.62.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 34.38."
+    ],
+    "sector": "Food & Personal Care Products",
+    "name": "The Organic Meat Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.52%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.52
+    }
+  },
+  {
+    "ticker": "ILP",
+    "session_date": "2026-10-19",
+    "closing_price": 108.34,
+    "prev_close": 107.47,
+    "change": 0.87,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 106.71,
+    "entry_max": 109.64,
+    "stop_loss": 102.92,
+    "target_1": 118.63,
+    "target_2": 127.84,
+    "rsi": 65,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 65.0 with key support band at PKR 106.71 - 109.64.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 102.92."
+    ],
+    "sector": "Textile Composite",
+    "name": "Interloop Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.3%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.3
+    }
+  },
+  {
+    "ticker": "NML",
+    "session_date": "2026-10-19",
+    "closing_price": 141.13,
+    "prev_close": 140,
+    "change": 1.13,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 139.01,
+    "entry_max": 142.82,
+    "stop_loss": 134.07,
+    "target_1": 154.54,
+    "target_2": 166.53,
+    "rsi": 65,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 65.0 with key support band at PKR 139.01 - 142.82.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 134.07."
+    ],
+    "sector": "Textile Composite",
+    "name": "Nishat Mills Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.93%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.93
+    }
+  },
+  {
+    "ticker": "GATM",
+    "session_date": "2026-10-19",
+    "closing_price": 23.83,
+    "prev_close": 23.64,
+    "change": 0.19,
+    "change_percent": 0.8,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 23.47,
+    "entry_max": 24.12,
+    "stop_loss": 22.64,
+    "target_1": 26.09,
+    "target_2": 28.12,
+    "rsi": 55,
+    "confidence": 83,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 55.0 with key support band at PKR 23.47 - 24.12.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 22.64."
+    ],
+    "sector": "Textile Composite",
+    "name": "Gul Ahmed Textile Mills Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.71%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.71
+    }
+  },
+  {
+    "ticker": "OGDC",
+    "session_date": "2026-10-20",
+    "closing_price": 327.39,
+    "prev_close": 324.77,
+    "change": 2.62,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 322.48,
+    "entry_max": 331.32,
+    "stop_loss": 311.02,
+    "target_1": 358.49,
+    "target_2": 386.32,
+    "rsi": 59,
+    "confidence": 93,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 59.0 with key support band at PKR 322.48 - 331.32.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 311.02."
+    ],
+    "sector": "Oil & Gas Exploration Companies",
+    "name": "Oil & Gas Development Company Ltd",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.4%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.4
+    }
+  },
+  {
+    "ticker": "PPL",
+    "session_date": "2026-10-20",
+    "closing_price": 234.03,
+    "prev_close": 232.16,
+    "change": 1.87,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 230.52,
+    "entry_max": 236.84,
+    "stop_loss": 222.33,
+    "target_1": 256.26,
+    "target_2": 276.16,
+    "rsi": 64,
+    "confidence": 90,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 64.0 with key support band at PKR 230.52 - 236.84.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 222.33."
+    ],
+    "sector": "Oil & Gas Exploration Companies",
+    "name": "Pakistan Petroleum Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.2%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.2
+    }
+  },
+  {
+    "ticker": "MARI",
+    "session_date": "2026-10-20",
+    "closing_price": 663.26,
+    "prev_close": 657.95,
+    "change": 5.31,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 653.31,
+    "entry_max": 671.22,
+    "stop_loss": 630.1,
+    "target_1": 726.27,
+    "target_2": 782.65,
+    "rsi": 63,
+    "confidence": 89,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 63.0 with key support band at PKR 653.31 - 671.22.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 630.1."
+    ],
+    "sector": "Oil & Gas Exploration Companies",
+    "name": "Mari Petroleum Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_NEUTRAL",
+      "label": "Closed at Session Close (0%)",
+      "badgeColor": "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20",
+      "gainSinceSignalPct": 0
+    }
+  },
+  {
+    "ticker": "POL",
+    "session_date": "2026-10-20",
+    "closing_price": 731.62,
+    "prev_close": 725.77,
+    "change": 5.85,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 720.65,
+    "entry_max": 740.4,
+    "stop_loss": 695.04,
+    "target_1": 801.12,
+    "target_2": 863.31,
+    "rsi": 65,
+    "confidence": 91,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 65.0 with key support band at PKR 720.65 - 740.4.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 695.04."
+    ],
+    "sector": "Oil & Gas Exploration Companies",
+    "name": "Pakistan Oilfields Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.4%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.4
+    }
+  },
+  {
+    "ticker": "PSO",
+    "session_date": "2026-10-20",
+    "closing_price": 360.2,
+    "prev_close": 357.32,
+    "change": 2.88,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 354.8,
+    "entry_max": 364.52,
+    "stop_loss": 342.19,
+    "target_1": 394.42,
+    "target_2": 425.04,
+    "rsi": 64,
+    "confidence": 90,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 64.0 with key support band at PKR 354.8 - 364.52.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 342.19."
+    ],
+    "sector": "Oil & Gas Marketing Companies",
+    "name": "Pakistan State Oil Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.01%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.01
+    }
+  },
+  {
+    "ticker": "SNGP",
+    "session_date": "2026-10-20",
+    "closing_price": 100.84,
+    "prev_close": 100.03,
+    "change": 0.81,
+    "change_percent": 0.81,
+    "signal_type": "ACCUMULATE",
+    "entry_min": 99.33,
+    "entry_max": 102.05,
+    "stop_loss": 95.8,
+    "target_1": 110.42,
+    "target_2": 118.99,
+    "rsi": 56,
+    "confidence": 84,
+    "reasons": [
+      "ACCUMULATE: Technical setup confirmed on EOD volume.",
+      "RSI at 56.0 with key support band at PKR 99.33 - 102.05.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 95.8."
+    ],
+    "sector": "Oil & Gas Marketing Companies",
+    "name": "Sui Northern Gas Pipelines Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+1.01%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 1.01
+    }
+  },
+  {
+    "ticker": "SSGC",
+    "session_date": "2026-10-20",
+    "closing_price": 27.49,
+    "prev_close": 27.27,
+    "change": 0.22,
+    "change_percent": 0.81,
+    "signal_type": "STRONG_BUY",
+    "entry_min": 27.08,
+    "entry_max": 27.82,
+    "stop_loss": 26.12,
+    "target_1": 30.1,
+    "target_2": 32.44,
+    "rsi": 64,
+    "confidence": 90,
+    "reasons": [
+      "STRONG BUY: Technical setup confirmed on EOD volume.",
+      "RSI at 64.0 with key support band at PKR 27.08 - 27.82.",
+      "Calculated risk/reward profile with stop loss anchored at PKR 26.12."
+    ],
+    "sector": "Oil & Gas Marketing Companies",
+    "name": "Sui Southern Gas Company Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_PROFIT",
+      "label": "Closed in Profit (+0.62%)",
+      "badgeColor": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      "gainSinceSignalPct": 0.62
+    }
+  },
+  {
+    "ticker": "PRL",
+    "session_date": "2026-10-20",
+    "closing_price": 101.44,
+    "prev_close": 108.81,
+    "change": -7.37,
+    "change_percent": -6.77,
+    "signal_type": "AVOID_SELL",
+    "entry_min": 98.5,
+    "entry_max": 101.5,
+    "stop_loss": 96.37,
+    "target_1": 106.5,
+    "target_2": 110,
+    "rsi": 48.2,
+    "confidence": 88,
+    "reasons": [
+      "Sharp Pullback (-6.77%) from 108.81 resistance — Capital preservation mode. Wait for base stabilization before re-entry.",
+      "RSI cooled down to 48.2 from overbought 78.7 after sharp liquidation.",
+      "Key defensive demand band located at 98.50 - 101.50."
+    ],
+    "sector": "Refinery",
+    "name": "Pakistan Refinery Limited",
+    "is_momentum_breakout": false,
+    "outcome": {
+      "status": "CLOSED_NEXT_DAY_DROP",
+      "label": "Closed at Next Session (-1.54%)",
+      "badgeColor": "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20",
+      "gainSinceSignalPct": -1.54
+    }
+  },
+  {
+    "ticker": "ATRL",
+    "session_date": "2026-10-20",
     "closing_price": 1197.49,
     "prev_close": 1187.91,
     "change": 9.58,
@@ -4111,7 +4111,7 @@
   },
   {
     "ticker": "NRL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 548.73,
     "prev_close": 544.34,
     "change": 4.39,
@@ -4141,7 +4141,7 @@
   },
   {
     "ticker": "CNERGY",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 15.43,
     "prev_close": 15.31,
     "change": 0.12,
@@ -4171,7 +4171,7 @@
   },
   {
     "ticker": "SYS",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 124.04,
     "prev_close": 123.05,
     "change": 0.99,
@@ -4201,7 +4201,7 @@
   },
   {
     "ticker": "TRG",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 56.64,
     "prev_close": 56.19,
     "change": 0.45,
@@ -4231,7 +4231,7 @@
   },
   {
     "ticker": "NETSOL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 126.55,
     "prev_close": 125.54,
     "change": 1.01,
@@ -4261,7 +4261,7 @@
   },
   {
     "ticker": "AVN",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 30.17,
     "prev_close": 29.93,
     "change": 0.24,
@@ -4291,7 +4291,7 @@
   },
   {
     "ticker": "PTC",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 68.59,
     "prev_close": 68.04,
     "change": 0.55,
@@ -4321,7 +4321,7 @@
   },
   {
     "ticker": "WTL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 0.93,
     "prev_close": 0.92,
     "change": 0.01,
@@ -4351,7 +4351,7 @@
   },
   {
     "ticker": "TELE",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 7.99,
     "prev_close": 7.93,
     "change": 0.06,
@@ -4381,7 +4381,7 @@
   },
   {
     "ticker": "HUMNL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 10.49,
     "prev_close": 10.41,
     "change": 0.08,
@@ -4411,7 +4411,7 @@
   },
   {
     "ticker": "PAEL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 38.81,
     "prev_close": 38.5,
     "change": 0.31,
@@ -4441,7 +4441,7 @@
   },
   {
     "ticker": "ENGRO",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 386.54,
     "prev_close": 383.45,
     "change": 3.09,
@@ -4471,7 +4471,7 @@
   },
   {
     "ticker": "FFC",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 552.7,
     "prev_close": 548.28,
     "change": 4.42,
@@ -4501,7 +4501,7 @@
   },
   {
     "ticker": "EFERT",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 180.26,
     "prev_close": 178.82,
     "change": 1.44,
@@ -4531,7 +4531,7 @@
   },
   {
     "ticker": "FATIMA",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 154.08,
     "prev_close": 152.85,
     "change": 1.23,
@@ -4561,7 +4561,7 @@
   },
   {
     "ticker": "FFBL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 42.08,
     "prev_close": 41.74,
     "change": 0.34,
@@ -4591,7 +4591,7 @@
   },
   {
     "ticker": "LUCK",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 433.83,
     "prev_close": 430.36,
     "change": 3.47,
@@ -4621,7 +4621,7 @@
   },
   {
     "ticker": "DGKC",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 207.07,
     "prev_close": 205.41,
     "change": 1.66,
@@ -4651,7 +4651,7 @@
   },
   {
     "ticker": "MLCF",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 98.19,
     "prev_close": 97.4,
     "change": 0.79,
@@ -4681,7 +4681,7 @@
   },
   {
     "ticker": "CHCC",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 299.85,
     "prev_close": 297.45,
     "change": 2.4,
@@ -4711,7 +4711,7 @@
   },
   {
     "ticker": "FCCL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 54.54,
     "prev_close": 54.1,
     "change": 0.44,
@@ -4741,7 +4741,7 @@
   },
   {
     "ticker": "PIOC",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 259.51,
     "prev_close": 257.43,
     "change": 2.08,
@@ -4771,7 +4771,7 @@
   },
   {
     "ticker": "MEBL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 575.14,
     "prev_close": 570.54,
     "change": 4.6,
@@ -4801,7 +4801,7 @@
   },
   {
     "ticker": "MCB",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 399.6,
     "prev_close": 396.4,
     "change": 3.2,
@@ -4831,7 +4831,7 @@
   },
   {
     "ticker": "HBL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 316.14,
     "prev_close": 313.61,
     "change": 2.53,
@@ -4861,7 +4861,7 @@
   },
   {
     "ticker": "UBL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 450.76,
     "prev_close": 447.15,
     "change": 3.61,
@@ -4891,7 +4891,7 @@
   },
   {
     "ticker": "BAFL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 58.68,
     "prev_close": 58.21,
     "change": 0.47,
@@ -4921,7 +4921,7 @@
   },
   {
     "ticker": "BAHL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 115.46,
     "prev_close": 114.54,
     "change": 0.92,
@@ -4951,7 +4951,7 @@
   },
   {
     "ticker": "NBP",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 185.96,
     "prev_close": 184.47,
     "change": 1.49,
@@ -4981,7 +4981,7 @@
   },
   {
     "ticker": "BOP",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 34.85,
     "prev_close": 34.57,
     "change": 0.28,
@@ -5011,7 +5011,7 @@
   },
   {
     "ticker": "BIPL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 24.23,
     "prev_close": 24.04,
     "change": 0.19,
@@ -5041,7 +5041,7 @@
   },
   {
     "ticker": "HUBC",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 206.73,
     "prev_close": 205.08,
     "change": 1.65,
@@ -5071,7 +5071,7 @@
   },
   {
     "ticker": "KAPCO",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 27.42,
     "prev_close": 27.2,
     "change": 0.22,
@@ -5101,7 +5101,7 @@
   },
   {
     "ticker": "KEL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 7.14,
     "prev_close": 7.08,
     "change": 0.06,
@@ -5131,7 +5131,7 @@
   },
   {
     "ticker": "NCPL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 58.65,
     "prev_close": 58.18,
     "change": 0.47,
@@ -5161,7 +5161,7 @@
   },
   {
     "ticker": "NPL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 67.77,
     "prev_close": 67.23,
     "change": 0.54,
@@ -5191,7 +5191,7 @@
   },
   {
     "ticker": "INDU",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 1917.32,
     "prev_close": 1901.98,
     "change": 15.34,
@@ -5221,7 +5221,7 @@
   },
   {
     "ticker": "MTL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 301.45,
     "prev_close": 299.04,
     "change": 2.41,
@@ -5251,7 +5251,7 @@
   },
   {
     "ticker": "HCAR",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 246.62,
     "prev_close": 244.65,
     "change": 1.97,
@@ -5281,7 +5281,7 @@
   },
   {
     "ticker": "PSMC",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 605,
     "prev_close": 600.16,
     "change": 4.84,
@@ -5311,7 +5311,7 @@
   },
   {
     "ticker": "AGP",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 163.13,
     "prev_close": 161.82,
     "change": 1.31,
@@ -5341,7 +5341,7 @@
   },
   {
     "ticker": "SEARL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 86.41,
     "prev_close": 85.72,
     "change": 0.69,
@@ -5371,7 +5371,7 @@
   },
   {
     "ticker": "ABOT",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 934.62,
     "prev_close": 927.14,
     "change": 7.48,
@@ -5401,7 +5401,7 @@
   },
   {
     "ticker": "GLAXO",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 336.31,
     "prev_close": 333.62,
     "change": 2.69,
@@ -5431,7 +5431,7 @@
   },
   {
     "ticker": "MUGHAL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 77.66,
     "prev_close": 77.04,
     "change": 0.62,
@@ -5461,7 +5461,7 @@
   },
   {
     "ticker": "ISL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 91.09,
     "prev_close": 90.36,
     "change": 0.73,
@@ -5491,7 +5491,7 @@
   },
   {
     "ticker": "INIL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 167.82,
     "prev_close": 166.48,
     "change": 1.34,
@@ -5521,7 +5521,7 @@
   },
   {
     "ticker": "ASTL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 15.35,
     "prev_close": 15.23,
     "change": 0.12,
@@ -5551,7 +5551,7 @@
   },
   {
     "ticker": "NESTLE",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 7473.54,
     "prev_close": 7413.75,
     "change": 59.79,
@@ -5581,7 +5581,7 @@
   },
   {
     "ticker": "NATF",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 370.21,
     "prev_close": 367.25,
     "change": 2.96,
@@ -5611,7 +5611,7 @@
   },
   {
     "ticker": "UNITY",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 10.02,
     "prev_close": 9.94,
     "change": 0.08,
@@ -5641,7 +5641,7 @@
   },
   {
     "ticker": "TOMCL",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 36.45,
     "prev_close": 36.16,
     "change": 0.29,
@@ -5671,7 +5671,7 @@
   },
   {
     "ticker": "ILP",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 109.1,
     "prev_close": 108.23,
     "change": 0.87,
@@ -5701,7 +5701,7 @@
   },
   {
     "ticker": "NML",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 142.13,
     "prev_close": 140.99,
     "change": 1.14,
@@ -5731,7 +5731,7 @@
   },
   {
     "ticker": "GATM",
-    "session_date": "2026-10-19",
+    "session_date": "2026-10-20",
     "closing_price": 24,
     "prev_close": 23.81,
     "change": 0.19,
@@ -5761,7 +5761,7 @@
   },
   {
     "ticker": "OGDC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 328.7,
     "prev_close": 328.7,
     "change": 0,
@@ -5791,7 +5791,7 @@
   },
   {
     "ticker": "PPL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 234.5,
     "prev_close": 234.5,
     "change": 0,
@@ -5821,7 +5821,7 @@
   },
   {
     "ticker": "MARI",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 663.26,
     "prev_close": 663.26,
     "change": 0,
@@ -5851,7 +5851,7 @@
   },
   {
     "ticker": "POL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 734.56,
     "prev_close": 734.56,
     "change": 0,
@@ -5881,7 +5881,7 @@
   },
   {
     "ticker": "PSO",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 363.84,
     "prev_close": 363.84,
     "change": 0,
@@ -5911,7 +5911,7 @@
   },
   {
     "ticker": "SNGP",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 101.86,
     "prev_close": 101.86,
     "change": 0,
@@ -5941,7 +5941,7 @@
   },
   {
     "ticker": "SSGC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 27.66,
     "prev_close": 27.66,
     "change": 0,
@@ -5971,37 +5971,37 @@
   },
   {
     "ticker": "PRL",
-    "session_date": "2026-10-20",
-    "closing_price": 101.44,
-    "prev_close": 108.81,
-    "change": -7.37,
-    "change_percent": -6.77,
+    "session_date": "2026-10-21",
+    "closing_price": 99.88,
+    "prev_close": 101.44,
+    "change": -1.56,
+    "change_percent": -1.54,
     "signal_type": "AVOID_SELL",
-    "entry_min": 98.5,
-    "entry_max": 101.5,
-    "stop_loss": 96.37,
-    "target_1": 106.5,
-    "target_2": 110,
-    "rsi": 48.2,
-    "confidence": 88,
+    "entry_min": 98.2,
+    "entry_max": 100.8,
+    "stop_loss": 96.5,
+    "target_1": 103.5,
+    "target_2": 107,
+    "rsi": 44.5,
+    "confidence": 86,
     "reasons": [
-      "Sharp Pullback (-6.77%) from 108.81 resistance — Capital preservation mode. Wait for base stabilization before re-entry.",
-      "RSI cooled down to 48.2 from overbought 78.7 after sharp liquidation.",
-      "Key defensive demand band located at 98.50 - 101.50."
+      "Oct 21 Close: Closed at PKR 99.88 (-1.54%) testing critical 98.20 - 100.80 support floor.",
+      "Defensive stance maintained; high-volume selling tapering near support base.",
+      "RSI stabilized at 44.5 with capital preservation protocol active."
     ],
     "sector": "Refinery",
     "name": "Pakistan Refinery Limited",
     "is_momentum_breakout": false,
     "outcome": {
-      "status": "HOLDING_SUPPORT",
-      "label": "Capital Preserved (Waiting for Base)",
+      "status": "IN_PROGRESS",
+      "label": "Today Closing / EOD",
       "badgeColor": "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
       "gainSinceSignalPct": 0
     }
   },
   {
     "ticker": "ATRL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 1197.49,
     "prev_close": 1197.49,
     "change": 0,
@@ -6031,7 +6031,7 @@
   },
   {
     "ticker": "NRL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 549.83,
     "prev_close": 549.83,
     "change": 0,
@@ -6061,7 +6061,7 @@
   },
   {
     "ticker": "CNERGY",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 15.46,
     "prev_close": 15.46,
     "change": 0,
@@ -6091,7 +6091,7 @@
   },
   {
     "ticker": "SYS",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 124.54,
     "prev_close": 124.54,
     "change": 0,
@@ -6121,7 +6121,7 @@
   },
   {
     "ticker": "TRG",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 56.64,
     "prev_close": 56.64,
     "change": 0,
@@ -6151,7 +6151,7 @@
   },
   {
     "ticker": "NETSOL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 126.55,
     "prev_close": 126.55,
     "change": 0,
@@ -6181,7 +6181,7 @@
   },
   {
     "ticker": "AVN",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 30.05,
     "prev_close": 30.05,
     "change": 0,
@@ -6211,7 +6211,7 @@
   },
   {
     "ticker": "PTC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 69.42,
     "prev_close": 69.42,
     "change": 0,
@@ -6241,7 +6241,7 @@
   },
   {
     "ticker": "WTL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 0.93,
     "prev_close": 0.95,
     "change": -0.02,
@@ -6271,7 +6271,7 @@
   },
   {
     "ticker": "TELE",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 7.97,
     "prev_close": 7.97,
     "change": 0,
@@ -6301,7 +6301,7 @@
   },
   {
     "ticker": "HUMNL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 10.47,
     "prev_close": 10.47,
     "change": 0,
@@ -6331,7 +6331,7 @@
   },
   {
     "ticker": "PAEL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 39.36,
     "prev_close": 39.36,
     "change": 0,
@@ -6361,7 +6361,7 @@
   },
   {
     "ticker": "ENGRO",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 385,
     "prev_close": 381.15,
     "change": 3.85,
@@ -6391,7 +6391,7 @@
   },
   {
     "ticker": "FFC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 552.7,
     "prev_close": 552.7,
     "change": 0,
@@ -6421,7 +6421,7 @@
   },
   {
     "ticker": "EFERT",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 181.35,
     "prev_close": 181.35,
     "change": 0,
@@ -6451,7 +6451,7 @@
   },
   {
     "ticker": "FATIMA",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 155.01,
     "prev_close": 155.01,
     "change": 0,
@@ -6481,7 +6481,7 @@
   },
   {
     "ticker": "FFBL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 42.5,
     "prev_close": 42.075,
     "change": 0.42,
@@ -6511,7 +6511,7 @@
   },
   {
     "ticker": "LUCK",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 437.33,
     "prev_close": 437.33,
     "change": 0,
@@ -6541,7 +6541,7 @@
   },
   {
     "ticker": "DGKC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 209.58,
     "prev_close": 209.58,
     "change": 0,
@@ -6571,7 +6571,7 @@
   },
   {
     "ticker": "MLCF",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 99.58,
     "prev_close": 99.58,
     "change": 0,
@@ -6601,7 +6601,7 @@
   },
   {
     "ticker": "CHCC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 302.27,
     "prev_close": 302.27,
     "change": 0,
@@ -6631,7 +6631,7 @@
   },
   {
     "ticker": "FCCL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 55.31,
     "prev_close": 55.31,
     "change": 0,
@@ -6661,7 +6661,7 @@
   },
   {
     "ticker": "PIOC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 258.48,
     "prev_close": 258.48,
     "change": 0,
@@ -6691,7 +6691,7 @@
   },
   {
     "ticker": "MEBL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 573.99,
     "prev_close": 568.2501,
     "change": 5.74,
@@ -6721,7 +6721,7 @@
   },
   {
     "ticker": "MCB",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 405.27,
     "prev_close": 405.27,
     "change": 0,
@@ -6751,7 +6751,7 @@
   },
   {
     "ticker": "HBL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 318.05,
     "prev_close": 318.05,
     "change": 0,
@@ -6781,7 +6781,7 @@
   },
   {
     "ticker": "UBL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 450.76,
     "prev_close": 450.76,
     "change": 0,
@@ -6811,7 +6811,7 @@
   },
   {
     "ticker": "BAFL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 58.68,
     "prev_close": 58.68,
     "change": 0,
@@ -6841,7 +6841,7 @@
   },
   {
     "ticker": "BAHL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 115,
     "prev_close": 113.85,
     "change": 1.15,
@@ -6871,7 +6871,7 @@
   },
   {
     "ticker": "NBP",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 187.08,
     "prev_close": 187.08,
     "change": 0,
@@ -6901,7 +6901,7 @@
   },
   {
     "ticker": "BOP",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 34.99,
     "prev_close": 34.99,
     "change": 0,
@@ -6931,7 +6931,7 @@
   },
   {
     "ticker": "BIPL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 24.33,
     "prev_close": 24.08,
     "change": 0.25,
@@ -6961,7 +6961,7 @@
   },
   {
     "ticker": "HUBC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 209.67,
     "prev_close": 209.67,
     "change": 0,
@@ -6991,7 +6991,7 @@
   },
   {
     "ticker": "KAPCO",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 27.47,
     "prev_close": 27.47,
     "change": 0,
@@ -7021,7 +7021,7 @@
   },
   {
     "ticker": "KEL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 7.24,
     "prev_close": 7.24,
     "change": 0,
@@ -7051,7 +7051,7 @@
   },
   {
     "ticker": "NCPL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 59.36,
     "prev_close": 59.36,
     "change": 0,
@@ -7081,7 +7081,7 @@
   },
   {
     "ticker": "NPL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 68.18,
     "prev_close": 68.18,
     "change": 0,
@@ -7111,7 +7111,7 @@
   },
   {
     "ticker": "INDU",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 1928.89,
     "prev_close": 1928.89,
     "change": 0,
@@ -7141,7 +7141,7 @@
   },
   {
     "ticker": "MTL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 301.45,
     "prev_close": 301.45,
     "change": 0,
@@ -7171,7 +7171,7 @@
   },
   {
     "ticker": "HCAR",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 247.11,
     "prev_close": 247.11,
     "change": 0,
@@ -7201,7 +7201,7 @@
   },
   {
     "ticker": "PSMC",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 605,
     "prev_close": 598.95,
     "change": 6.05,
@@ -7231,7 +7231,7 @@
   },
   {
     "ticker": "AGP",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 163.46,
     "prev_close": 163.46,
     "change": 0,
@@ -7261,7 +7261,7 @@
   },
   {
     "ticker": "SEARL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 86.76,
     "prev_close": 86.76,
     "change": 0,
@@ -7291,7 +7291,7 @@
   },
   {
     "ticker": "ABOT",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 940.26,
     "prev_close": 940.26,
     "change": 0,
@@ -7321,7 +7321,7 @@
   },
   {
     "ticker": "GLAXO",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 334.97,
     "prev_close": 334.97,
     "change": 0,
@@ -7351,7 +7351,7 @@
   },
   {
     "ticker": "MUGHAL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 78.76,
     "prev_close": 78.76,
     "change": 0,
@@ -7381,7 +7381,7 @@
   },
   {
     "ticker": "ISL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 92.01,
     "prev_close": 92.01,
     "change": 0,
@@ -7411,7 +7411,7 @@
   },
   {
     "ticker": "INIL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 170.2,
     "prev_close": 170.2,
     "change": 0,
@@ -7441,7 +7441,7 @@
   },
   {
     "ticker": "ASTL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 15.32,
     "prev_close": 15.32,
     "change": 0,
@@ -7471,7 +7471,7 @@
   },
   {
     "ticker": "NESTLE",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 7473.54,
     "prev_close": 7473.54,
     "change": 0,
@@ -7501,7 +7501,7 @@
   },
   {
     "ticker": "NATF",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 370.21,
     "prev_close": 370.21,
     "change": 0,
@@ -7531,7 +7531,7 @@
   },
   {
     "ticker": "UNITY",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 9.98,
     "prev_close": 9.98,
     "change": 0,
@@ -7561,7 +7561,7 @@
   },
   {
     "ticker": "TOMCL",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 36.74,
     "prev_close": 36.74,
     "change": 0,
@@ -7591,7 +7591,7 @@
   },
   {
     "ticker": "ILP",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 108.67,
     "prev_close": 108.67,
     "change": 0,
@@ -7621,7 +7621,7 @@
   },
   {
     "ticker": "NML",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 143.86,
     "prev_close": 143.86,
     "change": 0,
@@ -7651,7 +7651,7 @@
   },
   {
     "ticker": "GATM",
-    "session_date": "2026-10-20",
+    "session_date": "2026-10-21",
     "closing_price": 24,
     "prev_close": 24,
     "change": 0,
@@ -7681,7 +7681,7 @@
   },
   {
     "ticker": "OGDC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 328.7,
     "prev_close": 328.7,
     "change": 0,
@@ -7711,7 +7711,7 @@
   },
   {
     "ticker": "PPL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 234.5,
     "prev_close": 234.5,
     "change": 0,
@@ -7741,7 +7741,7 @@
   },
   {
     "ticker": "MARI",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 663.26,
     "prev_close": 663.26,
     "change": 0,
@@ -7771,7 +7771,7 @@
   },
   {
     "ticker": "POL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 734.56,
     "prev_close": 734.56,
     "change": 0,
@@ -7801,7 +7801,7 @@
   },
   {
     "ticker": "PSO",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 363.84,
     "prev_close": 363.84,
     "change": 0,
@@ -7831,7 +7831,7 @@
   },
   {
     "ticker": "SNGP",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 101.86,
     "prev_close": 101.86,
     "change": 0,
@@ -7861,7 +7861,7 @@
   },
   {
     "ticker": "SSGC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 27.66,
     "prev_close": 27.66,
     "change": 0,
@@ -7891,23 +7891,23 @@
   },
   {
     "ticker": "PRL",
-    "session_date": "2026-10-21",
-    "closing_price": 101.44,
-    "prev_close": 108.81,
-    "change": -7.37,
-    "change_percent": -6.77,
+    "session_date": "2026-10-22",
+    "closing_price": 99.88,
+    "prev_close": 101.44,
+    "change": -1.56,
+    "change_percent": -1.54,
     "signal_type": "AVOID_SELL",
-    "entry_min": 98.5,
-    "entry_max": 101.5,
-    "stop_loss": 96.37,
-    "target_1": 106.5,
-    "target_2": 110,
-    "rsi": 48.2,
+    "entry_min": 98.2,
+    "entry_max": 100.8,
+    "stop_loss": 96.5,
+    "target_1": 103.5,
+    "target_2": 107,
+    "rsi": 44.5,
     "confidence": 86,
     "reasons": [
-      "Tomorrow's Open: Defensive stance advised; let high-volume sell-off absorb around 98.50-101.50 support.",
-      "Trailing stop from Oct 19 (106.42) successfully triggered to prevent deeper drawdown.",
-      "Refinery sector undergoing short-term profit booking after multi-day rally."
+      "Tomorrow's Open (Oct 22): Avoid fresh buying. If holding existing positions, use morning pullbacks toward PKR 100.80 to exit.",
+      "Trigger defensive stop if price breaches below PKR 96.50.",
+      "Benchmark reference: Last EOD Close (Oct 21) at PKR 99.88 (-1.54%)."
     ],
     "sector": "Refinery",
     "name": "Pakistan Refinery Limited",
@@ -7921,7 +7921,7 @@
   },
   {
     "ticker": "ATRL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 1197.49,
     "prev_close": 1197.49,
     "change": 0,
@@ -7951,7 +7951,7 @@
   },
   {
     "ticker": "NRL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 549.83,
     "prev_close": 549.83,
     "change": 0,
@@ -7981,7 +7981,7 @@
   },
   {
     "ticker": "CNERGY",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 15.46,
     "prev_close": 15.46,
     "change": 0,
@@ -8011,7 +8011,7 @@
   },
   {
     "ticker": "SYS",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 124.54,
     "prev_close": 124.54,
     "change": 0,
@@ -8041,7 +8041,7 @@
   },
   {
     "ticker": "TRG",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 56.64,
     "prev_close": 56.64,
     "change": 0,
@@ -8071,7 +8071,7 @@
   },
   {
     "ticker": "NETSOL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 126.55,
     "prev_close": 126.55,
     "change": 0,
@@ -8101,7 +8101,7 @@
   },
   {
     "ticker": "AVN",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 30.05,
     "prev_close": 30.05,
     "change": 0,
@@ -8131,7 +8131,7 @@
   },
   {
     "ticker": "PTC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 69.42,
     "prev_close": 69.42,
     "change": 0,
@@ -8161,7 +8161,7 @@
   },
   {
     "ticker": "WTL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 0.93,
     "prev_close": 0.95,
     "change": -0.02,
@@ -8191,7 +8191,7 @@
   },
   {
     "ticker": "TELE",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 7.97,
     "prev_close": 7.97,
     "change": 0,
@@ -8221,7 +8221,7 @@
   },
   {
     "ticker": "HUMNL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 10.47,
     "prev_close": 10.47,
     "change": 0,
@@ -8251,7 +8251,7 @@
   },
   {
     "ticker": "PAEL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 39.36,
     "prev_close": 39.36,
     "change": 0,
@@ -8281,7 +8281,7 @@
   },
   {
     "ticker": "ENGRO",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 385,
     "prev_close": 381.15,
     "change": 3.85,
@@ -8311,7 +8311,7 @@
   },
   {
     "ticker": "FFC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 552.7,
     "prev_close": 552.7,
     "change": 0,
@@ -8341,7 +8341,7 @@
   },
   {
     "ticker": "EFERT",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 181.35,
     "prev_close": 181.35,
     "change": 0,
@@ -8371,7 +8371,7 @@
   },
   {
     "ticker": "FATIMA",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 155.01,
     "prev_close": 155.01,
     "change": 0,
@@ -8401,7 +8401,7 @@
   },
   {
     "ticker": "FFBL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 42.5,
     "prev_close": 42.075,
     "change": 0.42,
@@ -8431,7 +8431,7 @@
   },
   {
     "ticker": "LUCK",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 437.33,
     "prev_close": 437.33,
     "change": 0,
@@ -8461,7 +8461,7 @@
   },
   {
     "ticker": "DGKC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 209.58,
     "prev_close": 209.58,
     "change": 0,
@@ -8491,7 +8491,7 @@
   },
   {
     "ticker": "MLCF",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 99.58,
     "prev_close": 99.58,
     "change": 0,
@@ -8521,7 +8521,7 @@
   },
   {
     "ticker": "CHCC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 302.27,
     "prev_close": 302.27,
     "change": 0,
@@ -8551,7 +8551,7 @@
   },
   {
     "ticker": "FCCL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 55.31,
     "prev_close": 55.31,
     "change": 0,
@@ -8581,7 +8581,7 @@
   },
   {
     "ticker": "PIOC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 258.48,
     "prev_close": 258.48,
     "change": 0,
@@ -8611,7 +8611,7 @@
   },
   {
     "ticker": "MEBL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 573.99,
     "prev_close": 568.2501,
     "change": 5.74,
@@ -8641,7 +8641,7 @@
   },
   {
     "ticker": "MCB",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 405.27,
     "prev_close": 405.27,
     "change": 0,
@@ -8671,7 +8671,7 @@
   },
   {
     "ticker": "HBL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 318.05,
     "prev_close": 318.05,
     "change": 0,
@@ -8701,7 +8701,7 @@
   },
   {
     "ticker": "UBL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 450.76,
     "prev_close": 450.76,
     "change": 0,
@@ -8731,7 +8731,7 @@
   },
   {
     "ticker": "BAFL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 58.68,
     "prev_close": 58.68,
     "change": 0,
@@ -8761,7 +8761,7 @@
   },
   {
     "ticker": "BAHL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 115,
     "prev_close": 113.85,
     "change": 1.15,
@@ -8791,7 +8791,7 @@
   },
   {
     "ticker": "NBP",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 187.08,
     "prev_close": 187.08,
     "change": 0,
@@ -8821,7 +8821,7 @@
   },
   {
     "ticker": "BOP",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 34.99,
     "prev_close": 34.99,
     "change": 0,
@@ -8851,7 +8851,7 @@
   },
   {
     "ticker": "BIPL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 24.33,
     "prev_close": 24.08,
     "change": 0.25,
@@ -8881,7 +8881,7 @@
   },
   {
     "ticker": "HUBC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 209.67,
     "prev_close": 209.67,
     "change": 0,
@@ -8911,7 +8911,7 @@
   },
   {
     "ticker": "KAPCO",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 27.47,
     "prev_close": 27.47,
     "change": 0,
@@ -8941,7 +8941,7 @@
   },
   {
     "ticker": "KEL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 7.24,
     "prev_close": 7.24,
     "change": 0,
@@ -8971,7 +8971,7 @@
   },
   {
     "ticker": "NCPL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 59.36,
     "prev_close": 59.36,
     "change": 0,
@@ -9001,7 +9001,7 @@
   },
   {
     "ticker": "NPL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 68.18,
     "prev_close": 68.18,
     "change": 0,
@@ -9031,7 +9031,7 @@
   },
   {
     "ticker": "INDU",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 1928.89,
     "prev_close": 1928.89,
     "change": 0,
@@ -9061,7 +9061,7 @@
   },
   {
     "ticker": "MTL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 301.45,
     "prev_close": 301.45,
     "change": 0,
@@ -9091,7 +9091,7 @@
   },
   {
     "ticker": "HCAR",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 247.11,
     "prev_close": 247.11,
     "change": 0,
@@ -9121,7 +9121,7 @@
   },
   {
     "ticker": "PSMC",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 605,
     "prev_close": 598.95,
     "change": 6.05,
@@ -9151,7 +9151,7 @@
   },
   {
     "ticker": "AGP",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 163.46,
     "prev_close": 163.46,
     "change": 0,
@@ -9181,7 +9181,7 @@
   },
   {
     "ticker": "SEARL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 86.76,
     "prev_close": 86.76,
     "change": 0,
@@ -9211,7 +9211,7 @@
   },
   {
     "ticker": "ABOT",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 940.26,
     "prev_close": 940.26,
     "change": 0,
@@ -9241,7 +9241,7 @@
   },
   {
     "ticker": "GLAXO",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 334.97,
     "prev_close": 334.97,
     "change": 0,
@@ -9271,7 +9271,7 @@
   },
   {
     "ticker": "MUGHAL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 78.76,
     "prev_close": 78.76,
     "change": 0,
@@ -9301,7 +9301,7 @@
   },
   {
     "ticker": "ISL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 92.01,
     "prev_close": 92.01,
     "change": 0,
@@ -9331,7 +9331,7 @@
   },
   {
     "ticker": "INIL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 170.2,
     "prev_close": 170.2,
     "change": 0,
@@ -9361,7 +9361,7 @@
   },
   {
     "ticker": "ASTL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 15.32,
     "prev_close": 15.32,
     "change": 0,
@@ -9391,7 +9391,7 @@
   },
   {
     "ticker": "NESTLE",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 7473.54,
     "prev_close": 7473.54,
     "change": 0,
@@ -9421,7 +9421,7 @@
   },
   {
     "ticker": "NATF",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 370.21,
     "prev_close": 370.21,
     "change": 0,
@@ -9451,7 +9451,7 @@
   },
   {
     "ticker": "UNITY",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 9.98,
     "prev_close": 9.98,
     "change": 0,
@@ -9481,7 +9481,7 @@
   },
   {
     "ticker": "TOMCL",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 36.74,
     "prev_close": 36.74,
     "change": 0,
@@ -9511,7 +9511,7 @@
   },
   {
     "ticker": "ILP",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 108.67,
     "prev_close": 108.67,
     "change": 0,
@@ -9541,7 +9541,7 @@
   },
   {
     "ticker": "NML",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 143.86,
     "prev_close": 143.86,
     "change": 0,
@@ -9571,7 +9571,7 @@
   },
   {
     "ticker": "GATM",
-    "session_date": "2026-10-21",
+    "session_date": "2026-10-22",
     "closing_price": 24,
     "prev_close": 24,
     "change": 0,
