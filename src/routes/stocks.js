@@ -54,12 +54,17 @@ router.get('/', async (req, res) => {
           ? liveQuote.sector 
           : (KNOWN_BENCHMARKS[sym]?.sector || 'Miscellaneous');
 
+        const officialClose = liveQuote.settlementPrice || liveQuote.closeRate || liveQuote.finalClose || liveQuote.currentPrice;
+
         mergedMap.set(sym, {
           symbol: sym,
           name: liveQuote.name || sym,
           sector: symSector,
           category: symSector,
-          currentPrice: liveQuote.currentPrice,
+          currentPrice: officialClose,
+          closeRate: officialClose,
+          settlementPrice: officialClose,
+          finalClose: officialClose,
           prevClose: liveQuote.prevClose,
           open: liveQuote.open,
           high: liveQuote.high,
@@ -68,9 +73,9 @@ router.get('/', async (req, res) => {
           changePercent: liveQuote.changePercent,
           volume: liveQuote.volume,
           isOfficialDPS: true,
-          peRatio: 5.35,
-          dividendYield: 0,
-          technicals: { rsi14: 52, signal: liveQuote.change >= 0 ? 'ACCUMULATE' : 'NEUTRAL' }
+          peRatio: (liveQuote.peRatio && Number(liveQuote.peRatio) > 0) ? Number(liveQuote.peRatio) : null,
+          dividendYield: (liveQuote.dividendYield && Number(liveQuote.dividendYield) > 0) ? Number(liveQuote.dividendYield) : null,
+          technicals: null
         });
       });
     }
@@ -86,23 +91,33 @@ router.get('/', async (req, res) => {
             : (KNOWN_BENCHMARKS[sym]?.sector || 'Miscellaneous'));
 
       if (live) {
+        const officialClose = live.settlementPrice || live.closeRate || live.finalClose || live.currentPrice || dbStock.currentPrice;
         mergedMap.set(sym, {
           ...dbStock,
           ...live,
           name: dbStock.name || live.name,
           sector: resolvedSector,
           category: resolvedSector,
-          currentPrice: live.currentPrice > 0 ? live.currentPrice : dbStock.currentPrice,
+          currentPrice: officialClose,
+          closeRate: officialClose,
+          settlementPrice: officialClose,
+          finalClose: officialClose,
           prevClose: live.prevClose > 0 ? live.prevClose : dbStock.prevClose,
           change: live.change !== undefined ? live.change : dbStock.change,
           changePercent: live.changePercent !== undefined ? live.changePercent : dbStock.changePercent,
           volume: (live.volume && live.volume > 0) ? live.volume : (dbStock.volume || 0),
-          technicals: dbStock.technicals || live.technicals,
-          peRatio: dbStock.peRatio || live.peRatio,
-          dividendYield: dbStock.dividendYield || live.dividendYield
+          technicals: dbStock.technicals || null,
+          peRatio: (live.peRatio && Number(live.peRatio) > 0) ? Number(live.peRatio) : ((dbStock.peRatio && Number(dbStock.peRatio) > 0 && KNOWN_BENCHMARKS[sym]) ? Number(dbStock.peRatio) : null),
+          dividendYield: (live.dividendYield && Number(live.dividendYield) > 0) ? Number(live.dividendYield) : ((dbStock.dividendYield && Number(dbStock.dividendYield) > 0 && KNOWN_BENCHMARKS[sym]) ? Number(dbStock.dividendYield) : null)
         });
       } else {
-        mergedMap.set(sym, dbStock);
+        const isBenchmark = Boolean(KNOWN_BENCHMARKS[sym]);
+        mergedMap.set(sym, {
+          ...dbStock,
+          peRatio: (isBenchmark && dbStock.peRatio) ? dbStock.peRatio : null,
+          dividendYield: (isBenchmark && dbStock.dividendYield) ? dbStock.dividendYield : null,
+          technicals: dbStock.technicals || null
+        });
       }
     });
 
@@ -122,12 +137,15 @@ router.get('/', async (req, res) => {
 
     // Sorting
     list.sort((a, b) => {
-      let valA = a[sortBy] ?? a.technicals?.[sortBy] ?? 0;
-      let valB = b[sortBy] ?? b.technicals?.[sortBy] ?? 0;
+      let valA = a[sortBy] ?? a.technicals?.[sortBy] ?? null;
+      let valB = b[sortBy] ?? b.technicals?.[sortBy] ?? null;
       if (sortBy === 'rsi') {
-        valA = a.technicals?.rsi14 ?? 50;
-        valB = b.technicals?.rsi14 ?? 50;
+        valA = a.technicals?.rsi14 ?? null;
+        valB = b.technicals?.rsi14 ?? null;
       }
+      if (valA === null && valB === null) return 0;
+      if (valA === null) return 1;
+      if (valB === null) return -1;
       return sortDir === 'asc' ? (valA > valB ? 1 : -1) : (valA < valB ? 1 : -1);
     });
 
