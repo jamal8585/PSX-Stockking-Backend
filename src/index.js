@@ -24,13 +24,38 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Hardened Security Headers (Defense-in-depth against XSS, clickjacking, MIME-sniffing)
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  next();
+});
+
+const ALLOWED_ORIGINS = [
+  'https://psx-stockking-frontend.vercel.app',
+  'https://psx-alpha-terminal.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173'
+];
+
 app.use(cors({
-  origin: '*',
+  origin: (origin, callback) => {
+    if (!origin || ALLOWED_ORIGINS.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.options('*', cors());
-app.use(express.json());
+app.use(express.json({ limit: '1mb' }));
 
 // Smart High-Performance Payload Compression (Gzip / Deflate reduces large JSON datasets by 80%+)
 try {

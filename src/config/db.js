@@ -15,11 +15,10 @@ export const memDB = {
 };
 
 // =========================================================================
-// SUPABASE SECURE PERSISTENT VAULT (100% Guaranteed Cloud Sync across Vercel)
+// SUPABASE SECURE PERSISTENT VAULT (Cloud Sync via Environment Variables)
 // =========================================================================
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://fiqtjbtnccztjufgtpsj.supabase.co';
-const FALLBACK_KEY = ['sb_', 'secret_', '56f6NemiydbstLcRcZ3qlQ_', 'dXA5fOE8'].join('');
-const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || FALLBACK_KEY;
+const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 export const supabaseClient = (SUPABASE_URL && SUPABASE_KEY)
   ? createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } })

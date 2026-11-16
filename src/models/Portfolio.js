@@ -2,6 +2,8 @@
 import mongoose from 'mongoose';
 
 const PortfolioSchema = new mongoose.Schema({
+  userId: { type: String, index: true },
+  userEmail: { type: String, index: true },
   symbol: { type: String, required: true, uppercase: true, index: true },
   name: { type: String, required: true },
   sector: String,

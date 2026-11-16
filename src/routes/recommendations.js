@@ -2,6 +2,7 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import jwt from 'jsonwebtoken';
 import Recommendation from '../models/Recommendation.js';
 import { memDB } from '../config/db.js';
 import { syncMarketData } from '../services/seedService.js';
@@ -11,6 +12,8 @@ import {
   initSnapshotEngine, 
   computeHistoricalOutcome 
 } from '../services/snapshotService.js';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'psx_stockking_super_secret_jwt_key_2026';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -245,14 +248,48 @@ router.get('/', async (req, res) => {
     }
     list.sort((a, b) => b.confidence - a.confidence);
 
-    const strongBuy = list.filter(r => r.signal === 'STRONG_BUY');
-    const accumulate = list.filter(r => r.signal === 'ACCUMULATE');
-    const hold = list.filter(r => r.signal === 'HOLD');
-    const avoidSell = list.filter(r => r.signal === 'AVOID_SELL');
+    // Check Pro Subscription Authenticity
+    const authHeader = req.headers.authorization;
+    let isProUser = false;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      try {
+        const token = authHeader.split(' ')[1];
+        const decoded = jwt.verify(token, JWT_SECRET);
+        if (decoded && (decoded.plan === 'PRO' || decoded.role === 'ADMIN')) {
+          isProUser = true;
+        }
+      } catch (e) {
+        isProUser = false;
+      }
+    }
+
+    // Server-Side Paywall: For free or unauthenticated users, protect pro setups (index >= 2)
+    const securedList = list.map((item, idx) => {
+      if (!isProUser && idx >= 2) {
+        return {
+          ...item,
+          entryZone: { min: null, max: null },
+          stopLoss: null,
+          target1: null,
+          target2: null,
+          reasons: ['Pro Quantitative Setup: Upgrade to StockKing Pro to unlock algorithmic entry ranges and multi-tier targets.'],
+          isLocked: true
+        };
+      }
+      return {
+        ...item,
+        isLocked: false
+      };
+    });
+
+    const strongBuy = securedList.filter(r => r.signal === 'STRONG_BUY');
+    const accumulate = securedList.filter(r => r.signal === 'ACCUMULATE');
+    const hold = securedList.filter(r => r.signal === 'HOLD');
+    const avoidSell = securedList.filter(r => r.signal === 'AVOID_SELL');
 
     const marketTiming = getPSXMarketStatus();
 
-    res.set('Cache-Control', 'public, max-age=10, s-maxage=30, stale-while-revalidate=60');
+    res.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     res.json({
       success: true,
       sessions: availableSessions,
@@ -262,8 +299,9 @@ router.get('/', async (req, res) => {
       eodSnapshotDate: marketTiming.eodSnapshotDate,
       nextTradingDate: marketTiming.nextTradingDate,
       actionableLabel: marketTiming.actionableLabel,
+      isProUser,
       summary: {
-        total: list.length,
+        total: securedList.length,
         strongBuyCount: strongBuy.length,
         accumulateCount: accumulate.length,
         holdCount: hold.length,
@@ -275,7 +313,7 @@ router.get('/', async (req, res) => {
         hold,
         avoidSell
       },
-      all: list
+      all: securedList
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });

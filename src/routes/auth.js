@@ -8,6 +8,37 @@ import { sendOTPEmail } from '../services/emailService.js';
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'psx_stockking_super_secret_jwt_key_2026';
 
+// In-Memory Rate Limiter (Defends against brute-force attacks)
+const rateLimitMap = new Map();
+const createRateLimiter = ({ windowMs = 15 * 60 * 1000, max = 10, message = 'Too many requests. Please try again later.' }) => {
+  return (req, res, next) => {
+    const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket?.remoteAddress || 'unknown_ip';
+    const key = `${ip}_${req.baseUrl || ''}_${req.path}`;
+    const now = Date.now();
+    const record = rateLimitMap.get(key) || { count: 0, resetTime: now + windowMs };
+
+    if (now > record.resetTime) {
+      record.count = 1;
+      record.resetTime = now + windowMs;
+    } else {
+      record.count += 1;
+    }
+    rateLimitMap.set(key, record);
+
+    if (record.count > max) {
+      const waitSeconds = Math.ceil((record.resetTime - now) / 1000);
+      return res.status(429).json({
+        success: false,
+        message: `${message} Please wait ${waitSeconds}s.`
+      });
+    }
+    next();
+  };
+};
+
+const loginLimiter = createRateLimiter({ windowMs: 15 * 60 * 1000, max: 10, message: 'Too many login attempts.' });
+const otpLimiter = createRateLimiter({ windowMs: 15 * 60 * 1000, max: 6, message: 'Too many verification code requests.' });
+
 // Helper to generate JWT Token
 export const generateToken = (user) => {
   return jwt.sign(
@@ -63,17 +94,6 @@ export const requireAuth = async (req, res, next) => {
       if (!user && decoded.id) {
         for (const u of memDB.users.values()) {
           if (u.id === decoded.id || u._id === decoded.id) {
-            user = u;
-            break;
-          }
-        }
-      }
-      if (!user && req.body?.email) {
-        user = memDB.users.get(req.body.email.toLowerCase().trim());
-      }
-      if (!user && req.body?.userId) {
-        for (const u of memDB.users.values()) {
-          if (u.id === req.body.userId || u._id === req.body.userId) {
             user = u;
             break;
           }
@@ -192,7 +212,7 @@ const generateOTPCode = () => {
 // ==========================================
 // 0A. SEND OTP EMAIL (POST /api/auth/send-otp)
 // ==========================================
-router.post('/send-otp', async (req, res) => {
+router.post('/send-otp', otpLimiter, async (req, res) => {
   try {
     const { email, type = 'signup', name = '' } = req.body;
 
@@ -235,7 +255,7 @@ router.post('/send-otp', async (req, res) => {
 
     await saveOtpToVault(emailLower, otpData);
 
-    const emailRes = await sendOTPEmail({
+    await sendOTPEmail({
       to: emailLower,
       otp,
       type,
@@ -244,8 +264,7 @@ router.post('/send-otp', async (req, res) => {
 
     return res.json({
       success: true,
-      message: `6-digit verification code sent to ${emailLower}!`,
-      ...(emailRes.fallback ? { devOtp: otp } : {})
+      message: `6-digit verification code sent to ${emailLower}!`
     });
   } catch (err) {
     console.error('Send OTP Error:', err);
@@ -546,7 +565,7 @@ export const isAdminEmail = (email) => {
 // ==========================================
 // 2. LOGIN (POST /api/auth/login)
 // ==========================================
-router.post('/login', async (req, res) => {
+router.post('/login', loginLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
 
