@@ -18,7 +18,16 @@ const UserSchema = new mongoose.Schema({
     submittedAt: { type: Date, default: null },
     note: { type: String, default: '' }
   },
-  lastLogin: { type: Date, default: null }
+  lastLogin: { type: Date, default: null },
+  loginCount: { type: Number, default: 0 },
+  loginHistory: [{
+    timestamp: { type: Date, default: Date.now },
+    ip: { type: String, default: '' },
+    device: { type: String, default: '' },
+    browser: { type: String, default: '' },
+    userAgent: { type: String, default: '' },
+    method: { type: String, default: 'password' }
+  }]
 }, { timestamps: true });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);

@@ -73,6 +73,54 @@ const checkExpiry = async (user) => {
   return user;
 };
 
+// Helper to record login history & client device/IP details
+export const recordLoginEvent = (user, req, method = 'password') => {
+  if (!user) return null;
+  const forwarded = req.headers['x-forwarded-for'];
+  let ip = (forwarded ? String(forwarded).split(',')[0].trim() : req.socket?.remoteAddress) || '127.0.0.1';
+  if (ip === '::1' || ip === '::ffff:127.0.0.1') ip = '127.0.0.1';
+
+  const userAgent = req.headers['user-agent'] || 'Web Browser';
+  
+  let device = 'Desktop';
+  if (/mobile|android|iphone|ipad/i.test(userAgent)) {
+    if (/iphone/i.test(userAgent)) device = 'iPhone';
+    else if (/ipad/i.test(userAgent)) device = 'iPad';
+    else if (/android/i.test(userAgent)) device = 'Android';
+    else device = 'Mobile Device';
+  } else if (/windows/i.test(userAgent)) {
+    device = 'Windows PC';
+  } else if (/macintosh|mac os/i.test(userAgent)) {
+    device = 'Mac';
+  } else if (/linux/i.test(userAgent)) {
+    device = 'Linux';
+  }
+
+  let browser = 'Web Browser';
+  if (/edg/i.test(userAgent)) browser = 'Edge';
+  else if (/chrome|crios/i.test(userAgent)) browser = 'Chrome';
+  else if (/firefox|fxios/i.test(userAgent)) browser = 'Firefox';
+  else if (/safari/i.test(userAgent) && !/chrome/i.test(userAgent)) browser = 'Safari';
+  else if (/opera|opr/i.test(userAgent)) browser = 'Opera';
+
+  const now = new Date();
+  const entry = {
+    timestamp: now,
+    ip,
+    device,
+    browser,
+    userAgent: userAgent.substring(0, 150),
+    method
+  };
+
+  user.lastLogin = now;
+  user.loginCount = (Number(user.loginCount) || 0) + 1;
+  const existingHistory = Array.isArray(user.loginHistory) ? user.loginHistory : [];
+  user.loginHistory = [entry, ...existingHistory].slice(0, 20);
+
+  return entry;
+};
+
 // Auth Middleware for protected routes
 export const requireAuth = async (req, res, next) => {
   try {
@@ -340,8 +388,12 @@ router.post('/verify-otp-signup', async (req, res) => {
       subscriptionEnd: role === 'ADMIN' ? new Date(new Date().setFullYear(new Date().getFullYear() + 50)) : null,
       paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
       createdAt: new Date(),
-      lastLogin: new Date()
+      lastLogin: new Date(),
+      loginCount: 0,
+      loginHistory: []
     };
+
+    recordLoginEvent(newUserObj, req, 'signup');
 
     memDB.users.set(emailLower, newUserObj);
     await saveUsersToCloud(memDB.users);
@@ -520,8 +572,12 @@ router.post('/signup', otpLimiter, async (req, res) => {
       subscriptionEnd: role === 'ADMIN' ? new Date(new Date().setFullYear(new Date().getFullYear() + 50)) : null,
       paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
       createdAt: new Date(),
-      lastLogin: new Date()
+      lastLogin: new Date(),
+      loginCount: 0,
+      loginHistory: []
     };
+
+    recordLoginEvent(newUserObj, req, 'signup');
 
     let savedUser = newUserObj;
     memDB.users.set(emailLower, newUserObj);
@@ -630,13 +686,23 @@ router.post('/login', loginLimiter, async (req, res) => {
       user = await checkExpiry(user);
     } catch (e) {}
 
-    user.lastLogin = new Date();
+    const loginEntry = recordLoginEvent(user, req, 'password');
     memDB.users.set(emailLower, user);
     saveUsersToCloud(memDB.users).catch(() => {});
 
     if (!getDBStatus().isMock && user._id) {
       try {
-        await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+        await User.findByIdAndUpdate(user._id, { 
+          lastLogin: loginEntry.timestamp,
+          $inc: { loginCount: 1 },
+          $push: {
+            loginHistory: {
+              $each: [loginEntry],
+              $position: 0,
+              $slice: 20
+            }
+          }
+        });
       } catch (e) {}
     }
 
@@ -707,8 +773,12 @@ router.post('/social-login', async (req, res) => {
         avatar: avatar || '',
         paymentProof: { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
         createdAt: new Date(),
-        lastLogin: new Date()
+        lastLogin: new Date(),
+        loginCount: 0,
+        loginHistory: []
       };
+
+      const loginEntry = recordLoginEvent(newUser, req, provider.toLowerCase());
 
       if (getDBStatus().isMock) {
         memDB.users.set(emailLower, newUser);
@@ -721,7 +791,7 @@ router.post('/social-login', async (req, res) => {
     } else {
       // Existing user logging in with social provider
       user = await checkExpiry(user);
-      user.lastLogin = new Date();
+      const loginEntry = recordLoginEvent(user, req, provider.toLowerCase());
       if (avatar && !user.avatar) user.avatar = avatar;
       if (provider && !user.provider) user.provider = provider.toLowerCase();
 
@@ -729,7 +799,19 @@ router.post('/social-login', async (req, res) => {
         memDB.users.set(emailLower, user);
         await saveUsersToCloud(memDB.users);
       } else {
-        await User.findByIdAndUpdate(user._id, { lastLogin: new Date(), avatar: user.avatar, provider: user.provider });
+        await User.findByIdAndUpdate(user._id, { 
+          lastLogin: loginEntry.timestamp, 
+          avatar: user.avatar, 
+          provider: user.provider,
+          $inc: { loginCount: 1 },
+          $push: {
+            loginHistory: {
+              $each: [loginEntry],
+              $position: 0,
+              $slice: 20
+            }
+          }
+        });
       }
     }
 
@@ -954,13 +1036,24 @@ router.post('/forgot-password', async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(newPassword, salt);
-    user.lastLogin = new Date();
+    const loginEntry = recordLoginEvent(user, req, 'reset-password');
 
     if (getDBStatus().isMock) {
       memDB.users.set(emailLower, user);
       await saveUsersToCloud(memDB.users);
     } else {
-      await User.findByIdAndUpdate(user._id, { password: user.password, lastLogin: new Date() });
+      await User.findByIdAndUpdate(user._id, { 
+        password: user.password, 
+        lastLogin: loginEntry.timestamp,
+        $inc: { loginCount: 1 },
+        $push: {
+          loginHistory: {
+            $each: [loginEntry],
+            $position: 0,
+            $slice: 20
+          }
+        }
+      });
     }
 
     const token = generateToken(user);
