@@ -37,7 +37,8 @@ try {
  * Fetch 100% real dividend history & bonus/split events
  */
 export const fetchStockPayouts = async (symbol, currentPrice = 0) => {
-  const sym = symbol.toUpperCase().trim();
+  const sym = String(symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+  if (!sym) return null;
   const cacheKey = `payouts_${sym}`;
   const now = Date.now();
 
@@ -291,7 +292,8 @@ function getPayoutsFallback(sym, currentPrice, now, cacheKey, cacheFile) {
  * Fetch 100% official PSX Announcements & Board Meetings directly from DPS
  */
 export const fetchStockAnnouncements = async (symbol) => {
-  const sym = symbol.toUpperCase().trim();
+  const sym = String(symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+  if (!sym) return null;
   const cacheKey = `announcements_${sym}`;
   const now = Date.now();
 

@@ -165,7 +165,8 @@ router.get('/', async (req, res) => {
 // ==========================================
 router.get('/:symbol/history', async (req, res) => {
   try {
-    const sym = req.params.symbol.toUpperCase().trim();
+    const sym = String(req.params.symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+    if (!sym) return res.status(400).json({ success: false, message: 'Invalid stock symbol.' });
     const rawTf = req.query.timeframe || '1D';
     const range = (req.query.range || '').toLowerCase();
 
@@ -318,7 +319,8 @@ router.get('/:symbol/history', async (req, res) => {
 // ==========================================
 router.get('/:symbol/financials', async (req, res) => {
   try {
-    const sym = req.params.symbol.toUpperCase().trim();
+    const sym = String(req.params.symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+    if (!sym) return res.status(400).json({ success: false, message: 'Invalid stock symbol.' });
     const data = await fetchStockFinancials(sym);
     if (!data) {
       return res.status(404).json({ success: false, message: `Financial statements not available for ${sym}` });
@@ -340,7 +342,8 @@ router.get('/:symbol/financials', async (req, res) => {
 // ==========================================
 router.get('/:symbol/payouts', async (req, res) => {
   try {
-    const sym = req.params.symbol.toUpperCase().trim();
+    const sym = String(req.params.symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+    if (!sym) return res.status(400).json({ success: false, message: 'Invalid stock symbol.' });
     const data = await fetchStockPayouts(sym);
     if (!data) {
       return res.status(404).json({ success: false, message: `Payouts not available for ${sym}` });
@@ -361,7 +364,8 @@ router.get('/:symbol/payouts', async (req, res) => {
 // ==========================================
 router.get('/:symbol/announcements', async (req, res) => {
   try {
-    const sym = req.params.symbol.toUpperCase().trim();
+    const sym = String(req.params.symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+    if (!sym) return res.status(400).json({ success: false, message: 'Invalid stock symbol.' });
     const data = await fetchStockAnnouncements(sym);
     if (!data) {
       return res.status(404).json({ success: false, message: `Announcements not available for ${sym}` });
@@ -382,7 +386,8 @@ router.get('/:symbol/announcements', async (req, res) => {
 // ==========================================
 router.get('/:symbol', async (req, res) => {
   try {
-    const sym = req.params.symbol.toUpperCase().trim();
+    const sym = String(req.params.symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+    if (!sym) return res.status(400).json({ success: false, message: 'Invalid stock symbol.' });
     
     // 1. Fetch exact real-time official PSX quote
     let liveQuote = await fetchPSXCompanyQuote(sym);

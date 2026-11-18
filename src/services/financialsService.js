@@ -38,7 +38,8 @@ try {
  * Scrapes 100% genuine unconsolidated financial statements & balance sheets directly from PSX Data Portal
  */
 export const fetchStockFinancials = async (symbol) => {
-  const sym = symbol.toUpperCase().trim();
+  const sym = String(symbol || '').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().trim();
+  if (!sym) return null;
   const now = Date.now();
 
   // 1. Check Memory Cache
