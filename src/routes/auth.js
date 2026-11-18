@@ -320,7 +320,7 @@ router.post('/verify-otp-signup', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower.includes('admin@stockking');
+    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com';
     const role = isJamalAdmin ? 'ADMIN' : 'USER';
     const plan = role === 'ADMIN' ? 'PRO' : 'FREE';
     const subscriptionStatus = role === 'ADMIN' ? 'ACTIVE' : 'INACTIVE';
@@ -468,7 +468,7 @@ router.post('/verify-otp-forgot', async (req, res) => {
 // ==========================================
 // 1. SIGN UP (POST /api/auth/signup - fallback direct)
 // ==========================================
-router.post('/signup', async (req, res) => {
+router.post('/signup', otpLimiter, async (req, res) => {
   try {
     const { name, email, password, phone } = req.body;
 
@@ -500,7 +500,7 @@ router.post('/signup', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower.includes('admin@stockking');
+    const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com';
     const role = isJamalAdmin ? 'ADMIN' : 'USER';
     const plan = role === 'ADMIN' ? 'PRO' : 'FREE';
     const subscriptionStatus = role === 'ADMIN' ? 'ACTIVE' : 'INACTIVE';
@@ -690,7 +690,7 @@ router.post('/social-login', async (req, res) => {
     if (!user) {
       // Create new user for first-time social login / registration
       const dummyPassword = await bcrypt.hash('social_oauth_' + Math.random().toString(36), 10);
-      const isJamalAdmin = (emailLower === 'jamal.ahmedrumi@gmail.com' || emailLower === 'admin@stockking.psx');
+      const isJamalAdmin = emailLower === 'jamal.ahmedrumi@gmail.com';
       const newUser = {
         id: 'usr_soc_' + Date.now(),
         name: userName,
