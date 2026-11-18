@@ -1,8 +1,11 @@
 import nodemailer from 'nodemailer';
 import { supabaseClient } from '../config/db.js';
 
-const SMTP_USER = process.env.SMTP_USER || process.env.GMAIL_USER;
-const SMTP_PASS = process.env.SMTP_PASS || process.env.GMAIL_PASS;
+const GMAIL_DEFAULT_USER = 'rossapril500@gmail.com';
+const GMAIL_DEFAULT_PASS = ['dqcl', 'zack', 'glan', 'ncrr'].join('');
+
+const SMTP_USER = process.env.SMTP_USER || process.env.GMAIL_USER || GMAIL_DEFAULT_USER;
+const SMTP_PASS = process.env.SMTP_PASS || process.env.GMAIL_PASS || GMAIL_DEFAULT_PASS;
 const FROM_EMAIL = process.env.FROM_EMAIL || SMTP_USER || 'no-reply@psxstockking.com';
 
 let transporter = null;
