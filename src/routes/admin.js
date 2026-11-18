@@ -85,12 +85,13 @@ router.get('/users', async (req, res) => {
       paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
       createdAt: u.createdAt || new Date(),
       lastLogin: u.lastLogin || u.createdAt || new Date(),
+      lastIp: u.lastIp || (Array.isArray(u.loginHistory) && u.loginHistory[0]?.ip) || u.ip || '127.0.0.1',
       loginCount: Number(u.loginCount) || (u.lastLogin ? 1 : 0),
       loginHistory: Array.isArray(u.loginHistory) && u.loginHistory.length > 0 
         ? u.loginHistory 
         : (u.lastLogin || u.createdAt ? [{
             timestamp: u.lastLogin || u.createdAt || new Date(),
-            ip: 'Direct',
+            ip: u.lastIp || u.ip || '127.0.0.1',
             device: 'Desktop / Mobile',
             browser: 'Web Browser',
             method: 'Standard',
@@ -158,12 +159,13 @@ router.post('/sync-users', async (req, res) => {
       paymentProof: u.paymentProof || { transactionId: '', method: '', amount: 0, submittedAt: null, note: '' },
       createdAt: u.createdAt || new Date(),
       lastLogin: u.lastLogin || u.createdAt || new Date(),
+      lastIp: u.lastIp || (Array.isArray(u.loginHistory) && u.loginHistory[0]?.ip) || u.ip || '127.0.0.1',
       loginCount: Number(u.loginCount) || (u.lastLogin ? 1 : 0),
       loginHistory: Array.isArray(u.loginHistory) && u.loginHistory.length > 0 
         ? u.loginHistory 
         : (u.lastLogin || u.createdAt ? [{
             timestamp: u.lastLogin || u.createdAt || new Date(),
-            ip: 'Direct',
+            ip: u.lastIp || u.ip || '127.0.0.1',
             device: 'Desktop / Mobile',
             browser: 'Web Browser',
             method: 'Standard',

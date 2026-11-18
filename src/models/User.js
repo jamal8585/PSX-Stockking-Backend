@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema({
     note: { type: String, default: '' }
   },
   lastLogin: { type: Date, default: null },
+  lastIp: { type: String, default: '' },
   loginCount: { type: Number, default: 0 },
   loginHistory: [{
     timestamp: { type: Date, default: Date.now },

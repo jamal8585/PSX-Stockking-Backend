@@ -76,9 +76,14 @@ const checkExpiry = async (user) => {
 // Helper to record login history & client device/IP details
 export const recordLoginEvent = (user, req, method = 'password') => {
   if (!user) return null;
-  const forwarded = req.headers['x-forwarded-for'];
-  let ip = (forwarded ? String(forwarded).split(',')[0].trim() : req.socket?.remoteAddress) || '127.0.0.1';
-  if (ip === '::1' || ip === '::ffff:127.0.0.1') ip = '127.0.0.1';
+  const forwarded = req.headers['x-forwarded-for'] || 
+                    req.headers['x-real-ip'] || 
+                    req.headers['cf-connecting-ip'] ||
+                    req.connection?.remoteAddress || 
+                    req.socket?.remoteAddress;
+  let ip = forwarded ? String(forwarded).split(',')[0].trim() : '127.0.0.1';
+  if (ip.startsWith('::ffff:')) ip = ip.replace('::ffff:', '');
+  if (ip === '::1') ip = '127.0.0.1';
 
   const userAgent = req.headers['user-agent'] || 'Web Browser';
   
@@ -114,6 +119,7 @@ export const recordLoginEvent = (user, req, method = 'password') => {
   };
 
   user.lastLogin = now;
+  user.lastIp = ip;
   user.loginCount = (Number(user.loginCount) || 0) + 1;
   const existingHistory = Array.isArray(user.loginHistory) ? user.loginHistory : [];
   user.loginHistory = [entry, ...existingHistory].slice(0, 20);
@@ -694,6 +700,7 @@ router.post('/login', loginLimiter, async (req, res) => {
       try {
         await User.findByIdAndUpdate(user._id, { 
           lastLogin: loginEntry.timestamp,
+          lastIp: loginEntry.ip,
           $inc: { loginCount: 1 },
           $push: {
             loginHistory: {
@@ -801,6 +808,7 @@ router.post('/social-login', async (req, res) => {
       } else {
         await User.findByIdAndUpdate(user._id, { 
           lastLogin: loginEntry.timestamp, 
+          lastIp: loginEntry.ip,
           avatar: user.avatar, 
           provider: user.provider,
           $inc: { loginCount: 1 },
@@ -1045,6 +1053,7 @@ router.post('/forgot-password', async (req, res) => {
       await User.findByIdAndUpdate(user._id, { 
         password: user.password, 
         lastLogin: loginEntry.timestamp,
+        lastIp: loginEntry.ip,
         $inc: { loginCount: 1 },
         $push: {
           loginHistory: {
